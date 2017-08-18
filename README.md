@@ -1,4 +1,4 @@
-#Badminton project
+# Badminton project
 
-##After clone project
+## After clone project
 Run 'composer install'

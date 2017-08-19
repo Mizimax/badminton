@@ -20,7 +20,7 @@ class CreatePersonalInfosTable extends Migration
             $table->string('Nickname');
             $table->date('Birthday');
             $table->string('Tel'); //not sure
-            $table->integer('Rank',1,10); //not sure
+            $table->unsignedTinyInteger('Rank'); //not sure
             $table->string('Team');
             $table->string('Picture'); //should have default
             $table->integer('Gift_Points')->default(0);

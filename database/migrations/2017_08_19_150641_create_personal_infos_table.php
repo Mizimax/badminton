@@ -15,16 +15,17 @@ class CreatePersonalInfosTable extends Migration
     {
         Schema::create('personal_infos', function (Blueprint $table) {
             $table->increments('Profile_id');
+            $table->integer('User_id');
             $table->string('Firstname');
             $table->string('Lastname');
-            $table->string('Nickname');
-            $table->date('Birthday');
-            $table->string('Tel'); //not sure
-            $table->unsignedTinyInteger('Rank'); //not sure
-            $table->string('Team');
-            $table->string('Picture'); //should have default
+            $table->string('Nickname')->nullable();
+            $table->date('Birthday')->nullable();
+            $table->string('Tel')->nullable(); //not sure
+            $table->unsignedTinyInteger('Rank')->nullable(); //not sure
+            $table->string('Team')->nullable();
+            $table->string('Picture')->default('no_pic.jpg');
             $table->integer('Gift_Points')->default(0);
-            $table->boolean('Is_Player');
+            $table->boolean('Is_Player')->default(false);
             $table->timestamps();
         });
     }

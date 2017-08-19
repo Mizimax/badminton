@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\PersonalInfo;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -46,13 +47,21 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {  
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|fullname',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
+
+    // public function messages()
+    // {
+    //     return [
+    //         'email.email' => 'A title is required',
+    //         'email.required'  => 'A message is required',
+    //     ];
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -62,10 +71,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $name = explode(" ", $data['name']);
+        $user = User::create([
+            'Fullname' => $data['name'],
+            'Email' => $data['email'],
+            'Password' => bcrypt($data['password']),
         ]);
+
+        PersonalInfo::create([
+            'User_id' => $user->User_id,
+            'Firstname' => $name[0],
+            'Lastname' => $name[1],
+        ]);
+        return $user;
     }
 }

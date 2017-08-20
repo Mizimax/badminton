@@ -8,7 +8,9 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    @foreach($events as $event)
+                        {{ $event['Event_Name'] }}<br>
+                    @endforeach
                 </div>
             </div>
         </div>

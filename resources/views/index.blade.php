@@ -244,11 +244,12 @@
 
 		<div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 15em;left:0.2;display:block;position:absolute"  /></a>
-			<form method="post" class="signin" action="#">
+			<form method="POST" action="/login" class="signin">
+				{{ csrf_field() }}
 				<fieldset class="textbox">
 					<label class="username">
 						<span>Username or email</span>
-						<input id="username" name="username" value="" type="text" autocomplete="on" >
+						<input id="email" name="email" value="" type="text" autocomplete="on" >
 					</label>
 
 					<label class="password">
@@ -257,7 +258,7 @@
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
-					<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
+					<img onclick="$('form').submit()" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
 					<p>
 						<a class="forgot" href="#" style="color:black;">ลืม password หรือ username</a>
 					</p>

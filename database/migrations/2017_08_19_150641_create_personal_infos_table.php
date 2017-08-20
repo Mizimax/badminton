@@ -27,6 +27,10 @@ class CreatePersonalInfosTable extends Migration
             $table->integer('Gift_Points')->default(0);
             $table->boolean('Is_Player')->default(false);
             $table->timestamps();
+            $table->index('');
+
+            $table->foreign('User_id')->references('User_id')->on('users');
+            $table->index(['Firstname', 'Lastname']);
         });
     }
 

@@ -151,7 +151,11 @@
 
     .button:hover {
     	background: #ddd;
-    }
+	}
+	
+	.error{
+		color:red;
+	}
 </style>
 @endsection
 @section('content')
@@ -244,7 +248,8 @@
 
 		<div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 15em;left:0.2;display:block;position:absolute"  /></a>
-			<form method="POST" action="/login" class="signin">
+			<div class="error"></div>
+			<form class="signin">
 				{{ csrf_field() }}
 				<fieldset class="textbox">
 					<label class="username">
@@ -258,7 +263,7 @@
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
-					<img onclick="$('form').submit()" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
+					<img onclick="$('form.signin').submit()" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
 					<p>
 						<a class="forgot" href="#" style="color:black;">ลืม password หรือ username</a>
 					</p>
@@ -275,6 +280,31 @@
 	<script type="text/javascript" src="js/jquery.gallery.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		$("form.signin").submit(function(e) {
+			e.preventDefault();
+
+			$.ajax({   
+				type: "post",
+				dataType: "json",
+				headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+				},
+				data: $("form").serialize(),
+				url: "/login",
+				success: function (data) {
+					$('#mask , .login-popup').fadeOut(300 , function() {
+						$('#mask').remove();  
+					}); 
+				},
+				error: function (data) {
+					var result = JSON.parse(data.responseText);
+					$('.error').html('Error : ' + result.email+'<br>Error : ' + result.password);
+				}
+			})
+			return false;
+		});
+
+
 		$('a.login-window').click(function() {
 			
 			// Getting the variable's value from a link 
@@ -313,4 +343,5 @@
 			$('#dg-container').gallery();
 		});
 	</script>
+
 @endsection

@@ -27,6 +27,13 @@ class EventController extends Controller
                             ->where('Event_id', $id)
                             ->first();
         return view('event.detail', ['event' => $event]);
+    }          
+    
+    function manage(){
+        // get data to show state of event
+        // get team status to show state of each team
+
+        return view('event.manage');
     }
 
     function search(){
@@ -39,10 +46,6 @@ class EventController extends Controller
             'status' => 'success',
             'data' => $event
         ], 200);
-    }
-
-    function create(){
-        return view('event/create');
     }
 
     function store(Request $request){
@@ -84,7 +87,7 @@ class EventController extends Controller
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_id', $id)
                             ->first();
-        return view('eventEdit', ['event' => $event]);
+        return view('event.edit', ['event' => $event]);
     }
 
     function update($id){
@@ -93,6 +96,6 @@ class EventController extends Controller
 
     function destroy($id){
         //TO DO
-    }
+    }                                   
 
 }

@@ -8,7 +8,15 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                                                                
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <a onclick="$('#logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        </form>
+
                 </div>
             </div>
         </div>

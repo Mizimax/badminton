@@ -9,4 +9,6 @@ class PersonalInfo extends Model
 
     protected $primaryKey = 'Profile_id';
 
+    protected $guarded = ['Profile_id'];
+
 }

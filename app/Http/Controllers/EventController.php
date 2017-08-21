@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EventTable;
+use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
 {
@@ -19,6 +20,18 @@ class EventController extends Controller
                             ->where('Event_id', $id)
                             ->first();
         return view('home', ['event' => $event]);
+    }
+
+    function search(){
+        $word = Input::get('word');
+        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        ->where('Event_Name', 'like', $word)
+        ->first();
+        return response()->json([
+            'action' => 'search',
+            'status' => 'success',
+            'data' => $event
+        ], 200);
     }
 
     function create(){

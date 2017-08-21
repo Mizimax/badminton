@@ -15,7 +15,7 @@ class CreateEventTablesTable extends Migration
     {
         Schema::create('event_tables', function (Blueprint $table) {
             $table->increments('Event_id');
-            $table->integer('Event_Creator_id');
+            $table->integer('Event_Creator_id')->unsigned();
             $table->string('Event_Name');
             $table->date('Event_Start');
             $table->date('Event_End');
@@ -26,7 +26,7 @@ class CreateEventTablesTable extends Migration
             $table->string('Event_Image');
             $table->timestamps();
 
-            $table->foreign('Event_Creator_id')->references('Personal_id')->on('personal_infos');
+            $table->foreign('Event_Creator_id')->references('Profile_id')->on('personal_infos');
         });
     }
 

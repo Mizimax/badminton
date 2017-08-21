@@ -15,7 +15,7 @@ class CreatePersonalInfosTable extends Migration
     {
         Schema::create('personal_infos', function (Blueprint $table) {
             $table->increments('Profile_id');
-            $table->integer('User_id');
+            $table->integer('User_id')->unsigned();
             $table->string('Firstname');
             $table->string('Lastname');
             $table->string('Nickname')->nullable();
@@ -27,7 +27,6 @@ class CreatePersonalInfosTable extends Migration
             $table->integer('Gift_Points')->default(0);
             $table->boolean('Is_Player')->default(false);
             $table->timestamps();
-            $table->index('');
 
             $table->foreign('User_id')->references('User_id')->on('users');
             $table->index(['Firstname', 'Lastname']);

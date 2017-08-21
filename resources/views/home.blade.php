@@ -8,9 +8,15 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    @foreach($events as $event)
-                        {{ $event['Event_Name'] }}<br>
-                    @endforeach
+                                                                
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <a onclick="$('#logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        </form>
+
                 </div>
             </div>
         </div>

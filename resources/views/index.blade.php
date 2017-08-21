@@ -151,19 +151,34 @@
 
     .button:hover {
     	background: #ddd;
-    }
+	}
+	
+	.error{
+		color:red;
+	}
 </style>
 @endsection
 @section('content')
-<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-28.png" style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute"
-/>
 <img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-26.png" style=" width:6%;position:fixed;right:5em;top:1.8em;left:0.2;display:block;position:absolute"
 />
 <img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-25.png" style=" width:6%;position:fixed;right:11em;top:1.8em;left:0.2;display:block;position:absolute"
 />
+@if(Auth::guest())
+	<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-28.png" style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute"
+/>
+	<a href="#login-box" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42" style="position:fixed;right:1.5em;top:1.2em;left:0.2;display:block;position:absolute"/></a>
+@else
+	<span style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute;text-align:center">Competitor<br>
+	<form id="logout-form" action="{{ route('logout') }}" method="POST">
+		{{ csrf_field() }}
+		<a onclick="$('#logout-form').submit();">
+			Logout
+		</a>
+	</form>
+	</span>
+@endif
 
 <div class="container">
-
 	<header>
 
 
@@ -236,19 +251,17 @@
 
 		</div>
 
-
-
-		<a href="#login-box" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42" style="position:fixed;right:1.5em;top:1.2em;left:0.2;display:block;position:absolute"/></a>
-
 		</div>
 
 		<div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 15em;left:0.2;display:block;position:absolute"  /></a>
-			<form method="post" class="signin" action="#">
+			<div class="error"></div>
+			<form class="signin">
+				{{ csrf_field() }}
 				<fieldset class="textbox">
 					<label class="username">
 						<span>Username or email</span>
-						<input id="username" name="username" value="" type="text" autocomplete="on" >
+						<input id="email" name="email" value="" type="text" autocomplete="on" >
 					</label>
 
 					<label class="password">
@@ -257,7 +270,7 @@
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
-					<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
+					<img onclick="$('form.signin').submit()" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
 					<p>
 						<a class="forgot" href="#" style="color:black;">ลืม password หรือ username</a>
 					</p>
@@ -274,6 +287,34 @@
 	<script type="text/javascript" src="js/jquery.gallery.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
+		$("form.signin").submit(function(e) {
+			e.preventDefault();
+
+			$.ajax({   
+				type: "post",
+				dataType: "json",
+				headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+				},
+				data: $("form").serialize(),
+				url: "/login",
+				success: function (data) {
+					$('#mask , .login-popup').fadeOut(300 , function() {
+						$('#mask').remove();  
+					}); 
+					setTimeout(function() {
+						location.reload();
+					}, 300);
+				},
+				error: function (data) {
+					var result = JSON.parse(data.responseText);
+					$('.error').html('Error : ' + result.email+'<br>Error : ' + result.password);
+				}
+			})
+			return false;
+		});
+
+
 		$('a.login-window').click(function() {
 			
 			// Getting the variable's value from a link 
@@ -312,4 +353,5 @@
 			$('#dg-container').gallery();
 		});
 	</script>
+
 @endsection

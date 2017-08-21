@@ -19,7 +19,14 @@ class EventController extends Controller
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_id', $id)
                             ->first();
-        return view('home', ['event' => $event]);
+        return view('event.show', ['event' => $event]);
+    }
+
+    function showDetail($id){
+        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+                            ->where('Event_id', $id)
+                            ->first();
+        return view('event.detail', ['event' => $event]);
     }
 
     function search(){

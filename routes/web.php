@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+/* social routes */
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 /* anyone can access */
 Route::get('/', 'EventController@index')->name('event');
 Route::get('/event/{name}', 'EventController@show')->name('event_show');

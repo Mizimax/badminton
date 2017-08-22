@@ -171,6 +171,55 @@
 	#one, #two,#three,#two{margin:2px;}
 #one, #two,#three { float: left; }
 #myradio {float: left;}
+
+	.loginBtn {
+		box-sizing: border-box;
+		position: relative;
+		/* width: 13em;  - apply for fixed size */
+		margin: 0.2em;
+		padding: 0 15px 0 46px;
+		border: none;
+		text-align: left;
+		line-height: 34px;
+		white-space: nowrap;
+		border-radius: 0.2em;
+		font-size: 16px;
+		color: #FFF;
+		cursor:pointer;
+	}
+	.loginBtn:before {
+		content: "";
+		box-sizing: border-box;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 34px;
+		height: 100%;
+	}
+	.loginBtn:focus {
+		outline: none;
+	}
+	.loginBtn:active {
+		box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+	}
+
+
+	/* Facebook */
+	.loginBtn--facebook {
+		background-color: #4C69BA;
+		background-image: linear-gradient(#4C69BA, #3B55A0);
+		/*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+		text-shadow: 0 -1px 0 #354C8C;
+	}
+	.loginBtn--facebook:before {
+		border-right: #364e92 1px solid;
+		background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+	}
+	.loginBtn--facebook:hover,
+	.loginBtn--facebook:focus {
+		background-color: #5B7BD5;
+		background-image: linear-gradient(#5B7BD5, #4864B1);
+	}
 </style>
 @endsection
 @section('content')
@@ -344,46 +393,48 @@
 	  <form method="post" class="signin" action="#">
 			<fieldset class="textbox">
 			<label class="username">
-			<span>Username</span>
-			<input id="username" name="username" value="" type="text" autocomplete="on" >
+				<span>Username</span>
+				<input id="username" name="username" value="" type="text" autocomplete="on" >
 			</label>
 			
 			<label class="password">
-			<span>Password</span>
-			<input id="password" name="password" value="" type="password">
+				<span>Password</span>
+				<input id="password" name="password" value="" type="password">
 			</label>
 			
 			<label class="confirmed-password">
 				<span>Confirmed password</span>
 				<input id="password" name="password" value="" type="password">
-				</label>
+			</label>
 
-				<label class="email">
-					<span>Email</span>
-					<input id="email" name="email" value="" type="text" autocomplete="on" >
-					</label>
-				
-					<label class="confirmed-password-email">
-						<span>Confirmed password</span>
-						<input id="password" name="password" value="" type="password">
-						</label>
+			<label class="email">
+				<span>Email</span>
+				<input id="email" name="email" value="" type="text" autocomplete="on" >
+			</label>
+			
+			<label class="confirmed-password-email">
+				<span>Confirmed password</span>
+				<input id="password" name="password" value="" type="password">
+			</label>
 
-						<label class="name">
-							<span>ชื่อจริง</span>
-							<input id="name" name="name" value="" type="text" autocomplete="on" >
-							</label>
+			<label class="name">
+				<span>ชื่อจริง</span>
+				<input id="name" name="name" value="" type="text" autocomplete="on" >
+			</label>
 
-							<label class="name">
-								<span>นามสกุล</span>
-								<input id="surname" name="surname" value="" type="text" autocomplete="on" >
-								</label>
-
+			<label class="name">
+				<span>นามสกุล</span>
+				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+			</label>
+	
 		   <!-- <button class="submit button" type="button"></button> -->
-			<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
-			<p>
-			
-			</p>
-			
+			<div align="center">
+				<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+				<br>
+				<button onclick="window.location='/redirect'" class="loginBtn loginBtn--facebook">
+					Login with Facebook
+				</button>
+			</div>
 			</fieldset>
 	  </form>
 	</div>

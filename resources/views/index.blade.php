@@ -156,6 +156,21 @@
 	.error{
 		color:red;
 	}
+
+	#one, #two, #three {
+	width: 40px;
+	height: 30px;
+	padding: 10px;
+    border: 1px solid black;
+	background-color: black;
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+	background-image:url(images/Kmutt web prototype2-31.png) ;
+    margin: 0;  
+	}
+	#one, #two,#three,#two{margin:2px;}
+#one, #two,#three { float: left; }
+#myradio {float: left;}
 </style>
 @endsection
 @section('content')
@@ -280,6 +295,47 @@
 		</div>
 
 	</div>
+</div>
+
+
+<div id="login-box2" class="login-popup">
+	<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.7em;top: 17.5em;left:0.2;display:block;position:absolute"  /></a>
+	  <form method="post" class="signin" action="#">
+			<fieldset class="textbox">
+			<label class="username">
+			<span>ชื่อจริงของคุณ</span>
+			<input id="username" name="username" value="" type="text" autocomplete="on" >
+			</label>
+			
+			<label class="surname">
+			<span>นามสกุลของคุณ</span>
+			<input id="password" name="password" value="" >
+			</label>
+
+			<label class="surname">
+			<span>ชื่อเล่น</span>
+			<input id="password" name="password" value="" >
+			</label>
+
+			<div id="one"></div> 
+			<div id="two"></div> 
+			<div id="three"></div>
+		<br>
+	<br>
+			<!-- <button class="submit button" type="button"></button> -->
+			<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+	</br>
+					<p>
+					คุณเคยจัดเเข่งหรือไม่?
+					
+					</p>
+					<input type="radio" id="myRadio1">เคย
+					
+			</fieldset>
+	  </form>
+	</div>
+
+</div>
 </div>
 @endsection
 @section('script')

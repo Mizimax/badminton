@@ -431,7 +431,7 @@
 			<div align="center">
 				<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
 				<br>
-				<button onclick="window.location='/redirect'" class="loginBtn loginBtn--facebook">
+				<button onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
 					Login with Facebook
 				</button>
 			</div>

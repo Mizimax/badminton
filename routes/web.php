@@ -13,5 +13,12 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+/* anyone can access */
 Route::get('/', 'EventController@index')->name('event');
+Route::get('/event/{id}', 'EventController@show')->where('id','[0-9]+')->name('event_show');
+
+/* login only */
+Route::group(['middleware' => 'auth'], function () 
+{
+    Route::post('/event/{id}/regis', 'TeamController@store')->where('id','[0-9]+')->name('team_regis');
+});

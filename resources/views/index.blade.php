@@ -176,8 +176,8 @@
 @section('content')
 <img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-26.png" style=" width:6%;position:fixed;right:5em;top:1.8em;left:0.2;display:block;position:absolute"
 />
-<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-25.png" style=" width:6%;position:fixed;right:11em;top:1.8em;left:0.2;display:block;position:absolute"
-/>
+<a href="#login-box2" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-25.png" style=" width:6%;position:fixed;right:11em;top:1.8em;left:0.2;display:block;position:absolute"
+/></a>
 @if(Auth::guest())
 	<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-28.png" style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute"
 />

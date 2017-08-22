@@ -87,6 +87,6 @@ class TeamController extends Controller
             'Team_name' => $request['team_name']
         ]);
         
-        return redirect('event/' + $event->Event_id);
+        return redirect('event/' + $event_id);
     }
 }

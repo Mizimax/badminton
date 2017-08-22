@@ -179,8 +179,8 @@
 <a href="#login-box2" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-25.png" style=" width:6%;position:fixed;right:11em;top:1.8em;left:0.2;display:block;position:absolute"
 /></a>
 @if(Auth::guest())
-	<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-28.png" style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute"
-/>
+<a href="#login-box3" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-28.png" style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute"
+/></a>
 	<a href="#login-box" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42" style="position:fixed;right:1.5em;top:1.2em;left:0.2;display:block;position:absolute"/></a>
 @else
 	<span style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute;text-align:center">Competitor<br>
@@ -331,6 +331,59 @@
 					</p>
 					<input type="radio" id="myRadio1">เคย
 					
+			</fieldset>
+	  </form>
+	</div>
+
+</div>
+</div>
+
+
+<div id="login-box3" class="login-popup">
+	<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 28em;left:0.2;display:block;position:absolute"  /></a>
+	  <form method="post" class="signin" action="#">
+			<fieldset class="textbox">
+			<label class="username">
+			<span>Username</span>
+			<input id="username" name="username" value="" type="text" autocomplete="on" >
+			</label>
+			
+			<label class="password">
+			<span>Password</span>
+			<input id="password" name="password" value="" type="password">
+			</label>
+			
+			<label class="confirmed-password">
+				<span>Confirmed password</span>
+				<input id="password" name="password" value="" type="password">
+				</label>
+
+				<label class="email">
+					<span>Email</span>
+					<input id="email" name="email" value="" type="text" autocomplete="on" >
+					</label>
+				
+					<label class="confirmed-password-email">
+						<span>Confirmed password</span>
+						<input id="password" name="password" value="" type="password">
+						</label>
+
+						<label class="name">
+							<span>ชื่อจริง</span>
+							<input id="name" name="name" value="" type="text" autocomplete="on" >
+							</label>
+
+							<label class="name">
+								<span>นามสกุล</span>
+								<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+								</label>
+
+		   <!-- <button class="submit button" type="button"></button> -->
+			<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+			<p>
+			
+			</p>
+			
 			</fieldset>
 	  </form>
 	</div>

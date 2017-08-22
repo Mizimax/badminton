@@ -42,6 +42,7 @@ $factory->define(App\EventTable::class, function (Faker\Generator $faker) use ($
         'Event_Description' => $faker->monthName,
         'Event_Cover_Pic' => 'event_pic.jpg',
         'Event_Image' => 'event_image.jpg',
+        'Event_Category' => 1
     ];
 });
 

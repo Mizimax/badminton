@@ -20,7 +20,7 @@ class CreateEventTablesTable extends Migration
             $table->date('Event_Start');
             $table->date('Event_End');
             // status TO DO
-            $table->integer('Event_Status')->default(0);
+            $table->unsignedTinyInteger('Event_Status')->default(0);
             $table->unsignedTinyInteger('Rank_Min')->default(1);
             $table->unsignedTinyInteger('Rank_Max')->default(10);
             $table->unsignedTinyInteger('Event_Category'); //1 single; 2 duo;

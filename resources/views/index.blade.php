@@ -334,7 +334,7 @@
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
-					<img onclick="$('form.signin').submit()" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
+					<img id="login-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
 					<p>
 						<a class="forgot" href="#" style="color:black;">ลืม password หรือ username</a>
 					</p>
@@ -390,11 +390,11 @@
 
 <div id="login-box3" class="login-popup">
 	<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 28em;left:0.2;display:block;position:absolute"  /></a>
-	  <form method="post" class="signin" action="#">
+	  <form id="signup" method="post" class="signin">
 			<fieldset class="textbox">
-			<label class="username">
-				<span>Username</span>
-				<input id="username" name="username" value="" type="text" autocomplete="on" >
+			<label class="email">
+				<span>Email</span>
+				<input id="email" name="email" value="" type="text" autocomplete="on" >
 			</label>
 			
 			<label class="password">
@@ -404,34 +404,19 @@
 			
 			<label class="confirmed-password">
 				<span>Confirmed password</span>
-				<input id="password" name="password" value="" type="password">
-			</label>
-
-			<label class="email">
-				<span>Email</span>
-				<input id="email" name="email" value="" type="text" autocomplete="on" >
-			</label>
-			
-			<label class="confirmed-password-email">
-				<span>Confirmed password</span>
-				<input id="password" name="password" value="" type="password">
+				<input id="password-confirm" name="password_confirmation" value="" type="password">
 			</label>
 
 			<label class="name">
-				<span>ชื่อจริง</span>
+				<span>ชื่อจริง นามสกุล</span>
 				<input id="name" name="name" value="" type="text" autocomplete="on" >
-			</label>
-
-			<label class="name">
-				<span>นามสกุล</span>
-				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
 			</label>
 	
 		   <!-- <button class="submit button" type="button"></button> -->
 			<div align="center">
-				<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+				<img id="regis-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
 				<br>
-				<button onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+				<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
 					Login with Facebook
 				</button>
 			</div>
@@ -447,7 +432,7 @@
 	<script type="text/javascript" src="js/jquery.gallery.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$("form.signin").submit(function(e) {
+		$("#login-button").click(function(e) {
 			e.preventDefault();
 
 			$.ajax({   
@@ -469,6 +454,34 @@
 				error: function (data) {
 					var result = JSON.parse(data.responseText);
 					$('.error').html('Error : ' + result.email+'<br>Error : ' + result.password);
+				}
+			})
+			return false;
+		});
+
+		$("#regis-button").click(function(e) {
+			e.preventDefault();
+
+			$.ajax({   
+				type: "post",
+				dataType: "json",
+				headers: { 
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+				},
+				data: $("form").serialize(),
+				url: "/register",
+				success: function (data) {
+					$('#mask , .login-popup').fadeOut(300 , function() {
+						$('#mask').remove();  
+					}); 
+					setTimeout(function() {
+						location.reload();
+					}, 300);
+				},
+				error: function (data) {
+					var result = JSON.parse(data.responseText);
+					console.log(result);
+//$('.error').html('Error : ' + result.email+'<br>Error : ' + result.password);
 				}
 			})
 			return false;

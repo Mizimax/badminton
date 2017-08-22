@@ -23,6 +23,7 @@ class CreateEventTablesTable extends Migration
             $table->integer('Event_Status')->default(0);
             $table->unsignedTinyInteger('Rank_Min')->default(1);
             $table->unsignedTinyInteger('Rank_Max')->default(10);
+            $table->unsignedTinyInteger('Event_Category'); //1 single; 2 duo;
             $table->text('Event_Description');
             $table->string('Event_Cover_Pic');
             $table->string('Event_Image');

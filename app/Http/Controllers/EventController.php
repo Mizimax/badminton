@@ -50,7 +50,7 @@ class EventController extends Controller
 
     function store(Request $request){
         
-        Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             'Event_Name' => 'required|string',
             'Event_Start' => 'required|date',
             'Event_End' => 'required|date',

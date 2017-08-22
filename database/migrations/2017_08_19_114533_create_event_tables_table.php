@@ -17,6 +17,7 @@ class CreateEventTablesTable extends Migration
             $table->increments('Event_id');
             $table->integer('Event_Creator_id')->unsigned();
             $table->string('Event_Name');
+            $table->string('Event_key')->unique();
             $table->date('Event_Start');
             $table->date('Event_End');
             // status TO DO

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
-    public function store(Request $request, $event_id){
+    public function store(Request $request, $name){
 
         $validator_single = [
             'Gender' => 'required|string|max:1',
@@ -33,11 +33,11 @@ class TeamController extends Controller
             'team_name' => 'required|string'
         ];
 
-        $event_category = EventTable::select('Event_Category')
-                                    ->where('Event_id',$event_id)->get();
+        $event = EventTable::select('Event_id','Event_Category')
+                                    ->where('Event_key',$name)->get();
 
         /* Single */
-        if($event_category == 1){
+        if($event["category"] == 1){
             $validator = Validator::make($request->all(), array_merge($validator_team, $validator_single));
             if ($validator->fails()) {
                 return response()->json($validator->messages(), 422);
@@ -54,7 +54,7 @@ class TeamController extends Controller
 
         }
         /* Duo */
-        else if($event_category == 2){
+        else if($event["category"] == 2){
             $validator = Validator::make($request->all(), array_merge($validator_team, $validator_single, $validator_duo));        
             if ($validator->fails()) {
                 return response()->json($validator->messages(), 422);
@@ -80,8 +80,8 @@ class TeamController extends Controller
             ]);
         }
 
-        $event = Team::create([
-            'Event_id' => $event_id,
+        $team = Team::create([
+            'Event_id' => $event['event_id'],
             'User_id' => Auth::id(),
             'Player_1_id' => $player_1->Profile_id,
             'Player_2_id' => ($player_2)? $player_2->Profile_id : NULL,
@@ -90,7 +90,8 @@ class TeamController extends Controller
         
         return response()->json([
             'action' => 'Team_Register',
-            'status' => 'success'
+            'status' => 'success',
+            'data' => $team
         ], 200);
     }
 }

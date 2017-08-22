@@ -15,16 +15,16 @@ class EventController extends Controller
         return view('event.index', ['events' => $events]);
     }
 
-    function show($id){
+    function show($name){
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
-                            ->where('Event_id', $id)
+                            ->where('Event_key', $name)
                             ->first();
         return view('event.show', ['event' => $event]);
     }
 
-    function showDetail($id){
+    function showDetail($name){
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
-                            ->where('Event_id', $id)
+                            ->where('Event_key', $name)
                             ->first();
         return view('event.detail', ['event' => $event]);
     }          
@@ -52,6 +52,7 @@ class EventController extends Controller
         
         $validator = Validator::make($request->all(),[
             'Event_Name' => 'required|string',
+            'Event_key' => 'required|string',
             'Event_Start' => 'required|date',
             'Event_End' => 'required|date',
             'Rank_Min' => 'required',
@@ -70,6 +71,7 @@ class EventController extends Controller
 
         $event = EventTable::create([
             'Event_Name' => $request['event_name'],
+            'Event_key' => $request['event_key'],
             'Event_Start' => $request['event_start'],
             'Event_End' => $request['event_end'],
             'Rank_Min' => $request['rank_min'],
@@ -80,21 +82,21 @@ class EventController extends Controller
             'Event_Image' => $request['event_image'],
         ]);
         
-        return redirect('event/' + $event->Event_id);
+        return redirect('event/' + $event->Event_key);
     }
 
-    function edit($id){
+    function edit($name){
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
-                            ->where('Event_id', $id)
+                            ->where('Event_key', $name)
                             ->first();
         return view('event.edit', ['event' => $event]);
     }
 
-    function update($id){
+    function update($name){
         //TO DO
     }
 
-    function destroy($id){
+    function destroy($name){
         //TO DO
     }                                   
 

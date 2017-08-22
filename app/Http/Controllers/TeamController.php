@@ -16,7 +16,8 @@ class TeamController extends Controller
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'phone' => 'required|string|min:10',
-            'rank' => 'required|integer|between:1,10'
+            'rank' => 'required|integer|between:1,10',
+            'birthday' => 'required|date'
         ];
 
         $validator_duo = [
@@ -24,7 +25,8 @@ class TeamController extends Controller
             'first_name_2' => 'required|string',
             'last_name_2' => 'required|string',
             'phone_2' => 'required|string|min:10',
-            'rank_2' => 'required|integer|between:1,10'
+            'rank_2' => 'required|integer|between:1,10',
+            'birthday_2' => 'required|date'
         ];
 
         $validator_team = [
@@ -38,9 +40,7 @@ class TeamController extends Controller
         if($event_category == 1){
             $validator = Validator::make($request->all(), array_merge($validator_team, $validator_single));
             if ($validator->fails()) {
-                return redirect()->back()
-                            ->withErrors($validator)
-                            ->withInput();
+                return response()->json($validator->messages(), 422);
             }
             $player_1 = PersonalInfo::create([
                 'Gender' => $request['gender'],
@@ -48,6 +48,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name'],
                 'Tel' => $request['phone'],
                 'Rank' => $request['rank'],
+                'Birthday' => $request['birthday'],
                 'Is_Player' => true
             ]);
 
@@ -56,9 +57,7 @@ class TeamController extends Controller
         else if($event_category == 2){
             $validator = Validator::make($request->all(), array_merge($validator_team, $validator_single, $validator_duo));        
             if ($validator->fails()) {
-                return redirect()->back()
-                            ->withErrors($validator)
-                            ->withInput();
+                return response()->json($validator->messages(), 422);
             }
             $player_1 = PersonalInfo::create([
                 'Gender' => $request['gender'],
@@ -66,6 +65,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name'],
                 'Tel' => $request['phone'],
                 'Rank' => $request['rank'],
+                'Birthday' => $request['birthday'],
                 'Is_Player' => true
             ]);
 
@@ -75,6 +75,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name_2'],
                 'Tel' => $request['phone_2'],
                 'Rank' => $request['rank_2'],
+                'Birthday' => $request['birthday'],
                 'Is_Player' => true
             ]);
         }
@@ -87,6 +88,9 @@ class TeamController extends Controller
             'Team_name' => $request['team_name']
         ]);
         
-        return redirect('event/' + $event_id);
+        return response()->json([
+            'action' => 'Team_Register',
+            'status' => 'success'
+        ], 200);
     }
 }

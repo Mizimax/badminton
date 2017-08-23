@@ -37,13 +37,20 @@ class EventController extends Controller
     }
 
     function search(){
-        $word = '%' . Input::get('name') . '%';
-        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
-        ->where('Event_Name', 'like', $word)
-        ->first();
+        if(!Input::get('name')){
+            $event = NULL;
+        }
+        else{
+            $word = '%' . Input::get('name') . '%';
+            $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+            ->where('Event_Name', 'like', $word)
+            ->first();
+        }
+        
         return response()->json([
             'action' => 'search',
-            'status' => 'success',
+            'status' => ($event)? 'success' : 'fail',
+            'message' => ($event)? 'OK' : 'No data found',
             'data' => $event
         ], 200);
     }

@@ -294,7 +294,7 @@
 
 					<!-- <button class="submit button" type="button"></button> -->
 					<div align="center">
-						<img id="regis-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+						<img id="login-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
 						<br>
 						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
 							Login with Facebook

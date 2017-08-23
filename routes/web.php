@@ -11,7 +11,8 @@
 |
 */
 
-Auth::routes();
+Route::post('login', 'Auth\LoginController@login');
+Route::post('register', 'Auth\RegisterController@register');
 
 /* social routes */
 Route::get('fb/redirect', 'SocialAuthController@redirect');

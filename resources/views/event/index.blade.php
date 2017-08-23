@@ -255,7 +255,19 @@
 					<div></div>
 				</a>
 			@endforeach
-			
+			<a href="#">
+				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+				<div></div>
+			</a>
+			<a href="#">
+				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+				<div></div>
+			</a>
+			<a href="#">
+				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+				<div></div>
+			</a>
+				
 		</div>
 		<nav>
 			<span class="dg-prev"></span>

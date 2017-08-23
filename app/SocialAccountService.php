@@ -25,9 +25,17 @@ class SocialAccountService
 
             if (!$user) {
 
+                $name = explode(" ",$providerUser->getName());
+
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
                     'Fullname' => $providerUser->getName(),
+                ]);
+                PersonalInfo::create([
+                    'User_id' => $user->User_id,
+                    'Firstname' => $name[0],
+                    'Lastname' => ($name[1]) ? $name[1] : '',
+                    'Picture' => $providerUser->getAvatar(),
+                    'Nickname' => $providerUser->getNickname(),
                 ]);
             }
 

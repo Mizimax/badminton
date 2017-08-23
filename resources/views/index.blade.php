@@ -324,7 +324,7 @@
 				{{ csrf_field() }}
 				<fieldset class="textbox">
 					<label class="username">
-						<span>Username or email</span>
+						<span>Email</span>
 						<input id="email" name="email" value="" type="text" autocomplete="on" >
 					</label>
 
@@ -334,11 +334,13 @@
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
-					<img id="login-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%" />
-					<p>
-						<a class="forgot" href="#" style="color:black;">ลืม password หรือ username</a>
-					</p>
-
+					<div align="center">
+						<img id="regis-button" src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+						<br>
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+							Login with Facebook
+						</button>
+					</div>
 				</fieldset>
 			</form>
 		</div>

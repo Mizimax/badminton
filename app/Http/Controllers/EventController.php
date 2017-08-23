@@ -52,7 +52,7 @@ class EventController extends Controller
             'status' => ($event)? 'success' : 'fail',
             'message' => ($event)? 'OK' : 'No data found',
             'data' => $event
-        ], 200);
+        ], ($event)? 200 : 400);
     }
 
     function store(Request $request){

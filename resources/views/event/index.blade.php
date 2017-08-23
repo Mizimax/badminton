@@ -249,54 +249,13 @@
 	</header>
 	<section id="dg-container" class="dg-container">
 		<div class="dg-wrapper">
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
-				<div></div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image02" style="width:55%;"></center>
-				<div>http://www.percivalclo.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image03" style="width:55%;"></center>
-				<div>http://www.wanda.net/fr</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image04" style="width:55%;"></center>
-				<div>http://lifeingreenville.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image05" style="width:55%;"></center>
-				<div>http://circlemeetups.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image06" style="width:55%;"></center>
-				<div>http://www.castirondesign.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image07" style="width:55%;"></center>
-				<div>http://www.foundrycollective.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image08" style="width:55%;"></center>
-				<div>http://www.mathiassterner.com/home</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image09" style="width:55%;"></center>
-				<div>http://learnlakenona.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image10" style="width:55%;"></center>
-				<div>http://www.neighborhood-studio.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image11" style="width:55%;"></center>
-				<div>http://www.beckindesign.com/</div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image12" style="width:55%;"></center>
-				<div>http://kicksend.com/</div>
-			</a>
+			@foreach($events as $event)
+				<a href="event/{{ $event->Event_key }}">
+					<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+					<div></div>
+				</a>
+			@endforeach
+			
 		</div>
 		<nav>
 			<span class="dg-prev"></span>

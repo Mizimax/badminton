@@ -10,7 +10,7 @@ class EventController extends Controller
 {
 
     function index(){
-        $events = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        $events = EventTable::select('Event_Name', 'Event_key', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->get();
         return view('event.index', ['events' => $events]);
     }

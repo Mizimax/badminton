@@ -33,7 +33,7 @@ class SocialAccountService
                 PersonalInfo::create([
                     'User_id' => $user->User_id,
                     'Firstname' => $name[0],
-                    'Lastname' => ($name[1]) ? $name[1] : '',
+                    'Lastname' => (isset($name[1])) ? $name[1] : '',
                     'Picture' => $providerUser->getAvatar(),
                     'Nickname' => $providerUser->getNickname(),
                 ]);

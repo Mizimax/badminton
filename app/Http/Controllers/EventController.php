@@ -18,16 +18,9 @@ class EventController extends Controller
     function show($name){
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key', $name)
-                            ->first();
+                            ->firstOrFail();
         return view('event.show', ['event' => $event]);
-    }
-
-    function showDetail($name){
-        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
-                            ->where('Event_key', $name)
-                            ->first();
-        return view('event.detail', ['event' => $event]);
-    }          
+    }        
     
     function manage(){
         // get data to show state of event
@@ -95,7 +88,7 @@ class EventController extends Controller
     function edit($name){
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key', $name)
-                            ->first();
+                            ->firstOrFail();
         return view('event.edit', ['event' => $event]);
     }
 

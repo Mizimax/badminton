@@ -17,5 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+/* social routes */
+Route::get('fb/redirect', 'SocialAuthController@redirect');
+Route::get('fb/callback', 'SocialAuthController@callback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'EventController@index')->name('event');

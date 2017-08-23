@@ -37,7 +37,7 @@ class EventController extends Controller
     }
 
     function search(){
-        $word = Input::get('word');
+        $word = '%' . Input::get('name') . '%';
         $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
         ->where('Event_Name', 'like', $word)
         ->first();

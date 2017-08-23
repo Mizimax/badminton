@@ -15,16 +15,22 @@ class CreateEventTablesTable extends Migration
     {
         Schema::create('event_tables', function (Blueprint $table) {
             $table->increments('Event_id');
+            $table->integer('Event_Creator_id')->unsigned();
             $table->string('Event_Name');
+            $table->string('Event_key')->unique();
             $table->date('Event_Start');
             $table->date('Event_End');
+            // status TO DO
+            $table->unsignedTinyInteger('Event_Status')->default(0);
             $table->unsignedTinyInteger('Rank_Min')->default(1);
             $table->unsignedTinyInteger('Rank_Max')->default(10);
-            $table->integer('Event_Creator_id');
+            $table->unsignedTinyInteger('Event_Category'); //1 single; 2 duo;
             $table->text('Event_Description');
             $table->string('Event_Cover_Pic');
             $table->string('Event_Image');
             $table->timestamps();
+
+            $table->foreign('Event_Creator_id')->references('Profile_id')->on('personal_infos');
         });
     }
 

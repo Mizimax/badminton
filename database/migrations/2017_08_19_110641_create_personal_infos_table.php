@@ -21,7 +21,7 @@ class CreatePersonalInfosTable extends Migration
             $table->string('Lastname');
             $table->string('Nickname')->nullable();
             $table->date('Birthday')->nullable();
-            $table->string('Tel')->nullable();
+            $table->string('Tel');
             $table->string('Picture')->default('no_pic.jpg');
             $table->integer('Gift_Points')->default(0);
             $table->boolean('Is_Player')->default(false);

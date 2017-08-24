@@ -4,7 +4,15 @@
 
 @endsection
 @section('content')
-{{ $event->Event_Name }}
+
+@if(Auth::isOrganizer())
+Organizer
+@elseif(Auth::isAdmin())
+Admin
+@elseif(Auth::isUser())
+User
+@endif
+
 @endsection
 @section('script')
 

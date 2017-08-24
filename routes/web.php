@@ -11,15 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+Route::post('login', 'Auth\LoginController@login');
+Route::post('register', 'Auth\RegisterController@register');
 
 /* social routes */
 Route::get('fb/redirect', 'SocialAuthController@redirect');
 Route::get('fb/callback', 'SocialAuthController@callback');
 
-Route::get('/home', 'HomeController@index')->name('home');
+/* anyone can access */
 Route::get('/', 'EventController@index')->name('event');
+Route::get('/event/{name}', 'EventController@show')->name('event_show');
+
+/* login only */
+Route::group(['middleware' => 'auth'], function () 
+{
+    Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
+});

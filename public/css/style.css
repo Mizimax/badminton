@@ -167,3 +167,16 @@
   color:#000;
   text-decoration:none;
 }
+
+.error li{
+	font-size:12px;
+}
+
+.ui.message.red{
+	display: none;
+	margin: 0.5em 0;
+}
+
+.ui.label{
+	padding: .3em .833em !important;
+}

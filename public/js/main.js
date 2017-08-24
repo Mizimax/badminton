@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$('a.login-window').click(function() {
 		
 		// Getting the variable's value from a link 
@@ -16,15 +15,6 @@ $(document).ready(function() {
 
 		//Fade in the Popup and add close button
 		$(loginBox).fadeIn(300);
-		
-		//Set the center alignment padding + border
-		var popMargTop = ($(loginBox).height() + 24) / 2; 
-		var popMargLeft = ($(loginBox).width() + 24) / 2; 
-		
-		$(loginBox).css({ 
-			'margin-top' : -popMargTop,
-			'margin-left' : -popMargLeft
-		});
 		
 		// Add the mask to body
 		$('body').append('<div id="mask"></div>');
@@ -64,17 +54,22 @@ var ajaxPost = function(form, url, error = ''){
 			var jsonData = JSON.parse(data.responseText);
 			var result = '';
 			Object.keys(jsonData).forEach(function(key){
-				result += '<div>' + jsonData[key] + '</div>';
+				result += '<li>' + jsonData[key] + '</li>';
 			});
-			$(error).html(result);
+			$(error).show();
+			$(error+' .error').html(result);
 		}
 	})
 }
 
 var showLogin = function(){
 	var data = `
-			<div class="error"></div>
-			<form onsubmit="ajaxPost('#signin', '/login', '.error');return false;" id="signin" class="signin">
+			<div class="ui message red">
+				<h5>Something wrong !</h5>
+				<ul class="list error">
+				</ul>
+			</div>
+			<form onsubmit="ajaxPost('#signin', '/login', '.ui.message');return false;" id="signin" class="signin">
 				<fieldset class="textbox">
 					<label class="username">
 						<span>Email</span>
@@ -142,8 +137,12 @@ var showCreateEvent = function(){
 
 var showRegister = function(){
 	var data = `
-				<div class="error"></div>
-				<form onsubmit="ajaxPost('#signup', '/register', '.error');return false;" id="signup" method="post" class="signin">
+				<div class="ui message red">
+					<h5>Something wrong !</h5>
+					<ul class="list error">
+					</ul>
+				</div>
+				<form onsubmit="ajaxPost('#signup', '/register', '.ui.message');return false;" id="signup" method="post" class="signin">
 					<fieldset class="textbox">
 					<label class="email">
 						<span>Email</span>

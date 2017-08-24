@@ -1,27 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Event')
 @section('content')
-	<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-26.png" style=" width:6%;position:fixed;right:5em;top:1.8em;left:0.2;display:block;position:absolute"
-/>
-	<a href="#login-box2" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-25.png" style=" width:6%;position:fixed;right:11em;top:1.8em;left:0.2;display:block;position:absolute"/></a>
+<div class="nav">
+	<!-- <button class="ui inverted red button">สมัครเป็นผู้จัดแข่ง</button> -->
 @if(Auth::guest())
-	<div class="nav">
-		<a href="#login" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42"/></a>
-		<br>
-		<a href="#regis" class="login-window">regis</a>
-	</div>
+	<a href="#login" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42"/></a>
+	<br>
+	<a href="#regis" class="login-window ui blue label">Register</a>
 @else
-	<div class="nav">
-		<span>Competitor</span>
-		<form id="logout-form" action="logout" method="POST">
-			{{ csrf_field() }}
-			<a onclick="$('#logout-form').submit();">
-				Logout
-			</a>
-		</form>
-	</div>
-	
+	<span>Competitor</span>
+	<form id="logout-form" action="logout" method="POST">
+		{{ csrf_field() }}
+		<a onclick="$('#logout-form').submit();">
+			Logout
+		</a>
+	</form>
 @endif
+</div>
 
 <section id="dg-container" class="dg-container">
 	<div class="dg-wrapper">

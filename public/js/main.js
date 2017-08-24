@@ -1,145 +1,177 @@
-jQuery(document).ready(function($){
-	var formModal = $('.cd-user-modal'),
-		formLogin = formModal.find('#cd-login'),
-		formSignup = formModal.find('#cd-signup'),
-		formForgotPassword = formModal.find('#cd-reset-password'),
-		formModalTab = $('.cd-switcher'),
-		tabLogin = formModalTab.children('li').eq(0).children('a'),
-		tabSignup = formModalTab.children('li').eq(1).children('a'),
-		forgotPasswordLink = formLogin.find('.cd-form-bottom-message a'),
-		backToLoginLink = formForgotPassword.find('.cd-form-bottom-message a'),
-		mainNav = $('.main-nav');
+$(document).ready(function() {
 
-	//open modal
-	mainNav.on('click', function(event){
-		$(event.target).is(mainNav) && mainNav.children('ul').toggleClass('is-visible');
-	});
-
-	//open sign-up form
-	mainNav.on('click', '.cd-signup', signup_selected);
-	//open login-form form
-	mainNav.on('click', '.cd-signin', login_selected);
-
-	//close modal
-	formModal.on('click', function(event){
-		if( $(event.target).is(formModal) || $(event.target).is('.cd-close-form') ) {
-			formModal.removeClass('is-visible');
-		}	
-	});
-	//close modal when clicking the esc keyboard button
-	$(document).keyup(function(event){
-    	if(event.which=='27'){
-    		formModal.removeClass('is-visible');
-	    }
-    });
-
-	//switch from a tab to another
-	formModalTab.on('click', function(event) {
-		event.preventDefault();
-		( $(event.target).is( tabLogin ) ) ? login_selected() : signup_selected();
-	});
-
-	//hide or show password
-	$('.hide-password').on('click', function(){
-		var togglePass= $(this),
-			passwordField = togglePass.prev('input');
+	$('a.login-window').click(function() {
 		
-		( 'password' == passwordField.attr('type') ) ? passwordField.attr('type', 'text') : passwordField.attr('type', 'password');
-		( 'Hide' == togglePass.text() ) ? togglePass.text('Show') : togglePass.text('Hide');
-		//focus and move cursor to the end of input field
-		passwordField.putCursorAtEnd();
-	});
+		// Getting the variable's value from a link 
+		var loginBox = $('#modal');
+		var action = $(this).attr('href');
+		action = action.slice(1, action.length);
 
-	//show forgot-password form 
-	forgotPasswordLink.on('click', function(event){
-		event.preventDefault();
-		forgot_password_selected();
-	});
+		if(action === 'login'){
+			showLogin();
+		}
+		else if(action === 'regis'){
+			showRegister();
+		}	
 
-	//back to login from the forgot-password form
-	backToLoginLink.on('click', function(event){
-		event.preventDefault();
-		login_selected();
-	});
-
-	function login_selected(){
-		mainNav.children('ul').removeClass('is-visible');
-		formModal.addClass('is-visible');
-		formLogin.addClass('is-selected');
-		formSignup.removeClass('is-selected');
-		formForgotPassword.removeClass('is-selected');
-		tabLogin.addClass('selected');
-		tabSignup.removeClass('selected');
-	}
-
-	function signup_selected(){
-		mainNav.children('ul').removeClass('is-visible');
-		formModal.addClass('is-visible');
-		formLogin.removeClass('is-selected');
-		formSignup.addClass('is-selected');
-		formForgotPassword.removeClass('is-selected');
-		tabLogin.removeClass('selected');
-		tabSignup.addClass('selected');
-	}
-
-	function forgot_password_selected(){
-		formLogin.removeClass('is-selected');
-		formSignup.removeClass('is-selected');
-		formForgotPassword.addClass('is-selected');
-	}
-
-	//REMOVE THIS - it's just to show error messages 
-	formLogin.find('input[type="submit"]').on('click', function(event){
-		event.preventDefault();
-		formLogin.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-	});
-	formSignup.find('input[type="submit"]').on('click', function(event){
-		event.preventDefault();
-		formSignup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-	});
-
-
-	//IE9 placeholder fallback
-	//credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
-	if(!Modernizr.input.placeholder){
-		$('[placeholder]').focus(function() {
-			var input = $(this);
-			if (input.val() == input.attr('placeholder')) {
-				input.val('');
-		  	}
-		}).blur(function() {
-		 	var input = $(this);
-		  	if (input.val() == '' || input.val() == input.attr('placeholder')) {
-				input.val(input.attr('placeholder'));
-		  	}
-		}).blur();
-		$('[placeholder]').parents('form').submit(function() {
-		  	$(this).find('[placeholder]').each(function() {
-				var input = $(this);
-				if (input.val() == input.attr('placeholder')) {
-			 		input.val('');
-				}
-		  	})
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+		
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+		
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
 		});
-	}
+		
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+		
+		return false;
+	});
+	
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').live('click', function() { 
+	$('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
 
 });
 
+var ajaxPost = function(form, url, error = ''){
+	$.ajax({   
+		type: "post",
+		dataType: "json",
+		headers: { 
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+		},
+		data: $(form).serialize(),
+		url: url,
+		success: function (data) {
+			$('#mask , .login-popup').fadeOut(300 , function() {
+				$('#mask').remove();  
+			}); 
+			setTimeout(function() {
+				location.reload();
+			}, 300);
+		},
+		error: function (data) {
+			var jsonData = JSON.parse(data.responseText);
+			var result = '';
+			Object.keys(jsonData).forEach(function(key){
+				result += '<div>' + jsonData[key] + '</div>';
+			});
+			$(error).html(result);
+		}
+	})
+}
 
-//credits http://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
-jQuery.fn.putCursorAtEnd = function() {
-	return this.each(function() {
-    	// If this function exists...
-    	if (this.setSelectionRange) {
-      		// ... then use it (Doesn't work in IE)
-      		// Double the length because Opera is inconsistent about whether a carriage return is one character or two. Sigh.
-      		var len = $(this).val().length * 2;
-      		this.focus();
-      		this.setSelectionRange(len, len);
-    	} else {
-    		// ... otherwise replace the contents with itself
-    		// (Doesn't work in Google Chrome)
-      		$(this).val($(this).val());
-    	}
-	});
-};
+var showLogin = function(){
+	var data = `
+			<div class="error"></div>
+			<form onsubmit="ajaxPost('#signin', '/login', '.error');return false;" id="signin" class="signin">
+				<fieldset class="textbox">
+					<label class="username">
+						<span>Email</span>
+						<input id="email" name="email" value="" type="text" autocomplete="on" >
+					</label>
+
+					<label class="password">
+						<span>Password</span>
+						<input id="password" name="password" value="" type="password">
+					</label>
+
+					<!-- <button class="submit button" type="button"></button> -->
+					<div align="center">
+						<button type="submit">Login</button>
+						<br>
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+							Login with Facebook
+						</button>
+					</div>
+				</fieldset>
+			</form>
+			`
+	$('#modal-content').html(data);
+}
+
+var showCreateEvent = function(){
+	var data = `
+				<form method="post" class="signin" action="#">
+					<fieldset class="textbox">
+					<label class="username">
+					<span>ชื่อจริงของคุณ</span>
+					<input id="username" name="username" value="" type="text" autocomplete="on" >
+					</label>
+					
+					<label class="surname">
+					<span>นามสกุลของคุณ</span>
+					<input id="password" name="password" value="" >
+					</label>
+
+					<label class="surname">
+					<span>ชื่อเล่น</span>
+					<input id="password" name="password" value="" >
+					</label>
+
+					<div id="one"></div> 
+					<div id="two"></div> 
+					<div id="three"></div>
+						<br>
+					<br>
+					<img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-32.png" width="40%"/>
+					</br>
+							<p>
+							คุณเคยจัดเเข่งหรือไม่?
+							
+							</p>
+							<input type="radio" id="myRadio1">เคย
+							
+					</fieldset>
+				</form>
+				`
+	$('#modal-content').html(data);
+}
+
+var showRegister = function(){
+	var data = `
+				<div class="error"></div>
+				<form onsubmit="ajaxPost('#signup', '/register', '.error');return false;" id="signup" method="post" class="signin">
+					<fieldset class="textbox">
+					<label class="email">
+						<span>Email</span>
+						<input id="email" name="email" value="" type="text" autocomplete="on" >
+					</label>
+					
+					<label class="password">
+						<span>Password</span>
+						<input id="password" name="password" value="" type="password">
+					</label>
+					
+					<label class="confirmed-password">
+						<span>Confirmed password</span>
+						<input id="password-confirm" name="password_confirmation" value="" type="password">
+					</label>
+
+					<label class="name">
+						<span>ชื่อจริง นามสกุล</span>
+						<input id="name" name="name" value="" type="text" autocomplete="on" >
+					</label>
+					
+					<div align="center">
+						<button type="submit">Register</button>
+						<br>
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+							Login with Facebook
+						</button>
+					</div>
+					</fieldset>
+				</form>
+				`
+	$('#modal-content').html(data);
+}

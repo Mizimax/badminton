@@ -233,7 +233,7 @@
 	<a href="#login-box" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42" style="position:fixed;right:1.5em;top:1.2em;left:0.2;display:block;position:absolute"/></a>
 @else
 	<span style=" width:5%;position:fixed;right:0.55em;top:5em;left:0.2;display:block;position:absolute;text-align:center">Competitor<br>
-	<form id="logout-form" action="{{ route('logout') }}" method="POST">
+	<form id="logout-form" action="logout" method="POST">
 		{{ csrf_field() }}
 		<a onclick="$('#logout-form').submit();">
 			Logout
@@ -291,7 +291,7 @@
 		<div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:fixed;right:6.5em;top: 15em;left:0.2;display:block;position:absolute"  /></a>
 			<div class="error"></div>
-			<form class="signin">
+			<form id="signin" class="signin">
 				{{ csrf_field() }}
 				<fieldset class="textbox">
 					<label class="username">
@@ -414,7 +414,7 @@
 				headers: { 
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
 				},
-				data: $("form").serialize(),
+				data: $("#signin").serialize(),
 				url: "/login",
 				success: function (data) {
 					$('#mask , .login-popup').fadeOut(300 , function() {
@@ -441,7 +441,7 @@
 				headers: { 
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
 				},
-				data: $("form").serialize(),
+				data: $("#signup").serialize(),
 				url: "/register",
 				success: function (data) {
 					$('#mask , .login-popup').fadeOut(300 , function() {

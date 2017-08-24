@@ -23,49 +23,41 @@
 	
 @endif
 
-<div class="container">
-	<section id="dg-container" class="dg-container">
-		<div class="dg-wrapper">
-			@foreach($events as $event)
-				<a href="event/{{ $event->Event_key }}">
-					<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
-					<div></div>
-				</a>
-			@endforeach
-			<a href="#">
+<section id="dg-container" class="dg-container">
+	<div class="dg-wrapper">
+		@foreach($events as $event)
+			<a href="event/{{ $event->Event_key }}">
 				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
 				<div></div>
 			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
-				<div></div>
-			</a>
-			<a href="#">
-				<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
-				<div></div>
-			</a>
-				
-		</div>
-		<nav>
-			<span class="dg-prev"></span>
-			<span class="dg-next">&gt;</span>
-		</nav>
-	</section>
-</div>
-<center>
-	<form method="get" action="/search" id="search">
-		<div id="search5back">
+		@endforeach
+		<a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+			<div></div>
+		</a>
+		<a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+			<div></div>
+		</a>
+		<a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:55%;"></center>
+			<div></div>
+		</a>
+			
+	</div>
+	<nav>
+		<span class="dg-prev"></span>
+		<span class="dg-next">&gt;</span>
+	</nav>
 
 
-			<form method="get" action="/search" id="searchbox5">
+			<form method="get" action="/search" id="searchbox5" style="margin-top: 100px;text-align:center">
 				<input id="search52" name="q" type="text" size="40" placeholder="ค้นหารายการ" />
 			</form>
 
-		</div>
-
-		</div>
-
 	</div>
+</section>
+	
 </div>
 </div>
 @endsection

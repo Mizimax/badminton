@@ -12,8 +12,9 @@
 
     <!-- Styles -->
     <link href="/css/main.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/semantic.min.css" />
     @yield('style')
 
 </head>

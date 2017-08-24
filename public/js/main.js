@@ -88,9 +88,11 @@ var showLogin = function(){
 
 					<!-- <button class="submit button" type="button"></button> -->
 					<div align="center">
-						<button type="submit">Login</button>
-						<br>
-						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+						<button type="submit" class="ui primary button">
+						ยืนยัน
+						</button>
+						<br><br>
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:right">
 							Login with Facebook
 						</button>
 					</div>
@@ -164,9 +166,11 @@ var showRegister = function(){
 					</label>
 					
 					<div align="center">
-						<button type="submit">Register</button>
-						<br>
-						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook">
+						<button type="submit" class="ui primary button">
+						ยืนยัน
+						</button>
+						<br><br>
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:right">
 							Login with Facebook
 						</button>
 					</div>

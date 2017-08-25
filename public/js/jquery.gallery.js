@@ -22,8 +22,8 @@
 	
 	$.Gallery.defaults 		= {
 		current		: 0,	// index of current item
-		autoplay	: false,// slideshow on / off
-		interval	: 2000  // time between transitions
+		autoplay	: true,// slideshow on / off
+		interval	: 3000  // time between transitions
     };
 	
 	$.Gallery.prototype 	= {
@@ -192,6 +192,34 @@
 			var _self	= this;
 			
 			this.$navPrev.on( 'click.gallery', function( event ) {
+				
+				if( _self.options.autoplay ) {
+				
+					clearTimeout( _self.slideshow );
+					_self.options.autoplay	= false;
+				
+				}
+				
+				_self._navigate('prev');
+				return false;
+				
+			});
+
+			$('.nav-next').on( 'click.gallery', function( event ) {
+				
+				if( _self.options.autoplay ) {
+				
+					clearTimeout( _self.slideshow );
+					_self.options.autoplay	= false;
+				
+				}
+				
+				_self._navigate('next');
+				return false;
+				
+			});
+
+			$('.nav-prev').on( 'click.gallery', function( event ) {
 				
 				if( _self.options.autoplay ) {
 				

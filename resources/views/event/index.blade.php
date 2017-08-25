@@ -85,7 +85,8 @@
     @foreach($events as $event)
       <a href="event/{{ $event->Event_key }}">
         <div class="event-display text-center">
-          <div class="date"><span class="icon">◄</span> {{ $event->Event_Start }} <span class="icon">►</span></div>
+          <div class="date" onclick="return false;">
+            <span class="icon nav-prev">◄</span> {{ $event->Event_Start }} <span class="icon nav-next">►</span></div>
           <div class="dateToNow" date="{{ $event->Event_Start }}"></div>
           <div class="name">{{ $event->Event_Name }}</div>
         </div>

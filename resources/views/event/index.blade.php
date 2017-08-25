@@ -9,7 +9,7 @@
       position: absolute !important;
       right: auto !important;
       bottom: auto !important;
-      top:-100px !important;
+      top:-85px !important;
       left:50% !important;
       transform:translateX(-50%) !important;
   }

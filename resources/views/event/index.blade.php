@@ -1,20 +1,41 @@
 @extends('layouts.app')
 @section('title', 'Event')
+@section('style')
+<style>
+  .padding0{
+    padding: 0 !important;
+  }
+</style>
+@endsection
 @section('content')
 <div class="nav">
-	<!-- <button class="ui inverted red button">สมัครเป็นผู้จัดแข่ง</button> -->
+<div class="ui two column grid">
+  <div class="row">
+    <div class="column twelve wide padding0 text-right">
+      <button class="ui inverted red button font-small">สมัครเป็นผู้จัดแข่ง</button>
+      <button class="ui yellow button font-small">Coin Shop</button>
+    </div>
 @if(Auth::guest())
-	<a href="#login" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42"/></a>
-	<br>
-	<a href="#regis" class="login-window ui blue label">Register</a>
+    <div class="column right floated four wide padding0 text-center">
+      <a href="#login" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42"/></a>
+      <br>
+      <a href="#regis" class="login-window ui blue label">Register</a>
+    </div>
+  </div>
+  </div>
 @else
-	<span>Competitor</span>
-	<form id="logout-form" action="logout" method="POST">
-		{{ csrf_field() }}
-		<a onclick="$('#logout-form').submit();">
-			Logout
-		</a>
-	</form>
+    <div class="column right floated four wide padding0 text-center">
+      <a href="#login" class="login-window"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-27.png " height="58" width="42"/></a>
+      <a href="#regis" class="login-window ui blue label">Competitor</a><br>
+      <form id="logout-form" action="logout" method="POST">
+        {{ csrf_field() }}
+        <a onclick="$('#logout-form').submit();">
+          Logout
+        </a>
+      </form>
+    </div>
+  </div>
+  </div>
 @endif
 </div>
 

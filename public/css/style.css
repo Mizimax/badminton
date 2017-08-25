@@ -1,10 +1,7 @@
 .dg-container{
 	width: 100%;
 	height: 450px;
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+	position: relative;
 }
 .dg-wrapper{
 	width: 481px;
@@ -43,7 +40,7 @@
 	display: block;
 	padding: 41px 0px 0px 1px;
 }
-.dg-wrapper a div{
+.dg-wrapper a .hand{
 	font-style: italic;
 	text-align: center;
 	line-height: 50px;
@@ -54,9 +51,6 @@
 	bottom: -55px;
 	display: none;
 	position: absolute;
-}
-.dg-wrapper a.dg-center div{
-	display: block;
 }
 .dg-container nav{
 	width: 58px;

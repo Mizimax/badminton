@@ -160,8 +160,18 @@ var showRegister = function(){
 					</label>
 
 					<label class="name">
-						<span>ชื่อจริง นามสกุล</span>
-						<input id="name" name="name" value="" type="text" autocomplete="on" >
+						<span>ชื่อจริง</span>
+						<input id="firstname" name="firstname" value="" type="text" autocomplete="on" >
+					</label>
+
+					<label class="name">
+						<span>นามสกุล</span>
+						<input id="lastname" name="lastname" value="" type="text" autocomplete="on" >
+					</label>
+
+					<label class="tel">
+						<span>เบอร์ติดต่อ</span>
+						<input id="tel" name="tel" value="" type="text" autocomplete="on" >
 					</label>
 					
 					<div align="center">

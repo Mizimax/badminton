@@ -3,43 +3,68 @@
 @section('style')
 <style>
   .padding0 {
-      padding: 0 !important;
+    padding: 0 !important;
   }
   .event-display {
-      position: absolute !important;
-      right: auto !important;
-      bottom: auto !important;
-      top:-85px !important;
-      left:50% !important;
-      transform:translateX(-50%) !important;
+    position: absolute !important;
+    right: auto !important;
+    bottom: auto !important;
+    top:-100px !important;
+    left:50% !important;
+    transform:translateX(-50%) !important;
   }
-  .date{
+  .event-display .date{
     color:#ccc;
     margin-bottom:20px;
   }
-  .dateToNow{
+  .event-display .dateToNow{
     color:#888;
     margin-bottom:15px;
   }
-  .day{
+  .event-display .day{
     color:white;
     font-size:18px;
   }
-  .name{
+  .event-display .name{
     color: #ddd;
     font-size:28px;
+    width:200%;
+    transform: translateX(-25%);
   }
   .head-space{
-      height:200px;
+    height:200px;
   }
   .icon{
-    margin-left:15px;
-    margin-right:15px;
+    cursor: pointer;
+  }
+  .icon.right{
+    margin-left:65px;
+  }
+  .icon.left{
+    margin-right:65px;
   }
   .profile{
     border-radius: 50%;
     width:42px;
     height: 42px;
+  }
+  .nav-gallery{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:100px;
+    margin:0 auto;
+    z-index:900;
+  }
+  .fakeSearch{
+    width:20px;
+    height:20px;
+    position: absolute;
+    z-index: 99;
+    left:50%+0;
+    transform: translate(-160%,3px);
+    opacity: 0;
+    cursor: pointer;
   }
 
 </style>
@@ -47,28 +72,33 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="head-space">
-
+<div align="center" class="nav-gallery">
+  <span class="icon left nav-prev">◄</span>
+  <span class="icon right nav-next">►</span>
+</div>
 </div>
 
 <section id="dg-container" class="dg-container">
 	<div class="dg-wrapper">
+    <?php $i = 0; ?>
     @foreach($events as $event)
       <a href="event/{{ $event->Event_key }}">
         <div class="event-display text-center">
           <div class="date" onclick="return false;">
-            <span class="icon nav-prev">◄</span> {{ $event->Event_Start }} <span class="icon nav-next">►</span></div>
-          <div class="dateToNow" date="{{ $event->Event_Start }}"></div>
+            <u>{{ $event->Event_Start }}</u>
+          </div>
+          <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
           <div class="name">{{ $event->Event_Name }}</div>
         </div>
         <script type="text/javascript">
           var diffDays1=function(){ 
-              var ele = document.querySelector('.dateToNow');
+              var ele = document.querySelector('.dateToNow{{ $i++ }}');
               var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
               var secondDate = new Date();
               var firstDate = new Date(ele.getAttribute("date"));
               var days = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
               if(days > 0)
-                ele.innerHTML = 'เหลือเวลาสมัครอีก<br><span class="day">' + days + 'ว ัน</span>'
+                ele.innerHTML = '<div style="margin-bottom:10px">เหลือเวลาสมัครอีก</div><span class="day">' + days + ' วัน</span>'
               // else if(days = 0)
               //   ele.innerHTML = 'เหลือเวลาสมัคร'
               else
@@ -101,8 +131,8 @@
 
 
 			<form method="get" onsubmit="return false;" action="/search" id="searchbox5" style="margin-top: 70px;text-align:center">
-				<input id="search52" name="q" type="text" size="40" placeholder="ค้นหารายการ" />
-        <button type="submit"></button>
+        <input id="search52" name="q" type="text" placeholder="ค้นหารายการ" />
+        <button class="fakeSearch" type="submit">ค้นหา</button>
 			</form>
 
 	</div>

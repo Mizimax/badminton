@@ -23,7 +23,7 @@
 	$.Gallery.defaults 		= {
 		current		: 0,	// index of current item
 		autoplay	: true,// slideshow on / off
-		interval	: 3000  // time between transitions
+		interval	: 4000  // time between transitions
     };
 	
 	$.Gallery.prototype 	= {

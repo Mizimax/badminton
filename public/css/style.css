@@ -63,11 +63,11 @@
 	width: 58px;
 	position: absolute;
 	z-index: 1000;
-	bottom: 40px;
+	bottom: 70px;
 	left: 50%;
 	margin-left: -29px;
 }
-.dg-container nav span{
+.dg-container nav span:not(.line){
 	text-indent: -9000px;
 	float: left;
 	cursor:pointer;
@@ -76,7 +76,7 @@
 	opacity: 0.8;
 	background: transparent url(../images/arrows.png) no-repeat top left;
 }
-.dg-container nav span:hover{
+.dg-container nav span:not(.line):hover{
 	opacity: 1;
 }
 .dg-container nav span.dg-next{

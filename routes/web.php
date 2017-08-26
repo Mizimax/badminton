@@ -29,3 +29,5 @@ Route::group(['middleware' => 'auth'], function ()
 {
     Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
 });
+
+

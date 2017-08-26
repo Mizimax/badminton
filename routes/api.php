@@ -15,5 +15,6 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+
 });
-Route::get('/search', 'EventController@search');
+Route::get('/showallteam', 'EventController@show_all_team');

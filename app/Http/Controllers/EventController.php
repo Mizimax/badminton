@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\EventTable;
+use App\event_tables;
+use App\User;
+use App\teams;
 use Illuminate\Support\Facades\Input;
 
 class EventController extends Controller
 {
 
     function index(){
-        $events = EventTable::select('Event_Name', 'Event_key', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        $events = event_tables::select('Event_Name', 'Event_key', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->get();
         return view('event.index', ['events' => $events]);
+
     }
 
     function show($name){
-        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        $event = event_tables::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key', $name)
                             ->firstOrFail();
         return view('event.show', ['event' => $event]);
@@ -35,17 +38,19 @@ class EventController extends Controller
         }
         else{
             $word = '%' . Input::get('name') . '%';
-            $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+            $event = event_tables::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
             ->where('Event_Name', 'like', $word)
             ->first();
         }
         
-        return response()->json([
-            'action' => 'search',
-            'status' => ($event)? 'success' : 'fail',
-            'message' => ($event)? 'OK' : 'No data found',
-            'data' => $event
-        ], ($event)? 200 : 400);
+        return response()->json($events);
+    }
+
+    function show_all_team()
+    {
+        $team = teams::with('User')->get();
+        $User = User::with('personal_info')->get();
+        return response()->json(array('team' => $team , 'User' => $User));
     }
 
     function store(Request $request){
@@ -69,7 +74,7 @@ class EventController extends Controller
                         ->withInput();
         }
 
-        $event = EventTable::create([
+        $event = event_tables::create([
             'Event_Name' => $request['event_name'],
             'Event_key' => $request['event_key'],
             'Event_Start' => $request['event_start'],
@@ -86,7 +91,7 @@ class EventController extends Controller
     }
 
     function edit($name){
-        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        $event = event_tables::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key', $name)
                             ->firstOrFail();
         return view('event.edit', ['event' => $event]);

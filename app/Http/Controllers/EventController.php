@@ -48,8 +48,8 @@ class EventController extends Controller
 
     function show_all_team()
     {
-        $team = teams::with('User')->get();
-        $User = User::with('personal_info')->get();
+        $team = teams::with('Users')->select('User_id','Player_1_id','Player_2_id','Team_Status')->get();
+        $User = User::with('personal_info')->select('User_id')->get();
         return response()->json(array('team' => $team , 'User' => $User));
     }
 

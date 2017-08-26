@@ -32,6 +32,6 @@ class User extends Authenticatable
     public function personal_info()
     {
         
-        return $this->hasMany('App\personal_infos','User_id');
+        return $this->hasMany('App\personal_infos','User_id')->select('User_id','Profile_id','Firstname','Lastname');
     }
 }

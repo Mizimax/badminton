@@ -10,7 +10,7 @@ class teams extends Model
 
     protected $guarded = ['Team_id'];
 
-    public function User()
+    public function Users()
     {
         
         return $this->hasMany('App\User','User_id');

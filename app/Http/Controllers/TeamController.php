@@ -17,7 +17,7 @@ class TeamController extends Controller
             'last_name' => 'required|string',
             'phone' => 'required|string|min:10',
             'rank' => 'required|integer|between:1,10',
-            'birthday' => 'required|date'
+            'age' => 'required|integer|between:1,200'
         ];
 
         $validator_duo = [
@@ -26,7 +26,7 @@ class TeamController extends Controller
             'last_name_2' => 'required|string',
             'phone_2' => 'required|string|min:10',
             'rank_2' => 'required|integer|between:1,10',
-            'birthday_2' => 'required|date'
+            'age_2' => 'required|integer|between:1,200'
         ];
 
         $validator_team = [
@@ -48,7 +48,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name'],
                 'Tel' => $request['phone'],
                 'Rank' => $request['rank'],
-                'Birthday' => $request['birthday'],
+                'Age' => $request['age'],
                 'Is_Player' => true
             ]);
 
@@ -65,7 +65,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name'],
                 'Tel' => $request['phone'],
                 'Rank' => $request['rank'],
-                'Birthday' => $request['birthday'],
+                'Age' => $request['age'],
                 'Is_Player' => true
             ]);
 
@@ -75,7 +75,7 @@ class TeamController extends Controller
                 'Lastname' => $request['last_name_2'],
                 'Tel' => $request['phone_2'],
                 'Rank' => $request['rank_2'],
-                'Birthday' => $request['birthday'],
+                'Age' => $request['age_2'],
                 'Is_Player' => true
             ]);
         }

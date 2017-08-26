@@ -66,7 +66,30 @@
     opacity: 0;
     cursor: pointer;
   }
-
+  .hand{
+    position:absolute;
+    left:50%;
+    top:50px;
+    width:200px;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+  .ui.button.circle{
+    border-radius: 50%;
+    padding:20px 20px;
+    font-size: 22px;
+    position: relative;
+  }
+  .button-text{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+  }
+  .line{
+    margin-right:15px;
+    margin-left:10px;
+  }
 </style>
 @endsection
 @extends('layouts.navbar')
@@ -123,8 +146,18 @@
 			<div></div>
 		</a>
 			
-	</div>
+  </div>
+  <br>
 	<nav>
+    <div class="hand">
+      <button onclick="toggleHand(this)" class="ui red button circle">
+        <div class="button-text">A+</div>
+      </button>
+      <span class="line">_</span>
+      <button onclick="toggleHand(this)" class="ui red button circle">
+        <div class="button-text">A+</div>
+      </button>
+    </div>
 		<span class="dg-prev"></span>
 		<span class="dg-next">&gt;</span>
 	</nav>
@@ -145,6 +178,17 @@
 	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
 	<script type="text/javascript" src="js/jquery.gallery.js"></script>
   <script type="text/javascript">
+    var handStatus = false;
+    var toggleHand = function(ele){
+      if(!handStatus){
+        ele.classList.add('basic');
+      }
+      else{
+        ele.classList.remove('basic');
+      }
+      
+      handStatus = !handStatus
+    }
 		$(function() {
 			$('#dg-container').gallery();
 		});

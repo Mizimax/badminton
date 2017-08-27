@@ -16,7 +16,7 @@ class EventController extends Controller
     }
 
     function show($name){
-        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
+        $event = EventTable::select('Event_Name', 'Event_Start', 'Event_Description', 'Event_Cover_Pic', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key', $name)
                             ->firstOrFail();
         return view('event.show', ['event' => $event]);

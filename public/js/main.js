@@ -1,17 +1,25 @@
 $(document).ready(function() {
-	$('a.login-window').click(function() {
-		
-		// Getting the variable's value from a link 
+	$(document).on("click","a.login-window",function() {
+        // Getting the variable's value from a link 
 		var loginBox = $('#modal');
 		var action = $(this).attr('href');
 		action = action.slice(1, action.length);
-
+		
 		if(action === 'login'){
 			showLogin();
 		}
 		else if(action === 'regis'){
 			showRegister();
-		}	
+		}
+		else if(action === 'guest'){
+			showGuest();
+		}
+		else if(action === 'eventRegis'){
+			showEventRegis();
+		}
+
+		//Body Overflow hidde
+		$('body').css('overflow', 'hidden');
 
 		//Fade in the Popup and add close button
 		$(loginBox).fadeIn(300);
@@ -21,12 +29,15 @@ $(document).ready(function() {
 		$('#mask').fadeIn(300);
 		
 		return false;
-	});
+    });
+
+	
 	
 	// When clicking on the button close or the mask layer the popup closed
 	$('a.close, #mask').live('click', function() { 
 	$('#mask , .login-popup').fadeOut(300 , function() {
-		$('#mask').remove();  
+		$('#mask').remove(); 
+		$('body').css('overflow', 'auto'); 
 	}); 
 	return false;
 	});
@@ -87,7 +98,7 @@ var showLogin = function(){
 						ยืนยัน
 						</button>
 						<br><br>
-						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:right">
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:center">
 							Login with Facebook
 						</button>
 					</div>
@@ -179,7 +190,7 @@ var showRegister = function(){
 						ยืนยัน
 						</button>
 						<br><br>
-						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:right">
+						<button type="button" onclick="window.location='/fb/redirect'" class="loginBtn loginBtn--facebook ui button" style="width:100%;text-align:center">
 							Login with Facebook
 						</button>
 					</div>
@@ -188,3 +199,127 @@ var showRegister = function(){
 				`
 	$('#modal-content').html(data);
 }
+
+	var showEventRegis = function(){
+		var data = `
+				<form method="post" class="signin" action="#">
+				<fieldset class="textbox">
+				<label class="username">
+				<span>ชื่อ</span>
+				<input id="username" name="username" value="" type="text" autocomplete="on" >
+				</label>
+				
+				<label class="surname">
+				<span>นามสกุล</span>
+				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+				</label>
+
+				<label class="phone">
+				<span>เบอร์โทรศัพท์</span>
+				<input id="phone" name="phone" value="" type="text" autocomplete="on">
+				</label>
+
+				<label class="prize">
+				<span> เคยได้รางวัลที่เท่าไหร่</span>
+				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
+				</label>
+
+				<label class="select-pic">
+						<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
+						<button class="ui blue button">เลือกรูป</button>
+				</label>
+
+				
+						<span>  เพศ</span>
+						<button class="circular ui icon button left attached ">
+								ชาย
+							</button>
+							
+							<button class="circular ui icon button  right attached ">
+							หญิง
+							</button>
+
+							<span>อายุ</span>
+							<div class="ui input" style="width: 30px;">
+									<input type="text" />
+							</div>
+
+							<div class="ui selection dropdown" id="dropdown-ranked">
+									<input type="hidden" name="Ranked">
+									<i class="dropdown icon"></i>
+									<div class="menu">
+									<div class="item" data-value="1"></div>
+									</div>
+								</div>
+				
+
+				<label class="username">
+				<span>ชื่อ</span>
+				<input id="username" name="username" value="" type="text" autocomplete="on" >
+				</label>
+				
+				<label class="surname">
+				<span>นามสกุล</span>
+				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+				</label>
+
+				<label class="phone">
+				<span>เบอร์โทรศัพท์</span>
+				<input id="phone" name="phone" value="" type="text" autocomplete="on">
+				</label>
+
+				<label class="prize">
+				<span> เคยได้รางวัลที่เท่าไหร่</span>
+				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
+				</label>
+
+				<label class="select-pic">
+						<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
+						<button class="ui blue button">เลือกรูป</button>
+				</label>
+
+				
+						<span>  เพศ</span>
+						<button class="circular ui icon button left attached ">
+								ชาย
+							</button>
+							
+							<button class="circular ui icon button  right attached ">
+							หญิง
+							</button>
+							<span>อายุ</span>
+							<div class="ui input" style="width: 30px;">
+									<input type="text" />
+							</div>
+							<div class="ui selection dropdown" id="dropdown-ranked">
+									<input type="hidden" name="Ranked">
+									<i class="dropdown icon"></i>
+									<div class="menu">
+									<div class="item" data-value="1"></div>
+									</div>
+								</div>
+				<div align="center">
+			    <button class="ui red button" type="button">ยืนยัน</button>
+				</div>
+				</fieldset>
+		</form>
+		`
+		$('#modal-content').html(data);
+	}
+
+	var showGuest = function(){
+		var data = `
+			<br>
+			<div align="center" style="color:black">ไม่สามารถสมัครแข่งได้ เนื่องจากยังไม่ได้ล็อกอินเข้าสู่ระบบ</div>
+			<br>
+			<div align="center">
+			<a href="#login" class="login-window ui primary button">
+			เข้าสู่ระบบ
+			</a>
+			<a href="#regis" class="login-window ui blue button">
+			สมัครสมาชิก
+			</a>
+			</div>
+		`
+		$('#modal-content').html(data);
+	}

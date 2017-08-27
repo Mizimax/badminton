@@ -28,7 +28,9 @@
         @yield('content')
     </div>
     <div id="modal" class="login-popup">
-        <a href="#" class="close"><img src="ICONWEBSITE KMUTTOPEN\Kmutt web prototype2-29.png" class="btn_close" title="Close Window" alt="Close" width="20%" style="position:absolute;bottom:-70px;left:50%;transform:translateX(-50%)"  /></a>
+        <a href="#" class="close">
+            <img src="/ICONWEBSITE KMUTTOPEN/Kmutt web prototype2-29.png" title="Close Window" alt="Close" width="20%" style="position:absolute;bottom:-70px;left:50%;transform:translateX(-50%)"  />
+        </a>
         <div id="modal-content">
             <!-- replace data here -->
         </div>

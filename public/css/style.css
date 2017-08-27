@@ -62,7 +62,7 @@
 .dg-container nav{
 	width: 58px;
 	position: absolute;
-	z-index: 1000;
+	z-index: 998;
 	bottom: 70px;
 	left: 50%;
 	margin-left: -29px;

@@ -20,7 +20,11 @@ class EventController extends Controller
                             ->where('Event_key', $name)
                             ->firstOrFail();
         return view('event.show', ['event' => $event]);
-    }        
+    }      
+    
+    // function getEventStatus(){
+    //     $event = Team::with('personal');
+    // }
     
     function manage(){
         // get data to show state of event

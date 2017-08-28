@@ -27,5 +27,5 @@ Route::get('/event/{name}', 'EventController@show')->name('event_show');
 /* login only */
 Route::group(['middleware' => 'auth'], function () 
 {
-    Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
+    //Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
 });

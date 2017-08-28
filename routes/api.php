@@ -17,3 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/search', 'EventController@search');
+Route::group(['middleware' => 'auth:api'], function () 
+{
+    Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
+});
+

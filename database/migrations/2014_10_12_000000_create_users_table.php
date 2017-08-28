@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('Fullname');
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
+            $table->string('api_token', 60)->nullable();
             /* Type: 0 = user, 1 = organizer, 2 = admin */
             $table->unsignedTinyInteger('Type')->default(0);
             $table->rememberToken();

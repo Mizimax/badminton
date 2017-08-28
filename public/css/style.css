@@ -59,6 +59,13 @@
 	display: none;
 	position: absolute;
 }
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+}
 .dg-container nav{
 	width: 58px;
 	position: absolute;

@@ -43,11 +43,6 @@
   .icon.left{
     margin-right:65px;
   }
-  .profile{
-    border-radius: 50%;
-    width:42px;
-    height: 42px;
-  }
   .nav-gallery{
     position:absolute;
     left:50%;
@@ -151,11 +146,11 @@
 	<nav>
     <div class="hand">
       <button onclick="toggleHand(this)" class="ui red button circle">
-        <div class="button-text">A+</div>
+        <div class="button-text">P-</div>
       </button>
       <span class="line">_</span>
       <button onclick="toggleHand(this)" class="ui red button circle">
-        <div class="button-text">A+</div>
+        <div class="button-text">C</div>
       </button>
     </div>
 		<span class="dg-prev"></span>

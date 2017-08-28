@@ -2,7 +2,9 @@ $(document).ready(function() {
 	$(document).on("click","a.login-window",function() {
         // Getting the variable's value from a link 
 		var loginBox = $('#modal');
+		var path = window.location.pathname.split( '/' );
 		var action = $(this).attr('href');
+		var token = $('#token').attr('value');
 		action = action.slice(1, action.length);
 		
 		if(action === 'login'){
@@ -15,7 +17,7 @@ $(document).ready(function() {
 			showGuest();
 		}
 		else if(action === 'eventRegis'){
-			showEventRegis();
+			showEventRegis(path[2], token);
 		}
 
 		//Body Overflow hidde
@@ -37,7 +39,7 @@ $(document).ready(function() {
 	$('a.close, #mask').live('click', function() { 
 	$('#mask , .login-popup').fadeOut(300 , function() {
 		$('#mask').remove(); 
-		$('body').css('overflow', 'auto'); 
+		$('body').css('overflow-y', 'auto'); 
 	}); 
 	return false;
 	});
@@ -45,6 +47,7 @@ $(document).ready(function() {
 });
 
 var ajaxPost = function(form, url, error = ''){
+	$('.ui.primary.button').addClass('loading');
 	$.ajax({   
 		type: "post",
 		dataType: "json",
@@ -69,13 +72,15 @@ var ajaxPost = function(form, url, error = ''){
 			});
 			$(error).show();
 			$(error+' .error').html(result);
+			$('.ui.primary.button').removeClass('loading');
+			document.getElementById('error-box').scrollIntoView()
 		}
-	})
+	});
 }
 
 var showLogin = function(){
 	var data = `
-			<div class="ui message red">
+			<div id="error-box" class="ui message red">
 				<h5>Something wrong !</h5>
 				<ul class="list error">
 				</ul>
@@ -148,7 +153,7 @@ var showCreateEvent = function(){
 
 var showRegister = function(){
 	var data = `
-				<div class="ui message red">
+				<div id="error-box" class="ui message red">
 					<h5>Something wrong !</h5>
 					<ul class="list error">
 					</ul>
@@ -200,18 +205,29 @@ var showRegister = function(){
 	$('#modal-content').html(data);
 }
 
-	var showEventRegis = function(){
+	var showEventRegis = function(name, token = ''){
 		var data = `
-				<form method="post" class="signin" action="#">
+				<div id="error-box" class="ui message red">
+					<h5>Something wrong !</h5>
+					<ul class="list error">
+					</ul>
+				</div>
+				<form id="event_regis" onsubmit="ajaxPost('#event_regis', '/api/event/${name}/regis?api_token=${token}', '.ui.message');return false;" method="post" class="signin">
 				<fieldset class="textbox">
+				<label class="team_name">
+				<span>ชื่อทีม</span>
+				<input id="team_name" name="team_name" value="" type="text" autocomplete="on" >
+				</label>
+
+				<h5 style="color:black">ผู้เล่นคนที่หนึ่ง</h5>
 				<label class="username">
 				<span>ชื่อ</span>
-				<input id="username" name="username" value="" type="text" autocomplete="on" >
+				<input id="first_name" name="first_name" value="" type="text" autocomplete="on" >
 				</label>
 				
 				<label class="surname">
 				<span>นามสกุล</span>
-				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+				<input id="last_name" name="last_name" value="" type="text" autocomplete="on" >
 				</label>
 
 				<label class="phone">
@@ -223,83 +239,106 @@ var showRegister = function(){
 				<span> เคยได้รางวัลที่เท่าไหร่</span>
 				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
 				</label>
+				<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
 
-				<label class="select-pic">
-						<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
-						<button class="ui blue button">เลือกรูป</button>
+				<label for="pic1" class="custom-file-upload">
+				<a class="ui blue button small">เลือกรูป</a>
+				<a id="result_1" class="result-pic font-small"></a>
+				<input id="pic" name="pic" type="text" class="delete"/>
 				</label>
+				<input id="pic1" onchange="$('#result_1').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
 				
-						<span>  เพศ</span>
-						<button class="circular ui icon button left attached ">
-								ชาย
-							</button>
-							
-							<button class="circular ui icon button  right attached ">
-							หญิง
-							</button>
+					<input class="gender delete" type="radio" id="male1" name="gender" value="m">
+					<input class="gender delete" type="radio" id="female1" name="gender" value="f">
+						<span>เพศ</span>
+						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular ui icon button left attached ">
+							ชาย
+						</button>
+						
+						<button onclick="$('#female1').prop('checked', true)" type="button" class="circular ui icon button  right attached ">
+						หญิง
+						</button>
 
 							<span>อายุ</span>
 							<div class="ui input" style="width: 30px;">
-									<input type="text" />
+									<input type="text" name="age" maxlength="2" />
 							</div>
-
-							<div class="ui selection dropdown" id="dropdown-ranked">
-									<input type="hidden" name="Ranked">
-									<i class="dropdown icon"></i>
-									<div class="menu">
-									<div class="item" data-value="1"></div>
-									</div>
-								</div>
-				
+							<span>มือ</span>
+							<select name="rank" class="ui fluid search dropdown">
+							<option value="1">A</option>
+							<option value="2">B+</option>
+							<option value="3">B</option>
+							<option value="4">C+</option>
+							<option value="5">C</option>
+							<option value="6">P+</option>
+							<option value="7">P</option>
+							<option value="8">P-</option>
+							<option value="9">S</option>
+							<option value="10">N</option>
+							</select>
+				<br>
+				<h5 style="color:black">ผู้เล่นคนที่สอง</h5>
 
 				<label class="username">
 				<span>ชื่อ</span>
-				<input id="username" name="username" value="" type="text" autocomplete="on" >
+				<input id="first_name_2" name="first_name_2" value="" type="text" autocomplete="on" >
 				</label>
 				
 				<label class="surname">
 				<span>นามสกุล</span>
-				<input id="surname" name="surname" value="" type="text" autocomplete="on" >
+				<input id="last_name_2" name="last_name_2" value="" type="text" autocomplete="on" >
 				</label>
 
 				<label class="phone">
 				<span>เบอร์โทรศัพท์</span>
-				<input id="phone" name="phone" value="" type="text" autocomplete="on">
+				<input id="phone_2" name="phone_2" value="" type="text" autocomplete="on">
 				</label>
 
 				<label class="prize">
 				<span> เคยได้รางวัลที่เท่าไหร่</span>
-				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
+				<input id="prize" name="prize_2" value="" type="text" autocomplete="on" >
 				</label>
 
-				<label class="select-pic">
-						<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
-						<button class="ui blue button">เลือกรูป</button>
+				<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
+				<label for="pic2" class="custom-file-upload">
+				<a class="ui blue button small">เลือกรูป</a>
+				<a id="result_2" class="result-pic font-small"></a>
+				<input id="pic_2" name="pic_2" type="text" class="delete" />
 				</label>
+				<input name="pic2" id="pic2" onchange="$('#result_2').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
 				
-						<span>  เพศ</span>
-						<button class="circular ui icon button left attached ">
-								ชาย
-							</button>
-							
-							<button class="circular ui icon button  right attached ">
-							หญิง
-							</button>
+				<input class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
+				<input class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
+					<span>เพศ</span>
+					<button onclick="$('#male2').prop('checked', true)" type="button" class="circular ui icon button left attached ">
+						ชาย
+					</button>
+					
+					<button onclick="$('#female2').prop('checked', true)" type="button" class="circular ui icon button  right attached ">
+					หญิง
+					</button>
 							<span>อายุ</span>
 							<div class="ui input" style="width: 30px;">
-									<input type="text" />
+									<input type="text" name="age_2" maxlength="2" />
 							</div>
-							<div class="ui selection dropdown" id="dropdown-ranked">
-									<input type="hidden" name="Ranked">
-									<i class="dropdown icon"></i>
-									<div class="menu">
-									<div class="item" data-value="1"></div>
-									</div>
-								</div>
+							<span>มือ</span>
+							<select name="rank_2" class="ui fluid search dropdown">
+							<option value="1">A</option>
+							<option value="2">B+</option>
+							<option value="3">B</option>
+							<option value="4">C+</option>
+							<option value="5">C</option>
+							<option value="6">P+</option>
+							<option value="7">P</option>
+							<option value="8">P-</option>
+							<option value="9">S</option>
+							<option value="10">N</option>
+							</select>
+						  <br>
 				<div align="center">
-			    <button class="ui red button" type="button">ยืนยัน</button>
+			    <button class="ui red button" type="submit">ยืนยัน</button>
 				</div>
 				</fieldset>
 		</form>

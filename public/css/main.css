@@ -6,11 +6,29 @@ body {
     background-size: cover !important;
 }
 
+.profile{
+    border-radius: 50%;
+    width:42px;
+    height: 42px;
+  }
+/* 
+.ui.message.red{
+    position: absolute;
+    top:0;
+    right: -1em;
+    width: 100%;
+    transform: translateX(100%);
+} */
+
 #modal-content{
     max-height: calc(100vh - 210px);
     overflow-y: auto;
     overflow-x: hidden;
     padding:6px;
+}
+
+.delete{
+    display: none;
 }
 
 .text-center{

@@ -1,1 +1,1 @@
-error อะ
+Page not found!

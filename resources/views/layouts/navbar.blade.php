@@ -1,11 +1,4 @@
 <div class="nav">
-<style>
-    @media (max-width: 377px){
-        .nav .twelve{
-            width: 100px !important;
-        }
-    }
-</style>
 <div class="ui two column grid">
   <div class="row">
     <div class="column twelve wide padding0 text-right">
@@ -22,9 +15,10 @@
   </div>
 @else
     <div class="column right floated four wide padding0 text-center">
-      <img style="margin-bottom:10px" class="profile" src="/images/guest.jpg"><br>
+      <img style="margin-bottom:7px" class="profile" src="/images/no_pic.jpg">
+      <div style="margin-bottom:7px;">{{ Auth::user()->Fullname }}</div>
       <a href="#" class="ui blue label">Competitor</a><br>
-      <form style="margin-top:4px" id="logout-form" action="logout" method="POST">
+      <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
         {{ csrf_field() }}
         <a class="ui red label" onclick="$('#logout-form').submit();">
           Logout

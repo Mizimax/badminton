@@ -70,9 +70,7 @@ h1{
     }
 
     .event_detail{
-        background-image: url("images/mainbackground.png");
-
-        
+        background-image: url("images/mainbackground.png");        
     }
 
 #status{
@@ -211,7 +209,7 @@ tbody td:last-child, thead th:last-child {
     background-image: url("/images/event_background.png");
 
     /* Full height */
-    height: 100%; 
+    height: 100vh; 
 
     /* Center and scale the image nicely */
     background-position: left top;
@@ -222,7 +220,7 @@ tbody td:last-child, thead th:last-child {
 .event_detail{
         position:relative;
         background-image: url("/images/mainbackground.png");
-        height: 100%;
+        height:100vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover; 
@@ -310,19 +308,18 @@ img.btn_close {
 
 </style>
 @endsection
-@extends('layouts.navbar')
 @section('content')
 
 <div class="bg"> 
-<div class="contact_images">
+<div class="contact_images" align="center">
 <img src="/images/ct_facebook.png" class="social">
 <img src="/images/ct_line.png" class="social">
 <img src="/images/ct_phone.png" class="social">
 <br>
 @if(Auth::guest())
-<a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
+<a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
 @else
-<a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
+<a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
 @endif
 </div>     
 <div class="Activity_images">
@@ -339,7 +336,7 @@ img.btn_close {
 </div>
 
 <div class="event_detail">
-    
+@include('layouts.navbar')
 
     
 
@@ -360,7 +357,7 @@ img.btn_close {
                 <button class="ui inverted blue button" id="box_1">สถานะรายการ</button>
             </div>
             <div class="column">
-                <button class="ui inverted blue button" id="box_2" > สถานะประเมิน</button>
+                <button class="ui inverted blue button" id="box_2">สถานะประเมิน</button>
             </div>
             <div class="column">
                 <button class="ui inverted blue button"id="box_3">สถานะการเงิน</button>
@@ -379,67 +376,11 @@ img.btn_close {
             </div>
             <div class="ui mobile reversed equal width grid text-center">
                 <div class="five wide column">
-</div>
+                </div>
                 <div class="ten wide column">
                 <div class="information-scroll text-center">
-                <table class="scroll">
-                        <thead>
-                            <tr>
-                                <th>Head 1</th>
-                                <th>Head 2</th>
-                                <th>Head 3</th>
-                                <th>Head 4</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Content 1</td>
-                                <td>Content 2</td>
-                                <td>Content 3</td>
-                                <td>Content 4</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>Content 1</td>
-                                <td>Lorem ipsum dolor sit amet.</td>
-                                <td>Content 3</td>
-                                <td>Content 4</td>
-                              
-                            </tr>
-                            <tr>
-                                <td>Content 1</td>
-                                <td>Content 2</td>
-                                <td>Content 3</td>
-                                <td>Content 4</td>
-                               
-                            </tr>
-                            <tr>
-                                <td>Content 1</td>
-                                <td>Content 2</td>
-                                <td>Content 3</td>
-                                <td>Content 4</td>
-                              
-                            </tr>
-                            <tr>
-                                    <td>Content 1</td>
-                                    <td>Content 2</td>
-                                    <td>Content 3</td>
-                                    <td>Content 4</td>
-                                  
-                                </tr>
-                                <tr>
-                                        <td>Content 1</td>
-                                        <td>Content 2</td>
-                                        <td>Content 3</td>
-                                        <td>Content 4</td>
-                                      
-                                    </tr>
-                           
-                            
-                        </tbody>
-                    </table>
-        </div>
+                
+                </div>
                 </div>
           </div>
           </div>
@@ -454,7 +395,8 @@ img.btn_close {
 
 
 
-
+  
+<input type="hidden" class="delete" id="token" value="{{ (isset(Auth::user()->api_token)) ? Auth::user()->api_token : '' }}" />
 
 
 

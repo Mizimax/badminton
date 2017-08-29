@@ -16,8 +16,9 @@
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <style>
-        body{
+        html, body {
             color:white;
+            overflow-x: hidden !important;
         }
     </style>
     @yield('style')

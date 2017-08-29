@@ -310,17 +310,17 @@ img.btn_close {
 @endsection
 @section('content')
 
-<div class="bg"> 
+<div class="bg" style="positon:relative"> 
 <div class="contact_images" align="center">
-<img src="/images/ct_facebook.png" class="social">
-<img src="/images/ct_line.png" class="social">
-<img src="/images/ct_phone.png" class="social">
-<br>
-@if(Auth::guest())
-<a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
-@else
-<a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
-@endif
+    <img src="/images/ct_facebook.png" class="social">
+    <img src="/images/ct_line.png" class="social">
+    <img src="/images/ct_phone.png" class="social">
+    <br>
+    @if(Auth::guest())
+    <a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    @else
+    <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    @endif
 </div>     
 <div class="Activity_images">
 <img id="image_1" src="/images/1.png" width="31%">
@@ -354,7 +354,7 @@ img.btn_close {
     <div class="ui mobile reversed equal width grid text-center" id="status-cha">
             
             <div class="column">
-                <button class="ui inverted blue button" id="box_1">สถานะรายการ</button>
+                <button onclick="ajaxGet('#showData', '/api/event/'+ window.location.pathname.split('/')[2] + '/status')" class="ui inverted blue button" id="box_1">สถานะรายการ</button>
             </div>
             <div class="column">
                 <button class="ui inverted blue button" id="box_2">สถานะประเมิน</button>
@@ -374,6 +374,7 @@ img.btn_close {
             </div>
             
             </div>
+            <div id="showData"></div>
             <div class="ui mobile reversed equal width grid text-center">
                 <div class="five wide column">
                 </div>

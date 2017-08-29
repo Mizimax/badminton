@@ -29,6 +29,7 @@ class SocialAccountService
 
                 $user = User::create([
                     'Fullname' => $providerUser->getName(),
+                    'api_token' => str_random(60)
                 ]);
                 PersonalInfo::create([
                     'User_id' => $user->User_id,

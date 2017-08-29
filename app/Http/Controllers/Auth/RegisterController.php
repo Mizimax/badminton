@@ -92,6 +92,7 @@ class RegisterController extends Controller
             'Fullname' => $data['firstname'] . ' ' . $data['lastname'] ,
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'api_token' => str_random(60)
         ]);
 
         PersonalInfo::create([

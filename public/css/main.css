@@ -64,6 +64,16 @@ body {
     float: left;
     width: 960px;
 }
+@media (max-width:383px){
+    #coin{
+        display:none;
+    }
+}
+
+
+.navbar{
+    position: relative;
+}
 
 .nav{
     position: absolute;

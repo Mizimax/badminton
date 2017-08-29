@@ -95,11 +95,20 @@
     margin-right:15px;
     margin-left:10px;
   }
+  .image-slide{
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+/* ADD THIS */
+    width:50%;
+    height:auto;
+    display:block;
+  }
 </style>
 @endsection
 @extends('layouts.navbar')
 @section('content')
-<div class="head-space">
+<div class="head-space" style="position:relative">
 <div align="center" class="nav-gallery">
   <span class="icon left nav-prev">◄</span>
   <span class="icon right nav-next">►</span>
@@ -135,19 +144,19 @@
           };
           diffDays1();
         </script>
-				<center><img src="images/mainpic.png" alt="image01" style="width:50%;"></center>
+				<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
 			</a>
 		@endforeach
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:50%;"></center>
+			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:50%;"></center>
+			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:50%;"></center>
+			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 			

@@ -45,8 +45,8 @@ class TeamController extends Controller
         ];
 
         $event = EventTable::select('Event_id','Event_Category')
-                                    ->where('Event_key',$name)->first();
-        //dd($event);
+                            ->where('Event_key',$name)->first();
+        
         /* Single */
         if($event["Event_Category"] == 1){
             $validator = Validator::make($request->all(), array_merge($validator_team, $validator_single));
@@ -95,7 +95,7 @@ class TeamController extends Controller
         }
 
         $team = Team::create([
-            'Event_id' => $event['Event_id'],
+            'Event_key' => $name,
             'User_id' => Auth::guard('api')->user()->User_id,
             'Player_1_id' => $player_1->Profile_id,
             'Player_2_id' => ($player_2)? $player_2->Profile_id : NULL,

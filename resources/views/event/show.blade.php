@@ -354,7 +354,7 @@ img.btn_close {
     <div class="ui mobile reversed equal width grid text-center" id="status-cha">
             
             <div class="column">
-                <button class="ui inverted blue button" id="box_1">สถานะรายการ</button>
+                <button onclick="ajaxGet('#showData', '/api/event/'+ window.location.pathname.split('/')[2] + '/status')" class="ui inverted blue button" id="box_1">สถานะรายการ</button>
             </div>
             <div class="column">
                 <button class="ui inverted blue button" id="box_2">สถานะประเมิน</button>
@@ -374,6 +374,7 @@ img.btn_close {
             </div>
             
             </div>
+            <div id="showData"></div>
             <div class="ui mobile reversed equal width grid text-center">
                 <div class="five wide column">
                 </div>

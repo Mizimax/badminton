@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$(document).on("click","a.login-window",function() {
         // Getting the variable's value from a link 
 		var loginBox = $('#modal');
-		var path = window.location.pathname.split( '/' );
+		var path = window.location.pathname.split('/');
 		var action = $(this).attr('href');
 		var token = $('#token').attr('value');
 		action = action.slice(1, action.length);
@@ -74,6 +74,25 @@ var ajaxPost = function(form, url, error = ''){
 			$(error+' .error').html(result);
 			$('.ui.primary.button').removeClass('loading');
 			document.getElementById('error-box').scrollIntoView()
+		}
+	});
+}
+
+var ajaxGet = function(ele, url){
+	$(ele).html('Loading...');
+	$.ajax({   
+		type: "get",
+		dataType: "json",
+		headers: { 
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+		},
+		url: url,
+		success: function (data) {			
+			$(ele).html(data.data['Event_Status']);
+		},
+		error: function (data) {
+			var jsonData = JSON.parse(data.responseText);
+			$(ele).html(jsonData['action']);
 		}
 	});
 }

@@ -310,7 +310,7 @@ img.btn_close {
 @endsection
 @section('content')
 
-<div class="bg" style="positon:relative"> 
+<div class="bg" style="position:relative"> 
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
     <img src="/images/ct_line.png" class="social">

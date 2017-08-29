@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Event')
 @section('style')
 <style>
@@ -47,6 +47,11 @@
     border-radius: 50%;
     width:42px;
     height: 42px;
+  }
+  @media (max-width:349px){
+    .nav-gallery{
+       width:70%;
+    }
   }
   .nav-gallery{
     position:absolute;

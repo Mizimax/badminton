@@ -59,7 +59,7 @@
     transform:translateX(-50%);
     top:100px;
     margin:0 auto;
-    z-index:900;
+    z-index:999;
   }
   .fakeSearch{
     width:20px;

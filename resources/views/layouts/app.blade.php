@@ -16,8 +16,9 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="stylesheet" type="text/css" href="/css/semantic.min.css" />
     <style>
-        body{
+        html, body {
             color:white;
+            overflow-x: hidden !important;
         }
     </style>
     @yield('style')
@@ -37,7 +38,7 @@
     </div>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
     @yield('script')
 

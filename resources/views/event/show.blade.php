@@ -411,15 +411,15 @@ img.btn_close {
             var genderSelectedTwo = false;
             $(document).on('click','.button.circular.one',function() { 
 
-                $('.button.circular.one').not(this).removeClass('primary');
-                $(this).toggleClass('primary');
+                $('.button.circular.one').not(this).removeClass('red');
+                $(this).toggleClass('red');
                 
                 genderSelectedOne = !genderSelectedOne;
             })
             $(document).on('click','.button.circular.two',function() { 
 
-                $('.button.circular.two').not(this).removeClass('primary');
-                $(this).toggleClass('primary');
+                $('.button.circular.two').not(this).removeClass('red');
+                $(this).toggleClass('red');
                 
                 genderSelectedTwo = !genderSelectedTwo;
             })

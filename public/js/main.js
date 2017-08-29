@@ -252,11 +252,11 @@ var showRegister = function(){
 					<input class="gender delete" type="radio" id="male1" name="gender" value="m">
 					<input class="gender delete" type="radio" id="female1" name="gender" value="f">
 						<span>เพศ</span>
-						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular ui icon button left attached ">
+						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular one ui icon button left attached ">
 							ชาย
 						</button>
 						
-						<button onclick="$('#female1').prop('checked', true)" type="button" class="circular ui icon button  right attached ">
+						<button onclick="$('#female1').prop('checked', true)" type="button" class="circular one ui icon button  right attached ">
 						หญิง
 						</button>
 
@@ -312,11 +312,11 @@ var showRegister = function(){
 				<input class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
 				<input class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
 					<span>เพศ</span>
-					<button onclick="$('#male2').prop('checked', true)" type="button" class="circular ui icon button left attached ">
+					<button onclick="$('#male2').prop('checked', true)" type="button" class="circular two ui icon button left attached ">
 						ชาย
 					</button>
 					
-					<button onclick="$('#female2').prop('checked', true)" type="button" class="circular ui icon button  right attached ">
+					<button onclick="$('#female2').prop('checked', true)" type="button" class="circular two ui icon button  right attached ">
 					หญิง
 					</button>
 							<span>อายุ</span>
@@ -338,7 +338,7 @@ var showRegister = function(){
 							</select>
 						  <br>
 				<div align="center">
-			    <button class="ui red button" type="submit">ยืนยัน</button>
+			    <button class="ui primary button" type="submit">ยืนยัน</button>
 				</div>
 				</fieldset>
 		</form>

@@ -11,10 +11,10 @@
     <title>OPEN | KMUTT - @yield('title')</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="/css/semantic.min.css" />
     <link href="/css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="/css/semantic.min.css" />
     <style>
         body{
             color:white;

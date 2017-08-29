@@ -183,13 +183,16 @@
 	<script type="text/javascript" src="/js/modernizr.custom.53451.js"></script>
 	<script type="text/javascript" src="/js/jquery.gallery.js"></script>
   <script type="text/javascript">
-    var handStatus = false;
-    $('.button.circle').click(function() {  
-      $('.button.circle').not(this).removeClass('basic');
-      $(this).toggleClass('basic')
-      
-      handStatus = !handStatus
+    $(document).ready(function(){
+      var handStatus = false;
+      $('.button.circle').click(function() {  
+        $('.button.circle').not(this).removeClass('basic');
+        $(this).toggleClass('basic')
+        
+        handStatus = !handStatus
+      });
     });
+    
 		$(function() {
 			$('#dg-container').gallery();
 		});

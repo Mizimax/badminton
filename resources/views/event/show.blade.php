@@ -443,30 +443,33 @@ img.btn_close {
                 </div>
           </div>
           </div>
-          
-       
         </div>
     </div>
-
-    
-  
+    </div> 
     </div>
-
-
-
-
-
-
-
-     
 </div>
-
-
-
-</div>
-
-
 @endsection
 @section('script')
+    <script>
 
+        $(document).ready(function(){
+            var genderSelectedOne = false;
+            var genderSelectedTwo = false;
+            $(document).on('click','.button.circular.one',function() { 
+
+                $('.button.circular.one').not(this).removeClass('primary');
+                $(this).toggleClass('primary');
+                
+                genderSelectedOne = !genderSelectedOne;
+            })
+            $(document).on('click','.button.circular.two',function() { 
+
+                $('.button.circular.two').not(this).removeClass('primary');
+                $(this).toggleClass('primary');
+                
+                genderSelectedTwo = !genderSelectedTwo;
+            })
+        });
+
+    </script>
 @endsection

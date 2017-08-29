@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 @section('title', 'Event')
 @section('style')
 <style>
@@ -47,6 +47,11 @@
     border-radius: 50%;
     width:42px;
     height: 42px;
+  }
+  @media (max-width:349px){
+    .nav-gallery{
+       width:70%;
+    }
   }
   .nav-gallery{
     position:absolute;
@@ -150,11 +155,11 @@
   <br>
 	<nav>
     <div class="hand">
-      <button onclick="toggleHand(this)" class="ui red button circle">
+      <button class="ui red button circle">
         <div class="button-text">A+</div>
       </button>
       <span class="line">_</span>
-      <button onclick="toggleHand(this)" class="ui red button circle">
+      <button class="ui red button circle">
         <div class="button-text">A+</div>
       </button>
     </div>
@@ -175,20 +180,19 @@
 </div>
 @endsection
 @section('script')
-	<script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
-	<script type="text/javascript" src="js/jquery.gallery.js"></script>
+	<script type="text/javascript" src="/js/modernizr.custom.53451.js"></script>
+	<script type="text/javascript" src="/js/jquery.gallery.js"></script>
   <script type="text/javascript">
-    var handStatus = false;
-    var toggleHand = function(ele){
-      if(!handStatus){
-        ele.classList.add('basic');
-      }
-      else{
-        ele.classList.remove('basic');
-      }
-      
-      handStatus = !handStatus
-    }
+    $(document).ready(function(){
+      var handStatus = false;
+      $('.button.circle').click(function() {  
+        $('.button.circle').not(this).removeClass('basic');
+        $(this).toggleClass('basic')
+        
+        handStatus = !handStatus
+      });
+    });
+    
 		$(function() {
 			$('#dg-container').gallery();
 		});

@@ -231,11 +231,11 @@ var showRegister = function(){
 
 				
 						<span>  เพศ</span>
-						<button class="circular ui icon button left attached ">
+						<button type="button" class="circular one ui icon button left attached ">
 								ชาย
 							</button>
 							
-							<button class="circular ui icon button  right attached ">
+							<button type="button" class="circular one ui icon button  right attached ">
 							หญิง
 							</button>
 
@@ -280,11 +280,11 @@ var showRegister = function(){
 
 				
 						<span>  เพศ</span>
-						<button class="circular ui icon button left attached ">
+						<button type="button" class="circular two ui icon button left attached ">
 								ชาย
 							</button>
 							
-							<button class="circular ui icon button  right attached ">
+							<button type="button" class="circular two ui icon button  right attached ">
 							หญิง
 							</button>
 							<span>อายุ</span>

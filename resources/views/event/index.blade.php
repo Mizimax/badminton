@@ -147,14 +147,7 @@
 				<center><img src="images/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
 			</a>
 		@endforeach
-		<a href="#">
-			<center><img src="images/event2.jpg" alt="image01" class="image-slide"></center>
-			<div></div>
-		</a>
-		<a href="#">
-			<center><img src="images/event3.jpg" alt="image01" class="image-slide"></center>
-			<div></div>
-		</a>
+		
 		
 	
 			

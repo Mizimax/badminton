@@ -322,24 +322,13 @@ img.btn_close {
     <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>     
-<!-- <div class="Activity_images">
+< <div class="Activity_images">
 <img id="image_1" src="/images/1.png" width="31%">
 <img id="image_2" src="/images/2.png" width="29%"> 
 <img id="image_3" src="/images/3.png" width="27%">   
 <img id="image_4" src="/images/4.png" width="20%">
 
-</div> -->
-<div class="row">
-                    
-                    <div class="col-3 menu">
-                      <ul>
-                        <li style=" margin-top: 300px;"><img id="image_1" src="/images/1.png" width="100%" ></li>
-                        <li><img id="image_2" src="/images/2.png" width="80%"> </li>
-                        <li><img id="image_3" src="/images/3.png" width="70%"> </li>
-                        <li> <img id="image_4" src="/images/4.png" width="60%"></li>
-                      </ul>
-                    </div>
-
+</div> 
 
 
 

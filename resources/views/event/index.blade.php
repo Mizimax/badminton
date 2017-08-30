@@ -125,7 +125,7 @@
             <u>{{ $event->Event_Start }}</u>
           </div>
           <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
-         <h5 div class="name">{{ $event->Event_Name }}</h5></div>
+          <div class="name">{{ $event->Event_Name }}</div>
         </div>
         <script type="text/javascript">
           var diffDays1=function(){ 
@@ -136,13 +136,15 @@
               var days = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
               if(days > 0)
                 ele.innerHTML = '<div style="margin-bottom:10px">เหลือเวลาสมัครอีก</div><span class="day">' + days + ' วัน</span>'
+              // else if(days = 0)
+              //   ele.innerHTML = 'เหลือเวลาสมัคร'
               else
                 ele.innerHTML = '<span class="day">หมดเวลาสมัครแล้ว</span>'
               
           };
           diffDays1();
         </script>
-				<center><img src="images/event/{{$event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
+				<center><img src="images/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
 			</a>
 		@endforeach
 		

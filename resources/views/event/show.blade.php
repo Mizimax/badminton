@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('title', $event->Event_Name)
 @section('style')
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body, html {
     height: 100%;
+    font-family: auto !important;
+    font-size: auto !important;
+    line-height: auto !important;
 }
 body {
     background-image: url("images/background.png") no-repeat center center fixed; 
@@ -11,6 +15,124 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
+.header {
+   
+    color: #ffffff;
+    padding: 15px;
+}
+.aside {
+  
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.footer {
+   
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+.col-6{
+    padding-top:100px;
+}
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 70%;padding-left:200px;padding-right: 180px;padding-bottom:-150px; }
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 70%;padding-left: 50px;padding-bottom:-150px;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+.detail-box{
+    background-color: none;
+    word-break: break-all;
+    padding: 15px;
+    padding-bottom: 30%;
+    margin: 0;
+    border: 1px solid white;
+}
+#box_1{
+    padding: 5%;
+    min-width: 50px;
+    
+}
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    padding-left: 40px;
+    padding-right:40px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
 }
 
 h1{
@@ -73,137 +195,10 @@ h1{
         background-image: url("images/mainbackground.png");        
     }
 
-#status{
-    float: center;
-  
-}
-
-.box-status {
-    position:relative;
-    right:5em;
-    top:7em;
-    left:45em;
-    display:block;
-    
-}
-
-.mainpic{
-    width:180px;
-    height:250px;
-    position:relative;
-    right:5em;
-    top:9em;
-    left:8.5em;
-    display:block;
-
-}
-
-#mainpic-h5{
-    color:white;
-    position:relative;
-    right:6em;
-    top:10em;
-    left:11em;
-    display:block;
-}
-
-#detail-button{
-    position:relative;
-    right:6em;
-    top:10em;
-    left:9em;
-    display:block;
-}
-
-#account-detail{
-    border: 1px solid white;
-    padding: 25px;
-    margin: 25px;
-    width: 300px;
-    position:relative;
-    right:6em;
-    top:10em;
-    left:2em;
-    display:block;
-    color:white;
-}
-
-#status-cha{
-    color:white;
-    position: absolute;
-    top: 200px;
-    display:block;
-    font-size: 10px;
-}
-
-#box_1{
-    width:140px;
-    margin-top: -80px;
-    margin-bottom: 100px;
-    margin-right: 150px;
-    margin-left: 30px;
-}
-#box_2{
-    width:140px;
-    margin-top: -80px;
-    margin-bottom: 100px;
-    margin-right: 150px;
-    margin-left: 120px;
-}
-#box_3{
-    width:140px;
-    margin-top: -80px;
-    margin-bottom: 100px;
-    margin-right: 150px;
-    margin-left: 200px;
-}
-#box_4{
-    width:140px;
-    margin-top: -80px;
-    margin-bottom: 100px;
-    margin-right: 150px;
-    margin-left: 290px;
-}
-
-.dropdown{
-    
-
-}
-
-table.scroll {
-    /* border-collapse: collapse; */
-    border-spacing: 0;
-    border: 2px solid white;
-    display:block;
-    color:white;
-}
-
-table.scroll tbody,
-table.scroll thead { display: block; }
-
-thead tr th { 
-    height: 30px;
-    line-height: 30px;
-    /*text-align: left;*/
-}
-
-table.scroll tbody {
-    height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-tbody { border-top: 2px solid white;}
-
-tbody td, thead th {
-    width: 4%; /* Optional */
-    border-right: 1px solid white;;
-}
-
-tbody td:last-child, thead th:last-child {
-    border-right: none;
-}
-
+    .page2{
+        height:100vh;
+    }
+ 
 .bg { 
     /* The image used */
     background-image: url("/images/event_background.png");
@@ -306,6 +301,20 @@ img.btn_close {
     height: 40px;
 }
 
+.mainpic{
+    width:80%;
+}
+
+.result .w3-quarter{
+    width: 20% !important;
+}
+
+.menu .w3-quarter {
+    margin-top:10px;
+    width: 25% !important;
+    margin-bottom:10px;
+}
+
 </style>
 @endsection
 @section('content')
@@ -335,61 +344,92 @@ img.btn_close {
 
 </div>
 
-<div class="event_detail">
 @include('layouts.navbar')
+<div class="page2">
+<div class="row">
 
-    
-
-    <div class="profile-box">
-        <h5 id="mainpic-h5">LALA move open</h5>
+<div class="col-3 col-m-3 menu" align="center"  style="margin-top:5%;">
+  <ul>
+    <li></li>
+    <li> 
+        <h5  class="mainpic-h5">LALA move open</h5>
         <img src="/images/mainpic.png" class="mainpic"/>
-        <button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
+    </li>
+    <li> 
+    <br>
+     <button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
+     <br><br>
+    </li>
+    <li>
+       <div class="detail-box" align="left">
+       {!! $event->Event_Description !!}
 
-        <div id="account-detail">
-            {!! $event->Event_Description !!}
-           
-        </div>
-    </div>
 
-    <div class="ui mobile reversed equal width grid text-center" id="status-cha">
-            
-            <div class="column">
-                <button onclick="ajaxGet('#showData', '/api/event/'+ window.location.pathname.split('/')[2] + '/status')" class="ui inverted blue button" id="box_1">สถานะรายการ</button>
-            </div>
-            <div class="column">
-                <button class="ui inverted blue button" id="box_2">สถานะประเมิน</button>
-            </div>
-            <div class="column">
-                <button class="ui inverted blue button"id="box_3">สถานะการเงิน</button>
-            </div>
-            <div class="column">
-                <button class="ui inverted blue button" id="box_4">ภาพรวม</button>
-            </div>
-            <div class="dropdown">
-            <button class="dropbtn">เลือกอันดับมือ</button>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-            
-            </div>
-            <div id="showData"></div>
-            <div class="ui mobile reversed equal width grid text-center">
-                <div class="five wide column">
-                </div>
-                <div class="ten wide column">
-                <div class="information-scroll text-center">
-                
-                </div>
-                </div>
-          </div>
-          </div>
-        </div>
-    </div>
-    </div> 
-    </div>  
+       </div>
+    </li>
+  </ul>
 </div>
+
+<div class="col-6 col-m-9">     
+      <div class="w3-row-padding menu" style="font-size:9px;" align="center">
+          <div class="row">
+                <div class="col-12 col-m-12 menu">
+                        <button class="ui inverted button">สถานะการเเข่งขันน</button>
+                </div> 
+          </div>
+        <div class="w3-quarter">
+                <button class="ui inverted blue button" id="box_1">สถานะรายการ</button>
+          
+        </div>
+      
+        <div class="w3-quarter">
+                <button class="ui inverted blue button" id="box_1" onclick="getStatus(this, 'hand')">อันดับมือ</button>
+          
+        </div>
+      
+        <div class="w3-quarter">
+                <button class="ui inverted blue button" id="box_1" onclick="getStatus(this, 'pay')">สถานะการจ่ายเงิน</button>
+
+        </div>
+        <div class="w3-quarter">
+                <button class="ui inverted blue button" id="box_1" >สถานะรายการ</button>
+                
+              </div>
+      </div>
+      <div class="row">
+            <div class="col-12 col-m-12 menu" align="center">
+                    <div class="dropdown">
+                            <button class="dropbtn">เลือกอันดับมือ</button>
+                            <div class="dropdown-content">
+                              <a href="#">Rank 1</a>
+                              <a href="#">Rank 2</a>
+                              <a href="#">Rank 3</a>
+                            </div>
+                          </div>
+            </div> 
+      </div>
+    <div id="get-content">
+        
+    </div>
+
+</div>
+
+<!--<div class="col-3 col-m-12">
+  <div class="aside">
+    <h2>What?</h2>
+    <p>Chania is a city on the island of Crete.</p>
+    <h2>Where?</h2>
+    <p>Crete is a Greek island in the Mediterranean Sea.</p>
+    <h2>How?</h2>
+    <p>You can reach Chania airport from all over Europe.</p>
+    
+  </div>
+</div>-->
+
+</div>
+</div>
+ 
+
 
 
 
@@ -397,8 +437,8 @@ img.btn_close {
 @endsection
 @section('script')
     <script>
-
         $(document).ready(function(){
+            var menuSelected = false;
             var genderSelectedOne = false;
             var genderSelectedTwo = false;
             $(document).on('click','.button.circular.one',function() { 
@@ -415,7 +455,87 @@ img.btn_close {
                 
                 genderSelectedTwo = !genderSelectedTwo;
             })
+            $('.ui.blue.button').click(function(){
+                $('.ui.blue.button').not(this).addClass('inverted');
+                //$('.ui.blue.button').prop('disabled', false);
+                $(this).removeClass('inverted');
+                //$(this).prop('disabled', true);
+                
+                menuSelected = !menuSelected;
+            });
         });
+
+        var getStatus = function(ele, action){
+            if(!$(ele).hasClass('inverted')){
+                return false;
+            }
+            var url = window.location.pathname + '/' + action;
+            var ele = '#get-content';
+            var data = `
+                <div class="myTeam">
+            `;
+            ajaxGet(ele, url, function(result){
+                if(result['myTeam']){
+                    var myTeam = result['myTeam'];
+                    
+                    myTeam.forEach(function(item){
+                        data += `
+                    <div class="result row" style="color:#ffffff">
+                          <div class="w3-quarter">
+                             
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Firstname}
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Lastname}
+                          </div>
+                          <div class="w3-quarter">
+                            <button class="ui green label">แก้ไข</button>  
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Team_Status}
+                          </div>
+                    </div>
+                    `;
+                    })
+
+                    data += '</div>'
+
+                }
+                if(result['allTeam']){
+                    var allTeam = result['allTeam'];
+
+                    data += '<hr><div class="allTeam">';
+
+                    allTeam.forEach(function(item){
+                        data += `
+                    <div class="result row" style="color:#ffffff">
+                          <div class="w3-quarter">
+                             
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Firstname}
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Lastname}
+                          </div>
+                          <div class="w3-quarter">
+                             
+                          </div>
+                          <div class="w3-quarter">
+                            ${item.Team_Status}
+                          </div>
+                    </div>
+                    `;
+                    })
+
+                    data += '</div>';
+                }
+                
+                $(ele).html(data);
+            });
+        }
 
     </script>
 @endsection

@@ -24,7 +24,7 @@ body {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding:12px;
+    padding:20px;
 }
 
 .delete{
@@ -126,7 +126,8 @@ img.btn_close {
 }
 
 fieldset {
-    border: none;
+    border: none !important;
+    padding: 0 !important;
 }
 
 form.signin .textbox label {

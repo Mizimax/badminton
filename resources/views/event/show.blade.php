@@ -310,9 +310,8 @@ img.btn_close {
 
 </style>
 @endsection
-@extends('layouts.navbar')
 @section('content')
-
+@include('layouts.navbar')
 <div class="bg"> 
 <div class="contact_images">
 <img src="/images/ct_facebook.png" class="social">

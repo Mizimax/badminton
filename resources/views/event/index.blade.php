@@ -144,21 +144,19 @@
           };
           diffDays1();
         </script>
-				<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
+				<center><img src="images/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
 			</a>
 		@endforeach
 		<a href="#">
-			<center><img src="images/mainpic1.png" alt="image01" class="image-slide"></center>
+			<center><img src="images/event2.jpg" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 		<a href="#">
-			<center><img src="images/mainpic2.png" alt="image01" class="image-slide"></center>
+			<center><img src="images/event3.jpg" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
-		<a href="#">
-			<center><img src="images/mainpic3.png" alt="image01" class="image-slide"></center>
-			<div></div>
-		</a>
+		
+	
 			
   </div>
   <br>

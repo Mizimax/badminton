@@ -23,11 +23,11 @@
   }
   .event-display .day{
     color:white;
-    font-size:16px;
+    font-size:18px;
   }
   .event-display .name{
     color: #ddd;
-    font-size:24px;
+    font-size:28px;
     width:200%;
     transform: translateX(-25%);
   }
@@ -125,7 +125,7 @@
             <u>{{ $event->Event_Start }}</u>
           </div>
           <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
-          <div class="name">{{ $event->Event_Name }}</div>
+         <h5 div class="name">{{ $event->Event_Name }}</h5></div>
         </div>
         <script type="text/javascript">
           var diffDays1=function(){ 
@@ -142,7 +142,7 @@
           };
           diffDays1();
         </script>
-				<center><img src="images/event/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
+				<center><img src="images/event/{{$event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
 			</a>
 		@endforeach
 		
@@ -171,7 +171,7 @@
         <button class="fakeSearch" type="submit">ค้นหา</button>
 			</form>
 
-	</nav>
+	</div>
 </section>
 	
 </div>

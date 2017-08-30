@@ -104,6 +104,9 @@
     height:auto;
     display:block;
   }
+  .ui.inverted.red.button:focus{
+    
+  }
 </style>
 @endsection
 @extends('layouts.navbar')
@@ -184,8 +187,8 @@
     $(document).ready(function(){
       var handStatus = false;
       $('.button.circle').click(function() {  
-        $('.button.circle').not(this).removeClass('inverted');
-        $(this).toggleClass('inverted')
+        $('.button.circle').not(this).removeClass('basic');
+        $(this).toggleClass('basic')
         
         handStatus = !handStatus
       });

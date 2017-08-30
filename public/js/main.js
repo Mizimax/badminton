@@ -78,7 +78,7 @@ var ajaxPost = function(form, url, error = ''){
 	});
 }
 
-var ajaxGet = function(ele, url){
+var ajaxGet = function(ele, url, callback){
 	$(ele).html('Loading...');
 	$.ajax({   
 		type: "get",
@@ -88,11 +88,11 @@ var ajaxGet = function(ele, url){
 		},
 		url: url,
 		success: function (data) {			
-			$(ele).html(data.data['Event_Status']);
+			var result = data.data['Event_Status'];
+			callback(result);
 		},
 		error: function (data) {
 			var jsonData = JSON.parse(data.responseText);
-			$(ele).html(jsonData['action']);
 		}
 	});
 }
@@ -238,7 +238,7 @@ var showRegister = function(){
 				<input id="team_name" name="team_name" value="" type="text" autocomplete="on" >
 				</label>
 
-				<h5 style="color:black">ผู้เล่นคนที่หนึ่ง</h5>
+				<h6 style="color:black">ชื่อของคุณ</h6>
 				<label class="username">
 				<span>ชื่อ</span>
 				<input id="first_name" name="first_name" value="" type="text" autocomplete="on" >
@@ -255,7 +255,7 @@ var showRegister = function(){
 				</label>
 
 				<label class="prize">
-				<span> เคยได้รางวัลที่เท่าไหร่</span>
+				<span> จำได้มั้ย คุณเคยได้รางวัลที่เท่าไหร่มา</span>
 				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
 				</label>
 				<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
@@ -297,7 +297,7 @@ var showRegister = function(){
 							<option value="10">N</option>
 							</select>
 				<br>
-				<h5 style="color:black">ผู้เล่นคนที่สอง</h5>
+				<h6 style="color:black">คู่ของคุณ</h6>
 
 				<label class="username">
 				<span>ชื่อ</span>
@@ -315,7 +315,7 @@ var showRegister = function(){
 				</label>
 
 				<label class="prize">
-				<span> เคยได้รางวัลที่เท่าไหร่</span>
+				<span> จำได้มั้ย คุณเคยได้รางวัลที่เท่าไหร่มา</span>
 				<input id="prize" name="prize_2" value="" type="text" autocomplete="on" >
 				</label>
 
@@ -342,19 +342,6 @@ var showRegister = function(){
 							<div class="ui input" style="width: 30px;">
 									<input type="text" name="age_2" maxlength="2" />
 							</div>
-							<span>มือ</span>
-							<select name="rank_2" class="ui fluid search dropdown">
-							<option value="1">A</option>
-							<option value="2">B+</option>
-							<option value="3">B</option>
-							<option value="4">C+</option>
-							<option value="5">C</option>
-							<option value="6">P+</option>
-							<option value="7">P</option>
-							<option value="8">P-</option>
-							<option value="9">S</option>
-							<option value="10">N</option>
-							</select>
 						  <br>
 				<div align="center">
 			    <button class="ui primary button" type="submit">ยืนยัน</button>

@@ -193,8 +193,8 @@
     $(document).ready(function(){
       var handStatus = false;
       $('.button.circle').click(function() {  
-        $('.button.circle').not(this).removeClass('basic');
-        $(this).toggleClass('basic')
+        $('.button.circle').not(this).removeClass('inverted');
+        $(this).toggleClass('inverted')
         
         handStatus = !handStatus
       });

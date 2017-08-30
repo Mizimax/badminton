@@ -24,7 +24,7 @@ body {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding:6px;
+    padding:12px;
 }
 
 .delete{
@@ -65,7 +65,7 @@ body {
     width: 960px;
 }
 @media (max-width:383px){
-    #coin{
+    #profile-btn{
         display:none;
     }
 }
@@ -213,7 +213,7 @@ margin: 0;
     display: none;
     width:280px;
     background: white;
-    padding: 5;
+    padding: 0;
     float: left;
     font-size: 1.2em;
     position: fixed;

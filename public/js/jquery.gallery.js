@@ -22,7 +22,7 @@
 	
 	$.Gallery.defaults 		= {
 		current		: 0,	// index of current item
-		autoplay	: true,// slideshow on / off
+		autoplay	: false,// slideshow on / off
 		interval	: 4000  // time between transitions
     };
 	

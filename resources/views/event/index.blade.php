@@ -23,11 +23,11 @@
   }
   .event-display .day{
     color:white;
-    font-size:18px;
+    font-size:16px;
   }
   .event-display .name{
     color: #ddd;
-    font-size:28px;
+    font-size:24px;
     width:200%;
     transform: translateX(-25%);
   }
@@ -171,7 +171,7 @@
         <button class="fakeSearch" type="submit">ค้นหา</button>
 			</form>
 
-	</div>
+	</nav>
 </section>
 	
 </div>

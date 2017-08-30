@@ -148,15 +148,15 @@
 			</a>
 		@endforeach
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
+			<center><img src="images/mainpic1.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
+			<center><img src="images/mainpic2.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" class="image-slide"></center>
+			<center><img src="images/mainpic3.png" alt="image01" class="image-slide"></center>
 			<div></div>
 		</a>
 			

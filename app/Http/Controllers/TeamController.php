@@ -30,7 +30,6 @@ class TeamController extends Controller
             'first_name_2' => 'required|string',
             'last_name_2' => 'required|string',
             'phone_2' => 'required|string|min:9|max:12',
-            'rank_2' => 'required|integer|between:1,10',
             'age_2' => 'required|integer|between:1,200',
             'prize_2' => 'required|string'
         ];
@@ -82,7 +81,7 @@ class TeamController extends Controller
                 'Firstname' => $request['first_name_2'],
                 'Lastname' => $request['last_name_2'],
                 'Tel' => $request['phone_2'],
-                'Rank' => $request['rank_2'],
+                'Rank' => $request['rank'],
                 'Age' => $request['age_2'],
                 'Prize' => $request['prize_2'],
                 'Is_Player' => true

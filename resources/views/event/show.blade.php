@@ -388,16 +388,7 @@ img.btn_close {
         </div>
     </div>
     </div> 
-    </div>
-
-
-
-  
-<input type="hidden" class="delete" id="token" value="{{ (isset(Auth::user()->api_token)) ? Auth::user()->api_token : '' }}" />
-
-
-
-     
+    </div>  
 </div>
 
 

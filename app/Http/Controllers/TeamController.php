@@ -13,11 +13,6 @@ use Illuminate\Http\Request;
 class TeamController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function store(Request $request, $name){
 
         $validator_single = [
@@ -45,7 +40,7 @@ class TeamController extends Controller
         ];
 
         $event = EventTable::select('Event_id','Event_Category')
-                            ->where('Event_key',$name)->first();
+                            ->where('Event_key',$name)->firstOrFail();
         
         /* Single */
         if($event["Event_Category"] == 1){
@@ -96,7 +91,7 @@ class TeamController extends Controller
 
         $team = Team::create([
             'Event_key' => $name,
-            'User_id' => Auth::guard('api')->user()->User_id,
+            'User_id' => Auth::user()->User_id,
             'Player_1_id' => $player_1->Profile_id,
             'Player_2_id' => ($player_2)? $player_2->Profile_id : NULL,
             'Team_name' => $request['team_name']

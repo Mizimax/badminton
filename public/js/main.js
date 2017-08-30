@@ -4,7 +4,7 @@ $(document).ready(function() {
 		var loginBox = $('#modal');
 		var path = window.location.pathname.split('/');
 		var action = $(this).attr('href');
-		var token = $('#token').attr('value');
+
 		action = action.slice(1, action.length);
 		
 		if(action === 'login'){
@@ -17,7 +17,7 @@ $(document).ready(function() {
 			showGuest();
 		}
 		else if(action === 'eventRegis'){
-			showEventRegis(path[2], token);
+			showEventRegis(path[2]);
 		}
 
 		//Body Overflow hidde
@@ -93,6 +93,7 @@ var ajaxGet = function(ele, url, callback){
 		},
 		error: function (data) {
 			var jsonData = JSON.parse(data.responseText);
+			callback(error);
 		}
 	});
 }
@@ -224,14 +225,14 @@ var showRegister = function(){
 	$('#modal-content').html(data);
 }
 
-	var showEventRegis = function(name, token = ''){
+	var showEventRegis = function(name){
 		var data = `
 				<div id="error-box" class="ui message red">
 					<h5>Something wrong !</h5>
 					<ul class="list error">
 					</ul>
 				</div>
-				<form id="event_regis" onsubmit="ajaxPost('#event_regis', '/api/event/${name}/regis?api_token=${token}', '.ui.message');return false;" method="post" class="signin">
+				<form id="event_regis" onsubmit="ajaxPost('#event_regis', '/event/${name}/regis', '.ui.message');return false;" method="post" class="signin">
 				<fieldset class="textbox">
 				<label class="team_name">
 				<span>ชื่อทีม</span>

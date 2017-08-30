@@ -48,7 +48,7 @@ class LoginController extends Controller
         
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect()->back();
     }
 
     protected function sendLoginResponse(Request $request)

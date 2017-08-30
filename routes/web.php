@@ -24,8 +24,13 @@ Route::get('fb/callback', 'SocialAuthController@callback');
 Route::get('/', 'EventController@index')->name('event');
 Route::get('/event/{name}', 'EventController@show')->name('event_show');
 
+/* Ajax get event status */
+Route::get('/event/{name}/hand', 'EventController@getEventHandStatus')->name('event_hand_check');
+Route::get('/event/{name}/pay', 'EventController@getEventPayStatus')->name('event_pay_check');
+
 /* login only */
 Route::group(['middleware' => 'auth'], function () 
 {
-    //Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
+    /* Ajax */
+    Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
 });

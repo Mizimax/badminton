@@ -329,6 +329,16 @@ img.btn_close {
 <img id="image_4" src="/images/4.png" width="20%">
 
 </div> -->
+<div class="row">
+                    
+                    <div class="col-3 menu">
+                      <ul>
+                        <li style=" margin-top: 300px;"><img id="image_1" src="/images/1.png" width="100%" ></li>
+                        <li><img id="image_2" src="/images/2.png" width="80%"> </li>
+                        <li><img id="image_3" src="/images/3.png" width="70%"> </li>
+                        <li> <img id="image_4" src="/images/4.png" width="60%"></li>
+                      </ul>
+                    </div>
 
 
 

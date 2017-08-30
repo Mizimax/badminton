@@ -36,9 +36,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '1395710807149187',
-        'client_secret' => 'e9512f9b00d5d4127a67c7091fab2f31',
-        'redirect' => 'http://localhost:8000/fb/callback',
+        'client_id' => '1466917513353914',
+        'client_secret' => 'f6c58f3e0c3a620bb97f448370360137',
+        'redirect' => 'https://wezync.com/fb/callback',
     ],
 
 ];

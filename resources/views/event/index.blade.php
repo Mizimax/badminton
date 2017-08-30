@@ -174,7 +174,7 @@
         <button class="fakeSearch" type="submit">ค้นหา</button>
 			</form>
 
-	</nav>
+	</div>
 </section>
 	
 </div>

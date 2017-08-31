@@ -100,7 +100,7 @@
     margin: 0;
     padding: 0;
 /* ADD THIS */
-    width:50%;
+    width:100%;
     height:auto;
     display:block;
   }

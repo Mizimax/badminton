@@ -96,11 +96,11 @@
     margin-left:10px;
   }
   .image-slide{
-    max-width: 100%;
+    max-width: 50%;
     margin: 0;
     padding: 0;
 /* ADD THIS */
-    width:50%;
+    width:100%;
     height:auto;
     display:block;
   }

@@ -331,7 +331,7 @@ img.btn_close {
     <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>     
-< <div class="Activity_images">
+<div class="Activity_images">
 <img id="image_1" src="/images/1.png" width="31%">
 <img id="image_2" src="/images/2.png" width="29%"> 
 <img id="image_3" src="/images/3.png" width="27%">   

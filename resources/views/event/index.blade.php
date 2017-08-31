@@ -123,10 +123,11 @@
     <?php $i = 0; ?>
     @foreach($events as $event)
       <a href="event/{{ $event->Event_key }}">
-      <div class="name">{{ $event->Event_Name }}</div>
+
         <div class="event-display text-center">
           <div class="date" onclick="return false;">
             <u>{{ $event->Event_Start }}</u>
+            <div class="name">{{ $event->Event_Name }}</div>
           </div>
           <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
           

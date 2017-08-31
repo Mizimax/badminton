@@ -315,6 +315,60 @@ img.btn_close {
     margin-bottom:10px;
 }
 
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 0.1px;
+    margin: 0px;
+   
+    color: #ffffff;
+    
+}
+.menu li:hover {
+   
+}
+.aside {
+    background-color: #33b5e5;
+    padding: 1px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
 </style>
 @endsection
 @section('content')
@@ -332,10 +386,21 @@ img.btn_close {
     @endif
 </div>     
 <div class="Activity_images">
+<!--
 <img id="image_1" src="/images/1.png" width="31%">
 <img id="image_2" src="/images/2.png" width="29%"> 
 <img id="image_3" src="/images/3.png" width="27%">   
-<img id="image_4" src="/images/4.png" width="20%">
+<img id="image_4" src="/images/4.png" width="20%"> -->
+<div class="row">
+                    
+                    <div class="col-3 menu">
+                      <ul>
+                        <li style=" margin-top: 300px;"><img id="image_1" src="images/1.png" width="100%" ></li>
+                        <li><img id="image_2" src="images/2.png" width="80%"> </li>
+                        <li><img id="image_3" src="images/3.png" width="70%"> </li>
+                        <li> <img id="image_4" src="images/4.png" width="60%"></li>
+                      </ul>
+                    </div>
 
 </div> 
 

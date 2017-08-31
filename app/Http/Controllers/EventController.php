@@ -25,6 +25,7 @@ class EventController extends Controller
     }
     
     function getEventHandStatus($name){
+        $myTeam = NULL;
         $event = \DB::Table('teams AS t')
                      ->join('personal_infos AS i', function($join)
                      {
@@ -35,21 +36,29 @@ class EventController extends Controller
                      ->where('Team_Status', '<=', '2')
                      ->where('Event_key',$name);
 
-        if(Auth::guard('api')->check()){
-            $event = $event->where('t.User_id', Auth::guard('api')->user()->User_id);
+        if(Auth::check()){
+            $user = $event->where('t.User_id', Auth::user()->User_id);
+            $myTeam = $user->get();
         }
 
-        $event = $event->get();
+        $allTeam = $event->get();
+        
+        $teams = [
+            "myTeam" => ($myTeam) ? $myTeam : [],
+            "allTeam" => $allTeam
+        ];
+        
 
         return response()->json([
             'action' => 'getEventHand',
-            'status' => ($event)? 'success' : 'fail',
-            'message' => ($event)? 'OK' : 'No data found',
-            'data' => $event
-        ], ($event)? 200 : 400);
+            'status' => ($teams)? 'success' : 'fail',
+            'message' => ($teams)? 'OK' : 'No data found',
+            'data' => $teams
+        ], ($teams)? 200 : 400);
     }
 
     function getEventPayStatus($name){
+        $myTeam = NULL;
         $event = \DB::Table('teams AS t')
                      ->join('personal_infos AS i', function($join)
                      {
@@ -57,21 +66,27 @@ class EventController extends Controller
                          $join->orOn('t.Player_2_id','=', 'i.Profile_id');
                      })
                      ->select('i.Firstname','i.Lastname','Team_Status')
-                     ->where('Team_Status', '>=', '2')
+                     ->where('Team_Status', '<=', '3')
                      ->where('Event_key',$name);
 
-        if(Auth::guard('api')->check()){
-            $event = $event->where('t.User_id', Auth::guard('api')->user()->User_id);
+        if(Auth::check()){
+            $user = $event->where('t.User_id', Auth::user()->User_id);
+            $myTeam = $user->get();
         }
 
-        $event = $event->get();
+        $allTeam = $event->get();
+
+        $teams = [
+            "myTeam" => ($myTeam) ? $myTeam : [],
+            "allTeam" => $allTeam
+        ];
 
         return response()->json([
             'action' => 'getEventHand',
-            'status' => ($event)? 'success' : 'fail',
-            'message' => ($event)? 'OK' : 'No data found',
-            'data' => $event
-        ], ($event)? 200 : 400);
+            'status' => ($teams)? 'success' : 'fail',
+            'message' => ($teams)? 'OK' : 'No data found',
+            'data' => $teams
+        ], ($teams)? 200 : 400);
     }
     
     function manage(){

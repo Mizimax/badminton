@@ -79,7 +79,14 @@ var ajaxPost = function(form, url, error = ''){
 }
 
 var ajaxGet = function(ele, url, callback){
-	$(ele).html('Loading...');
+	$(ele).html(`
+	<div class="ui segment">
+		<div class="ui active inverted dimmer">
+		<div class="ui small text loader">Loading</div>
+		</div>
+		<p></p>
+	</div>
+   `);
 	$.ajax({   
 		type: "get",
 		dataType: "json",
@@ -88,8 +95,7 @@ var ajaxGet = function(ele, url, callback){
 		},
 		url: url,
 		success: function (data) {			
-			var result = data.data['Event_Status'];
-			callback(result);
+			callback(data.data);
 		},
 		error: function (data) {
 			var jsonData = JSON.parse(data.responseText);
@@ -362,7 +368,7 @@ var showRegister = function(){
 			<a href="#login" class="login-window ui primary button">
 			เข้าสู่ระบบ
 			</a>
-			<a href="#regis" class="login-window ui blue button">
+			<a style="margin-top:10px" href="#regis" class="login-window ui blue button">
 			สมัครสมาชิก
 			</a>
 			</div>

@@ -15,6 +15,8 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+  
+ 
 }
 
 .row::after {
@@ -140,32 +142,16 @@ h1{
 }
 #image_1{
     
-        position:relative;
-        right:6.7em;
-        top: 26em;
-        left:0.5em;
-        display:block;
+      
     }
     #image_2{
-        position:relative;
-        right:6.7em;
-        top: 25em;
-        left:0.5em;
-        display:block;
+       
     }
     #image_3{
-        position:relative;
-        right:6.7em;
-        top: 23.8em;
-        left:0.5em;
-        display:block;
+       
     }
     #image_4{
-        position:relative;
-        right:6.7em;
-        top: 22.5em;
-        left:0.5em;
-        display:block;
+      
     }
 
     #ct_facebook{
@@ -374,6 +360,8 @@ img.btn_close {
 @section('content')
 
 <div class="bg" style="position:relative"> 
+    
+@include('layouts.navbar')
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
     <img src="/images/ct_line.png" class="social">
@@ -384,19 +372,15 @@ img.btn_close {
     @else
     <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
-</div>     
+</div>
 <div class="Activity_images">
-<!--
-<img id="image_1" src="/images/1.png" width="31%">
-<img id="image_2" src="/images/2.png" width="29%"> 
-<img id="image_3" src="/images/3.png" width="27%">   
-<img id="image_4" src="/images/4.png" width="20%"> -->
+
 <div class="row">
                     
                     <div class="col-3 menu">
                       <ul>
-                        <li style=" margin-top: 300px;"><img id="image_1" src="images/1.png" width="100%" ></li>
-                        <li><img id="image_2" src="/images/2.png" width="80%"> </li>
+                        <li style="margin-top:440px;"><img id="image_1" src="/images/1.png" width="100%" ></li>
+                        <li style="margin-bottom:0;"><img id="image_2" src="/images/2.png" width="80%"> </li>
                         <li><img id="image_3" src="/images/3.png" width="70%"> </li>
                         <li> <img id="image_4" src="/images/4.png" width="60%"></li>
                       </ul>
@@ -409,6 +393,11 @@ img.btn_close {
 </div>
 
 @include('layouts.navbar')
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="page2">
 <div class="row">
 
@@ -478,17 +467,6 @@ img.btn_close {
 
 </div>
 
-<!--<div class="col-3 col-m-12">
-  <div class="aside">
-    <h2>What?</h2>
-    <p>Chania is a city on the island of Crete.</p>
-    <h2>Where?</h2>
-    <p>Crete is a Greek island in the Mediterranean Sea.</p>
-    <h2>How?</h2>
-    <p>You can reach Chania airport from all over Europe.</p>
-    
-  </div>
-</div>-->
 
 </div>
 </div>

@@ -359,6 +359,7 @@ img.btn_close {
 </style>
 @endsection
 @section('content')
+<<<<<<< HEAD
 
 <div class="bg" style="position:relative"> 
     
@@ -374,6 +375,21 @@ img.btn_close {
     <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>
+=======
+@include('layouts.navbar')
+<div class="bg"> 
+<div class="contact_images">
+<img src="/images/ct_facebook.png" class="social">
+<img src="/images/ct_line.png" class="social">
+<img src="/images/ct_phone.png" class="social">
+<br>
+@if(Auth::guest())
+<a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
+@else
+<a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
+@endif
+</div>     
+>>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 <div class="Activity_images">
 
 <div class="row">

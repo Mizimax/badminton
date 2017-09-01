@@ -109,9 +109,13 @@
   }
 </style>
 @endsection
-@extends('layouts.navbar')
 @section('content')
+<<<<<<< HEAD
 <div class="head-space" style="position:relative">
+=======
+@include('layouts.navbar')
+<div class="head-space">
+>>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 <div align="center" class="nav-gallery">
   <span class="icon left nav-prev">◄</span>
   <span class="icon right nav-next">►</span>
@@ -120,6 +124,18 @@
 
 <section id="dg-container" class="dg-container">
 	<div class="dg-wrapper">
+  <a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
+			<div></div>
+		</a>
+		<a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
+			<div></div>
+		</a>
+		<a href="#">
+			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
+			<div></div>
+		</a>
     <?php $i = 0; ?>
     @foreach($events as $event)
       <a href="event/{{ $event->Event_key }}">
@@ -151,8 +167,11 @@
 			</a>
 		@endforeach
 		
+<<<<<<< HEAD
 		
 	
+=======
+>>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 			
   </div>
   <br>

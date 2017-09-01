@@ -187,20 +187,16 @@ h1{
  
 .bg { 
     /* The image used */
-   /* background-image: url("/images/event_background.png");
+   background-image: url("/images/event_background.png");
 
-    /* Full height 
+    /* Full height */
     height: 100vh; 
 
-    /* Center and scale the image nicely 
+    /* Center and scale the image nicely */
     background-position: left top;
     background-repeat: no-repeat;
-    background-size: cover;*/
-    background-image: url("/images/event_background.png") !important;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    background-size: cover !important;
+    background-size: cover;
+    
 }
 
 .event_detail{
@@ -208,7 +204,7 @@ h1{
         background-image: url("/images/mainbackground.png");
         height:100vh;
         background-position: center;
-        background-repeat: no-repeat;
+
         background-size: cover; 
     }
 

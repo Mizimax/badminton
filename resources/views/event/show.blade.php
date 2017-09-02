@@ -505,7 +505,7 @@ img.btn_close {
                     message: 'ผ่านการประเมิน',
                     pay_message: 'ยังไม่จ่ายเงิน',
                     class: 'green',
-                    pay_class: 'orange'
+                    pay_class: 'blue'
                 },
                 {    
                     message: 'ผ่านการประเมิน',

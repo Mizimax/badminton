@@ -44,7 +44,7 @@ class TeamController extends Controller
                             ->where('Event_key',$name)->firstOrFail();
 
         /* Check rank between */
-        if($request["rank"] >= $event["Rank_Min"] && $request["rank"] <= $event["Rank_Max"]){
+        if(!($request["rank"] >= $event["Rank_Min"] && $request["rank"] <= $event["Rank_Max"])){
             $error = [ 'Rank' => 'Rank must be ' . $rank[$event["Rank_Min"]] . ' - ' . $rank[$event["Rank_Max"]] ];
 
             return response()->json($error, 422);
@@ -102,7 +102,8 @@ class TeamController extends Controller
             'User_id' => Auth::user()->User_id,
             'Player_1_id' => $player_1->Profile_id,
             'Player_2_id' => ($player_2)? $player_2->Profile_id : NULL,
-            'Team_name' => $request['team_name']
+            'Team_name' => $request['team_name'],
+            'Team_Rank' => $request['rank']
         ]);
         
         return response()->json([

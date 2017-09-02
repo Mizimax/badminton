@@ -19,6 +19,7 @@ class CreateTeamsTable extends Migration
             $table->integer('User_id')->unsigned();
             $table->integer('Player_1_id')->unsigned();
             $table->integer('Player_2_id')->unsigned()->nullable();
+            $table->string('Team_Rank');
             $table->string('Team_name')->unique();
             $table->integer('Team_point')->default(0);
             // 0 ยังไม่ประเมิน; 1 ไม่ผ่าน; 2 ผ่าน; 3 จ่ายแล้ว; 

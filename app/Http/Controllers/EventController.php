@@ -32,16 +32,16 @@ class EventController extends Controller
                          $join->on('t.Player_1_id', '=',  'i.Profile_id');
                          $join->orOn('t.Player_2_id','=', 'i.Profile_id');
                      })
-                     ->select('i.Firstname','i.Lastname','Team_Status')
-                     ->where('Team_Status', '<=', '2')
+                     ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
+                     ->where('Team_Status', '>=', '0')
                      ->where('Event_key',$name);
+
+        $allTeam = $event->get();
 
         if(Auth::check()){
             $user = $event->where('t.User_id', Auth::user()->User_id);
             $myTeam = $user->get();
         }
-
-        $allTeam = $event->get();
         
         $teams = [
             "myTeam" => ($myTeam) ? $myTeam : [],
@@ -65,16 +65,17 @@ class EventController extends Controller
                          $join->on('t.Player_1_id', '=',  'i.Profile_id');
                          $join->orOn('t.Player_2_id','=', 'i.Profile_id');
                      })
-                     ->select('i.Firstname','i.Lastname','Team_Status')
-                     ->where('Team_Status', '<=', '3')
+                     ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
+                     ->where('Team_Status', '>=', '2')
+                     ->orWhere('Team_Status', '0')
                      ->where('Event_key',$name);
+
+        $allTeam = $event->get();
 
         if(Auth::check()){
             $user = $event->where('t.User_id', Auth::user()->User_id);
             $myTeam = $user->get();
         }
-
-        $allTeam = $event->get();
 
         $teams = [
             "myTeam" => ($myTeam) ? $myTeam : [],

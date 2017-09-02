@@ -82,10 +82,10 @@ var ajaxGet = function(ele, url, callback){
 	// Loading element
 	$(ele).html(`
 	<div class="ui segment">
-		<div class="ui active inverted dimmer">
-		<div class="ui small text loader">Loading</div>
-		</div>
 		<p></p>
+		<div class="ui active dimmer">
+		<div class="ui small loader"></div>
+		</div>
 	</div>
    `);
 	$.ajax({   
@@ -116,12 +116,12 @@ var showLogin = function(){
 				<fieldset class="textbox">
 					<label class="username">
 						<span>Email</span>
-						<input id="email" name="email" value="" type="text" autocomplete="on" >
+						<input required id="email" name="email" value="" type="text" autocomplete="on" >
 					</label>
 
 					<label class="password">
 						<span>Password</span>
-						<input id="password" name="password" value="" type="password">
+						<input required id="password" name="password" value="" type="password">
 					</label>
 
 					<!-- <button class="submit button" type="button"></button> -->
@@ -146,17 +146,17 @@ var showCreateEvent = function(){
 					<fieldset class="textbox">
 					<label class="username">
 					<span>ชื่อจริงของคุณ</span>
-					<input id="username" name="username" value="" type="text" autocomplete="on" >
+					<input required id="username" name="username" value="" type="text" autocomplete="on" >
 					</label>
 					
 					<label class="surname">
 					<span>นามสกุลของคุณ</span>
-					<input id="password" name="password" value="" >
+					<input required id="password" name="password" value="" >
 					</label>
 
 					<label class="surname">
 					<span>ชื่อเล่น</span>
-					<input id="password" name="password" value="" >
+					<input required id="password" name="password" value="" >
 					</label>
 
 					<div id="one"></div> 
@@ -170,7 +170,7 @@ var showCreateEvent = function(){
 							คุณเคยจัดเเข่งหรือไม่?
 							
 							</p>
-							<input type="radio" id="myRadio1">เคย
+							<input required type="radio" id="myRadio1">เคย
 							
 					</fieldset>
 				</form>
@@ -189,32 +189,32 @@ var showRegister = function(){
 					<fieldset class="textbox">
 					<label class="email">
 						<span>Email</span>
-						<input id="email" name="email" value="" type="text" autocomplete="on" >
+						<input required id="email" name="email" value="" type="text" autocomplete="on" >
 					</label>
 					
 					<label class="password">
 						<span>Password</span>
-						<input id="password" name="password" value="" type="password">
+						<input required id="password" name="password" value="" type="password">
 					</label>
 					
 					<label class="confirmed-password">
 						<span>Confirmed password</span>
-						<input id="password-confirm" name="password_confirmation" value="" type="password">
+						<input required id="password-confirm" name="password_confirmation" value="" type="password">
 					</label>
 
 					<label class="name">
 						<span>ชื่อจริง</span>
-						<input id="firstname" name="firstname" value="" type="text" autocomplete="on" >
+						<input required id="firstname" name="firstname" value="" type="text" autocomplete="on" >
 					</label>
 
 					<label class="name">
 						<span>นามสกุล</span>
-						<input id="lastname" name="lastname" value="" type="text" autocomplete="on" >
+						<input required id="lastname" name="lastname" value="" type="text" autocomplete="on" >
 					</label>
 
 					<label class="tel">
 						<span>เบอร์ติดต่อ</span>
-						<input id="tel" name="tel" value="" type="text" autocomplete="on" >
+						<input required id="tel" name="tel" value="" type="text" autocomplete="on" >
 					</label>
 					
 					<div align="center">
@@ -243,41 +243,41 @@ var showRegister = function(){
 				<fieldset class="textbox">
 				<label class="team_name">
 				<span>ชื่อทีม</span>
-				<input id="team_name" name="team_name" value="" type="text" autocomplete="on" >
+				<input required id="team_name" name="team_name" value="" type="text" autocomplete="on" >
 				</label>
 
 				<h6 style="color:black">ชื่อของคุณ</h6>
 				<label class="username">
 				<span>ชื่อ</span>
-				<input id="first_name" name="first_name" value="" type="text" autocomplete="on" >
+				<input required id="first_name" name="first_name" value="" type="text" autocomplete="on" >
 				</label>
 				
 				<label class="surname">
 				<span>นามสกุล</span>
-				<input id="last_name" name="last_name" value="" type="text" autocomplete="on" >
+				<input required id="last_name" name="last_name" value="" type="text" autocomplete="on" >
 				</label>
 
 				<label class="phone">
 				<span>เบอร์โทรศัพท์</span>
-				<input id="phone" name="phone" value="" type="text" autocomplete="on">
+				<input required id="phone" name="phone" value="" type="text" autocomplete="on">
 				</label>
 
 				<label class="prize">
 				<span> จำได้มั้ย คุณเคยได้รางวัลที่เท่าไหร่มา</span>
-				<input id="prize" name="prize" value="" type="text" autocomplete="on" >
+				<input required id="prize" name="prize" value="" type="text" autocomplete="on" >
 				</label>
 				<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
 
 				<label for="pic1" class="custom-file-upload">
 				<a class="ui blue button small">เลือกรูป</a>
 				<a id="result_1" class="result-pic font-small"></a>
-				<input id="pic" name="pic" type="text" class="delete"/>
+				<input required id="pic" name="pic" type="text" class="delete"/>
 				</label>
-				<input id="pic1" onchange="$('#result_1').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
+				<input required id="pic1" onchange="$('#result_1').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
 				
-					<input class="gender delete" type="radio" id="male1" name="gender" value="m">
-					<input class="gender delete" type="radio" id="female1" name="gender" value="f">
+					<input required class="gender delete" type="radio" id="male1" name="gender" value="m">
+					<input required class="gender delete" type="radio" id="female1" name="gender" value="f">
 						<span>เพศ</span>
 						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular one ui icon button left attached ">
 							ชาย
@@ -289,7 +289,7 @@ var showRegister = function(){
 
 							<span>อายุ</span>
 							<div class="ui input" style="width: 30px;">
-									<input type="text" name="age" maxlength="2" />
+									<input required type="text" name="age" maxlength="2" />
 							</div>
 							<span>มือ</span>
 							<select name="rank" class="ui fluid search dropdown">
@@ -309,35 +309,35 @@ var showRegister = function(){
 
 				<label class="username">
 				<span>ชื่อ</span>
-				<input id="first_name_2" name="first_name_2" value="" type="text" autocomplete="on" >
+				<input required id="first_name_2" name="first_name_2" value="" type="text" autocomplete="on" >
 				</label>
 				
 				<label class="surname">
 				<span>นามสกุล</span>
-				<input id="last_name_2" name="last_name_2" value="" type="text" autocomplete="on" >
+				<input required id="last_name_2" name="last_name_2" value="" type="text" autocomplete="on" >
 				</label>
 
 				<label class="phone">
 				<span>เบอร์โทรศัพท์</span>
-				<input id="phone_2" name="phone_2" value="" type="text" autocomplete="on">
+				<input required id="phone_2" name="phone_2" value="" type="text" autocomplete="on">
 				</label>
 
 				<label class="prize">
 				<span> จำได้มั้ย คุณเคยได้รางวัลที่เท่าไหร่มา</span>
-				<input id="prize" name="prize_2" value="" type="text" autocomplete="on" >
+				<input required id="prize" name="prize_2" value="" type="text" autocomplete="on" >
 				</label>
 
 				<span> อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)</span>
 				<label for="pic2" class="custom-file-upload">
 				<a class="ui blue button small">เลือกรูป</a>
 				<a id="result_2" class="result-pic font-small"></a>
-				<input id="pic_2" name="pic_2" type="text" class="delete" />
+				<input required id="pic_2" name="pic_2" type="text" class="delete" />
 				</label>
-				<input name="pic2" id="pic2" onchange="$('#result_2').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
+				<input required name="pic2" id="pic2" onchange="$('#result_2').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
 				
-				<input class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
-				<input class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
+				<input required class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
+				<input required class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
 					<span>เพศ</span>
 					<button onclick="$('#male2').prop('checked', true)" type="button" class="circular two ui icon button left attached ">
 						ชาย
@@ -348,7 +348,7 @@ var showRegister = function(){
 					</button>
 							<span>อายุ</span>
 							<div class="ui input" style="width: 30px;">
-									<input type="text" name="age_2" maxlength="2" />
+									<input required type="text" name="age_2" maxlength="2" />
 							</div>
 						  <br>
 				<div align="center">

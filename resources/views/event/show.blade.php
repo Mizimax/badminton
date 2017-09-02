@@ -330,6 +330,10 @@ img.btn_close {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
+#get-content{
+    height:350px;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="col-"] {
@@ -403,11 +407,7 @@ img.btn_close {
 
 <div class="col-9 col-m-9" style="position:relative; z-index:1000">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
-          <div class="row">
-                <div class="col-12 col-m-12 menu">
-                        <button class="ui inverted button">สถานะการเเข่งขันน</button>
-                </div> 
-          </div>
+        <button class="ui inverted button" style="margin: 20px 0 20px 0">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
 
@@ -428,6 +428,7 @@ img.btn_close {
               </div>
       </div>
       <div class="row">
+            <br>
             <div class="col-12 col-m-12 menu delete" align="center">
                     <div class="dropdown">
                             <button class="dropbtn">เลือกอันดับมือ</button>
@@ -445,6 +446,7 @@ img.btn_close {
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">N</a>
                             </div>
                           </div>
+                <br><br>
             </div> 
       </div>
     <div id="get-content">

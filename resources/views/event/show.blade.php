@@ -302,6 +302,12 @@ img.btn_close {
     width: 20% !important;
 }
 
+@media (max-width: 540px){
+    .col-m-5.menu{
+        bottom:30% !important;
+    }
+}
+
 .menu .w3-quarter {
     margin-top:10px;
     width: 25% !important;
@@ -384,12 +390,12 @@ img.btn_close {
 
 <div class="row">
                     
-                    <div class="col-3 menu">
+                    <div class="col-m-5 menu"  style="position:absolute;bottom:0;left:0">
                       <ul>
-                        <li style="margin-top:550px;"><img id="image_1" src="/images/1.png3" width="100%" ></li>
-                        <li style="margin-bottom:0;"><img id="image_2" src="/images/2.png3" width="80%"> </li>
-                        <li><img id="image_3" src="/images/3.3" width="70%"> </li>
-                        <li> <img id="image_4" src="/images/4.png3" width="60%"></li>
+                        <li><img id="image_1" src="/images/1.png" width="100%" ></li>
+                        <li><img id="image_2" src="/images/2.png" width="80%"> </li>
+                        <li><img id="image_3" src="/images/3.png" width="70%"> </li>
+                        <li> <img id="image_4" src="/images/4.png" width="60%"></li>
                       </ul>
                     </div> 
 
@@ -426,7 +432,7 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9">     
+<div class="col-9 col-m-9" style="position:relative; z-index:1000">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
           <div class="row">
                 <div class="col-12 col-m-12 menu">
@@ -499,7 +505,7 @@ img.btn_close {
                     message: 'ผ่านการประเมิน',
                     pay_message: 'ยังไม่จ่ายเงิน',
                     class: 'green',
-                    pay_class: 'grey'
+                    pay_class: 'orange'
                 },
                 {    
                     message: 'ผ่านการประเมิน',

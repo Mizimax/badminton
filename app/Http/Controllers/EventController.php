@@ -34,7 +34,8 @@ class EventController extends Controller
                      })
                      ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
                      ->where('Team_Status', '>=', '0')
-                     ->where('Event_key',$name);
+                     ->where('Event_key',$name)
+                     ->orderBy('Team_Rank', 'asc');
 
         $allTeam = $event->get();
 
@@ -68,7 +69,8 @@ class EventController extends Controller
                      ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
                      ->where('Team_Status', '>=', '2')
                      ->orWhere('Team_Status', '0')
-                     ->where('Event_key',$name);
+                     ->where('Event_key',$name)
+                     ->orderBy('Team_Rank', 'asc');
 
         $allTeam = $event->get();
 

@@ -101,41 +101,6 @@ html {
     min-width: 50px;
     
 }
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    padding-left: 40px;
-    padding-right:40px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-.dropdown-content a:hover {background-color: #f1f1f1}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
 
 h1{
     color:black;
@@ -219,12 +184,15 @@ h1{
 
 .dropdown {
     position: relative;
+    width: 140px;
     display: inline-block;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
+    top: -20px;
+    left: 100%;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -233,7 +201,7 @@ h1{
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 5px 10px;
     text-decoration: none;
     display: block;
 }
@@ -243,6 +211,7 @@ h1{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
@@ -361,6 +330,10 @@ img.btn_close {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
+#get-content{
+    height:350px;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="col-"] {
@@ -432,13 +405,9 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9" style="position:relative; z-index:1000">     
+<div class="col-9 col-m-9">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
-          <div class="row">
-                <div class="col-12 col-m-12 menu">
-                        <button class="ui inverted button">สถานะการเเข่งขันน</button>
-                </div> 
-          </div>
+        <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
 
@@ -459,22 +428,25 @@ img.btn_close {
               </div>
       </div>
       <div class="row">
+            <br>
             <div class="col-12 col-m-12 menu delete" align="center">
                     <div class="dropdown">
                             <button class="dropbtn">เลือกอันดับมือ</button>
                             <div class="dropdown-content">
-                              <a href="#">A</a>
-                              <a href="#">B+</a>
-                              <a href="#">B</a>
-                              <a href="#">C+</a>
-                              <a href="#">C</a>
-                              <a href="#">P+</a>
-                              <a href="#">P</a>
-                              <a href="#">P-</a>
-                              <a href="#">S</a>
-                              <a href="#">N</a>
+                              <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">A</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B+</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C+</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P+</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">S</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">N</a>
                             </div>
                           </div>
+                <br><br>
             </div> 
       </div>
     <div id="get-content">
@@ -505,7 +477,7 @@ img.btn_close {
                     message: 'ผ่านการประเมิน',
                     pay_message: 'ยังไม่จ่ายเงิน',
                     class: 'green',
-                    pay_class: 'orange'
+                    pay_class: 'blue'
                 },
                 {    
                     message: 'ผ่านการประเมิน',
@@ -546,11 +518,13 @@ img.btn_close {
                 menuSelected = !menuSelected;
             });
         });
-        var getStatus = function(ele, action){
+
+        var getStatus = (function(ele, action){
                 if(!$(ele).hasClass('inverted')){
                     return false;
                 }
                 $('.menu').show();
+                window.myEvent = action;
                 var url = window.location.pathname + '/' + action;
                 var ele = '#get-content';
                 var data = `
@@ -593,8 +567,8 @@ img.btn_close {
                     }else{
                             data += "<br><div align='center'>คุณไม่ได้ส่งทีมแข่ง</div><br>";
                     }
-                    if(result['allTeam']){
-                        var allTeam = result['allTeam'];
+                    if(result['allTeam'].length > 0){
+                        window.allTeam = result['allTeam'];
 
                         data += '<hr><div class="allTeam">';
 
@@ -627,11 +601,63 @@ img.btn_close {
                         }
 
                         data += '</div>';
+                    }else{
+                        data += "<br><div align='center'>ไม่มีผู้สมัครแข่ง</div><br>";
                     }
                     
                     $(ele).html(data);
                 });
-    }
+    });
+
+    var sortByRank = (function(rank, action){
+        var filterChange = function(callback){
+            newAllTeam = allTeam.filter(function(item){
+                if(rank === '*')
+                    return true;
+                return Rank[item.Team_Rank] === rank;
+            })
+            callback();
+        }
+        filterChange(function(){
+            if(newAllTeam.length > 0){
+                allTeamAddData(action);
+            }else{
+                $('.allTeam').html('<div align="center">ไม่พบผู้สมัครแข่ง</div>');
+            }
+        });
+    });
+
+    var allTeamAddData = (function(action){
+        var data = '';
+        for (var i = 0; i < newAllTeam.length; i+=2) { 
+            data += `
+                    <div class="result row" style="color:#ffffff">
+                        <div class="w3-quarter">
+                             
+                        </div>
+                        <div class="w3-quarter">
+                            ${newAllTeam[i].Firstname} ${newAllTeam[i].Lastname}
+                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                        </div>
+                        <div class="w3-quarter">
+                            ${newAllTeam[i+1].Firstname} ${newAllTeam[i+1].Lastname}
+                        </div>
+                        <div class="w3-quarter" align="center">
+                            <button class="ui label blue">
+                                ${Rank[newAllTeam[i].Team_Rank]}
+                            </button>  
+                        </div>
+                        <div class="w3-quarter" align="center">
+                            <button class="ui label ${(action !== 'pay' || newAllTeam[i].Team_Status === 0 )? Team_Status[newAllTeam[i].Team_Status].class : Team_Status[newAllTeam[i].Team_Status].pay_class}">
+                            ${(action !== 'pay' || newAllTeam[i].Team_Status === 0 )? Team_Status[newAllTeam[i].Team_Status].message : Team_Status[newAllTeam[i].Team_Status].pay_message}
+                            
+                            </button>
+                        </div>
+                    </div>
+                    `;
+        }
+        $('.allTeam').html(data);
+    });
 
     </script>
 @endsection

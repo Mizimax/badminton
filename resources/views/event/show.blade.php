@@ -405,9 +405,9 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9" style="position:relative; z-index:1000">     
+<div class="col-9 col-m-9">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
-        <button class="ui inverted button" style="margin: 20px 0 20px 0">สถานะการเเข่งขันน</button><br>
+        <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
 

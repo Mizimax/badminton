@@ -426,7 +426,7 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9">     
+<div class="col-9 col-m-9" style="position:relative; z-index:1000">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
           <div class="row">
                 <div class="col-12 col-m-12 menu">

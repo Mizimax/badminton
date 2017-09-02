@@ -127,7 +127,9 @@
 					'-moz-transform'	: 'translate(-350px) scale(0.8)',
 					'-o-transform'		: 'translate(-350px) scale(0.8)',
 					'-ms-transform'		: 'translate(-350px) scale(0.8)',
-					'transform'			: 'translate(-350px) scale(0.8)'
+					'transform'			: 'translate(-350px) scale(0.8)',
+					'-webkit-filter'    : 'grayscale(100%)',
+					'filter'            : 'grayscale(100%)'
 				};
 				
 				rightCSS	= {
@@ -269,7 +271,9 @@
 							'-ms-transform'		: 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
 							'transform'			: 'translateX(-450px) translateZ(-300px) rotateY(45deg)',
 							'opacity'			: 0,
-							'visibility'		: 'hidden'
+							'visibility'		: 'hidden',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
 						};
 						break;
 					case 'outright':
@@ -280,7 +284,9 @@
 							'-ms-transform'		: 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
 							'transform'			: 'translateX(450px) translateZ(-300px) rotateY(-45deg)',
 							'opacity'			: 0,
-							'visibility'		: 'hidden'
+							'visibility'		: 'hidden',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
 						};
 						break;
 					case 'left':
@@ -291,7 +297,10 @@
 							'-ms-transform'		: 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
 							'transform'			: 'translateX(-350px) translateZ(-200px) rotateY(45deg)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
+							
 						};
 						break;
 					case 'right':
@@ -302,7 +311,9 @@
 							'-ms-transform'		: 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
 							'transform'			: 'translateX(350px) translateZ(-200px) rotateY(-45deg)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
 						};
 						break;
 					case 'center':
@@ -313,7 +324,9 @@
 							'-ms-transform'		: 'translateX(0px) translateZ(0px) rotateY(0deg)',
 							'transform'			: 'translateX(0px) translateZ(0px) rotateY(0deg)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(0%)',
+							'filter'            : 'grayscale(0%)'
 						};
 						break;
 				};
@@ -330,7 +343,10 @@
 							'-ms-transform'		: 'translate(-450px) scale(0.7)',
 							'transform'			: 'translate(-450px) scale(0.7)',
 							'opacity'			: 0,
-							'visibility'		: 'hidden'
+							'visibility'		: 'hidden',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
+							
 						};
 						break;
 					case 'outright':
@@ -341,7 +357,9 @@
 							'-ms-transform'		: 'translate(450px) scale(0.7)',
 							'transform'			: 'translate(450px) scale(0.7)',
 							'opacity'			: 0,
-							'visibility'		: 'hidden'
+							'visibility'		: 'hidden',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
 						};
 						break;
 					case 'left':
@@ -352,7 +370,10 @@
 							'-ms-transform'		: 'translate(-350px) scale(0.8)',
 							'transform'			: 'translate(-350px) scale(0.8)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
+							
 						};
 						break;
 					case 'right':
@@ -363,7 +384,9 @@
 							'-ms-transform'		: 'translate(350px) scale(0.8)',
 							'transform'			: 'translate(350px) scale(0.8)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(100%)',
+							'filter'            : 'grayscale(100%)'
 						};
 						break;
 					case 'center':
@@ -374,7 +397,9 @@
 							'-ms-transform'		: 'translate(0px) scale(1)',
 							'transform'			: 'translate(0px) scale(1)',
 							'opacity'			: 1,
-							'visibility'		: 'visible'
+							'visibility'		: 'visible',
+							'-webkit-filter'    : 'grayscale(0%)',
+							'filter'            : 'grayscale(0%)'
 						};
 						break;
 				};

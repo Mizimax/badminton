@@ -12,6 +12,7 @@
     top:-100px !important;
     left:50% !important;
     transform:translateX(-50%) !important;
+    font-family: "tahoma" !important;
   }
   .event-display .date{
     color:#ccc;
@@ -74,7 +75,7 @@
   .hand{
     position:absolute;
     left:50%;
-    top:50px;
+    top:70px;
     width:200px;
     text-align: center;
     transform: translateX(-50%);
@@ -97,25 +98,53 @@
   }
   .image-slide{
     max-width: 50%;
+    max-height:50%;
     margin: 0;
     padding: 0;
-/* ADD THIS */
-    width:50%;
+
+  }
+  .fond{position:absolute;padding-top:85px;top:0;left:0; right:0;bottom:0;
+ background-color:#00506b;}
+
+.style_prevu_kit
+{
+    display:inline-block;
+    border:0;
+    width:100%;
     height:auto;
-    display:block;
-  }
-  .ui.inverted.red.button:focus{
-    
-  }
+    position: relative;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);   
+
+}
+.style_prevu_kit:hover
+{
+  
+     z-index: 5;
+     y-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
+   
+}
+
+
 </style>
 @endsection
+@extends('layouts.navbar')
 @section('content')
-<<<<<<< HEAD
 <div class="head-space" style="position:relative">
-=======
-@include('layouts.navbar')
-<div class="head-space">
->>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 <div align="center" class="nav-gallery">
   <span class="icon left nav-prev">◄</span>
   <span class="icon right nav-next">►</span>
@@ -124,29 +153,15 @@
 
 <section id="dg-container" class="dg-container">
 	<div class="dg-wrapper">
-  <a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
-			<div></div>
-		</a>
-		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
-			<div></div>
-		</a>
-		<a href="#">
-			<center><img src="images/mainpic.png" alt="image01" style="width:100%;"></center>
-			<div></div>
-		</a>
     <?php $i = 0; ?>
     @foreach($events as $event)
       <a href="event/{{ $event->Event_key }}">
-
         <div class="event-display text-center">
           <div class="date" onclick="return false;">
             <u>{{ $event->Event_Start }}</u>
-            <div class="name">{{ $event->Event_Name }}</div>
           </div>
           <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
-          
+          <div class="name">{{ $event->Event_Name }}</div>
         </div>
         <script type="text/javascript">
           var diffDays1=function(){ 
@@ -163,15 +178,20 @@
           };
           diffDays1();
         </script>
-				<center><img src="images/event/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide"></center>
+        <center>
+        <div class="style_prevu_kit">
+          <img src="images/event/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide">
+        </div>
+       
+      </center>
+
+
+      
 			</a>
 		@endforeach
 		
-<<<<<<< HEAD
 		
 	
-=======
->>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 			
   </div>
   <br>
@@ -186,7 +206,7 @@
       </button>
     </div>
 		<span class="dg-prev"></span>
-		<span class="dg-next">&gt;</span>
+		<span class="dg-next"></span>
 	</nav>
 
 

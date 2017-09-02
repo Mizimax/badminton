@@ -168,6 +168,7 @@ h1{
         top: -0.2em;
         left:80em;
         display:block;
+        
     }
     #ct_phone{
         position:relative;
@@ -187,7 +188,7 @@ h1{
  
 .bg { 
     /* The image used */
-   background-image: url("/images/event_background.png");
+    background-image: url("/images/event_background.png");
 
     /* Full height */
     height: 100vh; 
@@ -196,7 +197,6 @@ h1{
     background-position: left top;
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
 
 .event_detail{
@@ -204,7 +204,7 @@ h1{
         background-image: url("/images/mainbackground.png");
         height:100vh;
         background-position: center;
-
+        background-repeat: no-repeat;
         background-size: cover; 
     }
 
@@ -288,6 +288,12 @@ img.btn_close {
     height: 40px;
 }
 
+.social_1{
+    width: 48px;
+    height: 48px;
+    padding-top:5px;
+}
+
 .mainpic{
     width:80%;
 }
@@ -359,14 +365,13 @@ img.btn_close {
 </style>
 @endsection
 @section('content')
-<<<<<<< HEAD
 
 <div class="bg" style="position:relative"> 
     
 @include('layouts.navbar')
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
-    <img src="/images/ct_line.png" class="social">
+    <img src="/images/ct_line.png" class="social_1">
     <img src="/images/ct_phone.png" class="social">
     <br>
     @if(Auth::guest())
@@ -375,33 +380,18 @@ img.btn_close {
     <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>
-=======
-@include('layouts.navbar')
-<div class="bg"> 
-<div class="contact_images">
-<img src="/images/ct_facebook.png" class="social">
-<img src="/images/ct_line.png" class="social">
-<img src="/images/ct_phone.png" class="social">
-<br>
-@if(Auth::guest())
-<a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
-@else
-<a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button"  id="register_button"> สมัครลงเเข่ง</button></a>
-@endif
-</div>     
->>>>>>> 32be0a8a20bb0ce145af4b3ab706b14f4f320da5
 <div class="Activity_images">
 
 <div class="row">
                     
                     <div class="col-3 menu">
                       <ul>
-                        <li style="margin-top:165%;"><img id="image_1" src="/images/1.png" width="100%" ></li>
-                        <li style="margin-bottom:0;"><img id="image_2" src="/images/2.png" width="80%"> </li>
-                        <li><img id="image_3" src="/images/3.png" width="70%"> </li>
-                        <li> <img id="image_4" src="/images/4.png" width="60%"></li>
+                        <li style="margin-top:550px;"><img id="image_1" src="/images/1.png3" width="100%" ></li>
+                        <li style="margin-bottom:0;"><img id="image_2" src="/images/2.png3" width="80%"> </li>
+                        <li><img id="image_3" src="/images/3.3" width="70%"> </li>
+                        <li> <img id="image_4" src="/images/4.png3" width="60%"></li>
                       </ul>
-                    </div>
+                    </div> 
 
 </div> 
 
@@ -487,10 +477,6 @@ img.btn_close {
 
 </div>
 </div>
- 
-
-
-
 
 </div>
 @endsection

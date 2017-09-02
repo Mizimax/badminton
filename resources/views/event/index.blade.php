@@ -68,20 +68,17 @@
     position: absolute;
     z-index: 99;
     left:50%+0;
-    transform: translate(-160%,0px);
+    transform: translate(-160%,3px);
     opacity: 0;
     cursor: pointer;
-   
-    
   }
   .hand{
     position:absolute;
     left:50%;
-    top:-35px;
+    top:70px;
     width:200px;
     text-align: center;
     transform: translateX(-50%);
-    z-index: -1;
   }
   .ui.button.circle{
     border-radius: 50%;
@@ -104,8 +101,6 @@
     max-height:50%;
     margin: 0;
     padding: 0;
-    transform: translateY(-10%);
-   
 
   }
   .fond{position:absolute;padding-top:85px;top:0;left:0; right:0;bottom:0;
@@ -126,14 +121,13 @@
     -moz-transform: scale(1);
     transition: all 200ms ease-in;
     transform: scale(1);   
-    
 
 }
 .style_prevu_kit:hover
 {
-
-     
-    z-index:999;
+  
+     z-index: 5;
+     y-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.5);
     -ms-transition: all 200ms ease-in;
@@ -151,7 +145,7 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="head-space" style="position:relative">
-<div align="center" class="nav-gallery" >
+<div align="center" class="nav-gallery">
   <span class="icon left nav-prev">◄</span>
   <span class="icon right nav-next">►</span>
 </div>
@@ -164,11 +158,10 @@
       <a href="event/{{ $event->Event_key }}">
         <div class="event-display text-center">
           <div class="date" onclick="return false;">
-            <u style="background-color:red;font-color:white;">{{ $event->Event_Start }}</u>
+            <u>{{ $event->Event_Start }}</u>
           </div>
+          <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}"></div>
           <div class="name">{{ $event->Event_Name }}</div>
-          <div class="dateToNow dateToNow{{$i}}" date="{{ $event->Event_Start }}" ></div>
-          
         </div>
         <script type="text/javascript">
           var diffDays1=function(){ 
@@ -178,7 +171,7 @@
               var firstDate = new Date(ele.getAttribute("date"));
               var days = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
               if(days > 0)
-                ele.innerHTML = '<div style="margin-bottom:10px;background-color:red;">สมัครได้อีก</div><span class="day" style="background-color:red;font-color:white;">' + days + ' วัน</span>'
+                ele.innerHTML = '<div style="margin-bottom:10px">เหลือเวลาสมัครอีก</div><span class="day">' + days + ' วัน</span>'
               else
                 ele.innerHTML = '<span class="day">หมดเวลาสมัครแล้ว</span>'
               
@@ -202,9 +195,8 @@
 			
   </div>
   <br>
-  
 	<nav>
-    <div class="hand" style="">
+    <div class="hand">
       <button class="ui red button circle">
         <div class="button-text">P-</div>
       </button>
@@ -212,17 +204,15 @@
       <button class="ui red button circle">
         <div class="button-text">C</div>
       </button>
-    <span class="dg-prev"></span>
-		<span class="dg-next"></span>
     </div>
-
+		<span class="dg-prev"></span>
+		<span class="dg-next"></span>
 	</nav>
 
 
-			<form method="get" onsubmit="return false;" action="/search" id="searchbox5" style="margin-top: 30px;text-align:center">
+			<form method="get" onsubmit="return false;" action="/search" id="searchbox5" style="margin-top: 70px;text-align:center">
         <input id="search52" name="q" type="text" placeholder="ค้นหารายการ" />
         <button class="fakeSearch" type="submit">ค้นหา</button>
-
 			</form>
 
 	</div>

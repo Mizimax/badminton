@@ -73,13 +73,12 @@ var ajaxPost = function(form, url, error = ''){
 			$(error).show();
 			$(error+' .error').html(result);
 			$('.ui.primary.button').removeClass('loading');
-			document.getElementById('error-box').scrollIntoView();
+			document.getElementById('error-box').scrollIntoView()
 		}
 	});
 }
 
 var ajaxGet = function(ele, url, callback){
-	// Loading element
 	$(ele).html(`
 	<div class="ui segment">
 		<div class="ui active inverted dimmer">
@@ -136,7 +135,7 @@ var showLogin = function(){
 					</div>
 				</fieldset>
 			</form>
-			`;
+			`
 	$('#modal-content').html(data);
 }
 
@@ -174,7 +173,7 @@ var showCreateEvent = function(){
 							
 					</fieldset>
 				</form>
-				`;
+				`
 	$('#modal-content').html(data);
 }
 
@@ -228,7 +227,7 @@ var showRegister = function(){
 					</div>
 					</fieldset>
 				</form>
-				`;
+				`
 	$('#modal-content').html(data);
 }
 
@@ -356,7 +355,7 @@ var showRegister = function(){
 				</div>
 				</fieldset>
 		</form>
-		`;
+		`
 		$('#modal-content').html(data);
 	}
 
@@ -373,6 +372,6 @@ var showRegister = function(){
 			สมัครสมาชิก
 			</a>
 			</div>
-		`;
+		`
 		$('#modal-content').html(data);
 	}

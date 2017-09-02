@@ -23,8 +23,6 @@ body {
     content: "";
     clear: both;
     display: table;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 [class*="col-"] {
     float: left;
@@ -400,14 +398,10 @@ img.btn_close {
 
 
 </div>
-
-@include('layouts.navbar')
-<br>
-<br>
-<br>
-<br>
-<br>
+</div>
 <div class="page2">
+@include('layouts.navbar')
+<br><br><br><br><br>
 <div class="row">
 
 <div class="col-3 col-m-3 menu" align="center"  style="margin-top:5%;">
@@ -432,7 +426,7 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-6 col-m-9">     
+<div class="col-9 col-m-9">     
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
           <div class="row">
                 <div class="col-12 col-m-12 menu">
@@ -440,38 +434,45 @@ img.btn_close {
                 </div> 
           </div>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1">สถานะรายการ</button>
+                <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
+
+        </div>
+      
+        <div class="w3-quarter">
+                <button class="ui blue button" id="box_2" onclick="getStatus(this, 'hand')">อันดับมือ</button>
           
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" onclick="getStatus(this, 'hand')">อันดับมือ</button>
-          
-        </div>
-      
-        <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" onclick="getStatus(this, 'pay')">สถานะการจ่ายเงิน</button>
+                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">สถานะการจ่ายเงิน</button>
 
         </div>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" >สถานะรายการ</button>
+                <button class="ui inverted blue button" id="box_4" disabled>ภาพรวม</button>
                 
               </div>
       </div>
       <div class="row">
-            <div class="col-12 col-m-12 menu" align="center">
+            <div class="col-12 col-m-12 menu delete" align="center">
                     <div class="dropdown">
                             <button class="dropbtn">เลือกอันดับมือ</button>
                             <div class="dropdown-content">
-                              <a href="#">Rank 1</a>
-                              <a href="#">Rank 2</a>
-                              <a href="#">Rank 3</a>
+                              <a href="#">A</a>
+                              <a href="#">B+</a>
+                              <a href="#">B</a>
+                              <a href="#">C+</a>
+                              <a href="#">C</a>
+                              <a href="#">P+</a>
+                              <a href="#">P</a>
+                              <a href="#">P-</a>
+                              <a href="#">S</a>
+                              <a href="#">N</a>
                             </div>
                           </div>
             </div> 
       </div>
     <div id="get-content">
-   
+        
     </div>
 
 </div>
@@ -484,10 +485,38 @@ img.btn_close {
 @endsection
 @section('script')
     <script>
+        var Rank = ['','A','B+','B','C+','C','P+','P','P-','S','N'];
+        var Team_Status = [
+                { 
+                    message: 'ยังไม่ประเมิน',
+                    class: 'grey'
+                },
+                {
+                    message: 'ไม่ผ่านการประเมิน',
+                    class: 'red'
+                },
+                {    
+                    message: 'ผ่านการประเมิน',
+                    pay_message: 'ยังไม่จ่ายเงิน',
+                    class: 'green',
+                    pay_class: 'grey'
+                },
+                {    
+                    message: 'ผ่านการประเมิน',
+                    pay_message: 'จ่ายเงินแล้ว',
+                    class: 'green',
+                    pay_class: 'yellow'
+                }
+            ];
+            
         $(document).ready(function(){
             var menuSelected = false;
             var genderSelectedOne = false;
             var genderSelectedTwo = false;
+
+            /* get start with */
+            getStatus('#box_1', 'hand');
+
             $(document).on('click','.button.circular.one',function() { 
 
                 $('.button.circular.one').not(this).removeClass('red');
@@ -511,84 +540,92 @@ img.btn_close {
                 menuSelected = !menuSelected;
             });
         });
-
         var getStatus = function(ele, action){
-            if(!$(ele).hasClass('inverted')){
-                return false;
-            }
-            var url = window.location.pathname + '/' + action;
-            var ele = '#get-content';
-            var data = `
-                <div class="myTeam">
-            `;
-            ajaxGet(ele, url, function(result){
-                if(result['myTeam']){
-                    var myTeam = result['myTeam'];
+                if(!$(ele).hasClass('inverted')){
+                    return false;
+                }
+                $('.menu').show();
+                var url = window.location.pathname + '/' + action;
+                var ele = '#get-content';
+                var data = `
+                    <div class="myTeam">
+                `;
+                ajaxGet(ele, url, function(result){
+                    if(result['myTeam'].length > 0){
+                        var myTeam = result['myTeam'];
+                        for (var i = 0; i < myTeam.length; i+=2) { 
+                            data += `
+                            <div class="result row" style="color:#ffffff">
+                            <div class="w3-quarter">
+                                 
+                            </div>
+                            <div class="w3-quarter">
+                                ${myTeam[i].Firstname} ${myTeam[i].Lastname}
+                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                            </div>
+                            
+                            <div class="w3-quarter">
+                                ${myTeam[i+1].Firstname} ${myTeam[i+1].Lastname}
+                            </div>
+                            
+                            <div class="w3-quarter" align="center">
+                                <button class="ui label blue">
+                                    ${Rank[myTeam[i].Team_Rank]}
+                                </button>  
+                            </div>
+                            <div class="w3-quarter" align="center">
+                                <button class="ui label ${(action !== 'pay' || myTeam[i].Team_Status === 0 )? Team_Status[myTeam[i].Team_Status].class : Team_Status[myTeam[i].Team_Status].pay_class}">
+                                    ${(action !== 'pay' || myTeam[i].Team_Status === 0 )? Team_Status[myTeam[i].Team_Status].message : Team_Status[myTeam[i].Team_Status].pay_message}
+                                </button>
+                            </div>
+                        </div>
+                        `;
+                        }
+
+                        data += '</div>';
+
+                    }else{
+                            data += "<br><div align='center'>คุณไม่ได้ส่งทีมแข่ง</div><br>";
+                    }
+                    if(result['allTeam']){
+                        var allTeam = result['allTeam'];
+
+                        data += '<hr><div class="allTeam">';
+
+                        for (var i = 0; i < allTeam.length; i+=2) { 
+                            data += `
+                            <div class="result row" style="color:#ffffff">
+                            <div class="w3-quarter">
+                                 
+                            </div>
+                            <div class="w3-quarter">
+                                ${allTeam[i].Firstname} ${allTeam[i].Lastname}
+                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                            </div>
+                            <div class="w3-quarter">
+                                ${allTeam[i+1].Firstname} ${allTeam[i+1].Lastname}
+                            </div>
+                            <div class="w3-quarter" align="center">
+                                <button class="ui label blue">
+                                    ${Rank[allTeam[i].Team_Rank]}
+                                </button>  
+                            </div>
+                            <div class="w3-quarter" align="center">
+                                <button class="ui label ${(action !== 'pay' || allTeam[i].Team_Status === 0 )? Team_Status[allTeam[i].Team_Status].class : Team_Status[allTeam[i].Team_Status].pay_class}">
+                                ${(action !== 'pay' || allTeam[i].Team_Status === 0 )? Team_Status[allTeam[i].Team_Status].message : Team_Status[allTeam[i].Team_Status].pay_message}
+                                
+                                </button>
+                            </div>
+                        </div>
+                        `;
+                        }
+
+                        data += '</div>';
+                    }
                     
-                    myTeam.forEach(function(item){
-                        data += `
-                    <div class="result row" style="color:#ffffff">
-                          <div class="w3-quarter">
-                             
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Firstname}
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Lastname}
-                          </div>
-                          <div class="w3-quarter">
-                            <button class="ui green label">แก้ไข</button>  
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Team_Status}
-                          </div>
-                          <div class="w3-quarter">
-                          <button class="ui green  button font-small" style="border-radius:1px">ชำระเเล้ว</button>
-                          </div>
-                    </div>
-                    `;
-                    })
-
-                    data += '</div>'
-
-                }
-                if(result['allTeam']){
-                    var allTeam = result['allTeam'];
-
-                    data += '<hr><div class="allTeam">';
-
-                    allTeam.forEach(function(item){
-                        data += `
-                    <div class="result row" style="color:#ffffff">
-                          <div class="w3-quarter">
-                             
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Firstname}
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Lastname}
-                          </div>
-                          <div class="w3-quarter">
-                             
-                          </div>
-                          <div class="w3-quarter">
-                            ${item.Team_Status}
-                          </div>
-                          <div class="w3-quarter">
-                          <button class="ui red  button font-small" style="border-radius:1px">ยังไม่ชำระ</button>
-                          </div>
-                    </div>
-                    `;
-                    })
-
-                    data += '</div>';
-                }
-                
-                $(ele).html(data);
-            });
-        }
+                    $(ele).html(data);
+                });
+    }
 
     </script>
 @endsection

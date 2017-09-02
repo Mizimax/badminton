@@ -15,6 +15,8 @@ class TeamController extends Controller
 
     public function store(Request $request, $name){
 
+        $rank = ['','A','B+','B','C+','C','P+','P','P-','S','N'];
+
         $validator_single = [
             'gender' => 'required|string|max:1',
             'first_name' => 'required|string',
@@ -38,8 +40,15 @@ class TeamController extends Controller
             'team_name' => 'required|string'
         ];
 
-        $event = EventTable::select('Event_id','Event_Category')
+        $event = EventTable::select('Event_Category', 'Rank_Min', 'Rank_Max')
                             ->where('Event_key',$name)->firstOrFail();
+
+        /* Check rank between */
+        if(!($request["rank"] >= $event["Rank_Min"] && $request["rank"] <= $event["Rank_Max"])){
+            $error = [ 'Rank' => 'Rank must be ' . $rank[$event["Rank_Min"]] . ' - ' . $rank[$event["Rank_Max"]] ];
+
+            return response()->json($error, 422);
+        }
         
         /* Single */
         if($event["Event_Category"] == 1){
@@ -93,7 +102,8 @@ class TeamController extends Controller
             'User_id' => Auth::user()->User_id,
             'Player_1_id' => $player_1->Profile_id,
             'Player_2_id' => ($player_2)? $player_2->Profile_id : NULL,
-            'Team_name' => $request['team_name']
+            'Team_name' => $request['team_name'],
+            'Team_Rank' => $request['rank']
         ]);
         
         return response()->json([

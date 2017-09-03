@@ -331,7 +331,8 @@ img.btn_close {
 }
 
 #get-content{
-    height:350px;
+    position:relative;
+    height:150px;
 }
 
 @media only screen and (max-width: 768px) {

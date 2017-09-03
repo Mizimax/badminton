@@ -28,6 +28,7 @@ class SocialAccountService
                 $name = explode(" ",$providerUser->getName());
 
                 $user = User::create([
+                    'email' => $providerUser->getEmail(),
                     'Fullname' => $providerUser->getName(),
                     'api_token' => str_random(60)
                 ]);

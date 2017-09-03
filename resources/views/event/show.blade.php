@@ -445,7 +445,7 @@ img.btn_close {
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P+</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">S</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">WP-</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">N</a>
                             </div>
                           </div>
@@ -468,7 +468,7 @@ img.btn_close {
     <script>
         "use strict";
         
-        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "S", "N"];
+        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "WP-", "N"];
         var Team_Status = [
           {
             message: "ยังไม่ประเมิน",

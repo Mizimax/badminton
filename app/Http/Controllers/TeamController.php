@@ -37,7 +37,7 @@ class TeamController extends Controller
         ];
 
         $validator_team = [
-            'team_name' => 'required|string'
+            'team_name' => 'required|string|unique:teams'
         ];
 
         $event = EventTable::select('Event_Category', 'Rank_Min', 'Rank_Max')

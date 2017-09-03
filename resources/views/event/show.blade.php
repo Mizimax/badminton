@@ -466,201 +466,188 @@ img.btn_close {
 @endsection
 @section('script')
     <script>
-        var Rank = ['','A','B+','B','C+','C','P+','P','P-','S','N'];
+        "use strict";
+        
+        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "S", "N"];
         var Team_Status = [
-                { 
-                    message: 'ยังไม่ประเมิน',
-                    class: 'grey'
-                },
-                {
-                    message: 'ไม่ผ่านการประเมิน',
-                    class: 'red'
-                },
-                {    
-                    message: 'ผ่านการประเมิน',
-                    pay_message: 'ยังไม่จ่ายเงิน',
-                    class: 'green',
-                    pay_class: 'blue'
-                },
-                {    
-                    message: 'ผ่านการประเมิน',
-                    pay_message: 'จ่ายเงินแล้ว',
-                    class: 'green',
-                    pay_class: 'yellow'
-                }
-            ];
-            
-        $(document).ready(function(){
-            var menuSelected = false;
-            var genderSelectedOne = false;
-            var genderSelectedTwo = false;
-
-            /* get start with */
-            getStatus('#box_1', 'hand');
-
-            $(document).on('click','.button.circular.one',function() { 
-
-                $('.button.circular.one').not(this).removeClass('red');
-                $(this).toggleClass('red');
-                
-                genderSelectedOne = !genderSelectedOne;
-            })
-            $(document).on('click','.button.circular.two',function() { 
-
-                $('.button.circular.two').not(this).removeClass('red');
-                $(this).toggleClass('red');
-                
-                genderSelectedTwo = !genderSelectedTwo;
-            })
-            $('.ui.blue.button').click(function(){
-                $('.ui.blue.button').not(this).addClass('inverted');
-                //$('.ui.blue.button').prop('disabled', false);
-                $(this).removeClass('inverted');
-                //$(this).prop('disabled', true);
-                
-                menuSelected = !menuSelected;
-            });
+          {
+            message: "ยังไม่ประเมิน",
+            class: "grey"
+          },
+          {
+            message: "ไม่ผ่านการประเมิน",
+            class: "red"
+          },
+          {
+            message: "ผ่านการประเมิน",
+            pay_message: "ยังไม่จ่ายเงิน",
+            class: "green",
+            pay_class: "blue"
+          },
+          {
+            message: "ผ่านการประเมิน",
+            pay_message: "จ่ายเงินแล้ว",
+            class: "green",
+            pay_class: "yellow"
+          }
+        ];
+        
+        $(document).ready(function() {
+          var menuSelected = false;
+          var genderSelectedOne = false;
+          var genderSelectedTwo = false;
+        
+          /* get start with */
+          getStatus("#box_1", "hand");
+        
+          $(document).on("click", ".button.circular.one", function() {
+            $(".button.circular.one")
+              .not(this)
+              .removeClass("red");
+            $(this).toggleClass("red");
+        
+            genderSelectedOne = !genderSelectedOne;
+          });
+          $(document).on("click", ".button.circular.two", function() {
+            $(".button.circular.two")
+              .not(this)
+              .removeClass("red");
+            $(this).toggleClass("red");
+        
+            genderSelectedTwo = !genderSelectedTwo;
+          });
+          $(".ui.blue.button").click(function() {
+            $(".ui.blue.button")
+              .not(this)
+              .addClass("inverted");
+            //$('.ui.blue.button').prop('disabled', false);
+            $(this).removeClass("inverted");
+            //$(this).prop('disabled', true);
+        
+            menuSelected = !menuSelected;
+          });
         });
-
-        var getStatus = (function(ele, action){
-                if(!$(ele).hasClass('inverted')){
-                    return false;
-                }
-                $('.menu').show();
-                window.myEvent = action;
-                var url = window.location.pathname + '/' + action;
-                var ele = '#get-content';
-                var data = `
-                    <div class="myTeam">
-                `;
-                ajaxGet(ele, url, function(result){
-                    if(result['myTeam'].length > 0){
-                        var myTeam = result['myTeam'];
-                        for (var i = 0; i < myTeam.length; i+=2) { 
-                            data += `
-                            <div class="result row" style="color:#ffffff">
-                            <div class="w3-quarter">
-                                 
-                            </div>
-                            <div class="w3-quarter">
-                                ${myTeam[i].Firstname} ${myTeam[i].Lastname}
-                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
-                            </div>
-                            
-                            <div class="w3-quarter">
-                                ${myTeam[i+1].Firstname} ${myTeam[i+1].Lastname}
-                            </div>
-                            
-                            <div class="w3-quarter" align="center">
-                                <button class="ui label blue">
-                                    ${Rank[myTeam[i].Team_Rank]}
-                                </button>  
-                            </div>
-                            <div class="w3-quarter" align="center">
-                                <button class="ui label ${(action !== 'pay' || myTeam[i].Team_Status === 0 )? Team_Status[myTeam[i].Team_Status].class : Team_Status[myTeam[i].Team_Status].pay_class}">
-                                    ${(action !== 'pay' || myTeam[i].Team_Status === 0 )? Team_Status[myTeam[i].Team_Status].message : Team_Status[myTeam[i].Team_Status].pay_message}
-                                </button>
-                            </div>
-                        </div>
-                        `;
-                        }
-
-                        data += '</div>';
-
-                    }else{
-                            data += "<br><div align='center'>คุณไม่ได้ส่งทีมแข่ง</div><br>";
-                    }
-                    if(result['allTeam'].length > 0){
-                        window.allTeam = result['allTeam'];
-
-                        data += '<hr><div class="allTeam">';
-
-                        for (var i = 0; i < allTeam.length; i+=2) { 
-                            data += `
-                            <div class="result row" style="color:#ffffff">
-                            <div class="w3-quarter">
-                                 
-                            </div>
-                            <div class="w3-quarter">
-                                ${allTeam[i].Firstname} ${allTeam[i].Lastname}
-                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
-                            </div>
-                            <div class="w3-quarter">
-                                ${allTeam[i+1].Firstname} ${allTeam[i+1].Lastname}
-                            </div>
-                            <div class="w3-quarter" align="center">
-                                <button class="ui label blue">
-                                    ${Rank[allTeam[i].Team_Rank]}
-                                </button>  
-                            </div>
-                            <div class="w3-quarter" align="center">
-                                <button class="ui label ${(action !== 'pay' || allTeam[i].Team_Status === 0 )? Team_Status[allTeam[i].Team_Status].class : Team_Status[allTeam[i].Team_Status].pay_class}">
-                                ${(action !== 'pay' || allTeam[i].Team_Status === 0 )? Team_Status[allTeam[i].Team_Status].message : Team_Status[allTeam[i].Team_Status].pay_message}
-                                
-                                </button>
-                            </div>
-                        </div>
-                        `;
-                        }
-
-                        data += '</div>';
-                    }else{
-                        data += "<br><div align='center'>ไม่มีผู้สมัครแข่ง</div><br>";
-                    }
-                    
-                    $(ele).html(data);
-                });
-    });
-
-    var sortByRank = (function(rank, action){
-        var filterChange = function(callback){
-            newAllTeam = allTeam.filter(function(item){
-                if(rank === '*')
-                    return true;
-                return Rank[item.Team_Rank] === rank;
-            })
-            callback();
-        }
-        filterChange(function(){
-            if(newAllTeam.length > 0){
-                allTeamAddData(action);
-            }else{
-                $('.allTeam').html('<div align="center">ไม่พบผู้สมัครแข่ง</div>');
+        
+        var getStatus = function getStatus(ele, action) {
+          if (!$(ele).hasClass("inverted")) {
+            return false;
+          }
+          $(".menu").show();
+          window.myEvent = action;
+          var url = window.location.pathname + "/" + action;
+          var ele = "#get-content";
+          var data = '\n                    <div class="myTeam">\n                ';
+          ajaxGet(ele, url, function(result) {
+            if (result["myTeam"].length > 0) {
+              var myTeam = result["myTeam"];
+              for (var i = 0; i < myTeam.length; i += 2) {
+                data +=
+                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter">\n                                \xA0\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  myTeam[i].Firstname +
+                  " " +
+                  myTeam[i].Lastname +
+                  '\n                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                            </div>\n                            \n                            <div class="w3-quarter">\n                                ' +
+                  myTeam[i + 1].Firstname +
+                  " " +
+                  myTeam[i + 1].Lastname +
+                  '\n                            </div>\n                            \n                            <div class="w3-quarter" align="center">\n                                <button class="ui label blue">\n                                    ' +
+                  Rank[myTeam[i].Team_Rank] +
+                  '\n                                </button>  \n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label ' +
+                  (action !== "pay" || myTeam[i].Team_Status === 0
+                    ? Team_Status[myTeam[i].Team_Status].class
+                    : Team_Status[myTeam[i].Team_Status].pay_class) +
+                  '">\n                                    ' +
+                  (action !== "pay" || myTeam[i].Team_Status === 0
+                    ? Team_Status[myTeam[i].Team_Status].message
+                    : Team_Status[myTeam[i].Team_Status].pay_message) +
+                  "\n                                </button>\n                            </div>\n                        </div>\n                        ";
+              }
+        
+              data += "</div>";
+            } else {
+              data += "<br><div align='center'>คุณไม่ได้ส่งทีมแข่ง</div><br>";
             }
-        });
-    });
-
-    var allTeamAddData = (function(action){
-        var data = '';
-        for (var i = 0; i < newAllTeam.length; i+=2) { 
-            data += `
-                    <div class="result row" style="color:#ffffff">
-                        <div class="w3-quarter">
-                             
-                        </div>
-                        <div class="w3-quarter">
-                            ${newAllTeam[i].Firstname} ${newAllTeam[i].Lastname}
-                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
-                        </div>
-                        <div class="w3-quarter">
-                            ${newAllTeam[i+1].Firstname} ${newAllTeam[i+1].Lastname}
-                        </div>
-                        <div class="w3-quarter" align="center">
-                            <button class="ui label blue">
-                                ${Rank[newAllTeam[i].Team_Rank]}
-                            </button>  
-                        </div>
-                        <div class="w3-quarter" align="center">
-                            <button class="ui label ${(action !== 'pay' || newAllTeam[i].Team_Status === 0 )? Team_Status[newAllTeam[i].Team_Status].class : Team_Status[newAllTeam[i].Team_Status].pay_class}">
-                            ${(action !== 'pay' || newAllTeam[i].Team_Status === 0 )? Team_Status[newAllTeam[i].Team_Status].message : Team_Status[newAllTeam[i].Team_Status].pay_message}
-                            
-                            </button>
-                        </div>
-                    </div>
-                    `;
-        }
-        $('.allTeam').html(data);
-    });
+            if (result["allTeam"].length > 0) {
+              window.allTeam = result["allTeam"];
+        
+              data += '<hr><div class="allTeam">';
+        
+              for (var i = 0; i < allTeam.length; i += 2) {
+                data +=
+                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter">\n                                \xA0\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  allTeam[i].Firstname +
+                  " " +
+                  allTeam[i].Lastname +
+                  '\n                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  allTeam[i + 1].Firstname +
+                  " " +
+                  allTeam[i + 1].Lastname +
+                  '\n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label blue">\n                                    ' +
+                  Rank[allTeam[i].Team_Rank] +
+                  '\n                                </button>  \n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label ' +
+                  (action !== "pay" || allTeam[i].Team_Status === 0
+                    ? Team_Status[allTeam[i].Team_Status].class
+                    : Team_Status[allTeam[i].Team_Status].pay_class) +
+                  '">\n                                ' +
+                  (action !== "pay" || allTeam[i].Team_Status === 0
+                    ? Team_Status[allTeam[i].Team_Status].message
+                    : Team_Status[allTeam[i].Team_Status].pay_message) +
+                  "\n                                \n                                </button>\n                            </div>\n                        </div>\n                        ";
+              }
+        
+              data += "</div>";
+            } else {
+              data += "<br><div align='center'>ไม่มีผู้สมัครแข่ง</div><br>";
+            }
+        
+            $(ele).html(data);
+          });
+        };
+        
+        var sortByRank = function sortByRank(rank, action) {
+          var filterChange = function filterChange(callback) {
+            newAllTeam = allTeam.filter(function(item) {
+              if (rank === "*") return true;
+              return Rank[item.Team_Rank] === rank;
+            });
+            callback();
+          };
+          filterChange(function() {
+            if (newAllTeam.length > 0) {
+              allTeamAddData(action);
+            } else {
+              $(".allTeam").html('<div align="center">ไม่พบผู้สมัครแข่ง</div>');
+            }
+          });
+        };
+        
+        var allTeamAddData = function allTeamAddData(action) {
+          var data = "";
+          for (var i = 0; i < newAllTeam.length; i += 2) {
+            data +=
+              '\n                    <div class="result row" style="color:#ffffff">\n                        <div class="w3-quarter">\n                            \xA0\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
+              newAllTeam[i].Firstname +
+              " " +
+              newAllTeam[i].Lastname +
+              '\n                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
+              newAllTeam[i + 1].Firstname +
+              " " +
+              newAllTeam[i + 1].Lastname +
+              '\n                        </div>\n                        <div class="w3-quarter" align="center">\n                            <button class="ui label blue">\n                                ' +
+              Rank[newAllTeam[i].Team_Rank] +
+              '\n                            </button>  \n                        </div>\n                        <div class="w3-quarter" align="center">\n                            <button class="ui label ' +
+              (action !== "pay" || newAllTeam[i].Team_Status === 0
+                ? Team_Status[newAllTeam[i].Team_Status].class
+                : Team_Status[newAllTeam[i].Team_Status].pay_class) +
+              '">\n                            ' +
+              (action !== "pay" || newAllTeam[i].Team_Status === 0
+                ? Team_Status[newAllTeam[i].Team_Status].message
+                : Team_Status[newAllTeam[i].Team_Status].pay_message) +
+              "\n                            \n                            </button>\n                        </div>\n                    </div>\n                    ";
+          }
+          $(".allTeam").html(data);
+        };
+        
 
     </script>
 @endsection

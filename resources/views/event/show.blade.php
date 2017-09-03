@@ -272,9 +272,10 @@ img.btn_close {
     width: 20% !important;
 }
 
-@media (max-width: 540px){
+@media (max-width: 800px){
     .col-m-5.menu{
-        bottom:30% !important;
+        width:70% !important;
+        bottom:20% !important;
     }
 }
 

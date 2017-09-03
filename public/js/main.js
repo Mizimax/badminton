@@ -37,17 +37,18 @@ $(document).ready(function() {
 	
 	// When clicking on the button close or the mask layer the popup closed
 	$('a.close, #mask').live('click', function() { 
-	$('#mask , .login-popup').fadeOut(300 , function() {
-		$('#mask').remove(); 
-		$('body').css('overflow-y', 'auto'); 
-	}); 
+		$('#mask , .login-popup').fadeOut(300 , function() {
+			$('#mask').remove(); 
+			$('body').css('overflow-y', 'auto'); 
+		}); 
 	return false;
 	});
 
 });
 
-var ajaxPost = function(form, url, error = ''){
+var ajaxPost = (function(form, url, error = ''){
 	$('.ui.primary.button').addClass('loading');
+	$('.ui.primary.button').prop('disabled', true);
 	$.ajax({   
 		type: "post",
 		dataType: "json",
@@ -59,10 +60,16 @@ var ajaxPost = function(form, url, error = ''){
 		success: function (data) {
 			$('#mask , .login-popup').fadeOut(300 , function() {
 				$('#mask').remove();  
-			}); 
-			setTimeout(function() {
-				location.reload();
-			}, 300);
+				$('body').css('overflow-y', 'auto'); 
+			});
+			if(url.indexOf('/event/') >= 0){
+				document.getElementById('get-content').scrollIntoView();
+				getStatus('#box_1', window.myEvent);
+			}else{
+				setTimeout(function() {
+					location.reload();
+				}, 300);
+			}
 		},
 		error: function (data) {
 			var jsonData = JSON.parse(data.responseText);
@@ -72,13 +79,14 @@ var ajaxPost = function(form, url, error = ''){
 			});
 			$(error).show();
 			$(error+' .error').html(result);
+			$('.ui.primary.button').prop('disabled', false);
 			$('.ui.primary.button').removeClass('loading');
 			document.getElementById('error-box').scrollIntoView();
 		}
 	});
-}
+});
 
-var ajaxGet = function(ele, url, callback){
+var ajaxGet = (function(ele, url, callback){
 	// Loading element
 	$(ele).html(`
 	<div class="ui segment">
@@ -103,9 +111,9 @@ var ajaxGet = function(ele, url, callback){
 			callback(error);
 		}
 	});
-}
+});
 
-var showLogin = function(){
+var showLogin = (function(){
 	var data = `
 			<div id="error-box" class="ui message red">
 				<h5>Something wrong !</h5>
@@ -138,9 +146,9 @@ var showLogin = function(){
 			</form>
 			`;
 	$('#modal-content').html(data);
-}
+});
 
-var showCreateEvent = function(){
+var showCreateEvent = (function(){
 	var data = `
 				<form method="post" class="signin" action="#">
 					<fieldset class="textbox">
@@ -176,9 +184,9 @@ var showCreateEvent = function(){
 				</form>
 				`;
 	$('#modal-content').html(data);
-}
+});
 
-var showRegister = function(){
+var showRegister = (function(){
 	var data = `
 				<div id="error-box" class="ui message red">
 					<h5>Something wrong !</h5>
@@ -230,9 +238,9 @@ var showRegister = function(){
 				</form>
 				`;
 	$('#modal-content').html(data);
-}
+});
 
-	var showEventRegis = function(name){
+	var showEventRegis = (function(name){
 		var data = `
 				<div id="error-box" class="ui message red">
 					<h5>Something wrong !</h5>
@@ -271,19 +279,20 @@ var showRegister = function(){
 				<label for="pic1" class="custom-file-upload">
 				<a class="ui blue button small">เลือกรูป</a>
 				<a id="result_1" class="result-pic font-small"></a>
-				<input required id="pic" name="pic" type="text" class="delete"/>
+				<input id="pic" name="pic" type="text" class="delete"/>
 				</label>
-				<input required id="pic1" onchange="$('#result_1').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
+				<input id="pic1" onchange="$('#result_1').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
-				
-					<input required class="gender delete" type="radio" id="male1" name="gender" value="m">
-					<input required class="gender delete" type="radio" id="female1" name="gender" value="f">
-						<span>เพศ</span>
-						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular one ui icon button left attached ">
+				<div style="position:relative">
+					<input required class="gender hidden required" type="radio" id="male1" name="gender" value="m">
+					<input required class="gender hidden required" type="radio" id="female1" name="gender" value="f">
+				</div>
+					<span>เพศ</span>
+						<button onclick="$('#male1').prop('checked', true)" type="button" class="circular one ui icon button left attached required">
 							ชาย
 						</button>
 						
-						<button onclick="$('#female1').prop('checked', true)" type="button" class="circular one ui icon button  right attached ">
+						<button onclick="$('#female1').prop('checked', true)" type="button" class="circular one ui icon button  right attached required">
 						หญิง
 						</button>
 
@@ -331,13 +340,13 @@ var showRegister = function(){
 				<label for="pic2" class="custom-file-upload">
 				<a class="ui blue button small">เลือกรูป</a>
 				<a id="result_2" class="result-pic font-small"></a>
-				<input required id="pic_2" name="pic_2" type="text" class="delete" />
+				<input id="pic_2" name="pic_2" type="text" class="delete" />
 				</label>
-				<input required name="pic2" id="pic2" onchange="$('#result_2').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
+				<input name="pic2" id="pic2" onchange="$('#result_2').html(this.files[0].name); $('#pic').val(this.files[0].name)" type="file"/>
 
 				
-				<input required class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
-				<input required class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
+				<input class="gender_2 delete" type="radio" id="male2" name="gender_2" value="m" />
+				<input class="gender_2 delete" type="radio" id="female2" name="gender_2" value="f" />
 					<span>เพศ</span>
 					<button onclick="$('#male2').prop('checked', true)" type="button" class="circular two ui icon button left attached ">
 						ชาย
@@ -358,9 +367,9 @@ var showRegister = function(){
 		</form>
 		`;
 		$('#modal-content').html(data);
-	}
+	});
 
-	var showGuest = function(){
+	var showGuest = (function(){
 		var data = `
 			<br>
 			<div align="center" style="color:black">ไม่สามารถสมัครแข่งได้ เนื่องจากยังไม่ได้ล็อกอินเข้าสู่ระบบ</div>
@@ -375,4 +384,4 @@ var showRegister = function(){
 			</div>
 		`;
 		$('#modal-content').html(data);
-	}
+	});

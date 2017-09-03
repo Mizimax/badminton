@@ -12,14 +12,17 @@ body {
     width:42px;
     height: 42px;
   }
-/* 
-.ui.message.red{
+
+.hidden.required{
+    opacity: 0;
     position: absolute;
-    top:0;
-    right: -1em;
-    width: 100%;
-    transform: translateX(100%);
-} */
+    z-index:1;
+}
+
+.button.required{
+    position: relative;
+    z-index:50;
+}
 
 #modal-content{
     max-height: calc(100vh - 210px);

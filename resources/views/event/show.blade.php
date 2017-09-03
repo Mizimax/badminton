@@ -251,6 +251,7 @@ img.btn_close {
     position: absolute;
     right:10%;
     bottom:5%;
+    z-index:999;
 }
 .social{
     width: 40px;
@@ -271,9 +272,10 @@ img.btn_close {
     width: 20% !important;
 }
 
-@media (max-width: 540px){
+@media (max-width: 800px){
     .col-m-5.menu{
-        bottom:30% !important;
+        width:70% !important;
+        bottom:20% !important;
     }
 }
 
@@ -331,7 +333,8 @@ img.btn_close {
 }
 
 #get-content{
-    height:350px;
+    position:relative;
+    height:150px;
 }
 
 @media only screen and (max-width: 768px) {

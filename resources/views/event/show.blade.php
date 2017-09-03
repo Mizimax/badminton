@@ -251,6 +251,7 @@ img.btn_close {
     position: absolute;
     right:10%;
     bottom:5%;
+    z-index:999;
 }
 .social{
     width: 40px;

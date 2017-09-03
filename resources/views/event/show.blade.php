@@ -417,7 +417,7 @@ img.btn_close {
         </div>
       
         <div class="w3-quarter">
-                <button class="ui blue button" id="box_2" onclick="getStatus(this, 'hand')">อันดับมือ</button>
+                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">อันดับมือ</button>
           
         </div>
       
@@ -544,7 +544,7 @@ img.btn_close {
                             </div>
                             <div class="w3-quarter">
                                 ${myTeam[i].Firstname} ${myTeam[i].Lastname}
-                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                                <div style="width:10px;float:right;transform: translateX(-10px)"></div>
                             </div>
                             
                             <div class="w3-quarter">
@@ -583,7 +583,7 @@ img.btn_close {
                             </div>
                             <div class="w3-quarter">
                                 ${allTeam[i].Firstname} ${allTeam[i].Lastname}
-                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                                <div style="width:10px;float:right;transform: translateX(-10px)"></div>
                             </div>
                             <div class="w3-quarter">
                                 ${allTeam[i+1].Firstname} ${allTeam[i+1].Lastname}
@@ -640,7 +640,7 @@ img.btn_close {
                         </div>
                         <div class="w3-quarter">
                             ${newAllTeam[i].Firstname} ${newAllTeam[i].Lastname}
-                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>
+                            <div style="width:10px;float:right;transform: translateX(-10px)"></div>
                         </div>
                         <div class="w3-quarter">
                             ${newAllTeam[i+1].Firstname} ${newAllTeam[i+1].Lastname}

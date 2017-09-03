@@ -606,7 +606,7 @@ img.btn_close {
         
         var sortByRank = function sortByRank(rank, action) {
           var filterChange = function filterChange(callback) {
-            newAllTeam = allTeam.filter(function(item) {
+            window.newAllTeam = allTeam.filter(function(item) {
               if (rank === "*") return true;
               return Rank[item.Team_Rank] === rank;
             });

@@ -3,7 +3,7 @@
   <div class="ui two column grid">
     <div class="row">
       <div class="column twelve wide padding0 text-right">
-        <button id="profile-btn" class="ui inverted red button font-small">สมัครเป็นผู้จัดแข่ง</button>
+        <button id="profile-btn" class="ui red button font-small">สมัครเป็นผู้จัดแข่ง</button>
         <button id="coin" class="ui yellow button font-small" style="position:relative"><img style="position:absolute; left:10px; top:50%; transform:translateY(-50%)" src="/ICONWEBSITE KMUTTOPEN/Kmutt web prototype2-38.png"><span style="padding-left:20px"></span>Coin Shop</button>
       </div>
   @if(Auth::guest())

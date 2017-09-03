@@ -48,6 +48,7 @@ $(document).ready(function() {
 
 var ajaxPost = (function(form, url, error = ''){
 	$('.ui.primary.button').addClass('loading');
+	$('.ui.primary.button').prop('disabled', true);
 	$.ajax({   
 		type: "post",
 		dataType: "json",
@@ -78,6 +79,7 @@ var ajaxPost = (function(form, url, error = ''){
 			});
 			$(error).show();
 			$(error+' .error').html(result);
+			$('.ui.primary.button').prop('disabled', false);
 			$('.ui.primary.button').removeClass('loading');
 			document.getElementById('error-box').scrollIntoView();
 		}

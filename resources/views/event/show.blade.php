@@ -390,7 +390,7 @@ img.btn_close {
   <ul>
     <li></li>
     <li> 
-        <h5  class="mainpic-h5">LALA move open</h5>
+        <h5  class="name">{{ $event->Event_Name }}n</h5>
         <img src="/images/mainpic.png" class="mainpic"/>
     </li>
     <li> 

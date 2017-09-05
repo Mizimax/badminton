@@ -646,7 +646,7 @@ img.btn_close {
                   myTeam[i].Firstname +
                   " " +
                   myTeam[i].Lastname +
-                  '\n                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                            </div>\n                            \n                            <div class="w3-quarter">\n                                ' +
+                  '\n                                           </div>\n                            \n                            <div class="w3-quarter">\n                                ' +
                   myTeam[i + 1].Firstname +
                   " " +
                   myTeam[i + 1].Lastname +
@@ -678,7 +678,7 @@ img.btn_close {
                   allTeam[i].Firstname +
                   " " +
                   allTeam[i].Lastname +
-                  '\n                                <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  '\n                                                         </div>\n                            <div class="w3-quarter">\n                                ' +
                   allTeam[i + 1].Firstname +
                   " " +
                   allTeam[i + 1].Lastname +
@@ -706,7 +706,7 @@ img.btn_close {
         
         var sortByRank = function sortByRank(rank, action) {
           var filterChange = function filterChange(callback) {
-            newAllTeam = allTeam.filter(function(item) {
+            window.newAllTeam = allTeam.filter(function(item) {
               if (rank === "*") return true;
               return Rank[item.Team_Rank] === rank;
             });
@@ -765,7 +765,7 @@ img.btn_close {
               newAllTeam[i].Firstname +
               " " +
               newAllTeam[i].Lastname +
-              '\n                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
+              '\n</div>\n                        <div class="w3-quarter">\n                            ' +
               newAllTeam[i + 1].Firstname +
               " " +
               newAllTeam[i + 1].Lastname +

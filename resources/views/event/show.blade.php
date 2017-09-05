@@ -629,7 +629,7 @@ img.btn_close {
               newAllTeam[i].Firstname +
               " " +
               newAllTeam[i].Lastname +
-              '\n                            <div style="width:10px;float:right;transform: translateX(-10px)">+</div>\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
+              '\n</div>\n                        <div class="w3-quarter">\n                            ' +
               newAllTeam[i + 1].Firstname +
               " " +
               newAllTeam[i + 1].Lastname +

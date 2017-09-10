@@ -32,7 +32,7 @@ class EventController extends Controller
                          $join->on('t.Player_1_id', '=',  'i.Profile_id');
                          $join->orOn('t.Player_2_id','=', 'i.Profile_id');
                      })
-                     ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
+                     ->select('i.Firstname','i.Lastname','Team_name','Team_Status','Team_Rank')
                      ->where('Team_Status', '>=', '0')
                      ->where('Event_key',$name);
 
@@ -66,7 +66,7 @@ class EventController extends Controller
                          $join->on('t.Player_1_id', '=',  'i.Profile_id');
                          $join->orOn('t.Player_2_id','=', 'i.Profile_id');
                      })
-                     ->select('i.Firstname','i.Lastname','Team_Status','Team_Rank')
+                     ->select('i.Firstname','i.Lastname','Team_name','Team_Status','Team_Rank')
                      ->where(function($query){
                         $query->where('Team_Status', '>=', '2');
                         $query->orWhere('Team_Status', '0');

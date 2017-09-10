@@ -542,7 +542,7 @@ img.btn_close {
               var myTeam = result["myTeam"];
               for (var i = 0; i < myTeam.length; i += 2) {
                 data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter">\n                                \xA0\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + myTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
                   myTeam[i].Firstname +
                   " " +
                   myTeam[i].Lastname +
@@ -565,7 +565,7 @@ img.btn_close {
         
               data += "</div>";
             } else {
-              data += "<br><div align='center'>คุณไม่ได้ส่งทีมแข่ง</div><br>";
+              data += "<br><div align='center'>คุณไม่ได้ส่งแข่ง</div><br>";
             }
             if (result["allTeam"].length > 0) {
               window.allTeam = result["allTeam"];
@@ -574,7 +574,7 @@ img.btn_close {
         
               for (var i = 0; i < allTeam.length; i += 2) {
                 data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter">\n                                \xA0\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + allTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
                   allTeam[i].Firstname +
                   " " +
                   allTeam[i].Lastname +
@@ -625,7 +625,7 @@ img.btn_close {
           var data = "";
           for (var i = 0; i < newAllTeam.length; i += 2) {
             data +=
-              '\n                    <div class="result row" style="color:#ffffff">\n                        <div class="w3-quarter">\n                            \xA0\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
+              '\n                    <div class="result row" style="color:#ffffff">\n                        <div class="w3-quarter" align="center">\n                             ' + newAllTeam[i].Team_name + '\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
               newAllTeam[i].Firstname +
               " " +
               newAllTeam[i].Lastname +

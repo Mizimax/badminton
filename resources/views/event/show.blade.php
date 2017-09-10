@@ -468,7 +468,7 @@ img.btn_close {
     <script>
         "use strict";
         
-        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "WP-", "N"];
+        var Rank = ["", "C" , "P", "P-", "WP-"];//, "A", "B+", "B", "C+","P+", "N"
         var Team_Status = [
           {
             message: "ยังไม่ประเมิน",

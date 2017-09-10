@@ -27,7 +27,7 @@
     font-size:16px;
   }
   .event-display .name{
-    color: #ddd;
+    color: #FFF;
     font-size:24px;
     width:200%;
     transform: translateX(-25%);

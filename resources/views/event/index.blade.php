@@ -19,7 +19,7 @@
     margin-bottom:20px;
   }
   .event-display .dateToNow{
-    color:#888;
+    color:#FCEEEE;
     margin-bottom:15px;
   }
   .event-display .day{

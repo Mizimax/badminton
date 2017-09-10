@@ -20,15 +20,16 @@ class SocialAccountService
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => 'facebook'
             ]);
+            $email = ($providerUser->getEmail())? : $providerUser->getId();
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
+            $user = User::whereEmail($email)->first();
 
             if (!$user) {
 
                 $name = explode(" ",$providerUser->getName());
 
                 $user = User::create([
-                    'email' => $providerUser->getEmail(),
+                    'email' => $email,
                     'Fullname' => $providerUser->getName(),
                     'api_token' => str_random(60)
                 ]);

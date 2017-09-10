@@ -437,16 +437,13 @@ img.btn_close {
                             <button class="dropbtn">เลือกอันดับมือ</button>
                             <div class="dropdown-content">
                               <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">A</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B+</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C+</a>
+                             
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P+</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">WP-</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">N</a>
+                              
                             </div>
                           </div>
                 <br><br>
@@ -468,7 +465,7 @@ img.btn_close {
     <script>
         "use strict";
         
-        var Rank = ["", "C" , "P", "P-", "WP-"];//, "A", "B+", "B", "C+","P+", "N"
+        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "WP-", "N"];//
         var Team_Status = [
           {
             message: "ยังไม่ประเมิน",

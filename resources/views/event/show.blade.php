@@ -417,16 +417,16 @@ img.btn_close {
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">อันดับมือ</button>
+                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">มือ</button>
           
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">การจ่ายเงิน</button>
+                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">จ่ายเงิน</button>
 
         </div>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_4" disabled>ภาพรวม</button>
+                <button class="ui inverted blue button" id="box_4" disabled>รวม</button>
                 
               </div>
       </div>

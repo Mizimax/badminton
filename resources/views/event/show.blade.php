@@ -439,7 +439,6 @@ img.btn_close {
                               <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
                              
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P+</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">WP-</a>

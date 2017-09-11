@@ -412,7 +412,7 @@ img.btn_close {
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
+                <button class="ui inverted blue button" id="box_1" disabled>รายการ</button>
 
         </div>
       
@@ -422,7 +422,7 @@ img.btn_close {
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">สถานะการจ่ายเงิน</button>
+                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">การจ่ายเงิน</button>
 
         </div>
         <div class="w3-quarter">

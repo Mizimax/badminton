@@ -196,10 +196,10 @@
       </center>
 
 
-      <a href="https://www.google.co.th"><center><img src="images/mainpic.png" alt="image02" style="width:40%;">
+      
 			</a>
 		@endforeach
-     
+     <a href="https://www.google.co.th"><img src="images/mainpic.png" alt="image02" style="width:40%;">
 		
 		
 	

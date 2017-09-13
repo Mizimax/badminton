@@ -199,8 +199,8 @@
       
 			</a>
 		@endforeach
-     <div class="style_prevu_kit">
-		<a href="https://www.google.co.th"><center><img src="images/mainpic.png" alt="image02" style="width:40%;"></center><div>
+     
+		<a href="https://www.google.co.th"><center><img src="images/mainpic.png" alt="image02" style="width:40%;"><div>
 		
 	
 			

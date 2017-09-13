@@ -359,23 +359,12 @@ img.btn_close {
     @if(Auth::guest())
     <a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @else
-    <a href="#eventRegis" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>
 <div class="Activity_images">
 
-<div class="row">
-                    
-                    <div class="col-m-5 menu"  style="position:absolute;bottom:0;left:0">
-                      <ul>
-                        <li><img id="image_1" src="/images/1.png" width="100%" ></li>
-                        <li><img id="image_2" src="/images/2.png" width="80%"> </li>
-                        <li><img id="image_3" src="/images/3.png" width="70%"> </li>
-                        <li> <img id="image_4" src="/images/4.png" width="60%"></li>
-                      </ul>
-                    </div> 
 
-</div> 
 
 
 
@@ -391,16 +380,15 @@ img.btn_close {
     <li></li>
     <li> 
         <h5  class="name">{{ $event->Event_Name }}</h5>
-        <img src="/images/mainpic.png" class="mainpic"/>
+        <img src="/images/show4.png" class="mainpic"/>
     </li>
     <li> 
     <br>
-     <button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
+     <a href="https://sites.google.com/site/xinthcakrkhaph1"><button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
      <br><br>
     </li>
     <li>
-       <div class="detail-box" align="left">
-       {!! $event->Event_Description !!}
+       
 
 
        </div>
@@ -408,242 +396,5 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9">     
-      <div class="w3-row-padding menu" style="font-size:9px;" align="center">
-        <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
-        <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" disabled>รายการ</button>
 
-        </div>
-      
-        <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">มือ</button>
-          
-        </div>
-      
-        <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">จ่ายเงิน</button>
-
-        </div>
-        <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_4" disabled>รวม</button>
-                
-              </div>
-      </div>
-      <div class="row">
-            <br>
-            <div class="col-12 col-m-12 menu delete" align="center">
-                    <div class="dropdown">
-                            <button class="dropbtn">เลือกอันดับมือ</button>
-                            <div class="dropdown-content">
-                              <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
-                             
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">MIXP-</a>
-                              
-                            </div>
-                          </div>
-                <br><br>
-            </div> 
-      </div>
-    <div id="get-content">
-        
-    </div>
-
-</div>
-
-
-</div>
-</div>
-
-</div>
-@endsection
-@section('script')
-    <script>
-        "use strict";
-        
-        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "MIXP-", "N"];//
-        var Team_Status = [
-          {
-            message: "ยังไม่ประเมิน",
-            class: "grey"
-          },
-          {
-            message: "ไม่ผ่านการประเมิน",
-            class: "red"
-          },
-          {
-            message: "ผ่านการประเมิน",
-            pay_message: "ยังไม่จ่ายเงิน",
-            class: "green",
-            pay_class: "blue"
-          },
-          {
-            message: "ผ่านการประเมิน",
-            pay_message: "จ่ายเงินแล้ว",
-            class: "green",
-            pay_class: "yellow"
-          }
-        ];
-        
-        $(document).ready(function() {
-          var menuSelected = false;
-          var genderSelectedOne = false;
-          var genderSelectedTwo = false;
-        
-          /* get start with */
-          getStatus("#box_1", "hand");
-        
-          $(document).on("click", ".button.circular.one", function() {
-            $(".button.circular.one")
-              .not(this)
-              .removeClass("red");
-            $(this).toggleClass("red");
-        
-            genderSelectedOne = !genderSelectedOne;
-          });
-          $(document).on("click", ".button.circular.two", function() {
-            $(".button.circular.two")
-              .not(this)
-              .removeClass("red");
-            $(this).toggleClass("red");
-        
-            genderSelectedTwo = !genderSelectedTwo;
-          });
-          $(".ui.blue.button").click(function() {
-            $(".ui.blue.button")
-              .not(this)
-              .addClass("inverted");
-            //$('.ui.blue.button').prop('disabled', false);
-            $(this).removeClass("inverted");
-            //$(this).prop('disabled', true);
-        
-            menuSelected = !menuSelected;
-          });
-        });
-        
-        var getStatus = function getStatus(ele, action) {
-          if (!$(ele).hasClass("inverted")) {
-            return false;
-          }
-          $(".menu").show();
-          window.myEvent = action;
-          var url = window.location.pathname + "/" + action;
-          var ele = "#get-content";
-          var data = '\n                    <div class="myTeam">\n                ';
-          ajaxGet(ele, url, function(result) {
-            if (result["myTeam"].length > 0) {
-              var myTeam = result["myTeam"];
-              for (var i = 0; i < myTeam.length; i += 2) {
-                data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + myTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
-                  myTeam[i].Firstname +
-                  " " +
-                  myTeam[i].Lastname +
-                  '\n                                           </div>\n                            \n                            <div class="w3-quarter">\n                                ' +
-                  myTeam[i + 1].Firstname +
-                  " " +
-                  myTeam[i + 1].Lastname +
-                  '\n                            </div>\n                            \n                            <div class="w3-quarter" align="center">\n                                <button class="ui label blue">\n                                    ' +
-                  Rank[myTeam[i].Team_Rank] +
-                  '\n                                </button>  \n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label ' +
-                  (action !== "pay" || myTeam[i].Team_Status === 0
-                    ? Team_Status[myTeam[i].Team_Status].class
-                    : Team_Status[myTeam[i].Team_Status].pay_class) +
-                  '">\n                                    ' +
-                  (action !== "pay" || myTeam[i].Team_Status === 0
-                    ? Team_Status[myTeam[i].Team_Status].message
-                    : Team_Status[myTeam[i].Team_Status].pay_message) +
-                  "\n                                </button>\n                            </div>\n                        </div>\n                        ";
-              }
-        
-              data += "</div>";
-            } else {
-              data += "<br><div align='center'>คุณไม่ได้ส่งแข่ง</div><br>";
-            }
-            if (result["allTeam"].length > 0) {
-              window.allTeam = result["allTeam"];
-        
-              data += '<hr><div class="allTeam">';
-        
-              for (var i = 0; i < allTeam.length; i += 2) {
-                data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + allTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
-                  allTeam[i].Firstname +
-                  " " +
-                  allTeam[i].Lastname +
-                  '\n                                                         </div>\n                            <div class="w3-quarter">\n                                ' +
-                  allTeam[i + 1].Firstname +
-                  " " +
-                  allTeam[i + 1].Lastname +
-                  '\n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label blue">\n                                    ' +
-                  Rank[allTeam[i].Team_Rank] +
-                  '\n                                </button>  \n                            </div>\n                            <div class="w3-quarter" align="center">\n                                <button class="ui label ' +
-                  (action !== "pay" || allTeam[i].Team_Status === 0
-                    ? Team_Status[allTeam[i].Team_Status].class
-                    : Team_Status[allTeam[i].Team_Status].pay_class) +
-                  '">\n                                ' +
-                  (action !== "pay" || allTeam[i].Team_Status === 0
-                    ? Team_Status[allTeam[i].Team_Status].message
-                    : Team_Status[allTeam[i].Team_Status].pay_message) +
-                  "\n                                \n                                </button>\n                            </div>\n                        </div>\n                        ";
-              }
-        
-              data += "</div>";
-            } else {
-              data += "<br><div align='center'>ไม่มีผู้สมัครแข่ง</div><br>";
-            }
-        
-            $(ele).html(data);
-          });
-        };
-        
-        var sortByRank = function sortByRank(rank, action) {
-          var filterChange = function filterChange(callback) {
-            window.newAllTeam = allTeam.filter(function(item) {
-              if (rank === "*") return true;
-              return Rank[item.Team_Rank] === rank;
-            });
-            callback();
-          };
-          filterChange(function() {
-            if (newAllTeam.length > 0) {
-              allTeamAddData(action);
-            } else {
-              $(".allTeam").html('<div align="center">ไม่พบผู้สมัครแข่ง</div>');
-            }
-          });
-        };
-        
-        var allTeamAddData = function allTeamAddData(action) {
-          var data = "";
-          for (var i = 0; i < newAllTeam.length; i += 2) {
-            data +=
-              '\n                    <div class="result row" style="color:#ffffff">\n                        <div class="w3-quarter" align="center">\n                             ' + newAllTeam[i].Team_name + '\n                        </div>\n                        <div class="w3-quarter">\n                            ' +
-              newAllTeam[i].Firstname +
-              " " +
-              newAllTeam[i].Lastname +
-              '\n</div>\n                        <div class="w3-quarter">\n                            ' +
-              newAllTeam[i + 1].Firstname +
-              " " +
-              newAllTeam[i + 1].Lastname +
-              '\n                        </div>\n                        <div class="w3-quarter" align="center">\n                            <button class="ui label blue">\n                                ' +
-              Rank[newAllTeam[i].Team_Rank] +
-              '\n                            </button>  \n                        </div>\n                        <div class="w3-quarter" align="center">\n                            <button class="ui label ' +
-              (action !== "pay" || newAllTeam[i].Team_Status === 0
-                ? Team_Status[newAllTeam[i].Team_Status].class
-                : Team_Status[newAllTeam[i].Team_Status].pay_class) +
-              '">\n                            ' +
-              (action !== "pay" || newAllTeam[i].Team_Status === 0
-                ? Team_Status[newAllTeam[i].Team_Status].message
-                : Team_Status[newAllTeam[i].Team_Status].pay_message) +
-              "\n                            \n                            </button>\n                        </div>\n                    </div>\n                    ";
-          }
-          $(".allTeam").html(data);
-        };
-        
-
-    </script>
 @endsection

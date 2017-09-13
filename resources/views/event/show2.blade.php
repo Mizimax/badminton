@@ -356,7 +356,7 @@ img.btn_close {
     @if(Auth::guest())
     <a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @else
-    <a href="#https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
     @endif
 </div>
 

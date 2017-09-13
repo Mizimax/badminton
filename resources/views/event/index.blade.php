@@ -188,7 +188,7 @@
         <center>
 
         <div class="style_prevu_kit">
-        
+
           <img src="images/event/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide">
 
         </div>
@@ -199,7 +199,10 @@
       
 			</a>
 		@endforeach
-		<a href="#"><center><img src="images/mainpic.png" alt="image02" style="width:55%;"></center><div>http://www.percivalclo.com/</div></a>
+     
+		<a href="#"><center><img src="images/mainpic.png" alt="image02" class="image-slide"> </div>
+       
+      </center>
 		
 	
 			

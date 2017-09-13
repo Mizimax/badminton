@@ -23,6 +23,10 @@ class EventController extends Controller
                             ->firstOrFail();
         return view('event.show', ['event' => $event]);
     }
+
+    function show2(){
+        return view('event.show2');
+    }
     
     function getEventHandStatus($name){
         $myTeam = NULL;

@@ -20,6 +20,9 @@ Route::post('logout', 'Auth\LoginController@logout');
 Route::get('fb/redirect', 'SocialAuthController@redirect');
 Route::get('fb/callback', 'SocialAuthController@callback');
 
+/* temporary link */
+Route::get('/event/Intajak_cup1', 'EventController@show2')->name('event_show_2');
+
 /* anyone can access */
 Route::get('/', 'EventController@index')->name('event');
 Route::get('/event/{name}', 'EventController@show')->name('event_show');

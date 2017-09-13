@@ -10,7 +10,7 @@ body, html {
     line-height: auto !important;
 }
 body {
-    background-image: url("images/background.png") no-repeat center center fixed; 
+    background-image: url("images/show2.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -371,7 +371,6 @@ img.btn_close {
 </div>
 </div>
 <div class="page2">
-@include('layouts.navbar')
 <br><br><br><br><br>
 <div class="row">
 
@@ -379,7 +378,7 @@ img.btn_close {
   <ul>
     <li></li>
     <li> 
-        <h5  class="name">{{ $event->Event_Name }}</h5>
+        <h5  class="name">Intajak#cup1</h5>
         <img src="/images/show4.png" class="mainpic"/>
     </li>
     <li> 
@@ -396,5 +395,3 @@ img.btn_close {
   </ul>
 </div>
 
-
-@endsection

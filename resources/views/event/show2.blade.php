@@ -1,4 +1,6 @@
-
+@extends('layouts.app')
+@section('title', Intajak#cup1)
+@section('style')
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
@@ -9,7 +11,7 @@ body, html {
     line-height: auto !important;
 }
 body {
-    background-image: url("images/show2.jpg") no-repeat center center fixed; 
+    background-image: url("images/background.png") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -152,7 +154,7 @@ h1{
  
 .bg { 
     /* The image used */
-    background-image: url("/images/event_background.png");
+    background-image: url("/images/show2.jpg");
 
     /* Full height */
     height: 100vh; 
@@ -347,7 +349,7 @@ img.btn_close {
 
 <div class="bg" style="position:relative"> 
     
-
+@include('layouts.navbar')
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
     <img src="/images/ct_line.png" class="social_1">

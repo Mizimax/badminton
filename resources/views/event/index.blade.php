@@ -200,9 +200,7 @@
 			</a>
 		@endforeach
      
-		<a href="#"><center><img src="images/mainpic.png" alt="image02" class="image-slide"> </div>
-       
-      </center>
+		<a href="#"><center><img src="images/mainpic.png" alt="image02" class="image-slide"> 
 		
 	
 			

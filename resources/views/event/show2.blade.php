@@ -347,18 +347,19 @@ img.btn_close {
 </style>
 
 <div class="bg" style="position:relative"> 
-    
-@include('layouts.navbar')
+    @include('layouts.navbar')
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
     <img src="/images/ct_line.png" class="social_1">
     <img src="/images/ct_phone.png" class="social">
     <br>
-   
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
-    
+    @if(Auth::guest())
+    <a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    @else
+    <a href="#https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
+    @endif
 </div>
-<div class="Activity_images">
+
 
 
 
@@ -375,7 +376,7 @@ img.btn_close {
     <li></li>
     <li> 
         <h5  class="name">Intajak#cup1</h5>
-        <img src="/images/show4.png" class="mainpic"/>
+        <img src="/images/event/event4.jpg" class="mainpic"/>
     </li>
     <li> 
     <br>

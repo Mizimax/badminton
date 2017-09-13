@@ -1,6 +1,5 @@
-@extends('layouts.app')
-@section('title', $event->Event_Name)
-@section('style')
+
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body, html {
@@ -345,22 +344,18 @@ img.btn_close {
 }
 
 </style>
-@endsection
-@section('content')
 
 <div class="bg" style="position:relative"> 
     
-@include('layouts.navbar')
+
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
     <img src="/images/ct_line.png" class="social_1">
     <img src="/images/ct_phone.png" class="social">
     <br>
-    @if(Auth::guest())
-    <a href="#guest" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
-    @else
+   
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScGUvynRfqlHw37YvpytSMjSertUGTDhyIj46nU0y9NHKNLIQ/viewform?c=0&w=1" class="login-window"><button style="margin-top:10px;" class="ui violet button huge"  id="register_button"> สมัครลงเเข่ง</button></a>
-    @endif
+    
 </div>
 <div class="Activity_images">
 

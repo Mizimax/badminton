@@ -390,7 +390,7 @@ img.btn_close {
   <ul>
     <li></li>
     <li> 
-        <h5  class="name">{{ $event->Event_Name }}n</h5>
+        <h5  class="name">{{ $event->Event_Name }}</h5>
         <img src="/images/mainpic.png" class="mainpic"/>
     </li>
     <li> 
@@ -412,21 +412,21 @@ img.btn_close {
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_1" disabled>สถานะรายการ</button>
+                <button class="ui inverted blue button" id="box_1" disabled>รายการ</button>
 
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">อันดับมือ</button>
+                <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">มือ</button>
           
         </div>
       
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">สถานะการจ่ายเงิน</button>
+                <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">จ่ายเงิน</button>
 
         </div>
         <div class="w3-quarter">
-                <button class="ui inverted blue button" id="box_4" disabled>ภาพรวม</button>
+                <button class="ui inverted blue button" id="box_4" disabled>รวม</button>
                 
               </div>
       </div>
@@ -437,16 +437,12 @@ img.btn_close {
                             <button class="dropbtn">เลือกอันดับมือ</button>
                             <div class="dropdown-content">
                               <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">A</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B+</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">B</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C+</a>
+                             
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P+</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">WP-</a>
-                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">N</a>
+                              <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">MIXP-</a>
+                              
                             </div>
                           </div>
                 <br><br>
@@ -468,7 +464,7 @@ img.btn_close {
     <script>
         "use strict";
         
-        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "WP-", "N"];
+        var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "MIXP-", "N"];//
         var Team_Status = [
           {
             message: "ยังไม่ประเมิน",

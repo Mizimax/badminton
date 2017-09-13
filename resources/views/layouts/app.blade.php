@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>OPEN | KMUTT - @yield('title')</title>
+    <title>WE-ZYNC - @yield('title')</title>
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="/css/semantic.min.css" />

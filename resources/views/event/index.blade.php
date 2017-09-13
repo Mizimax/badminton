@@ -19,15 +19,15 @@
     margin-bottom:20px;
   }
   .event-display .dateToNow{
-    color:#888;
+    color:#FCEEEE;
     margin-bottom:15px;
   }
   .event-display .day{
-    color:white;
+    color:#F60909;
     font-size:16px;
   }
   .event-display .name{
-    color: #ddd;
+    color: #FFF;
     font-size:24px;
     width:200%;
     transform: translateX(-25%);
@@ -178,7 +178,7 @@
               var firstDate = new Date(ele.getAttribute("date"));
               var days = Math.round((firstDate.getTime() - secondDate.getTime())/(oneDay));
               if(days > 0)
-                ele.innerHTML = '<div style="margin-bottom:10px;font-color:white;">สมัครได้อีก<span class="day" style="background-color:red;font-color:white;">' + days + ' วัน</span></div>'
+                ele.innerHTML = '<div style="margin-bottom:10px;font-color:white;">สมัครได้อีก<span class="day" style="font-color:white;">' + days + ' วัน</span></div>'
               else
                 ele.innerHTML = '<span class="day">หมดเวลาสมัครแล้ว</span>'
               

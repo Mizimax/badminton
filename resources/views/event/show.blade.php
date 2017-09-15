@@ -395,7 +395,7 @@ img.btn_close {
     </li>
     <li> 
     <br>
-     <a href="https://sites.google.com/site/xinthcakrkhaph1"><button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
+     <a href="http://www.thaibadminton.com/main/modules/newbb_plus/viewtopic.php?topic_id=120925"><button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
      <br><br>
     </li>
     <li>

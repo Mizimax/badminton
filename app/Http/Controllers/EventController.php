@@ -40,10 +40,13 @@ class EventController extends Controller
                      ->where('Team_Status', '>=', '0')
                      ->where('Event_key',$name);
 
-        $allTeam = $event->orderBy('Team_Rank', 'asc')->get();
+        $allTeam = $event->orderBy('Team_name', 'asc')
+                         ->orderBy('Team_Rank', 'asc') 
+                         ->get();
 
         if(Auth::check()){
             $user = $event->where('t.User_id', Auth::user()->User_id)
+                          ->orderBy('Team_name', 'asc')
                           ->orderBy('Team_Rank', 'asc');
             $myTeam = $user->get();
         }
@@ -77,10 +80,13 @@ class EventController extends Controller
                      })
                      ->where('Event_key',$name);
 
-        $allTeam = $event->orderBy('Team_Rank', 'asc')->get();
+        $allTeam = $event->orderBy('Team_name', 'asc')
+                         ->orderBy('Team_Rank', 'asc')
+                         ->get();
 
         if(Auth::check()){
-            $user = $event->where('t.User_id', Auth::user()->User_id)             
+            $user = $event->where('t.User_id', Auth::user()->User_id)  
+                          ->orderBy('Team_name', 'asc')           
                           ->orderBy('Team_Rank', 'asc');
             $myTeam = $user->get();
         }

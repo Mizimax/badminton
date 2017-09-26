@@ -186,8 +186,11 @@
           diffDays1();
         </script>
         <center>
+
         <div class="style_prevu_kit">
+
           <img src="images/event/{{ $event->Event_Cover_Pic }}" alt="image01" class="image-slide">
+
         </div>
        
       </center>

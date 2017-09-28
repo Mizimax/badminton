@@ -115,7 +115,7 @@
 {
     display:inline-block;
     border:0;
-    width:200%;
+    width:100%;
     height:auto;
     position: relative;
     -webkit-transition: all 200ms ease-in;

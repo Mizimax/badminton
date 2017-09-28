@@ -467,7 +467,7 @@ img.btn_close {
         var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "MIXP-", "N"];//
         var Team_Status = [
           {
-            message: "ยังไม่ประเมิน",
+            message: "รอดำเนินการ",
             class: "grey"
           },
           {
@@ -476,7 +476,7 @@ img.btn_close {
           },
           {
             message: "ผ่านการประเมิน",
-            pay_message: "ยังไม่จ่ายเงิน",
+            pay_message: "รอชำระ",
             class: "green",
             pay_class: "blue"
           },

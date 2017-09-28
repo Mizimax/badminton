@@ -100,8 +100,8 @@
     margin-left:10px;
   }
   .image-slide{
-    max-width: 50%;
-    max-height:50%;
+    max-width: 120%;
+    max-height:120%;
     margin: 0;
     padding: 0;
     transform: translateY(-10%);

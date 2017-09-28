@@ -467,7 +467,7 @@ img.btn_close {
         var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "MIXP-", "N"];//
         var Team_Status = [
           {
-            message: "รอดำเนินงาน",
+            message: "รอดำเนินการ",
             class: "grey"
           },
           {

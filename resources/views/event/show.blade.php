@@ -381,11 +381,12 @@ img.btn_close {
 
 </div>
 </div>
+
 <div class="page2">
 @include('layouts.navbar')
 <br><br><br><br><br>
 <div class="row">
-
+/*
 <div class="col-3 col-m-3 menu" align="center"  style="margin-top:5%;">
   <ul>
     <li></li>
@@ -407,7 +408,7 @@ img.btn_close {
     </li>
   </ul>
 </div>
-
+*/
 <div class="col-9 col-m-9">
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>

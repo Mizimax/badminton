@@ -551,7 +551,7 @@ img.btn_close {
 
               for (var i = 0; i < allTeam.length; i += 2) {
                 data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + allTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  '\n                            <div class="result row" style="color:#99FF00">\n                            <div class="w3-quarter" align="center">\n                                 ' + allTeam[i].Team_name + '\n                            </div>\n            <div class="result row" style="color:#ffffff">\n                <div class="w3-quarter">\n                                ' +
                   allTeam[i].Firstname +
                   " " +
                   allTeam[i].Lastname +

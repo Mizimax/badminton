@@ -389,7 +389,7 @@ img.btn_close {
 
 
 
-<div class="col-9 col-m-9">
+<div class="col-12 col-m-12">
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
@@ -519,7 +519,7 @@ img.btn_close {
               var myTeam = result["myTeam"];
               for (var i = 0; i < myTeam.length; i += 2) {
                 data +=
-                  '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + myTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
+                  '\n                            <div class="result row" style="color:#99FF00">\n                            <div class="w3-quarter" align="center">\n                                 ' + myTeam[i].Team_name + '\n                            </div>\n              <div class="result row" style="color:#ffffff">\n                <div class="w3-quarter">\n                                ' +
                   myTeam[i].Firstname +
                   " " +
                   myTeam[i].Lastname +

@@ -386,29 +386,9 @@ img.btn_close {
 @include('layouts.navbar')
 <br><br><br><br><br>
 <div class="row">
-/*
-<div class="col-3 col-m-3 menu" align="center"  style="margin-top:5%;">
-  <ul>
-    <li></li>
-    <li>
-        <h5  class="name">{{ $event->Event_Name }}</h5>
-        <img src="/images/mainpic.png" class="mainpic"/>
-    </li>
-    <li>
-    <br>
-    <button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
-     <br><br>
-    </li>
-    <li>
-       <div class="detail-box" align="left">
-       {!! $event->Event_Description !!}
 
 
-       </div>
-    </li>
-  </ul>
-</div>
-*/
+
 <div class="col-9 col-m-9">
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>

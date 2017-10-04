@@ -10,13 +10,13 @@ body, html {
     line-height: auto !important;
 }
 body {
-    background-image: url("images/background.png") no-repeat center center fixed; 
+    background-image: url("images/background.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  
- 
+
+
 }
 
 .row::after {
@@ -32,12 +32,12 @@ html {
     font-family: "Lucida Sans", sans-serif;
 }
 .header {
-   
+
     color: #ffffff;
     padding: 15px;
 }
 .aside {
-  
+
     padding: 15px;
     color: #ffffff;
     text-align: center;
@@ -45,7 +45,7 @@ html {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 .footer {
-   
+
     color: #ffffff;
     text-align: center;
     font-size: 12px;
@@ -62,7 +62,7 @@ html {
     /* For tablets: */
     .col-m-1 {width: 8.33%;}
     .col-m-2 {width: 16.66%;}
-    .col-m-3 {width: 25%;}
+    .col-m-3 {width: 0%;}
     .col-m-4 {width: 33.33%;}
     .col-m-5 {width: 41.66%;}
     .col-m-6 {width: 70%;padding-left:200px;padding-right: 180px;padding-bottom:-150px; }
@@ -99,24 +99,24 @@ html {
 #box_1{
     padding: 5%;
     min-width: 50px;
-    
+
 }
 
 h1{
     color:black;
 }
 #image_1{
-    
-      
+
+
     }
     #image_2{
-       
+
     }
     #image_3{
-       
+
     }
     #image_4{
-      
+
     }
 
     #ct_facebook{
@@ -133,7 +133,7 @@ h1{
         top: -0.2em;
         left:80em;
         display:block;
-        
+
     }
     #ct_phone{
         position:relative;
@@ -144,19 +144,19 @@ h1{
     }
 
     .event_detail{
-        background-image: url("images/mainbackground.png");        
+        background-image: url("images/mainbackground.png");
     }
 
     .page2{
         height:100vh;
     }
- 
-.bg { 
+
+.bg {
     /* The image used */
     background-image: url("/images/event_background.png");
 
     /* Full height */
-    height: 100vh; 
+    height: 100vh;
 
     /* Center and scale the image nicely */
     background-position: left top;
@@ -170,7 +170,7 @@ h1{
         height:100vh;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover; 
+        background-size: cover;
     }
 
     .dropbtn {
@@ -243,7 +243,7 @@ h1{
 .btn-sign a { color:#fff; text-shadow:0 1px 2px #161616; }
 
 img.btn_close {
-	float: right; 
+	float: right;
 	margin: -28px -28px 0 0;
 }
 
@@ -316,12 +316,12 @@ img.btn_close {
 .menu li {
     padding: 0.1px;
     margin: 0px;
-   
+
     color: #ffffff;
-    
+
 }
 .menu li:hover {
-   
+
 }
 .aside {
     background-color: #33b5e5;
@@ -348,8 +348,8 @@ img.btn_close {
 @endsection
 @section('content')
 
-<div class="bg" style="position:relative"> 
-    
+<div class="bg" style="position:relative">
+
 @include('layouts.navbar')
 <div class="contact_images" align="center">
     <img src="/images/ct_facebook.png" class="social">
@@ -365,7 +365,7 @@ img.btn_close {
 <div class="Activity_images">
 
 <div class="row">
-                    
+
                     <div class="col-m-5 menu"  style="position:absolute;bottom:0;left:0">
                       <ul>
                         <li><img id="image_1" src="/images/1.png" width="100%" ></li>
@@ -373,9 +373,9 @@ img.btn_close {
                         <li><img id="image_3" src="/images/3.png" width="70%"> </li>
                         <li> <img id="image_4" src="/images/4.png" width="60%"></li>
                       </ul>
-                    </div> 
+                    </div>
 
-</div> 
+</div>
 
 
 
@@ -389,11 +389,11 @@ img.btn_close {
 <div class="col-3 col-m-3 menu" align="center"  style="margin-top:5%;">
   <ul>
     <li></li>
-    <li> 
+    <li>
         <h5  class="name">{{ $event->Event_Name }}</h5>
         <img src="/images/mainpic.png" class="mainpic"/>
     </li>
-    <li> 
+    <li>
     <br>
     <button id="detail-button" class="ui green button">รายละเอียดการเเข่ง</button>
      <br><br>
@@ -408,26 +408,26 @@ img.btn_close {
   </ul>
 </div>
 
-<div class="col-9 col-m-9">     
+<div class="col-9 col-m-9">
       <div class="w3-row-padding menu" style="font-size:9px;" align="center">
         <button class="ui inverted button" style="margin: 20px 0 20px 0; position:relative; z-index:1000">สถานะการเเข่งขันน</button><br>
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_1" disabled>รายการ</button>
 
         </div>
-      
+
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_2" onclick="getStatus(this, 'hand')">มือ</button>
-          
+
         </div>
-      
+
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_3" onclick="getStatus(this, 'pay')">จ่ายเงิน</button>
 
         </div>
         <div class="w3-quarter">
                 <button class="ui inverted blue button" id="box_4" disabled>รวม</button>
-                
+
               </div>
       </div>
       <div class="row">
@@ -437,19 +437,19 @@ img.btn_close {
                             <button class="dropbtn">เลือกอันดับมือ</button>
                             <div class="dropdown-content">
                               <a onclick="sortByRank('*', window.myEvent)" href="#">ทั้งหมด</a>
-                             
+
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">C</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">P-</a>
                               <a onclick="sortByRank(this.innerText, window.myEvent)" href="#">MIXP-</a>
-                              
+
                             </div>
                           </div>
                 <br><br>
-            </div> 
+            </div>
       </div>
     <div id="get-content">
-        
+
     </div>
 
 </div>
@@ -463,7 +463,7 @@ img.btn_close {
 @section('script')
     <script>
         "use strict";
-        
+
         var Rank = ["", "A", "B+", "B", "C+", "C", "P+", "P", "P-", "MIXP-", "N"];//
         var Team_Status = [
           {
@@ -487,21 +487,21 @@ img.btn_close {
             pay_class: "yellow"
           }
         ];
-        
+
         $(document).ready(function() {
           var menuSelected = false;
           var genderSelectedOne = false;
           var genderSelectedTwo = false;
-        
+
           /* get start with */
           getStatus("#box_1", "hand");
-        
+
           $(document).on("click", ".button.circular.one", function() {
             $(".button.circular.one")
               .not(this)
               .removeClass("red");
             $(this).toggleClass("red");
-        
+
             genderSelectedOne = !genderSelectedOne;
           });
           $(document).on("click", ".button.circular.two", function() {
@@ -509,7 +509,7 @@ img.btn_close {
               .not(this)
               .removeClass("red");
             $(this).toggleClass("red");
-        
+
             genderSelectedTwo = !genderSelectedTwo;
           });
           $(".ui.blue.button").click(function() {
@@ -519,11 +519,11 @@ img.btn_close {
             //$('.ui.blue.button').prop('disabled', false);
             $(this).removeClass("inverted");
             //$(this).prop('disabled', true);
-        
+
             menuSelected = !menuSelected;
           });
         });
-        
+
         var getStatus = function getStatus(ele, action) {
           if (!$(ele).hasClass("inverted")) {
             return false;
@@ -558,16 +558,16 @@ img.btn_close {
                     : Team_Status[myTeam[i].Team_Status].pay_message) +
                   "\n                                </button>\n                            </div>\n                        </div>\n                        ";
               }
-        
+
               data += "</div>";
             } else {
               data += "<br><div align='center'>คุณไม่ได้ส่งแข่ง</div><br>";
             }
             if (result["allTeam"].length > 0) {
               window.allTeam = result["allTeam"];
-        
+
               data += '<hr><div class="allTeam">';
-        
+
               for (var i = 0; i < allTeam.length; i += 2) {
                 data +=
                   '\n                            <div class="result row" style="color:#ffffff">\n                            <div class="w3-quarter" align="center">\n                                 ' + allTeam[i].Team_name + '\n                            </div>\n                            <div class="w3-quarter">\n                                ' +
@@ -590,16 +590,16 @@ img.btn_close {
                     : Team_Status[allTeam[i].Team_Status].pay_message) +
                   "\n                                \n                                </button>\n                            </div>\n                        </div>\n                        ";
               }
-        
+
               data += "</div>";
             } else {
               data += "<br><div align='center'>ไม่มีผู้สมัครแข่ง</div><br>";
             }
-        
+
             $(ele).html(data);
           });
         };
-        
+
         var sortByRank = function sortByRank(rank, action) {
           var filterChange = function filterChange(callback) {
             window.newAllTeam = allTeam.filter(function(item) {
@@ -616,7 +616,7 @@ img.btn_close {
             }
           });
         };
-        
+
         var allTeamAddData = function allTeamAddData(action) {
           var data = "";
           for (var i = 0; i < newAllTeam.length; i += 2) {
@@ -643,7 +643,7 @@ img.btn_close {
           }
           $(".allTeam").html(data);
         };
-        
+
 
     </script>
 @endsection

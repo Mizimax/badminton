@@ -12,13 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/wezync.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
+            <div class="container-fluid">
+                <div class="navbar-header" align="center">
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -29,7 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="/images/logo.png" height="28">
                     </a>
                 </div>
 
@@ -46,24 +46,22 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li>
+                                <a class="navbar-cart" href="{{ url('/') }}">
+                                    <img src="/images/cart.png" height="35"><br>
+                                    <span>coin shop</span>
                                 </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                            </li>
+                            <li class="navbar-user">
+                                <a href="#">
+                                    <span class="user-name">{{ Auth::user()->name }}</span><br>
+                                    <span class="user-coin"><img src="/images/coin.png" height="15">
+                                        &nbsp;&nbsp;1742
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="navbar-user-profile">
+                                <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
                             </li>
                         @endif
                     </ul>

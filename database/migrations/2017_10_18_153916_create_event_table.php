@@ -26,6 +26,8 @@ class CreateEventTable extends Migration {
 			$table->integer('event_package');
 			$table->text('event_sponsor', 65535)->nullable();
 			$table->integer('event_status');
+			$table->integer('event_team_type_id')->default(1);
+			$table->integer('event_sport_id');
 		});
 	}
 

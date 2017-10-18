@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wezync.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -63,6 +64,13 @@
                             <li class="navbar-user-profile">
                                 <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
                             </li>
+                            <li>
+                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
+          {{ csrf_field() }}
+          <a class="ui red label" onclick="$('#logout-form').submit();">
+            Logout
+          </a>
+        </form></li>
                         @endif
                     </ul>
                 </div>
@@ -73,6 +81,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    
 </body>
 </html>

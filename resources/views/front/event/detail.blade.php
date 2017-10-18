@@ -1,80 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-<link href="{{ asset('css/event.css') }}" rel="stylesheet">
-<div class="row cover">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                @foreach ($covers as $k=>$cover)
-                    @if ($k==0)
-                        <li data-target="#carousel-example-generic" data-slide-to="{{$k}}" class="active"></li>
-                    @else
-                        <li data-target="#carousel-example-generic" data-slide-to="{{$k}}"></li>
-                    @endif
-                @endforeach
-            </ol>
-            <div class="carousel-inner" role="listbox">
-            @foreach ($covers as $k=>$cover)
-                @if ($k==0)
-                    <div class="item active">
-                        <img src="{{$cover}}">
-                            <div class="carousel-caption">
-                            </div>
-                    </div>
-                @else
-                    <div class="item">
-                    <img src="{{$cover}}">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>
-                @endif
-            @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3"></div>
-</div>
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 body-content">
-        <div class="row">
-            <div class="col-md-12" align="center">
-                <h1>{{$event->event_title}}</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12" align="center">
-                <button type="button" class="btn btn-lg btn-red">สมัครแข่งขัน</button>
-            </div>
-        </div>
-        <div class="row" style="height:20px;">
-            <div class="col-md-12" align="center"></div>
-        </div>    
-        <div class="row">
-            <div class="col-xs-12" align="center">
-                <button type="button" class="btn btn-tab active">
-                    <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
-                    รายละเอียด
-                </button>
-                <button type="button" class="btn btn-tab">
-                <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
-                    รายชื่อผู้แข่งขัน
-                </button>
-                <button type="button" class="btn btn-tab">
-                <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
-                    สายและการแข่งขัน
-                </button>
-                <button type="button" class="btn btn-tab">
-                <img src="/images/events/picture.png" height="30"style="margin-bottom:10px;"><br>
-                    รูปภาพ
-                </button>
-            </div>
-        </div>
-        <div class="row" style="height:20px;">
-            <div class="col-md-12" align="center"></div>
-        </div>    
+ 
         <div class="row">
             <div class="col-md-12 description">
                 <span class="glyphicon glyphicon-map-marker" style="color:#ee5b36"></span>
@@ -98,7 +22,9 @@
 
         <div class="row">
             <div class="col-md-12 description">
-                <strong>Rank</strong>
+                @foreach($ranks as $rank)
+                    <span class="badge badge-orange">{{$rank['rank_name']}}</span>
+                @endforeach
             </div>
         </div>
         <div class="row">
@@ -270,9 +196,4 @@
                 <br>
             </div>
         </div>
-    </div>
-    <div class="col-md-3"></div>
-</div>
-
-
-@endsection
+    

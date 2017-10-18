@@ -21,4 +21,6 @@ Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/event_detail/{event_id}', 'EventController@detail');
+Route::get('/event_detail/{event_id}', 'EventController@detail')->name('event_detail');
+Route::post('/register_event', 'EventController@register');
+Route::post('/check_team_name', 'EventController@checkTeamName');

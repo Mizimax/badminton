@@ -2,6 +2,7 @@ body, #app{
     padding: 0px;
     margin: 0px;
     width: 100%;
+    
 }
 
 .col-md-6{
@@ -99,6 +100,17 @@ h1{
     padding: 0 50px;
 }
 
+.badge-white{
+    background-color:#FFF;
+    color:#000;
+    border: 1px solid #000;
+}
+
+.badge-orange{
+    background-color:#ee5b36;
+    color:#FFF;
+}
+
 
 .square-empty {
     border: 2px dotted #dfe2e5;
@@ -131,4 +143,12 @@ h1{
     text-indent:-10px;
     margin: 0px;
     margin-left:10px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+#table-member td {
+    font-size: x-small;
 }

@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/event_detail/1') }}">
                         <img src="/images/logo.png" height="28">
                     </a>
                 </div>

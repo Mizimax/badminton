@@ -22,11 +22,11 @@
             <td style="text-align:center">
                 <span class="label label-info">{{$data['rank_name']}}</span></td>
             <td style="text-align:center">
-            @if ($data['team_status'] == 1)
+            @if ($data['team_status'] == 2)
             <span class="label label-success">{{$data['team_status_name']}}</span>
-            @elseif ($data['team_status'] == 2)
-            <span class="label label-danger">{{$data['team_status_name']}}</span>
             @elseif ($data['team_status'] == 3)
+            <span class="label label-danger">{{$data['team_status_name']}}</span>
+            @elseif ($data['team_status'] == 1)
             <span class="label label-info">{{$data['team_status_name']}}</span>
             @endif
             @if($data['team_comment'])

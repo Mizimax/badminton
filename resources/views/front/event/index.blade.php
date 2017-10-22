@@ -52,11 +52,9 @@
         </div>
         <div class="row">
             <div class="col-md-12" align="center">
-            @if (Auth::guest())
-            <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_modal">สมัครแข่งขัน</button>
-            @else
+            
             <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_event_modal">สมัครแข่งขัน</button>
-            @endif
+            
                 
             </div>
         </div>

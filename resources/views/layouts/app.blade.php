@@ -29,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/event_detail/1') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="/images/logo.png" height="28">
                     </a>
                 </div>
@@ -57,7 +57,7 @@
                                 <a href="#">
                                     <span class="user-name">{{ Auth::user()->name }}</span><br>
                                     <span class="user-coin"><img src="/images/coin.png" height="15">
-                                        &nbsp;&nbsp;1742
+                                        &nbsp;&nbsp;{{Auth::user()->user_coin}}
                                     </span>
                                 </a>
                             </li>

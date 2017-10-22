@@ -96,3 +96,20 @@ body{
     color:#f00;
     background-color:#fff
 }
+
+.badge-white{
+    background-color:#FFF;
+    color:#000;
+    border: 1px solid #000;
+}
+
+.badge-orange{
+    background-color:#ee5b36;
+    color:#FFF;
+}
+
+.label-white {
+    background-color: #fff;
+    color:#000;
+    border : 1px solid #000;
+  }

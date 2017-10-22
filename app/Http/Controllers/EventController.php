@@ -41,10 +41,6 @@ class EventController extends Controller
         foreach( $members as $member){
             $member->member = json_decode($member->member);
         }
-        // echo "<pre>";
-        // var_dump(json_decode($event->event_rank));
-        // var_dump($ranks[0]['rank_name']);
-        // die();
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -69,7 +65,6 @@ class EventController extends Controller
         $team_id = Team::create([
             "team_name" => $team_name,
             "team_event_id" => $input['event_id'],
-            "team_register_by" => Auth::user()->id,
             "team_max_rank" => $rank,
         ])->id;
         for ($i = 1; $i <= $input['number_of_team']; $i++) {

@@ -100,17 +100,6 @@ h1{
     padding: 0 50px;
 }
 
-.badge-white{
-    background-color:#FFF;
-    color:#000;
-    border: 1px solid #000;
-}
-
-.badge-orange{
-    background-color:#ee5b36;
-    color:#FFF;
-}
-
 
 .square-empty {
     border: 2px dotted #dfe2e5;

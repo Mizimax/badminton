@@ -44,7 +44,7 @@
                 <div class="col-sm-12 col-md-6 event-list remove-padding">
                     <div class="row" style="padding:10px;">
                         <div class="col-sm-6 col-xs-12 " style="vertical-align: middle">
-                        <img src="{{$event['event_poster']}}" class="img-responsive img-center">
+                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="max-height:300px">
                         </div>
                         <div class="col-sm-6 col-xs-12 remove-padding">
                             <div class="row">
@@ -90,6 +90,9 @@
             </div>
         </div>
         <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12" style="height:10px"> </div>
     </div>
 
 @endsection

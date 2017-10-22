@@ -48,7 +48,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li>
-                                <a class="navbar-cart" href="{{ url('/') }}">
+                                <a class="navbar-cart" href="{{ url('/coin_shop') }}">
                                     <img src="/images/cart.png" height="35"><br>
                                     <span>coin shop</span>
                                 </a>

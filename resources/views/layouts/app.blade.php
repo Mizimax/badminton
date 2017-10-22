@@ -22,10 +22,7 @@
                 <div class="navbar-header" align="center">
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
                     </button>
 
                     <!-- Branding Image -->
@@ -36,9 +33,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -47,30 +42,70 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li>
-                                <a class="navbar-cart" href="{{ url('/coin_shop') }}">
-                                    <img src="/images/cart.png" height="35"><br>
-                                    <span>coin shop</span>
-                                </a>
-                            </li>
-                            <li class="navbar-user">
+                            <div class="visible-xs-block">
+                            <li class="navbar-user" style="padding-left:5px">
                                 <a href="#">
-                                    <span class="user-name">{{ Auth::user()->name }}</span><br>
+                                    
+                                    <span class="user-name">{{ Auth::user()->name }}</span>
                                     <span class="user-coin"><img src="/images/coin.png" height="15">
                                         &nbsp;&nbsp;{{Auth::user()->user_coin}}
                                     </span>
                                 </a>
                             </li>
-                            <li class="navbar-user-profile">
-                                <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
+                            <li style="padding-top :10px;padding-left:5px">
+                                <a href="{{ url('/coin_shop') }}">
+                                Coin shop
+                                </a>
                             </li>
-                            <li>
-                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
-          {{ csrf_field() }}
-          <a class="ui red label" onclick="$('#logout-form').submit();">
-            Logout
-          </a>
-        </form></li>
+                            <li style="padding-left:5px">
+                                <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
+                                {{ csrf_field() }}
+                                    <a  onclick="$('#logout-form').submit();">
+                                        Logout
+                                    </a>
+                                </form>
+                            </li>
+                            </div>
+                                <li class="visible-sm-block visible-md-block visible-lg-block">
+                                    <a class="navbar-cart" href="{{ url('/coin_shop') }}">
+                                        <img src="/images/cart.png" height="35"><br>
+                                        <span>coin shop</span>
+                                    </a>
+                                </li>
+                                <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="user-name">{{ Auth::user()->name }}</span><br>
+                                        <span class="user-coin"><img src="/images/coin.png" height="15">
+                                            &nbsp;&nbsp;{{Auth::user()->user_coin}}
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu" style="margin-top:7px;width:202px;left:0px">
+                                        <li>
+                                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
+                                            {{ csrf_field() }}
+                                                <a onclick="$('#logout-form').submit();">
+                                                    Logout
+                                                </a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px;">
+                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
+                                    </a>
+                                    <ul class="dropdown-menu" style="margin-top:1px">
+                                        <li>
+                                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
+                                            {{ csrf_field() }}
+                                                <a onclick="$('#logout-form').submit();">
+                                                    Logout
+                                                </a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
                         @endif
                     </ul>
                 </div>

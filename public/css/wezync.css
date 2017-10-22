@@ -113,3 +113,8 @@ body{
     color:#000;
     border : 1px solid #000;
   }
+
+.dropdown-menu li {
+    padding-left:10px;
+    width: 200px;
+}

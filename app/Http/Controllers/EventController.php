@@ -30,7 +30,7 @@ class EventController extends Controller
         $event_description->date = Helper::DateThai($event_description->date);
         $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
         
-        $members = Team::select('team.*','team_status_name','rank_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,' ', team_member_lastname,'\"}') SEPARATOR ','),']') AS member") )
+        $members = Team::select('team.*','team_status_name','rank_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
                 ->where("team_event_id",$event_id)
             ->join('team_member','team_id','=','team_member_team_id')
             ->join('rank','team_max_rank','=','rank_id')

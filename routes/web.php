@@ -11,29 +11,17 @@
 |
 */
 
-/* auth routes */
-Route::post('login', 'Auth\LoginController@login');
-Route::post('register', 'Auth\RegisterController@register');
-Route::post('logout', 'Auth\LoginController@logout');
-
-/* social routes */
-Route::get('fb/redirect', 'SocialAuthController@redirect');
-Route::get('fb/callback', 'SocialAuthController@callback');
-
-/* temporary link */
-Route::get('/event/Intajak_cup1', 'EventController@show2')->name('event_show_2');
-
-/* anyone can access */
-Route::get('/', 'EventController@index')->name('event');
-Route::get('/event/{name}', 'EventController@show')->name('event_show');
-
-/* Ajax get event status */
-Route::get('/event/{name}/hand', 'EventController@getEventHandStatus')->name('event_hand_check');
-Route::get('/event/{name}/pay', 'EventController@getEventPayStatus')->name('event_pay_check');
-
-/* login only */
-Route::group(['middleware' => 'auth'], function () 
-{
-    /* Ajax */
-    Route::post('/event/{name}/regis', 'TeamController@store')->name('team_regis');
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Route::get('/page2', 'Support_wezync@page2');
+Route::get('/page3', 'Support_wezync@page3');
+Route::get('/page4', 'Support_wezync@page4');
+Route::get('/page5', 'Support_wezync@page5');
+Route::get('/page6', 'Support_wezync@page6');
+Route::get('/page7', 'Support_wezync@page7');
+Route::get('/page8', 'Support_wezync@page8');
+Route::get('/page9', 'Support_wezync@page9');
+
+

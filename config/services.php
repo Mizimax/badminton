@@ -35,10 +35,4 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'facebook' => [
-        'client_id' => '1466917513353914',
-        'client_secret' => 'f6c58f3e0c3a620bb97f448370360137',
-        'redirect' => 'https://wezync.com/fb/callback',
-    ],
-
 ];

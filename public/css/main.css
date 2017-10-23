@@ -1,280 +1,291 @@
-body {
-    background-image: url("/images/mainbackground.png") !important;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    background-size: cover !important;
-    font-family: "Kanit-Thin" !important;
+/*! HTML5 Boilerplate v6.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
 }
 
-.profile{
-    border-radius: 50%;
-    width:42px;
-    height: 42px;
-  }
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
 
-.hidden.required{
-    opacity: 0;
-    position: absolute;
-    z-index:1;
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
 }
 
-.button.required{
-    position: relative;
-    z-index:50;
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
 }
 
-#modal-content{
-    max-height: calc(100vh - 210px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding:20px;
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
 
-.delete{
-    display: none;
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
 }
 
-.text-center{
-    text-align: center;
-}
-
-.text-right{
-    text-align: right;
-}
-
-.text-left{
-    text-align: left;
-}
-
-.font-small{
-    font-size:12px !important;
-}
-
-.container {
-    width: 960px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-#content {
-    float: left;
-    width: 100%;
-}
-
-.post {
-    margin: 0 auto;
-    padding-bottom: 50px;
-    float: left;
-    width: 960px;
-}
-@media (max-width:383px){
-    #profile-btn{
-        display:none;
-    }
-}
-
-
-.navbar{
-    position: relative;
-}
-
-.nav{
-    position: absolute;
-    right:1em;
-    top:1.5em;
-    width:400px;
-    display:block;
-    text-align:center;
-    z-index:999;
-}
-
-.btn-sign {
-    width: 460px;
-    margin-bottom: 20px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    background: -moz-linear-gradient(center top, #00c6ff, #018eb6);
-    background: -webkit-gradient(linear, left top, left bottom, from(#00c6ff), to(#018eb6));
-    background: -o-linear-gradient(top, #00c6ff, #018eb6);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#00c6ff', EndColorStr='#018eb6');
-    text-align: center;
-    font-size: 36px;
-    color: #fff;
-    text-transform: uppercase;
-}
-
-.btn-sign a {
-    color: #fff;
-    text-shadow: 0 1px 2px #161616;
-}
-
-#mask {
-    display: none;
-    background: #000;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
-    z-index: 999;
-}
-
-
-img.btn_close {
-    float: right;
-    margin: -28px -28px 0 0;
-}
+/*
+ * Remove default fieldset styles.
+ */
 
 fieldset {
-    border: none !important;
-    padding: 0 !important;
-}
-
-form.signin .textbox label {
-    display: block;
-    padding-bottom: 7px;
-}
-
-form.signin .textbox span {
-    display: block;
-}
-
-form.signin p,
-form.signin span {
-    color: black;
-    font-size: 11px;
-    line-height: 18px;
-}
-
-form.signin .textbox input {
-    background: #d0d1ce;
-    border-bottom: 1px solid#d0d1ce;
-    border-left: 1px solid #d0d1ce;
-    border-right: 1px solid #d0d1ce;
-    border-top: 1px solid #d0d1ce;
-    color: black;
-    border-radius: 3px 3px 3px 3px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    font: 13px Arial, Helvetica, sans-serif;
-    padding: 6px 6px 4px;
-    width: 100%;
-}
-
-form.signin input:-moz-placeholder {
-    color: #bbb;
-    text-shadow: 0 0 2px #000;
-}
-
-form.signin input::-webkit-input-placeholder {
-    color: #bbb;
-    text-shadow: 0 0 2px #000;
-}
-
-.button-old {
-    background: -moz-linear-gradient(center top, #f3f3f3, #dddddd);
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#dddddd));
-    background: -o-linear-gradient(top, #f3f3f3, #dddddd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f3f3f3', EndColorStr='#dddddd');
-    border-color: #000;
-    border-width: 1px;
-    border-radius: 4px 4px 4px 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    color: #333;
-    cursor: pointer;
-    display: inline-block;
-    padding: 6px 6px 4px;
-    margin-top: 10px;
-    font: 12px;
-    width: 214px;
-}
-
-.button-old:hover {
-    background: #ddd;
-}
-
-#one, #two, #three {
-width: 40px;
-height: 30px;
-padding: 10px;
-border: 1px solid black;
-background-color: black;
-background-size: 100% 100%;
-background-repeat: no-repeat;
-background-image:url('/images/Kmutt web prototype2-31.png') ;
-margin: 0;  
-}
-#one, #two,#three,#two{margin:2px;}
-#one, #two,#three { float: left; }
-#myradio {float: left;}
-
-
-.login-popup {
-    display: none;
-    width:280px;
-    background: white;
+    border: 0;
+    margin: 0;
     padding: 0;
-    float: left;
-    font-size: 1.2em;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 99999;
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-.loginBtn {
-    box-sizing: border-box;
-    position: relative;
-    /* width: 13em;  - apply for fixed size */
-    margin: 0.2em;
-    padding: 0 15px 0 46px;
-    border: none;
-    text-align: left;
-    line-height: 34px;
-    white-space: nowrap;
-    border-radius: 0.2em;
-    font-size: 16px;
-    color: #FFF;
-    cursor:pointer;
-}
-.loginBtn:before {
-    content: "";
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 34px;
-    height: 100%;
-}
-.loginBtn:focus {
-    outline: none;
-}
-.loginBtn:active {
-    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
 }
 
-/* Facebook */
-.loginBtn--facebook {
-    color:white !important;
-    background-color: #4C69BA !important;
-    background-image: linear-gradient(#4C69BA, #3B55A0);
-    /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-    text-shadow: 0 -1px 0 #354C8C;
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
 }
-.loginBtn--facebook:before {
-    border-right: #364e92 1px solid;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
 }
-.loginBtn--facebook:hover,
-.loginBtn--facebook:focus {
-    background-color: #5B7BD5;
-    background-image: linear-gradient(#5B7BD5, #4864B1);
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    -webkit-clip-path: none;
+    clip-path: none;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+    white-space: inherit;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre {
+        white-space: pre-wrap !important;
+    }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -37,38 +36,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
-    public function logout(Request $request)
-    {
-        $user = \Auth::user();
-        $user->api_token = str_random(60);
-        $user->save();
-
-        $this->guard()->logout();
-        
-        $request->session()->invalidate();
-
-        return redirect()->back();
-    }
-
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-
-        $this->clearLoginAttempts($request);
-
-        $user = \Auth::user();
-        $user->api_token = str_random(60);
-        $user->save();
-
-        if ($request->ajax() || $request->wantsJson()) {
-            return response()->json([
-                'user' => $this->guard()->user(),
-            ]);
-        }
-
-        return $this->authenticated($request, $this->guard()->user())
-            ?: redirect()->intended($this->redirectPath());
-    }
-
 }

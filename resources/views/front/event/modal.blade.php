@@ -141,7 +141,9 @@
                             <div class="col-sm-8">
                                 <select id="rank{{$order}}" name="rank{{$order}}" class="form-control">
                                     @foreach ($ranks as $rank)
-                                        <option value="{{$rank->rank_id}}">{{$rank->rank_name}}</option>
+                                        @if($rank->rank_id != 7)
+                                            <option value="{{$rank->rank_id}}">{{$rank->rank_name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>    

@@ -19,18 +19,21 @@
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
+            
                 <div class="navbar-header" align="center">
+                @if (Auth::guest())
+                @else
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
                     </button>
-
+                @endif
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="/images/logo.png" height="28">
                     </a>
                 </div>
-
+            
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     

@@ -105,7 +105,7 @@ function clicktab(tab){
 }
 
 $(function () {
-    $('#table_user_profile').DataTable({
+    $('#table-member').DataTable({
           "pageLength": 20,
           "bLengthChange": false,
           "searching": true

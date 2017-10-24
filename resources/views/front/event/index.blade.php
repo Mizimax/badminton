@@ -85,19 +85,19 @@
         </div>
         <div class="row hidden-xs">
             <div class="col-sm-12" align="center">
-                <a href="#detail" id="detail_tab" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
+                <a href="#detail" id="detail_tab2" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
                     <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
                     รายละเอียด
                 </a>
-                <a href="#member" id="member_tab"  type="button" class="btn btn-tab" aria-controls="member" role="tab" data-toggle="tab" onclick="clicktab('member_tab')">
+                <a href="#member" id="member_tab2"  type="button" class="btn btn-tab" aria-controls="member" role="tab" data-toggle="tab" onclick="clicktab('member_tab')">
                 <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
                     รายชื่อผู้แข่งขัน
                 </a>
-                <a href="#math" id="math_tab"  type="button" class="btn btn-tab" aria-controls="math" role="tab" data-toggle="tab" onclick="clicktab('math_tab')">
+                <a href="#math" id="math_tab2"  type="button" class="btn btn-tab" aria-controls="math" role="tab" data-toggle="tab" onclick="clicktab('math_tab')">
                 <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
                     สายและการแข่งขัน
                 </a>
-                <a href="#picture" id="picture_tab"  type="button" class="btn btn-tab" aria-controls="picture" role="tab" data-toggle="tab" onclick="clicktab('picture_tab')">
+                <a href="#picture" id="picture_tab2"  type="button" class="btn btn-tab" aria-controls="picture" role="tab" data-toggle="tab" onclick="clicktab('picture_tab')">
                 <img src="/images/events/picture.png" height="30"style="margin-bottom:10px;"><br>
                     รูปภาพ
                 </a>

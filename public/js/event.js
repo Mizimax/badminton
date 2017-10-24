@@ -79,18 +79,30 @@ function clicktab(tab){
                 $('#member_tab').removeClass('active');
                 $('#math_tab').removeClass('active');
                 $('#picture_tab').removeClass('active');
+                $('#detail_tab2').addClass('active');
+                $('#member_tab2').removeClass('active');
+                $('#math_tab2').removeClass('active');
+                $('#picture_tab2').removeClass('active');
                 break;
         case 'member_tab':
                 $('#detail_tab').removeClass('active');
                 $('#member_tab').addClass('active');
                 $('#math_tab').removeClass('active');
                 $('#picture_tab').removeClass('active');
+                $('#detail_tab2').removeClass('active');
+                $('#member_tab2').addClass('active');
+                $('#math_tab2').removeClass('active');
+                $('#picture_tab2').removeClass('active');
                 break;
         case 'math_tab':
                 $('#detail_tab').removeClass('active');
                 $('#member_tab').removeClass('active');
                 $('#math_tab').addClass('active');
                 $('#picture_tab').removeClass('active');
+                $('#detail_tab2').removeClass('active');
+                $('#member_tab2').removeClass('active');
+                $('#math_tab2').addClass('active');
+                $('#picture_tab2').removeClass('active');
                 break;
 
         case 'picture_tab':
@@ -98,6 +110,10 @@ function clicktab(tab){
                 $('#member_tab').removeClass('active');
                 $('#math_tab').removeClass('active');
                 $('#picture_tab').addClass('active');
+                $('#detail_tab2').removeClass('active');
+                $('#member_tab2').removeClass('active');
+                $('#math_tab2').removeClass('active');
+                $('#picture_tab2').addClass('active');
                 break;
 
     }

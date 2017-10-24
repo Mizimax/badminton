@@ -109,9 +109,9 @@ body{
 }
 
 .label-white {
-    background-color: #fff;
-    color:#000;
-    border : 1px solid #000;
+    background-color: #6d565f;
+    color:#FFF;
+    border : 1px solid #FFF;
   }
 
 .dropdown-menu li {

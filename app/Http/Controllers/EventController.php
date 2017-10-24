@@ -104,6 +104,5 @@ class EventController extends Controller
         ->where("team_max_rank", $input['rank'])
         ->first();
         return json_encode(["can_create"=>$team == Null]);
-        // return json_encode($input);
     }
 }

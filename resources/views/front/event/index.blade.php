@@ -61,8 +61,30 @@
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
         </div>    
-        <div class="row">
-            <div class="col-xs-12" align="center">
+        <div class="row visible-xs-block">
+            <div class="col-xs-6" align="right">
+                <a href="#detail" id="detail_tab" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
+                    <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
+                    รายละเอียด
+                </a>
+                <a href="#member" id="member_tab"  type="button" class="btn btn-tab" aria-controls="member" role="tab" data-toggle="tab" onclick="clicktab('member_tab')">
+                <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
+                    รายชื่อผู้แข่งขัน
+                </a>
+            </div>
+            <div class="col-xs-6" align="left">
+                <a href="#math" id="math_tab"  type="button" class="btn btn-tab" aria-controls="math" role="tab" data-toggle="tab" onclick="clicktab('math_tab')">
+                <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
+                    สายและการแข่งขัน
+                </a>
+                <a href="#picture" id="picture_tab"  type="button" class="btn btn-tab" aria-controls="picture" role="tab" data-toggle="tab" onclick="clicktab('picture_tab')">
+                <img src="/images/events/picture.png" height="30"style="margin-bottom:10px;"><br>
+                    รูปภาพ
+                </a>
+            </div>
+        </div>
+        <div class="row hidden-xs">
+            <div class="col-sm-12" align="center">
                 <a href="#detail" id="detail_tab" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
                     <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
                     รายละเอียด

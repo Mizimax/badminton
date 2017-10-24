@@ -57,13 +57,13 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 remove-padding">
-                                    <span>{{$event['event_description']->date}}</span>
+                                    <span style="color:#f11010">{{$event['event_description']->date}}</span>
                                     @if($event['day_left_text'] > 0)
                                         <span class='label label-white'>เหลืออีก  {{$event['day_left']}} วัน</span>
                                     @else
                                         <span class='label label-default'>รายการเสร็จสิ้น</span>
                                     @endif<br>
-                                    <span>สนามแบด: <strong>{{$event['event_description']->location->name}}</strong></span><br>
+                                    <span>สนามแบด: <a target="_blank" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span><br>
                                 </div>
                             </div>
                             <div class="row">

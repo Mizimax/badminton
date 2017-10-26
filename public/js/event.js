@@ -54,24 +54,6 @@ function check_gender(number_of_team){
     return true;
 }
 
-function sleep(delay) {
-    var start = new Date().getTime();
-    while (new Date().getTime() < start + delay);
-}
-
-function testAjax(data,callback) {
-    $.ajax({
-        url:'/check_team_name',
-        type: 'POST',
-        data:data
-    }).done(function(data){
-        can_create = JSON.parse(data).can_create;
-        $('#team_ok').prop('checked', can_create); 
-        callback();
-    });
-}
-
-
 function clicktab(tab){
     switch(tab){
         case 'detail_tab':

@@ -10,6 +10,7 @@
             <div class="modal-body">
                     <input class="hidden" id="number_of_team" name="number_of_team" value="{{$number_of_team}}">
                     <input class="hidden" id="event_id" name="event_id" value="{{$event->event_id}}">
+                    
                     @if($number_of_team == 1)
                         <div class="form-group hidden">
                             <div class="col-sm-2 control-label">
@@ -26,6 +27,47 @@
                             </div>    
                             <div class="col-sm-8">
                                 <input class="form-control" required id="team_name" name="team_name" value="" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                    @endif
+                    @if (Auth::guest())
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                ชื่อผู้จัดการ
+                            </div>    
+                            <div class="col-sm-8">
+                                <input class="form-control" required id="team_manager" name="team_manager" value="" type="text" autocomplete="off" >
+                            </div>
+                            <div class="col-sm-8">
+                                <input class="form-control hidden" id="team_manager_id" name="team_manager_id" value="0" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                เบอร์โทรศัพท์
+                            </div>    
+                            <div class="col-sm-8">
+                                <input class="form-control" required id="team_phone" name="team_phone" value="" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                    @else
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                ชื่อผู้จัดการ
+                            </div>    
+                            <div class="col-sm-8">
+                                <input class="form-control" required id="team_manager" name="team_manager" value="{{ Auth::user()->name }}" type="text" autocomplete="off" >
+                            </div>
+                            <div class="col-sm-8">
+                                <input class="form-control hidden" id="team_manager_id" name="team_manager_id" value="{{ Auth::user()->id }}" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                เบอร์โทรศัพท์
+                            </div>    
+                            <div class="col-sm-8">
+                                <input class="form-control" required id="team_phone" name="team_phone" value="{{ Auth::user()->user_phone }}" type="text" autocomplete="off" >
                             </div>    
                         </div>
                     @endif

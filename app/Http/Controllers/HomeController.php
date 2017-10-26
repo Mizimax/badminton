@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Rank;
 use App\Models\Helper;
 use DateTime;
+use DateTimeZone;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,7 @@ class HomeController extends Controller
     {
         $sponsors = Sponsor::getImageAll();
         $events = Event::get();
-        $today = new DateTime();
+        $today = new DateTime('NOW', new DateTimeZone('Asia/Bangkok'));
         foreach($events as $event){
             $event->event_description = json_decode($event->event_description);
             $event->event_rank = Rank::get_rank_by_list(json_decode($event->event_rank));

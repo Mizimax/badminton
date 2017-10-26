@@ -26,10 +26,17 @@ function createTeamName(){
 function check_gender(number_of_team){
     number_of_team = $('#number_of_team').val();
     rank = 1;
+    team_phone = $('#team_phone').val();
+    team_phone.replace("-","");
+    if(team_phone.length > 10 || team_phone.length < 9){
+        alert('กรุณาตรวจสอบหมายเลขโทรศัพท์ของผู้จัดการทีม');
+        $('#team_phone').focus();
+        return false;
+    }
     for(i = 1; i<=number_of_team; i++){
         if (!$("input[name='gender"+i+"']:checked").val()) {
             alert('กรุณาเลือกเพศของนักกีฬาคนที่'+i);
-            $("#button_male"+i).focus()
+            $("#button_male"+i).focus();
             return false;
         }
         // console.log($("input[name='gender"+i+"']:checked").val());
@@ -37,14 +44,14 @@ function check_gender(number_of_team){
         phone.replace("-","");
         if(phone.length > 10 || phone.length < 9){
             alert('กรุณาตรวจสอบหมายเลขโทรศัพท์ของนักกีฬาคนที่'+i);
-            $('#phone'+i).focus()
+            $('#phone'+i).focus();
             return false;
         }
         if($('#pic'+i).val()){
             var ext = $('#pic'+i).val().split('.').pop().toLowerCase();
             if($.inArray(ext, ['png','jpg','jpeg']) == -1) {
                 alert('กรุณาใส่ภาพ .png, .jpg, .jpeg เท่านั้น');
-                $('#pic'+i).focus()
+                $('#pic'+i).focus();
                 return false;
             }
         }

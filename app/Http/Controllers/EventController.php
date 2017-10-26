@@ -66,7 +66,20 @@ class EventController extends Controller
             "team_name" => $team_name,
             "team_event_id" => $input['event_id'],
             "team_max_rank" => $rank,
+            "team_manager" => $input['team_manager'],
+            "team_manager_id" => $input['team_manager_id'],
+            "team_manager_phone" => $input['team_phone'],
         ])->id;
+
+        if (Auth::guest()){
+
+        }else{
+            if(Auth::user()->user_phone == null){
+                $user = Auth::user();
+                $user->user_phone = $input['team_phone'];
+                $user->save();
+            }
+        }
         for ($i = 1; $i <= $input['number_of_team']; $i++) {
             $filename = "";
             if (isset($input['pic' . $i])) {

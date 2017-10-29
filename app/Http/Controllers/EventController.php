@@ -27,7 +27,8 @@ class EventController extends Controller
         $event = Event::get_detail($event_id);
         $covers = json_decode($event->event_cover);
         $event_description = json_decode($event->event_description);
-        $race = Race::get_race_by_list(json_decode($event->event_race));
+        $raw_race = json_decode($event->event_race);
+        $list_race = Event::get_list_race_from_event($event_id, $raw_race);
         $event_description->date = Helper::DateThai($event_description->date);
         $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
         $list_rank = Rank::get()->toArray();
@@ -47,10 +48,25 @@ class EventController extends Controller
             ->with('event', $event)
             ->with('event_description', $event_description)
             ->with('number_of_team', $number_of_team)
-            ->with('list_race', $race)
+            ->with('list_race', $list_race)
             ->with('members',$members)
             ->with('list_rank',$list_rank)
-            
+            ;
+    }
+
+    public static function modal($event_id)
+    {
+        $event = Event::get_detail($event_id);
+        $raw_race = json_decode($event->event_race);
+        $list_race = Event::get_list_race_from_event($event_id, $raw_race);
+        $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
+        $list_rank = Rank::get()->toArray();
+
+        return view('front/event/support_home')
+            ->with('event', $event)
+            ->with('number_of_team', $number_of_team)
+            ->with('list_race', $list_race)
+            ->with('list_rank',$list_rank)
             ;
     }
 

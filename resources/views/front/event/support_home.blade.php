@@ -1,5 +1,4 @@
 
-<div class="modal fade" id="register_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -216,35 +215,3 @@
             </form>
         </div>
     </div>
-</div>
-
-
-
-<div class="modal fade" id="register_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Login with Fackbook</h4>
-            </div>
-            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        กรุณา  Login ก่อนสมัครลงแข่งขัน
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                    <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
-                    </div>
-                </div>
-
-                
-
-
-            </div>
-            </form>
-        </div>
-    </div>
-</div>

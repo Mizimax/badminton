@@ -20,6 +20,7 @@ Route::get('/callback', 'SocialAuthFacebookController@callback');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/event_detail/{event_id}', 'EventController@detail')->name('event_detail');
+Route::get('/event_modal/{event_id}', 'EventController@modal')->name('event_modal');
 Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');

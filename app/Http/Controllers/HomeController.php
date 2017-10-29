@@ -7,6 +7,7 @@ use App\Models\Sponsor;
 use App\Models\Event;
 use App\Models\Rank;
 use App\Models\Race;
+use App\Models\TeamType;
 use App\Models\Helper;
 use DateTime;
 use DateTimeZone;
@@ -35,9 +36,11 @@ class HomeController extends Controller
         $today = new DateTime('NOW', new DateTimeZone('Asia/Bangkok'));
         foreach($events as $event){
             $event->event_description = json_decode($event->event_description);
-            $event->event_race = Race::get_race_by_list(json_decode($event->event_race));
+            $raw_race = json_decode($event->event_race);
+            $event->event_race = Event::get_list_race_from_event($event->event_id, $raw_race);
             $event_date  = new DateTime($event->event_description->date);
             $dDiff = $today->diff($event_date);
+            $event->number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
             $event->day_left_text = $dDiff->format('%R%a');
             $event->day_left = $dDiff->format('%a');
             $event->event_description->date = Helper::DateThaiNotDate($event->event_description->date);

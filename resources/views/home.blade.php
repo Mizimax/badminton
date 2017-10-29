@@ -69,7 +69,12 @@
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="padding-bottom:10px;">
                                 @foreach($event['event_race'] as $race)
-                                    <span class="badge badge-white">{{$race['race_name']}}</span>
+                                    @if($race->can_register > 0)
+                                    <span class="badge badge-white">
+                                    @else
+                                    <span class="badge badge-orange">
+                                    @endif
+                                    {{$race['race_name']}}</span>
                                 @endforeach
                                 </div>
                             </div>
@@ -77,7 +82,7 @@
                                 <div class="col-sm-11 text-right  remove-padding">
                                     <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue" style="margin-bottom:10px">รายละเอียด</a><br>
                                     @if( $event['event_status'] == 1)
-                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-blue-white" style="margin-bottom:10px">สมัครการแข่ง</a><br>
+                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="btn btn-blue-white" style="margin-bottom:10px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button><br>
                                     @else
                                     <button type="button" class="btn btn-brown">ผลการแข่ง</button>
                                     @endif
@@ -94,5 +99,10 @@
     <div class="row">
     <div class="col-sm-12" style="height:10px"> </div>
     </div>
+    <div id="modal-home">
+    <div class="modal fade" id="register_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
+    </div>
+    </div>
+    <script src="{{ asset('js/home.js') }}"></script>
 @endsection

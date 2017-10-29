@@ -71,6 +71,21 @@
                             </div>    
                         </div>
                     @endif
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                ประเภทลงแข่ง
+                            </div>    
+                            <div class="col-sm-8">
+                                <select id="race" name="race" class="form-control">
+                                    @foreach ($list_race as $race)
+                                        @if($race->race_id != 30)
+                                            <option value="{{$race->race_id}}">{{$race->race_name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>    
+                        </div>
+
                     @for( $order = 1; $order <= $number_of_team; $order++)
                         <div class="form-group">
                             <div class="col-sm-10">
@@ -182,10 +197,8 @@
                             </div>    
                             <div class="col-sm-8">
                                 <select id="rank{{$order}}" name="rank{{$order}}" class="form-control">
-                                    @foreach ($ranks as $rank)
-                                        @if($rank->rank_id != 7)
-                                            <option value="{{$rank->rank_id}}">{{$rank->rank_name}}</option>
-                                        @endif
+                                    @foreach ($list_rank as $rank)
+                                        <option value="{{$rank['rank_id']}}">{{$rank['rank_name']}}</option>
                                     @endforeach
                                 </select>
                             </div>    

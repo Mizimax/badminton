@@ -23,4 +23,3 @@ Route::get('/event_detail/{event_id}', 'EventController@detail')->name('event_de
 Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');
-Route::post('/check_team_name', 'EventController@checkTeamName');

@@ -68,8 +68,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="padding-bottom:10px;">
-                                @foreach($event['event_rank'] as $rank)
-                                    <span class="badge badge-white">{{$rank['rank_name']}}</span>
+                                @foreach($event['event_race'] as $race)
+                                    <span class="badge badge-white">{{$race['race_name']}}</span>
                                 @endforeach
                                 </div>
                             </div>

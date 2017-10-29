@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model
 {
     protected $table = 'team';
-    protected $fillable = ['team_name', 'team_event_id', 'team_register_by','team_max_rank','team_manager','team_manager_id','team_manager_phone'];   
+    protected $fillable = ['team_name', 'team_event_id', 'team_register_by','team_race','team_manager','team_manager_id','team_manager_phone'];   
 }

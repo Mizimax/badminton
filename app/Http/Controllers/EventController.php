@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Helper;
 use App\Models\Rank;
+use App\Models\Race;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\TeamType;
@@ -26,14 +27,14 @@ class EventController extends Controller
         $event = Event::get_detail($event_id);
         $covers = json_decode($event->event_cover);
         $event_description = json_decode($event->event_description);
-        $ranks = Rank::get_rank_by_list(json_decode($event->event_rank));
+        $race = Race::get_race_by_list(json_decode($event->event_race));
         $event_description->date = Helper::DateThai($event_description->date);
         $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
-        
-        $members = Team::select('team.*','team_status_name','rank_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
+        $list_rank = Rank::get()->toArray();
+        $members = Team::select('team.*','team_status_name','race_name','race_color',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
                 ->where("team_event_id",$event_id)
             ->join('team_member','team_id','=','team_member_team_id')
-            ->join('rank','team_max_rank','=','rank_id')
+            ->join('race_type','team_race','=','race_id')
             ->join('team_status','team_status','=','team_status_id')
             ->groupBy('team_id')
             ->get()
@@ -46,8 +47,10 @@ class EventController extends Controller
             ->with('event', $event)
             ->with('event_description', $event_description)
             ->with('number_of_team', $number_of_team)
-            ->with('ranks', $ranks)
+            ->with('list_race', $race)
             ->with('members',$members)
+            ->with('list_rank',$list_rank)
+            
             ;
     }
 
@@ -55,17 +58,12 @@ class EventController extends Controller
     {
         $input = Input::all();
         $team_name = $input['team_name'];
-        $rank = 1;
-        for ($i = 1; $i <= $input['number_of_team']; $i++) {
-            if ($rank < $input['rank' . $i]) {
-                $rank = $input['rank' . $i];
-            }
-        }
+        $race = $input['race'];
         
         $team_id = Team::create([
             "team_name" => $team_name,
             "team_event_id" => $input['event_id'],
-            "team_max_rank" => $rank,
+            "team_race" => $race,
             "team_manager" => $input['team_manager'],
             "team_manager_id" => $input['team_manager_id'],
             "team_manager_phone" => $input['team_phone'],
@@ -108,14 +106,5 @@ class EventController extends Controller
             TeamMember::insert($data);
         }
         return redirect('event_detail/'.$input['event_id'])->with('message','ลงทะเบียนเรียบร้อย');
-    }
-
-    public static function checkTeamName(){
-        $input = Input::all();
-        $team = Team::where("team_name", $input['team_name'])
-        ->where("team_event_id", $input['event_id'])
-        ->where("team_max_rank", $input['rank'])
-        ->first();
-        return json_encode(["can_create"=>$team == Null]);
     }
 }

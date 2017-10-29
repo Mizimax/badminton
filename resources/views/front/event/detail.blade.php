@@ -22,8 +22,8 @@
 
         <div class="row">
             <div class="col-md-12 description">
-                @foreach($ranks as $rank)
-                    <span class="badge badge-orange">{{$rank['rank_name']}}</span>
+                @foreach($list_race as $race)
+                    <span class="badge badge-orange">{{$race['race_name']}}</span>
                 @endforeach
             </div>
         </div>

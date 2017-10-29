@@ -20,7 +20,16 @@
             <td style="text-align:center">{{$data['member'][$order]->name}}</td>
             @endfor
             <td style="text-align:center">
-                <span class="label label-info">{{$data['rank_name']}}</span></td>
+                @if($data['rank_name'] == "C")
+                    <span class="label" style="background-color:#FF7D15">
+                @elseif($data['rank_name'] == "P")
+                    <span class="label" style="background-color:#84c2ce">
+                @elseif($data['rank_name'] == "p-")
+                    <span class="label" style="background-color:#8cd6fe">
+                @else
+                    <span class="label" style="background-color:#00c862">
+                @endif
+                {{$data['rank_name']}}</span></td>
             <td style="text-align:center">
             @if ($data['team_status'] == 2)
             <span class="label label-success">{{$data['team_status_name']}}</span>

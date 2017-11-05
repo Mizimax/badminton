@@ -112,6 +112,14 @@
             @include('front/event/detail')
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
+        <div class="row">
+            <div class="col-md-12 description">
+                @foreach($list_race as $race)
+                    <span class="badge badge-orange">{{$race['race_name']}}</span>
+                    {{$race['max_register']- $race['can_register']}} / {{$race['max_register']}}
+                @endforeach
+            </div>
+        </div>
             @include('front/event/member')
         </div>
         <div role="tabpanel" class="tab-pane" id="math">...</div>

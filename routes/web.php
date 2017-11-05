@@ -24,3 +24,7 @@ Route::get('/event_modal/{event_id}', 'EventController@modal')->name('event_moda
 Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');
+
+
+Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
+Route::get('/run_math/{event_id}', 'SplitLineController@run_math')->name('split_line');

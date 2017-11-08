@@ -73,7 +73,7 @@
                 </a>
             </div>
             <div class="col-xs-6" align="left">
-                <a href="#math" id="math_tab"  type="button" class="btn btn-tab" aria-controls="math" role="tab" data-toggle="tab" onclick="clicktab('math_tab')">
+                <a href="#match" id="match_tab"  type="button" class="btn btn-tab" aria-controls="match" role="tab" data-toggle="tab" onclick="clicktab('match_tab')">
                 <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
                     สายและการแข่งขัน
                 </a>
@@ -93,7 +93,7 @@
                 <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
                     รายชื่อผู้แข่งขัน
                 </a>
-                <a href="#math" id="math_tab2"  type="button" class="btn btn-tab" aria-controls="math" role="tab" data-toggle="tab" onclick="clicktab('math_tab')">
+                <a href="#match" id="match_tab2"  type="button" class="btn btn-tab" aria-controls="match" role="tab" data-toggle="tab" onclick="clicktab('match_tab')">
                 <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
                     สายและการแข่งขัน
                 </a>
@@ -122,7 +122,9 @@
         </div>
             @include('front/event/member')
         </div>
-        <div role="tabpanel" class="tab-pane" id="math">...</div>
+        <div role="tabpanel" class="tab-pane" id="match">
+            @include('front/event/match')
+        </div>
         <div role="tabpanel" class="tab-pane" id="picture">...</div>
     </div>
 

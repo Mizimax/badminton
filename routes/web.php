@@ -27,4 +27,10 @@ Route::post('/login', 'UserController@login');
 
 
 Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
-Route::get('/run_math/{event_id}', 'SplitLineController@run_math')->name('split_line');
+Route::get('/run_match/{event_id}', 'SplitLineController@run_match')->name('run_match');
+Route::get('/run_set_match/{event_id}', 'SplitLineController@run_set_match')->name('run_set_match');
+Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');
+Route::get('/run_set_knockout/{event_id}', 'SplitLineController@run_set_knockout')->name('run_match_knockout');
+Route::get('/get_math/{event_id}/{race_id}', 'EventController@get_math')->name('get_math');
+Route::get('/get_knockout/{event_id}/{race_id}', 'EventController@get_knockout')->name('get_knockout');
+

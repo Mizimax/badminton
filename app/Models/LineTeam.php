@@ -13,4 +13,12 @@ class LineTeam extends Model
     {
         self::insert($team);
     }
+
+    public static function get_team_list($event_id, $race_id,$line)
+    {
+        return self::select('line_team_id')
+        ->where('line_event_id','=',$event_id)
+        ->where('line_name','=',$line)
+        ->where('line_race_id','=',$race_id)->first();
+    }
 }

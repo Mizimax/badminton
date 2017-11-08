@@ -7,8 +7,10 @@ use App\Models\Helper;
 use App\Models\Rank;
 use App\Models\Race;
 use App\Models\Team;
+use App\Models\LineTeam;
 use App\Models\TeamMember;
 use App\Models\TeamType;
+use App\Models\Match;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -24,6 +26,7 @@ class EventController extends Controller
 
     public static function detail($event_id)
     {
+        
         $event = Event::get_detail($event_id);
         $covers = json_decode($event->event_cover);
         $event_description = json_decode($event->event_description);
@@ -43,6 +46,97 @@ class EventController extends Controller
         foreach( $members as $member){
             $member->member = json_decode($member->member);
         }
+        $race_id = $list_race[0]->race_id;
+        $race_name = $list_race[0]->race_name;
+        $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
+        
+        $result_match = [];
+        $team_math = [];
+        $score_team = [];
+        foreach($matchs as $line => $match){
+            $teams = json_decode(LineTeam::get_team_list($event_id, $race_id,$line)->line_team_id);
+            $team_math[$line] = TeamMember::get_member($teams);
+            $score_team[$line] = Match::get_score($teams);
+            $result_match[$line] = [];
+            foreach($match as $m){
+                $score = [
+                    'set_score_team_1' => $m['set_score_team_1'],
+                    'set_score_team_2' => $m['set_score_team_2'],
+                    'set_team_win' => $m['set_team_win']
+                ];
+                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_1']])){
+                    $result_match[$line][$m['match_team_1']][$m['match_team_1']] = [];
+                }
+                if(!isset($result_match[$line][$m['match_team_2']][$m['match_team_2']])){
+                    $result_match[$line][$m['match_team_2']][$m['match_team_2']] = [];
+                }
+                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_2']])){
+                    unset($m['set_score_team_1']);
+                    unset($m['set_score_team_2']);
+                    unset($m['set_team_win']);
+                    unset($m['set_id']);
+                    $result_match[$line][$m['match_team_1']][$m['match_team_2']] = $m;
+                    $result_match[$line][$m['match_team_2']][$m['match_team_1']] = $m;
+                    
+                }
+                $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
+                $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
+            }
+            foreach($result_match[$line] as $team_1 =>$a){
+                ksort($result_match[$line][$team_1]);
+            }
+            ksort($result_match[$line]);
+            ksort($team_math[$line]);
+        }
+        $color_team = [];
+        $all_team = [];
+        foreach($team_math as $line_name => $line){
+            $i=0;
+            $color_circle = ['ed3833','fcef4f','42abe2','c7b299'];
+            foreach($line as $team => $member){
+                $color_team[$line_name][$team] = $color_circle[$i];
+                $all_team[$team] = $member;
+                $i++;
+            }
+        }
+        
+
+
+
+
+
+        $knock = Match::get_knockout_by_event_and_race($event_id, $race_id);
+        $round_knockout = [];
+        $number_match_knockout = [];
+        $max = $list_race[0]->max_register * 2 /3;
+        while($max>4){
+            $round_knockout[] = "รอบ " .$max ." ทีม";
+            $number_match_knockout[] = $max/2;
+            $max /=2;
+        }
+        $round_knockout[] = "รอบรองชนะเลิศ";
+        $number_match_knockout[] = $max/2;
+        $round_knockout[] = "รอบชิงชนะเลิศ";
+        $number_match_knockout[] = $max/4;
+
+        $knock_match = [];
+        
+        foreach($knock as $match){
+                $score = [
+                    'set_score_team_1' => $match['set_score_team_1'],
+                    'set_score_team_2' => $match['set_score_team_2'],
+                    'set_team_win' => $match['set_team_win']
+                ];
+                if(!isset($knock_match[$match['match_id']])){
+                    unset($match['set_score_team_1']);
+                    unset($match['set_score_team_2']);
+                    unset($match['set_team_win']);
+                    unset($match['set_id']);
+                    $knock_match[$match['match_id']] = $match;
+                }
+                $knock_match[$match['match_id']]['score'][]=$score;
+        }
+        ksort($knock_match);
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -50,7 +144,16 @@ class EventController extends Controller
             ->with('number_of_team', $number_of_team)
             ->with('list_race', $list_race)
             ->with('members',$members)
+            ->with('all_team',$all_team)
             ->with('list_rank',$list_rank)
+            ->with('result_match',$result_match)
+            ->with('team_math',$team_math)
+            ->with('score_team',$score_team)
+            ->with('color_team',$color_team)
+            ->with('race_name',$race_name)
+            ->with('knock_match',$knock_match)
+            ->with('round_knockout',$round_knockout)
+            ->with('number_match_knockout',$number_match_knockout)
             ;
     }
 
@@ -123,4 +226,128 @@ class EventController extends Controller
         }
         return redirect('event_detail/'.$input['event_id'])->with('message','ลงทะเบียนเรียบร้อย');
     }
+
+    public function get_math($event_id, $race_id)
+    {
+        $event = Event::get_detail($event_id);
+        $raw_race = json_decode($event->event_race);
+        $list_race = Event::get_list_race_from_event($event_id, $raw_race);
+        
+        $race_name = Race::where('race_id',$race_id)->first()->race_name;
+        $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
+        
+        $result_match = [];
+        $team_math = [];
+        $score_team = [];
+        foreach($matchs as $line => $match){
+            $teams = json_decode(LineTeam::get_team_list($event_id, $race_id,$line)->line_team_id);
+            $team_math[$line] = TeamMember::get_member($teams);
+            $score_team[$line] = Match::get_score($teams);
+            $result_match[$line] = [];
+            foreach($match as $m){
+                $score = [
+                    'set_score_team_1' => $m['set_score_team_1'],
+                    'set_score_team_2' => $m['set_score_team_2'],
+                    'set_team_win' => $m['set_team_win']
+                ];
+                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_1']])){
+                    $result_match[$line][$m['match_team_1']][$m['match_team_1']] = [];
+                }
+                if(!isset($result_match[$line][$m['match_team_2']][$m['match_team_2']])){
+                    $result_match[$line][$m['match_team_2']][$m['match_team_2']] = [];
+                }
+                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_2']])){
+                    unset($m['set_score_team_1']);
+                    unset($m['set_score_team_2']);
+                    unset($m['set_team_win']);
+                    unset($m['set_id']);
+                    $result_match[$line][$m['match_team_1']][$m['match_team_2']] = $m;
+                    $result_match[$line][$m['match_team_2']][$m['match_team_1']] = $m;
+                    
+                }
+                $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
+                $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
+            }
+            foreach($result_match[$line] as $team_1 =>$a){
+                ksort($result_match[$line][$team_1]);
+            }
+            ksort($result_match[$line]);
+            ksort($team_math[$line]);
+        }
+        $color_team = [];
+        foreach($team_math as $line_name => $line){
+            $i=0;
+            $color_circle = ['ed3833','fcef4f','42abe2','c7b299'];
+            foreach($line as $team => $member){
+                $color_team[$line_name][$team] = $color_circle[$i];
+                $i++;
+            }
+        }
+        return view('front/event/match_table')
+        ->with('result_match',$result_match)
+        ->with('team_math',$team_math)
+        ->with('score_team',$score_team)
+        ->with('color_team',$color_team)
+        ->with('race_name',$race_name);
+    }
+
+    public function get_knockout($event_id, $race_id)
+    {
+        $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
+        foreach($matchs as $line => $match){
+            $teams = json_decode(LineTeam::get_team_list($event_id, $race_id,$line)->line_team_id);
+            $team_math[$line] = TeamMember::get_member($teams);
+        }
+        foreach($team_math as $line_name => $line){
+            foreach($line as $team => $member){
+                $all_team[$team] = $member;
+            }
+        }
+        $event = Event::get_detail($event_id);
+        $raw_race = json_decode($event->event_race);
+        $list_race = Event::get_list_race_from_event($event_id, $raw_race);
+        $knock = Match::get_knockout_by_event_and_race($event_id, $race_id);
+        $round_knockout = [];
+        $number_match_knockout = [];
+        foreach($list_race as $race){
+            if($race->race_id ==$race_id){
+                $max = $race->max_register * 2 /3;
+            }
+        }
+        
+        while($max>4){
+            $round_knockout[] = "รอบ " .$max ." ทีม";
+            $number_match_knockout[] = $max/2;
+            $max /=2;
+        }
+        $round_knockout[] = "รอบรองชนะเลิศ";
+        $number_match_knockout[] = $max/2;
+        $round_knockout[] = "รอบชิงชนะเลิศ";
+        $number_match_knockout[] = $max/4;
+
+        $knock_match = [];
+        
+        foreach($knock as $match){
+                $score = [
+                    'set_score_team_1' => $match['set_score_team_1'],
+                    'set_score_team_2' => $match['set_score_team_2'],
+                    'set_team_win' => $match['set_team_win']
+                ];
+                if(!isset($knock_match[$match['match_id']])){
+                    unset($match['set_score_team_1']);
+                    unset($match['set_score_team_2']);
+                    unset($match['set_team_win']);
+                    unset($match['set_id']);
+                    $knock_match[$match['match_id']] = $match;
+                }
+                $knock_match[$match['match_id']]['score'][]=$score;
+        }
+        ksort($knock_match);
+        return view('front/event/knockout_table')
+            ->with('knock_match',$knock_match)
+            ->with('all_team',$all_team)
+            ->with('round_knockout',$round_knockout)
+            ->with('number_match_knockout',$number_match_knockout);
+    }
+
 }

@@ -61,47 +61,60 @@ function check_gender(number_of_team){
     return true;
 }
 
+function clickminitab(tab){
+    switch(tab){
+        case 'group':
+            $('#group_tab').addClass('active');
+            $('#knockout_tab').removeClass('active');
+            break;
+        case 'knockout':
+            $('#knockout_tab').addClass('active');
+            $('#group_tab').removeClass('active');
+            break;
+    }
+}
+
 function clicktab(tab){
     switch(tab){
         case 'detail_tab':
                 $('#detail_tab').addClass('active');
                 $('#member_tab').removeClass('active');
-                $('#math_tab').removeClass('active');
+                $('#match_tab').removeClass('active');
                 $('#picture_tab').removeClass('active');
                 $('#detail_tab2').addClass('active');
                 $('#member_tab2').removeClass('active');
-                $('#math_tab2').removeClass('active');
+                $('#match_tab2').removeClass('active');
                 $('#picture_tab2').removeClass('active');
                 break;
         case 'member_tab':
                 $('#detail_tab').removeClass('active');
                 $('#member_tab').addClass('active');
-                $('#math_tab').removeClass('active');
+                $('#match_tab').removeClass('active');
                 $('#picture_tab').removeClass('active');
                 $('#detail_tab2').removeClass('active');
                 $('#member_tab2').addClass('active');
-                $('#math_tab2').removeClass('active');
+                $('#match_tab2').removeClass('active');
                 $('#picture_tab2').removeClass('active');
                 break;
-        case 'math_tab':
+        case 'match_tab':
                 $('#detail_tab').removeClass('active');
                 $('#member_tab').removeClass('active');
-                $('#math_tab').addClass('active');
+                $('#match_tab').addClass('active');
                 $('#picture_tab').removeClass('active');
                 $('#detail_tab2').removeClass('active');
                 $('#member_tab2').removeClass('active');
-                $('#math_tab2').addClass('active');
+                $('#match_tab2').addClass('active');
                 $('#picture_tab2').removeClass('active');
                 break;
 
         case 'picture_tab':
                 $('#detail_tab').removeClass('active');
                 $('#member_tab').removeClass('active');
-                $('#math_tab').removeClass('active');
+                $('#match_tab').removeClass('active');
                 $('#picture_tab').addClass('active');
                 $('#detail_tab2').removeClass('active');
                 $('#member_tab2').removeClass('active');
-                $('#math_tab2').removeClass('active');
+                $('#match_tab2').removeClass('active');
                 $('#picture_tab2').addClass('active');
                 break;
 
@@ -116,6 +129,25 @@ $(function () {
           "searching": true
     });
     $('[data-toggle="tooltip"]').tooltip();  
+
+    $('#race_math').change(function() {
+        $('#group').html('');
+        event_id = $('#event_id').val();
+        race_id = $( "#race_math option:checked" ).val();
+        $.ajax({
+            url: '/get_math/'+ event_id+'/'+race_id,
+            success: function(data){
+                $('#group').html(data);
+            }
+        });
+
+        $.ajax({
+            url: '/get_knockout/'+ event_id+'/'+race_id,
+            success: function(data){
+                $('#knockout').html(data);
+            }
+        });
+    });
 });
 
   

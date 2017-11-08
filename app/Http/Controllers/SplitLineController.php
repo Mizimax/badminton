@@ -10,7 +10,8 @@ use App\Models\Race;
 use App\Models\Team;
 use App\Models\LineTeam;
 use App\Models\Helper;
-use App\Models\Math;
+use App\Models\Match;
+use App\Models\SetMatch;
 use DB;
 use DateTime;
 use DateTimeZone;
@@ -68,7 +69,7 @@ class SplitLineController extends Controller
             }    
         }
         foreach($this->group_id as $race_id => $race){
-            if($race_id == 30 ){
+            // if($race_id == 30 ){
                 $index_char = 65;
                 foreach($race as $group){
                     $line_name = chr($index_char);
@@ -85,8 +86,11 @@ class SplitLineController extends Controller
                     LineTeam::addTeam($team);
                     $index_char++;
                 }
-            }
+            // }
         }
+
+        $this->run_match($event_id);
+        $this->run_match_knockout($event_id);
     }
 
     function split_group($race_id,$team_name,$team_id,$max_group){
@@ -102,7 +106,7 @@ class SplitLineController extends Controller
         }
     }
 
-    public function run_math($event_id)
+    public function run_match($event_id)
     {    
         echo "<pre>";
         $court = 11;
@@ -123,11 +127,11 @@ class SplitLineController extends Controller
                 for($i=0; $i<$number_team; $i++){
                     for($j=$i+1; $j<$number_team; $j++){
                         if($first <= $num_line){
-                            $math = $first;
+                            $match = $first;
                         }else{
-                            $math = count($all_line)-$first+1;
+                            $match = count($all_line)-$first+1;
                         }
-                        $array[$math][] = [
+                        $array[$match][] = [
                             'race' => $race->race_id,
                             'team_1' => $list_team[$i],
                             'team_2' => $list_team[$j],
@@ -144,25 +148,160 @@ class SplitLineController extends Controller
         foreach($array as $k=> $round){
             foreach($round as $key => $val){
                 $data = [
-                    'math_team_1' =>$val['team_1'],
-                    'math_team_2' =>$val['team_2'],
-                    'math_time_id' => $time,
-                    'math_line_id' => $val['line_name'],
-                    'math_event_id' => $event_id,
-                    'math_race_id' => $val['race'],
-                    'math_status' => 'NOT START',
-                    'math_number' => $val['race'].$k.sprintf("%03s", $num),
-                    'math_type' => 'MATH'
+                    'match_team_1' =>$val['team_1'],
+                    'match_team_2' =>$val['team_2'],
+                    'match_time_id' => $time,
+                    'match_line_id' => $val['line_name'],
+                    'match_event_id' => $event_id,
+                    'match_race_id' => $val['race'],
+                    'match_status' => 'NOT START',
+                    'match_number' => $val['race'].$k.sprintf("%03s", $num),
+                    'match_type' => 'MATcH'
                 ];
-                Math::insert($data);
+                Match::insert($data);
                 if($num%$court == 0){
                     echo"<br>";
-                    $time += 2;
+                    $time += 1;
                 }
                 $num++;
             } 
         }
+        $this->run_set_match($event_id);
+    }
+
+    public function run_set_match($event_id){
+        echo "<pre>";
+        $all_match = Match::select('match_id')->where('match_event_id','=',$event_id)->where('match_type','=','MATcH')->get()->toArray();
+        foreach($all_match as $match){
+            SetMatch::insert(['set_match_id' => $match['match_id']]);
+            SetMatch::insert(['set_match_id' => $match['match_id']]);
+        }
+    }
+
+    public function run_set_knockout($event_id){
+        echo "<pre>";
+        $all_match = Match::select('match_id')->where('match_event_id','=',$event_id)->where('match_type','=','KNOCKOUT')->get()->toArray();
+        foreach($all_match as $match){
+            SetMatch::insert(['set_match_id' => $match['match_id']]);
+            SetMatch::insert(['set_match_id' => $match['match_id']]);
+            SetMatch::insert(['set_match_id' => $match['match_id']]);
+        }
+    }
+
+    public function run_match_knockout($event_id){
+        echo "<pre>";
+        $court = 11;
+        $num = 1;
+        $event = Event::get_detail($event_id);
+        $raw_race = json_decode($event->event_race);
+        $time = 38;
+        $rank =[];
+        foreach($raw_race as $race){
+            $race->knockout = [];
+            $all_line = LineTeam::select('line_name','line_team_id')
+            ->where('line_event_id','=',$event_id)
+            ->where('line_race_id','=',$race->race_id)
+            ->get()->toArray();
+            $num_team = $race->count*2/3;
+            $rank[$race->race_id] = $num_team;
+            foreach($all_line as $line){
+                $race->knockout[] = 'ที่ 1 สาย ' . $line['line_name'];
+                $race->knockout[] = 'ที่ 2 สาย ' . $line['line_name'];
+            }
+            for($i=count($race->knockout)+1; $i<=$num_team; $i++){
+                $race->knockout[] = 'คะแนนรวมลำดับที่ ' . $i;
+            }
+            shuffle($race->knockout);
+            $index_char = 65;
+            for($i=0;$i<count($race->knockout);$i+=2){
+                $data = [
+                    'match_team_1_name' =>$race->knockout[$i],
+                    'match_team_2_name' =>$race->knockout[$i+1],
+                    'match_time_id' => $time,
+                    'match_line_id' => chr($index_char),
+                    'match_event_id' => $event_id,
+                    'match_race_id' => $race->race_id,
+                    'match_status' => 'NOT START',
+                    'match_number' => $race->race_id.sprintf("%04s", $num),
+                    'match_type' => 'KNOCKOUT'
+                ];
+                $num++;
+                Match::insert($data);
+                if($num%$court == 0){
+                    $time += 1;
+                }
+                $index_char++;
+            }
+            $mod = 1;
+        }
+        arsort($rank);
+        $max = 0;
+        $race_id = [];
+        $mod = [];
+        foreach($rank as $k => $r){
+            if($max<=$r){
+                // $race_id[] = $k;
+                $max = $r;
+            }
+            $mod[$k] = 1;
+        }
+        
+        while($max>2){
+            ksort($rank);
+            
+            $race_id = [];
+            foreach($rank as $k => $r){
+                if($max<=$r){
+                    $race_id[] = $k;
+                    $max = $r;
+                }
+            }
+            $max/=2;
+            $tmp = $max;
+            echo "<br><br>";
+            echo "<br>rank<br>";
+            var_dump($rank);
+            echo "<br>race_id<br>";
+            var_dump($race_id);
+            echo "<br>max<br>";
+            var_dump($max);
+            // die();
+            foreach($rank as $k => $r){
+                
+                if(in_array($k,$race_id)){
+                    $index_char = 65;
+                    for($i=0;$i<$max/2;$i++){
+                        // echo sprintf("%04s", $num)." " .sprintf("%02s", $r)." ".$k."ผู้ชนะรอบ " . $mod[$k]. "สาย ".chr($index_char) .$time. "<br>";
+                        $data = [
+                            'match_team_1_name' => "ผู้ชนะรอบ " . $mod[$k],
+                            'match_team_2_name' => "ผู้ชนะรอบ " . $mod[$k],
+                            'match_time_id' => $time,
+                            'match_line_id' => chr($index_char),
+                            'match_event_id' => $event_id,
+                            'match_race_id' => $k,
+                            'match_status' => 'NOT START',
+                            'match_number' => $k.sprintf("%04s", $num),
+                            'match_type' => 'KNOCKOUT'
+                        ];
+                        $num++;
+                        Match::insert($data);
+                        if($num%$court == 0){
+                            $time += 1;
+                            if($time > 48){
+                                $time -= 48;
+                            }
+                        }
+                        $index_char++;
+                    }
+                    $mod[$k]++;
+                    $tmp = $r / 2;
+                    $rank[$k] = $r / 2;
+                    
+                }
+                
+            }
+            $max=$tmp;
+        }
+        $this->run_set_knockout($event_id);
     }
 }
-
-

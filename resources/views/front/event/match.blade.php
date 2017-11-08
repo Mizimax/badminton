@@ -1,3 +1,4 @@
+@if ($team_math !=[])
 <div class="row">
     <div class="col-xs-1"></div>
     <div class="col-xs-3">
@@ -30,3 +31,10 @@
         </div>
     </div>
 </div>
+@else
+<div class="row">
+    <div class="col-xs-12" align="center">
+        ตารางแบ่งสายจะขึ้นวันที่ {{$event->event_end}}
+    </div>
+</div>
+@endif

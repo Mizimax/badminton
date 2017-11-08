@@ -15,6 +15,7 @@ use App\Models\SetMatch;
 use DB;
 use DateTime;
 use DateTimeZone;
+use Illuminate\Support\Facades\Auth;
 
 class SplitLineController extends Controller
 {
@@ -35,12 +36,15 @@ class SplitLineController extends Controller
      */
     public function split($event_id)
     {
-        echo "<pre>";
+        $event = Event::get_detail($event_id);
+        if(Auth::guest() || $event->event_user_id != Auth::user()->id){
+            return redirect()->to('/');
+        }
         if(count(LineTeam::where('line_event_id','=',$event_id)->get())){
-            echo "bye";
+            echo "Please delete data in 'line_team', 'match' and 'set_match' bye";
             die();
         }
-        $event = Event::get_detail($event_id);
+        
         $raw_race = json_decode($event->event_race);
         $this->group = [];
         $this->group_id = [];
@@ -51,7 +55,7 @@ class SplitLineController extends Controller
             $members = Team::select('team_name','team_id')
             ->where("team_event_id",$event_id)
             ->where('team_race','=',$race_id)
-            // ->where('team_payment','=',1)
+            ->where('team_payment','=',1)
             ->get()
             ;
 
@@ -91,6 +95,7 @@ class SplitLineController extends Controller
 
         $this->run_match($event_id);
         $this->run_match_knockout($event_id);
+        return redirect()->to('/');
     }
 
     function split_group($race_id,$team_name,$team_id,$max_group){
@@ -108,7 +113,6 @@ class SplitLineController extends Controller
 
     public function run_match($event_id)
     {    
-        echo "<pre>";
         $court = 11;
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
@@ -170,7 +174,6 @@ class SplitLineController extends Controller
     }
 
     public function run_set_match($event_id){
-        echo "<pre>";
         $all_match = Match::select('match_id')->where('match_event_id','=',$event_id)->where('match_type','=','MATcH')->get()->toArray();
         foreach($all_match as $match){
             SetMatch::insert(['set_match_id' => $match['match_id']]);
@@ -179,7 +182,6 @@ class SplitLineController extends Controller
     }
 
     public function run_set_knockout($event_id){
-        echo "<pre>";
         $all_match = Match::select('match_id')->where('match_event_id','=',$event_id)->where('match_type','=','KNOCKOUT')->get()->toArray();
         foreach($all_match as $match){
             SetMatch::insert(['set_match_id' => $match['match_id']]);
@@ -189,7 +191,6 @@ class SplitLineController extends Controller
     }
 
     public function run_match_knockout($event_id){
-        echo "<pre>";
         $court = 11;
         $num = 1;
         $event = Event::get_detail($event_id);
@@ -240,7 +241,6 @@ class SplitLineController extends Controller
         $mod = [];
         foreach($rank as $k => $r){
             if($max<=$r){
-                // $race_id[] = $k;
                 $max = $r;
             }
             $mod[$k] = 1;
@@ -258,14 +258,6 @@ class SplitLineController extends Controller
             }
             $max/=2;
             $tmp = $max;
-            echo "<br><br>";
-            echo "<br>rank<br>";
-            var_dump($rank);
-            echo "<br>race_id<br>";
-            var_dump($race_id);
-            echo "<br>max<br>";
-            var_dump($max);
-            // die();
             foreach($rank as $k => $r){
                 
                 if(in_array($k,$race_id)){

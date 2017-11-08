@@ -9,8 +9,8 @@
 </div>
 <div class="row">
     <div class="col-xs-1"></div>
-    <div class="col-xs-10">
-        <table class="table table-bordered" id="table-match">
+    <div class="col-xs-10" style="overflow-x:auto;">
+        <table class="table table-bordered " id="table-match">
             <tr>
                 <td class="col-xs-2">คะแนนรวม</td>
                 <td class="col-xs-2" align="center">ทีม</td>

@@ -13,7 +13,7 @@ class Team extends Model
     {
         return self::select( 'team_race',DB::raw('count(*) as total'))
         ->where('team_event_id','=',$event_id)
-        ->where('team_payment', '=', 1)
+        ->where('team_status', '=', 2)
         ->groupBy('team_race')
         ->get();
     }

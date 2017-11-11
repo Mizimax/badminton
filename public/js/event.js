@@ -122,12 +122,63 @@ function clicktab(tab){
 
 }
 
+
+
+
+
+function fnCreateSelect( aData )
+{
+    var r='<select><option value=""></option>', i, iLen=aData.length;
+    for ( i=0 ; i<iLen ; i++ )
+    {
+        r += '<option value="'+aData[i]+'">'+aData[i]+'</option>';
+    }
+    return r+'</select>';
+}
+
+
+
+
 $(function () {
-    $('#table-member').DataTable({
-          "pageLength": 20,
-          "bLengthChange": false,
-          "searching": true
+    
+    $.fn.dataTable.ext.search.push(
+        function( settings, data, dataIndex ) {
+            
+            var age =  data[3]; // use data for the age column
+            var rex = /(<([^>]+)>)/ig;
+            race_id = $( "#selector_rank option:checked" ).val();
+            console.log();
+            if(race_id == ""){
+                return true;
+            }
+            if(data[2].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
+                return true;
+            }
+            if(data[3].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
+                return true;
+            }
+            return false;
+        }
+    );
+
+    var tb_member = $('#table-member').DataTable({
+          pageLength: -1,
+          bLengthChange: false,
+        //   searching: false,
+          bSort:false,
+          sDom: 't' 
     });
+
+    $('#selector_rank').on('change', function () {
+        console.log($(this).val());
+        
+        tb_member.search($(this).val()).draw();
+    })
+    
+    
+    
+
+
     $('[data-toggle="tooltip"]').tooltip();  
 
     $('#race_math').change(function() {

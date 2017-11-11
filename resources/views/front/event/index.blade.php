@@ -113,7 +113,16 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
         <div class="row">
-            <div class="col-md-12 description">
+        <div class="col-md-3 description">
+
+            <select id="selector_rank" name="selector_rank" class="form-control">
+            <option value="">All</option>
+                @foreach ($list_race as $race)
+                        <option value="{{$race->race_name}}">{{$race->race_name}}</option>
+                @endforeach
+            </select>
+        </div>
+            <div class="col-md-9 description">
                 @foreach($list_race as $race)
                     <span class="badge badge-orange">{{$race['race_name']}}</span>
                     {{$race['max_register']- $race['can_register']}} / {{$race['max_register']}}

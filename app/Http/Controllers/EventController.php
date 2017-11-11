@@ -41,11 +41,28 @@ class EventController extends Controller
                 ->join('race_type','team_race','=','race_id')
                 ->join('team_status','team_status','=','team_status_id')
                 ->groupBy('team_id')
+                ->orderBy('team_payment',"DESC")
+                ->orderBy('team.team_status',"ASC")
                 ->get()
             ;
+            $tmp= [];
         foreach( $members as $member){
             $member->member = json_decode($member->member);
+            if($member->team_status_name=="ผ่านการประเมิน"){
+                $tmp[] = $member;
+            }
         }
+        foreach( $members as $member){
+            if($member->team_status_name=="รอการประเมิน"){
+                $tmp[] = $member;
+            }
+        }
+        foreach( $members as $member){
+            if($member->team_status_name=="ไม่ผ่านการประเมิน"){
+                $tmp[] = $member;
+            }
+        }
+
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
@@ -138,7 +155,7 @@ class EventController extends Controller
             ->with('event_description', $event_description)
             ->with('number_of_team', $number_of_team)
             ->with('list_race', $list_race)
-            ->with('members',$members)
+            ->with('members',$tmp)
             ->with('all_team',$all_team)
             ->with('list_rank',$list_rank)
             ->with('result_match',$result_match)
@@ -226,7 +243,6 @@ class EventController extends Controller
     {
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
-        $list_race = Event::get_list_race_from_event($event_id, $raw_race);
         
         $race_name = Race::where('race_id',$race_id)->first()->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);

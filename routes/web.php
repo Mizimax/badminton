@@ -24,4 +24,5 @@ Route::get('/page7', 'Support_wezync@page7');
 Route::get('/page8', 'Support_wezync@page8');
 Route::get('/page9', 'Support_wezync@page9');
 
+Route::get('/coin', 'Support_wezync@coin');
 

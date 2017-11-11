@@ -45,4 +45,9 @@ class Support_wezync extends Controller
     {
         return view('support_wezync.page9');
     }
+
+    public function coin()
+    {
+        return view('support_wezync.coin');
+    }
 }

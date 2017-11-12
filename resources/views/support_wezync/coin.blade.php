@@ -379,8 +379,13 @@
             transition: padding-left 0.5s;
         }
 
+        .full-height {
+            height: 100vh;
+        }
+
         .flex-center{
-            display: flex; /* not use in time */
+            display: flex;
+            align-items: center;
             justify-content: center;
 
         }
@@ -910,8 +915,12 @@
 
     {{--coin only--}}
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Kanit');
+
         body{
             background-color: #f5f8fd;
+            /*line-height: 0 !important;*/
+            overflow: hidden;
         }
         .section3{
             margin: auto;
@@ -941,6 +950,103 @@
             padding: 10px;
             /*background-color: #0d3625;*/
         }
+
+        /*navbar*/
+        .navbar {
+            margin-bottom: 0px;
+        }
+        .navbar-brand {
+            border-right: solid 2px;
+            border-right-color: #E6E6E6;
+            height: 80px;
+            width: 184px;
+            padding-top: 25px;
+        }
+        .navbar-cart {
+            padding-top: 5px;
+            height: 80px;
+            width: 100px;
+            text-align: center;
+            color: #fff;
+            background-color: #F7A71E;
+        }
+        .navbar-cart span {
+            color: #fff;
+            font-size: x-small;
+        }
+        .navbar-user span.user-name {
+            font-weight: bold;
+            font-size: x-small;
+            color: #F00;
+        }
+        .navbar-user span.user-coin {
+            font-weight: bold;
+            color: #F7A71E;
+            font-size: large;
+        }
+        .navbar-user-profile img {
+            padding: 3px;
+            border: 1px solid #B3B3B3;
+        }
+        .navbar-user-profile {
+            padding-top: 8px;
+            padding-right: 20px;
+            padding-bottom: 5px;
+        }
+        .badge-white {
+            background-color: #FFF;
+            color: #000;
+            border: 1px solid #000;
+        }
+        .badge-orange {
+            background-color: #ee5b36;
+            color: #FFF;
+        }
+        .label-white {
+            background-color: #6d565f;
+            color: #FFF;
+            border: 1px solid #FFF;
+        }
+        .dropdown-menu li {
+            padding-left: 10px;
+            width: 200px;
+        }
+
+        .filter-coin{
+            position: absolute;
+            /*top: 0;*/
+            margin-top: auto;
+            left: 0;
+            width: 100%;
+            height: 90%;
+
+            background-color: black;
+            opacity: 0.8;
+
+            z-index: 2;
+        }
+
+            .text-filter{
+                font-family: 'Kanit', sans-serif;
+                font-size: 40px;
+                color: white;
+
+                position: absolute;
+                /*top: 0;*/
+                margin-top: auto;
+                left: 0;
+                width: 100%;
+                height: 90%;
+
+                /*background-color: #2ab27b;*/
+                z-index: 3;
+            }
+        .img-maincoin{
+            position: absolute;
+            width: 100%;
+            height: 90%;
+              background-color: #2ab27b;
+        }
         @media screen and (max-width: 768px) {
             .main_content{
                 display: inline;
@@ -952,52 +1058,84 @@
                 width: 100%;
             }
         }
+
+
     </style>
 
 </head>
 <body>
 
-{{--coin--}}
+{{--title bar--}}
+<div class="container-fluid">
+    <div class="navbar-header" align="center">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-<!--title 1 menu-->
-<div class="section_main section3" style="background-color: transparent;font-size: 30px;padding: 15px">
-
-        <div style="color: #f8931f">
-            <b>Coin Shop</b>
-        </div>
-
-
-    <button type="button" class="btn btn-default">Default</button>
-    <div class="btn-group">
-        <button type="button" class="btn btn-info">Apple</button>
-        <button type="button" class="btn btn-default">Samsung</button>
-        <button type="button" class="btn btn-default">Sony</button>
+        <a class="navbar-brand" href="https://wezync.com">
+            <img src="https://wezync.com/images/logo.png" height="28">
+        </a>
     </div>
-    <button type="button" class="btn btn-default">Default</button>
+    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
 
+            <li><a href="https://wezync.com/login">Login</a></li>
+            <li><a href="https://wezync.com/register">Register</a></li>
+        </ul>
+    </div>
 </div>
 
-<div class="section_main" >
-    <div class="main_content">
-        <div class="content_1" >Hot promotion
-            <img style="padding-bottom: 10px;height: 500px" src="https://emages.eventshigh.com/2017/1/16/img_7faee67d0933d91f2a9f09f3cfbd3942_1484539671575_processed_original.png" alt="" class="img-responsive">
-            <button type="button" class="btn btn-default">Default</button>
-            <button type="button" class="btn btn-info">Default</button>
-        </div>
-        <div class="content_2">
-            <div >Sale itemp</div>
-            <div style="padding-bottom: 10px;">
-                <img style="padding-bottom: 10px;height: 224px" src="https://calendar.fiu.edu/wp-content/uploads/2016/02/Badminton.jpg" alt="" class="img-responsive">
-                <button type="button" class="btn btn-default">Default</button>
-                <button type="button" class="btn btn-info">Default</button>
-            </div>
-            <div style="padding-bottom: 10px;">
-                <img style="padding-bottom: 10px;height: 224px" src="https://calendar.fiu.edu/wp-content/uploads/2016/02/Badminton.jpg" alt="" class="img-responsive">
-                <button type="button" class="btn btn-default">Default</button>
-                <button type="button" class="btn btn-info">Default</button>
-            </div>
-        </div>
-    </div>
+{{--filter--}}
+<div class="flex-center full-heigh filter-coin"></div>
+<div class="text-filter flex-center full-heigh">
+    แล้วพบกันเร็ว ๆ นี้
+</div>
+
+{{--coin--}}
+{{--<div class="section_main section3" style="background-color: transparent;font-size: 30px;padding: 15px">--}}
+
+    {{--<div style="color: #f8931f">--}}
+            {{--<b>Coin Shop</b>--}}
+        {{--</div>--}}
+
+    {{--<button type="button" class="btn btn-default">Default</button>--}}
+    {{--<div class="btn-group">--}}
+        {{--<button type="button" class="btn btn-info">Apple</button>--}}
+        {{--<button type="button" class="btn btn-default">Samsung</button>--}}
+        {{--<button type="button" class="btn btn-default">Sony</button>--}}
+    {{--</div>--}}
+    {{--<button type="button" class="btn btn-default">Default</button>--}}
+
+{{--</div>--}}
+{{--<div class="section_main" >--}}
+    {{--<div class="main_content">--}}
+        {{--<div class="content_1" >Hot promotion--}}
+            {{--<img style="padding-bottom: 10px;height: 500px" src="https://emages.eventshigh.com/2017/1/16/img_7faee67d0933d91f2a9f09f3cfbd3942_1484539671575_processed_original.png" alt="" class="img-responsive">--}}
+            {{--<button type="button" class="btn btn-default">Default</button>--}}
+            {{--<button type="button" class="btn btn-info">Default</button>--}}
+        {{--</div>--}}
+        {{--<div class="content_2">--}}
+            {{--<div >Sale itemp</div>--}}
+            {{--<div style="padding-bottom: 10px;">--}}
+                {{--<img style="padding-bottom: 10px;height: 224px" src="https://calendar.fiu.edu/wp-content/uploads/2016/02/Badminton.jpg" alt="" class="img-responsive">--}}
+                {{--<button type="button" class="btn btn-default">Default</button>--}}
+                {{--<button type="button" class="btn btn-info">Default</button>--}}
+            {{--</div>--}}
+            {{--<div style="padding-bottom: 10px;">--}}
+                {{--<img style="padding-bottom: 10px;height: 224px" src="https://calendar.fiu.edu/wp-content/uploads/2016/02/Badminton.jpg" alt="" class="img-responsive">--}}
+                {{--<button type="button" class="btn btn-default">Default</button>--}}
+                {{--<button type="button" class="btn btn-info">Default</button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
+
+{{--wallpaper--}}
+<div class="img-maincoin">
+    <img src="{{ URL::asset('img/aaa.jpg') }}" alt="" style='height: 100%; width: 100%; object-fit: fill;filter: blur(3px)'>
 </div>
 
 </body>

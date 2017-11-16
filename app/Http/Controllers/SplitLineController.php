@@ -37,9 +37,9 @@ class SplitLineController extends Controller
     public function split($event_id)
     {
         $event = Event::get_detail($event_id);
-        if(Auth::guest() || $event->event_user_id != Auth::user()->id){
-            return redirect()->to('/');
-        }
+        // if(Auth::guest() || $event->event_user_id != Auth::user()->id){
+        //     return redirect()->to('/');
+        // }
         if(count(LineTeam::where('line_event_id','=',$event_id)->get())){
             echo "Please delete data in 'line_team', 'match' and 'set_match' bye";
             die();
@@ -93,8 +93,8 @@ class SplitLineController extends Controller
             // }
         }
 
-        $this->run_match($event_id);
-        $this->run_match_knockout($event_id);
+        // $this->run_match($event_id);
+        // $this->run_match_knockout($event_id);
         return redirect()->to('/');
     }
 

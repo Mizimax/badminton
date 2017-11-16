@@ -374,8 +374,8 @@ class EventController extends Controller
             "special_event_member_special_event_id" => $event_id
         ];
         $user = SpecialEventMember::where("special_event_member_user_id",$user_id)
-        ->where("special_event_member_special_event_id",$event_id)->get();
-        if($user){
+        ->where("special_event_member_special_event_id",$event_id)->first();
+	if($user){
             return redirect('event_detail/'.$event_id)->with('message','ท่านเคยลงทะเบียนรายการนี้แล้ว');
         }
         SpecialEventMember::register($data);

@@ -122,7 +122,12 @@ class EventController extends Controller
         $knock = Match::get_knockout_by_event_and_race($event_id, $race_id);
         $round_knockout = [];
         $number_match_knockout = [];
-        $max = $list_race[0]->max_register * 2 /3;
+        if($race_id == 21){
+            $max = 8;
+        }else{
+            $max = 16;
+        }
+        // $max = count($knock)/3;
         while($max>4){
             $round_knockout[] = "รอบ " .$max ." ทีม";
             $number_match_knockout[] = $max/2;
@@ -323,8 +328,14 @@ class EventController extends Controller
         $round_knockout = [];
         $number_match_knockout = [];
         foreach($list_race as $race){
-            if($race->race_id ==$race_id){
-                $max = $race->max_register * 2 /3;
+            // if($race->race_id ==$race_id){
+            //     if
+            //     $max = $race->max_register * 2 /3;
+            // }
+            if($race_id == 21){
+                $max = 8;
+            }else{
+                $max = 16;
             }
         }
         

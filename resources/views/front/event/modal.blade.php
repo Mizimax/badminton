@@ -220,31 +220,50 @@
 
 
 
-<div class="modal fade" id="register_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="special_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+        @if (Auth::guest())
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Login with Fackbook</h4>
             </div>
             <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        กรุณา  Login ก่อนสมัครลงแข่งขัน
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            กรุณา  Login ก่อนสมัครลงแข่งขัน
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                    <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
-                    </div>
-                </div>
-
-                
-
-
-            </div>
             </form>
+        @else
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ลงทะเบียน กิจกรรมพิเศษ</h4>
+            </div>
+            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="/images/events/1/special/1.png" class="img-responsive"  alt="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin:10px">
+                        <div class="col-md-12" align="center">
+                            <a href="{{url('/register_special_event/' . $event->event_id)}}" class="btn btn-primary">ร่วมกิจกรรม</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @endif
+
+            
         </div>
     </div>
 </div>

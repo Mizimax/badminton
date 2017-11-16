@@ -105,7 +105,18 @@
         </div>
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
-        </div>   
+        </div>
+        @if($event->event_id == 1)
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#special_event_modal"> กิจกรรมพิเศษ</button>
+            </div>
+        </div>  
+        @endif
+        <div class="row" style="height:20px;">
+            <div class="col-md-12" align="center"></div>
+        </div>
+         
     
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="detail">

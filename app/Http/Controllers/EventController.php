@@ -11,6 +11,8 @@ use App\Models\LineTeam;
 use App\Models\TeamMember;
 use App\Models\TeamType;
 use App\Models\Match;
+use App\Models\SpecialEventMember;
+use App\Models\SpecialRewards;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -361,4 +363,35 @@ class EventController extends Controller
             ->with('number_match_knockout',$number_match_knockout);
     }
 
+    public function register_special_event($event_id){
+        if($event_id != 1 || Auth::guest()){
+            return redirect()->to('/');
+        }
+        $user_id = Auth::user()->id;
+        $data = [
+            "special_event_member_user_id" => $user_id,
+            "special_event_member_event_id" => $event_id,
+            "special_event_member_special_event_id" => $event_id
+        ];
+        $user = SpecialEventMember::where("special_event_member_user_id",$user_id)
+        ->where("special_event_member_special_event_id",$event_id)->get();
+        if($user){
+            return redirect('event_detail/'.$event_id)->with('message','ท่านเคยลงทะเบียนรายการนี้แล้ว');
+        }
+        SpecialEventMember::register($data);
+        return redirect('event_detail/'.$event_id)->with('message','ลงทะเบียนเรียบร้อย');
+    }
+
+    public function prize($event_id){
+        $rewards = SpecialRewards::where("special_rewards_evend_id", $event_id)->get();
+        return view('front/event/prize')
+            ->with('rewards',$rewards);
+    }
+
+    public function get_member_special_rewards($event_id)
+    {
+        return SpecialEventMember::select('special_event_member_id','name','user_profile')
+        ->join('users','id','=','special_event_member_user_id')
+        ->where('special_event_member_special_event_id',$event_id)->get();
+    }
 }

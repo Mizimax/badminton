@@ -151,10 +151,10 @@ $(function () {
             if(race_id == ""){
                 return true;
             }
-            if(data[2].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
+            if(data[3].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
                 return true;
             }
-            if(data[3].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
+            if(data[4].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
                 return true;
             }
             return false;

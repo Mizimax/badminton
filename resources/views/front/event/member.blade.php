@@ -1,18 +1,20 @@
 <table id="table-member" class="table table-hover">
     <thead>
         <tr>
+            <th class="col-xs-1" style="text-align:center">no.</th>
             <th class="col-xs-2" style="text-align:center">ทีม</th>
             @for( $order = 1; $order <= $number_of_team; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
             <th class="col-xs-2" style="text-align:center"><strong>อันดับมือ</strong></th>
             <th class="col-xs-2" style="text-align:center"><strong>สถานะประเมิน</strong></th>
-            <th class="col-xs-2" style="text-align:center"><strong>ชำระเงิน</strong></th>
+            <th class="col-xs-1" style="text-align:center"><strong>ชำระเงิน</strong></th>
         </tr>
     </thead>
     <tbody>
         @foreach($members as $key=>$data)
         <tr>
+            <td>{{$key+1}}</td>
             <td style="text-align:center">
                 {{$data['team_name']}}
             </td>

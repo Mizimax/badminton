@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Match extends Model
 {
     protected $table = 'match';
+    protected $primaryKey = 'match_id';
 
     public static function get_match_by_event_and_race($event_id,$race_id){
         $result = [];

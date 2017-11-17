@@ -37,6 +37,9 @@ class TVController extends Controller
             case 3 :
                 return '<img src="/images/events/1/special/3.png" class="img-responsive"  alt="">';
                 break;
+            case 4 :
+                return '<img src="/images/events/1/special/4.png" class="img-responsive"  alt="">';
+                break;
         }
     }
 }

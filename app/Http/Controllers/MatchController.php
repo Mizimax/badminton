@@ -101,26 +101,24 @@ class MatchController extends Controller
         }
         $size_of_url = sizeof($url);
         $pic = 1;
-        for($i=1;$i<$size_of_url;$i++){
-            if($i%7==0){
-                array_splice( $url, $i, 0, ['/news_special_event/'.$pic] );
-                if($pic < 3){
+        
+        
+        for($i=1;$i<=$size_of_url;$i++){
+            if($i%4==0){
+                array_splice( $url, $i, 0, ['/news_special_eventa/'.$pic] );
+                if($pic < 4){
                     $pic++;
                 }else{
                     $pic = 1;
                 }
             }
-
         }
-
-        for($i=1;$i<$size_of_url;$i++){
-            if($i%4==0){
+        $size_of_url = sizeof($url);
+        for($i=1;$i<=$size_of_url;$i++){
+            if($i%6==0){
                 array_splice( $url, $i, 0, ['/show_court/'.$event_id] );
             }
-
         }
-        
-        
         return $url;
     }
 

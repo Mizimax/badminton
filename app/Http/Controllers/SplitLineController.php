@@ -55,7 +55,7 @@ class SplitLineController extends Controller
             $members = Team::select('team_name','team_id')
             ->where("team_event_id",$event_id)
             ->where('team_race','=',$race_id)
-            ->where('team_payment','=',1)
+            ->where('team_status','=',2)
             ->get()
             ;
 
@@ -191,19 +191,26 @@ class SplitLineController extends Controller
     }
 
     public function run_match_knockout($event_id){
+        echo "<pre>";
         $court = 11;
         $num = 1;
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
-        $time = 38;
+        $time = 31;
         $rank =[];
         foreach($raw_race as $race){
             $race->knockout = [];
             $all_line = LineTeam::select('line_name','line_team_id')
             ->where('line_event_id','=',$event_id)
             ->where('line_race_id','=',$race->race_id)
+            ->where('line_team_id','!=','[]')
             ->get()->toArray();
-            $num_team = $race->count*2/3;
+            if($race->race_id==21){
+                $num_team = 8;
+            }else{
+                $num_team = 16;
+            }
+            //$race->count*2/3;
             $rank[$race->race_id] = $num_team;
             foreach($all_line as $line){
                 $race->knockout[] = 'ที่ 1 สาย ' . $line['line_name'];
@@ -227,7 +234,10 @@ class SplitLineController extends Controller
                     'match_type' => 'KNOCKOUT'
                 ];
                 $num++;
-                Match::insert($data);
+                // if($race->race_id ==30){
+                //     var_dump($data);
+                    Match::insert($data);
+                // }
                 if($num%$court == 0){
                     $time += 1;
                 }
@@ -276,7 +286,11 @@ class SplitLineController extends Controller
                             'match_type' => 'KNOCKOUT'
                         ];
                         $num++;
-                        Match::insert($data);
+                        // if($k == 30){
+                        //     var_dump($data);
+                            Match::insert($data);
+                        // }
+                        
                         if($num%$court == 0){
                             $time += 1;
                             if($time > 48){
@@ -294,6 +308,6 @@ class SplitLineController extends Controller
             }
             $max=$tmp;
         }
-        $this->run_set_knockout($event_id);
+        // $this->run_set_knockout($event_id);
     }
 }

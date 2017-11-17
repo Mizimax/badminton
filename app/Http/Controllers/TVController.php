@@ -25,4 +25,18 @@ class TVController extends Controller
     public function tv($event_id){
         return view('front/tv/index');
     }
+
+    public function news_special_event($pic){
+        switch($pic){
+            case 1 :
+                return '<img src="/images/events/1/special/1.png" class="img-responsive"  alt="">';
+                break;
+            case 2 :
+                return '<img src="/images/events/1/special/2.png" class="img-responsive"  alt="">';
+                break;
+            case 3 :
+                return '<img src="/images/events/1/special/3.png" class="img-responsive"  alt="">';
+                break;
+        }
+    }
 }

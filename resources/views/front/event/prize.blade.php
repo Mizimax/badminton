@@ -12,12 +12,12 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/prize.js?'.time()) }}"></script>
 </head>
-<body>
+<body style="background: url(/images/events/1/special/bg.jpg) no-repeat ;background-size: cover;">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container-fluid">
+        
+            <div class="container-fluid" >
                 
-                <div class="row" style="margin:10px">
+                <div class="row" style="margin:100px">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4" align="center">
                         
@@ -49,7 +49,7 @@
                     </select>
                     <input class="hidden" id="user_id" name="user_id" value="0">
                     <br>
-                    <button class="btn btn-primary">ยืนยัน</button>
+                    
                     </div>
                     <div class="col-xs-4"></div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="col-xs-4"></div>
                 </div>
             </div>
-        </nav>
+        
     </div>
 </body>
 </html>

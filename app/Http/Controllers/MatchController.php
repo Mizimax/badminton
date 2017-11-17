@@ -92,16 +92,35 @@ class MatchController extends Controller
         foreach($raw_race as $race){
             $all_race[] = $race->race_id;
         };
-
-        // $all_race);
-        // echo "<pre>";
         $lines = LineTeam::whereIn('line_race_id',$all_race)->where('line_event_id',$event_id)->get()->toArray();
-        $url = [];
+        $url = ['/show_court/'.$event_id];
         foreach($lines as $line){
             if($line['line_team_id'] != '[]'){
                 $url[] = "/show_line/".$event_id."/".$line['line_race_id']."/".$line['line_name'];
             }
         }
+        $size_of_url = sizeof($url);
+        $pic = 1;
+        for($i=1;$i<$size_of_url;$i++){
+            if($i%7==0){
+                array_splice( $url, $i, 0, ['/news_special_event/'.$pic] );
+                if($pic < 3){
+                    $pic++;
+                }else{
+                    $pic = 1;
+                }
+            }
+
+        }
+
+        for($i=1;$i<$size_of_url;$i++){
+            if($i%4==0){
+                array_splice( $url, $i, 0, ['/show_court/'.$event_id] );
+            }
+
+        }
+        
+        
         return $url;
     }
 
@@ -146,15 +165,18 @@ class MatchController extends Controller
         }
         foreach($result_match[$line_name] as $team_1 =>$a){
             ksort($result_match[$line_name][$team_1]);
+            ksort($result_match[$line_name]);
         }
-        foreach($team_math as $line_name => $line){
+        foreach($team_math as $k => $line){
             $i=0;
             $color_circle = ['ed3833','fcef4f','42abe2','c7b299'];
             foreach($line as $team => $member){
-                $color_team[$line_name][$team] = $color_circle[$i];
+                $color_team[$k][$team] = $color_circle[$i];
                 $i++;
             }
         }
+        ksort($team_math[$line_name]);
+
         return view('front/event/match_table')
         ->with('result_match',$result_match)
         ->with('race_name',$race_name)

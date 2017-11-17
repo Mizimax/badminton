@@ -51,9 +51,11 @@ class Match extends Model
             $list_team_2[$team] = self::select('match_id')->where("match_team_2",'=',$team)->pluck('match_id')->toArray();
             $score_1 = SetMatch::select('set_score_team_1')
                 ->whereIn('set_match_id',$list_team_1[$team])
+                ->where('set_score_team_1','!=',0)
                 ->pluck('set_score_team_1')->toArray();
             $score_2 = SetMatch::select('set_score_team_2')
                 ->whereIn('set_match_id',$list_team_2[$team])
+                ->where('set_score_team_2','!=',0)
                 ->pluck('set_score_team_2')->toArray();
             $score = 0;
             foreach($score_1 as $s){
@@ -64,7 +66,7 @@ class Match extends Model
             }
             $list_math = array_merge($list_team_1[$team],$list_team_2[$team]);
             $result[$team]['total'] = count(SetMatch::whereIn('set_match_id',$list_math)->where('set_team_win',$team)->get());
-            $result[$team]['score'] = $score.'/'.((count($score_1)*21)+(count($score_2)*21));
+            $result[$team]['score'] = $score-((count($score_1)*21)+(count($score_2)*21));
         }
         return $result;
     }

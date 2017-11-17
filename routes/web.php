@@ -44,3 +44,4 @@ Route::get('/show_court/{event_id}', 'TVController@show_court')->name('show_cour
 Route::get('/tv/{event_id}', 'TVController@tv')->name('tv');
 Route::get('/show_table_match/{event_id}', 'MatchController@show_table_match')->name('show_table_match');
 Route::get('/show_line/{event_id}/{race_id}/{line_name}', 'MatchController@show_line')->name('show_line');
+Route::get('/news_special_event/{event_id}', 'TVController@news_special_event')->name('news_special_event');

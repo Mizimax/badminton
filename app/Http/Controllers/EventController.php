@@ -377,11 +377,15 @@ class EventController extends Controller
     public function register_special_event($event_id){
         if($event_id != 1 || Auth::guest()){
             return redirect()->to('/');
-        if($event_id != 2 || Auth::guest()){
-                return redirect()->to('/');
-        if($event_id != 1 || Auth::guest()){
-                    return redirect()->to('/');
+
+        }if($event_id != 2 || Auth::guest()){
+            return redirect()->to('/');
+
+        }if($event_id != 3 || Auth::guest()){
+            return redirect()->to('/');
+
         }
+
         $user_id = Auth::user()->id;
         $data = [
             "special_event_member_user_id" => $user_id,

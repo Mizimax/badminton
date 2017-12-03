@@ -68,7 +68,7 @@ class EventController extends Controller
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
-        
+
         $result_match = [];
         $team_math = [];
         $score_team = [];
@@ -96,7 +96,7 @@ class EventController extends Controller
                     unset($m['set_id']);
                     $result_match[$line][$m['match_team_1']][$m['match_team_2']] = $m;
                     $result_match[$line][$m['match_team_2']][$m['match_team_1']] = $m;
-                    
+
                 }
                 $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
@@ -139,7 +139,7 @@ class EventController extends Controller
         $number_match_knockout[] = $max/4;
 
         $knock_match = [];
-        
+
         foreach($knock as $match){
                 $score = [
                     'set_score_team_1' => $match['set_score_team_1'],
@@ -197,7 +197,7 @@ class EventController extends Controller
         $input = Input::all();
         $team_name = $input['team_name'];
         $race = $input['race'];
-        
+
         $team_id = Team::create([
             "team_name" => $team_name,
             "team_event_id" => $input['event_id'],
@@ -250,10 +250,10 @@ class EventController extends Controller
     {
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
-        
+
         $race_name = Race::where('race_id',$race_id)->first()->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
-        
+
         $result_match = [];
         $team_math = [];
         $score_team = [];
@@ -281,7 +281,7 @@ class EventController extends Controller
                     unset($m['set_id']);
                     $result_match[$line][$m['match_team_1']][$m['match_team_2']] = $m;
                     $result_match[$line][$m['match_team_2']][$m['match_team_1']] = $m;
-                    
+
                 }
                 $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
@@ -338,7 +338,7 @@ class EventController extends Controller
                 $max = 16;
             }
         }
-        
+
         while($max>4){
             $round_knockout[] = "รอบ " .$max ." ทีม";
             $number_match_knockout[] = $max/2;
@@ -350,7 +350,7 @@ class EventController extends Controller
         $number_match_knockout[] = $max/4;
 
         $knock_match = [];
-        
+
         foreach($knock as $match){
                 $score = [
                     'set_score_team_1' => $match['set_score_team_1'],
@@ -377,6 +377,10 @@ class EventController extends Controller
     public function register_special_event($event_id){
         if($event_id != 1 || Auth::guest()){
             return redirect()->to('/');
+        if($event_id != 2 || Auth::guest()){
+                return redirect()->to('/');
+        if($event_id != 1 || Auth::guest()){
+                    return redirect()->to('/');
         }
         $user_id = Auth::user()->id;
         $data = [

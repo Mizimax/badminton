@@ -44,26 +44,26 @@
                 <div class="box">
                     <div class="row" align="center" style="padding:10px;">
                         <div class="col-sm-6 col-xs-12 " style="vertical-align: middle; padding: 0 5px 0 5px">
-                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="width: 100%;max-height:290px;">
+                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="width: 100%;max-height:270px;">
                         </div>
                         <div class="col-sm-6 col-xs-12 remove-padding">
                             <div class="row">
-                                <div class="col-sm-12 remove-padding">
-                                    <h2 class="remove-padding" style="color: black; font-weight: 900">{{$event['event_title']}}</h2>
-                                    <span>ผู้จัด: </span><span style="text-decoration: underline;">{{$event['event_description']->by}}</span>
+                                <div class="col-sm-12 remove-padding" style="margin-top: 15px">
+                                    <h2 class="remove-padding" style="color: black; font-weight: 900; font-size: 26px">{{$event['event_title']}}</h2>
+                                    <span class="font-small">ผู้จัด: </span><span class="font-small" style="text-decoration: underline; color:black">{{$event['event_description']->by}}</span>
                                 </div>
                             </div>
                             
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 remove-padding">
-                                    <span style="color:#f11010">{{$event['event_description']->date}}</span>
+                                    <span class="font-med" style="color:#f11010;font-weight: bold">{{$event['event_description']->date}}</span>
                                     @if($event['day_left_text'] > 0)
                                         <span class='label label-white'>เหลืออีก  {{$event['day_left']}} วัน</span>
                                     @else
                                         <span class='label label-default'>รายการเสร็จสิ้น</span>
                                     @endif<br>
-                                    <span>สนามแบด: <a target="_blank" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span><br>
+                                    <span class="font-med">สนามแบด: <a target="_blank" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span><br>
                                 </div>
                             </div>
                             <div class="row">
@@ -79,10 +79,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-11 text-right  remove-padding">
-                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue btn-slim" style="margin-bottom:10px">รายละเอียด</a><br>
+                                <div class="col-sm-11 text-right  remove-padding notop">
+                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom">รายละเอียด</a>
                                     @if( $event['event_status'] == 1)
-                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="btn btn-blue-white btn-slim" style="margin-bottom:10px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button><br>
+                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim margin-bottom" style="width: 120px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
                                     @else
                                     <button type="button" class="btn btn-brown btn-slim">ผลการแข่ง</button>
                                     @endif

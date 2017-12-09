@@ -42,8 +42,8 @@
             <div class="box-container">
                 @foreach ($events as $event)
                 <div class="box">
-                    <div class="row" align="center" style="padding:10px;">
-                        <div class="col-sm-6 col-xs-12 " style="vertical-align: middle; padding: 0 5px 0 5px">
+                    <div class="row padding" align="center">
+                        <div class="col-sm-6 col-xs-12 padding-side" style="vertical-align: middle;">
                         <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="width: 100%;max-height:270px;">
                         </div>
                         <div class="col-sm-6 col-xs-12 remove-padding">

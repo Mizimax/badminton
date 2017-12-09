@@ -211,7 +211,7 @@ hr{
 }
 
 .notop {
-    margin: 10px 0;
+    margin: 10px 10px;
 }
 
 @media (min-width: 768px) {
@@ -324,7 +324,27 @@ hr{
   color: #fff;
 }
 
-@media (max-width:1691px) and (min-width:1128px) {
+.padding {
+    padding: 10px;
+}
+
+.padding-side {
+    padding: 0 5px 0 5px
+}
+
+@media (max-width: 767px) {
+    .box-container {
+        margin: 5px;
+    }
+    .padding {
+        padding: 0;
+    }
+    .padding-side {
+        padding: 0;
+    }
+}
+
+@media (max-width:1691px) and (min-width:1145px) {
     .box:last-child {
         transform:  translateX(-50%) translateX(-10px);
     }

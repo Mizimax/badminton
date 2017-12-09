@@ -2,7 +2,7 @@
 
 @section('content')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-    <div class="row" style="background-color:#000">
+    <div class="row" style="background-color:#000; position: relative;">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -19,7 +19,7 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                                <img src="{{$sponsor['sponsor_image']}}">
+                                <img src="{{$sponsor['sponsor_image']}}" style="width: 100%">
                                     <div class="carousel-caption">
                                     </div>
                             </div>
@@ -36,20 +36,20 @@
         </div>
         <div class="col-sm-1"></div>
     </div>
-    <div class="row" style="background-color:#f7f9fc">
+    <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10 remove-padding">
-            <div class="row">
+        <div class="col-sm-10 remove-padding" style="margin: 0 auto;">
+            <div class="box-container">
                 @foreach ($events as $event)
-                <div class="col-sm-12 col-md-6 event-list remove-padding">
-                    <div class="row" style="padding:10px;">
-                        <div class="col-sm-6 col-xs-12 " style="vertical-align: middle">
-                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="max-height:300px">
+                <div class="box">
+                    <div class="row" align="center" style="padding:10px;">
+                        <div class="col-sm-6 col-xs-12 " style="vertical-align: middle; padding: 0 5px 0 5px">
+                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="width: 100%;max-height:290px;">
                         </div>
                         <div class="col-sm-6 col-xs-12 remove-padding">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding">
-                                    <h2 class="remove-padding">{{$event['event_title']}}</h2>
+                                    <h2 class="remove-padding" style="color: black; font-weight: 900">{{$event['event_title']}}</h2>
                                     <span>ผู้จัด: </span><span style="text-decoration: underline;">{{$event['event_description']->by}}</span>
                                 </div>
                             </div>
@@ -80,11 +80,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-11 text-right  remove-padding">
-                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue" style="margin-bottom:10px">รายละเอียด</a><br>
+                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue btn-slim" style="margin-bottom:10px">รายละเอียด</a><br>
                                     @if( $event['event_status'] == 1)
-                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="btn btn-blue-white" style="margin-bottom:10px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button><br>
+                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="btn btn-blue-white btn-slim" style="margin-bottom:10px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button><br>
                                     @else
-                                    <button type="button" class="btn btn-brown">ผลการแข่ง</button>
+                                    <button type="button" class="btn btn-brown btn-slim">ผลการแข่ง</button>
                                     @endif
                                 </div>
                             </div>

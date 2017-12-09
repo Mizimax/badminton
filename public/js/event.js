@@ -139,7 +139,7 @@ function fnCreateSelect( aData )
 
 
 
-$(function () {
+$(document).ready(function(){
     
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {

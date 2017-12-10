@@ -348,5 +348,11 @@ hr{
     .box:last-child {
         transform:  translateX(-50%) translateX(-10px);
     }
+    .box:nth-child(odd):not(:last-child) {
+        transform:  translateX(0);
+    }
+    .box:nth-child(even) {
+        transform:  translateX(0);
+    }
 }​
 

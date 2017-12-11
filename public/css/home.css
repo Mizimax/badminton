@@ -324,6 +324,88 @@ hr{
   color: #fff;
 }
 
+#calendar {
+    margin-top: 10px;
+    display: none;
+}
+
+#calendar .button {
+    background: #31982F;
+    border-radius: 15px;
+    padding: 10px 0;
+    border: 0;
+    width: 450px;
+    max-width: 93%;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    #filter {
+        display: none;
+    }
+    #calendar {
+        display: block;
+    }
+}
+
+.items {
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin-top: 20px;
+}
+
+.item {
+    margin: 0 5px;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #888;
+    background: white;
+    width: 129.75px;
+    padding: 3px 0;
+    color: #888;
+}
+
+.input .fa-table {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.color-black {
+    color: black;
+}
+
+.font-big {
+    font-size: 18px;
+}
+
+.display {
+    flex: 2 0 auto;
+}
+
+.icon.dropdown {
+    transform: translate(-13px, 1px);
+}
+
+.icon.date {
+    font-size: 16px;
+    width: 16px;
+}
+
 .padding {
     padding: 10px;
 }

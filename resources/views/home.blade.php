@@ -19,7 +19,7 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                                <img src="{{$sponsor['sponsor_image']}}" style="width: 100%">
+                                <img src="{{$sponsor['sponsor_image']}}" class="header">
                                     <div class="carousel-caption">
                                     </div>
                             </div>
@@ -39,6 +39,28 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10 remove-padding" style="margin: 0 auto;">
+
+            <!-- pc -->
+            <div id="filter" class="items font-med font-bold" align="center">
+                <div class="item">
+                    สถานะแข่งขัน <br>
+                    <button class="input"><span class="display">ทุกรูปแบบ</span> <span class="icon dropdown">▼</span></button>
+                </div>
+                <div class="item">
+                    วันที่แข่งขัน <br>
+                    <button class="input"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><i class="fa fa-table" aria-hidden="true"></i></span></button>
+                </div>
+                <div class="item">
+                    เลือกมือ <br>
+                    <button class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></button>
+                </div>
+            </div>
+
+            <!-- mobile -->
+            <div id="calendar" align="center">
+                <button class="button is-success font-bold font-big"><i style="margin-right: 15px" class="fa fa-table" aria-hidden="true"></i> ปฏิทินการแข่งขัน</button>
+            </div>
+
             <div class="box-container">
                 @foreach ($events as $event)
                 <div class="box">

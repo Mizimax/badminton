@@ -202,13 +202,6 @@ hr{
 
 .img-center {margin:0 auto;}
 
-.font-small {
-    font-size: 12px;
-}
-
-.font-med {
-    font-size: 13px;
-}
 
 .notop {
     margin: 10px 10px;
@@ -363,42 +356,11 @@ hr{
     cursor: pointer;
 }
 
-.input {
-    position: relative;
-    display: flex;
-    border-radius: 5px;
-    border: 1px solid #888;
-    background: white;
-    width: 129.75px;
-    padding: 3px 0;
-    color: #888;
-}
-
-.input .fa-table {
+.input .glyphicon-calendar {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-}
-
-.font-bold {
-    font-weight: bold;
-}
-
-.color-black {
-    color: black;
-}
-
-.font-big {
-    font-size: 18px;
-}
-
-.display {
-    flex: 2 0 auto;
-}
-
-.icon.dropdown {
-    transform: translate(-13px, 1px);
 }
 
 .icon.date {

@@ -1,7 +1,7 @@
+<div class="table-responsive">
 <table id="table-member" class="table table-hover">
     <thead>
         <tr>
-            <th class="col-xs-1" style="text-align:center">no.</th>
             <th class="col-xs-2" style="text-align:center">ทีม</th>
             @for( $order = 1; $order <= $number_of_team; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
@@ -14,8 +14,7 @@
     <tbody>
         @foreach($members as $key=>$data)
         <tr>
-            <td>{{$key+1}}</td>
-            <td style="text-align:center">
+            <td style="text-align:center; font-weight: bold">
                 {{$data['team_name']}}
             </td>
             @for( $order = 0; $order < $number_of_team; $order++)
@@ -41,10 +40,13 @@
             </td>
             <td style="text-align:center">
             @if($data['team_payment'] == 1)
-                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047"></span>
+                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
+            @elseif($data['team_status'] == 3)
+                <img style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
             @endif
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+</div>

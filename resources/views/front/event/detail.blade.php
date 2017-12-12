@@ -1,4 +1,5 @@
- 
+<br>
+<div class="detail-container">
         <div class="row">
             <div class="col-md-12 description">
                 <span class="glyphicon glyphicon-map-marker" style="color:#ee5b36"></span>
@@ -196,4 +197,4 @@
                 <br>
             </div>
         </div>
-    
+</div>    

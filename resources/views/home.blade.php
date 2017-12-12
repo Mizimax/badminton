@@ -48,7 +48,7 @@
                 </div>
                 <div class="item">
                     วันที่แข่งขัน <br>
-                    <button class="input"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><i class="fa fa-table" aria-hidden="true"></i></span></button>
+                    <button class="input"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><span class="glyphicon glyphicon-calendar"></span></button>
                 </div>
                 <div class="item">
                     เลือกมือ <br>

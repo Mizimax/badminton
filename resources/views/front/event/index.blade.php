@@ -2,9 +2,9 @@
 @section('content')
 <link href="{{ asset('css/event.css?'.time()) }}" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<div class="row cover">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+<div class="row cover cover2" image-bg="{{$covers[0]}}">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" style="padding: 0">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 @foreach ($covers as $k=>$cover)
@@ -19,13 +19,13 @@
             @foreach ($covers as $k=>$cover)
                 @if ($k==0)
                     <div class="item active">
-                        <img src="{{$cover}}">
+                        <img class="cover-image" src="{{$cover}}" style="width: auto;height: 578px; margin:0 auto;">
                             <div class="carousel-caption">
                             </div>
                     </div>
                 @else
                     <div class="item">
-                    <img src="{{$cover}}">
+                    <img class="cover-image" src="{{$cover}}" style="width: auto; height: 578px; margin:0 auto;">
                         <div class="carousel-caption">
                         </div>
                     </div>
@@ -34,11 +34,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
 </div>
 <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 body-content">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 body-content shadow">
         <div class="row">
             <div class="col-md-12" align="center">
                 <h1>{{$event->event_title}}</h1>
@@ -61,45 +61,31 @@
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
         </div>    
-        <div class="row visible-xs-block">
-            <div class="col-xs-6" align="right">
-                <a href="#detail" id="detail_tab" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
-                    <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
+        <div class="row">
+            <div align="center" class="flex-container">
+                <a href="#detail" id="detail_tab2" >
+                    <div class="detail button-detail is-active">
+                    <img src="/images/events/detail_color.png" height="30"style="margin-bottom:6px;"><br>
                     รายละเอียด
+                    </div>
                 </a>
-                <a href="#member" id="member_tab"  type="button" class="btn btn-tab" aria-controls="member" role="tab" data-toggle="tab" onclick="clicktab('member_tab')">
-                <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
-                    รายชื่อผู้แข่งขัน
+                <a href="#member" id="member_tab2">
+                    <div class="member button-detail">
+                        <img src="/images/events/list-player_color.png" height="30"style="margin-bottom:6px;"><br>
+                        รายชื่อผู้แข่งขัน
+                    </div>
                 </a>
-            </div>
-            <div class="col-xs-6" align="left">
-                <a href="#match" id="match_tab"  type="button" class="btn btn-tab" aria-controls="match" role="tab" data-toggle="tab" onclick="clicktab('match_tab')">
-                <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
-                    สายและการแข่งขัน
+                <a href="#match" id="match_tab2">
+                    <div class="match button-detail" >
+                        <img src="/images/events/match_color.png" height="30"style="margin-bottom:6px;"><br>
+                        สายและการแข่งขัน
+                    </div>
                 </a>
-                <a href="#picture" id="picture_tab"  type="button" class="btn btn-tab" aria-controls="picture" role="tab" data-toggle="tab" onclick="clicktab('picture_tab')">
-                <img src="/images/events/picture.png" height="30"style="margin-bottom:10px;"><br>
+                <a href="#picture" id="picture_tab2">
+                    <div class="picture button-detail">
+                <img src="/images/events/picture_color.png" height="30"style="margin-bottom:6px;"><br>
                     รูปภาพ
-                </a>
-            </div>
-        </div>
-        <div class="row hidden-xs">
-            <div class="col-sm-12" align="center">
-                <a href="#detail" id="detail_tab2" type="button" class="btn btn-tab active" aria-controls="detail" role="tab" data-toggle="tab" onclick="clicktab('detail_tab')">
-                    <img src="/images/events/detail.png" height="30"style="margin-bottom:10px;"><br>
-                    รายละเอียด
-                </a>
-                <a href="#member" id="member_tab2"  type="button" class="btn btn-tab" aria-controls="member" role="tab" data-toggle="tab" onclick="clicktab('member_tab')">
-                <img src="/images/events/list-player.png" height="30"style="margin-bottom:10px;"><br>
-                    รายชื่อผู้แข่งขัน
-                </a>
-                <a href="#match" id="match_tab2"  type="button" class="btn btn-tab" aria-controls="match" role="tab" data-toggle="tab" onclick="clicktab('match_tab')">
-                <img src="/images/events/match.png" height="30"style="margin-bottom:10px;"><br>
-                    สายและการแข่งขัน
-                </a>
-                <a href="#picture" id="picture_tab2"  type="button" class="btn btn-tab" aria-controls="picture" role="tab" data-toggle="tab" onclick="clicktab('picture_tab')">
-                <img src="/images/events/picture.png" height="30"style="margin-bottom:10px;"><br>
-                    รูปภาพ
+                </div>
                 </a>
             </div>
         </div>
@@ -109,35 +95,45 @@
         @if($event->event_id == 1)
         <div class="row">
             <div class="col-md-12" align="center">
-                <button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#special_event_modal"> กิจกรรมพิเศษ</button>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#special_event_modal"> กิจกรรมพิเศษ</button>
             </div>
-        </div>  
-        @endif
-        <div class="row" style="height:20px;">
-            <div class="col-md-12" align="center"></div>
         </div>
+        <br>
+        @endif
          
     
-    <div class="tab-content">
+    <div class="col-md-12 tab-content">
         <div role="tabpanel" class="tab-pane active" id="detail">
             @include('front/event/detail')
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
-        <div class="row">
-        <div class="col-md-3 description">
+            <hr style="margin: 10px 0">
+        <div class="row" style="padding: 10px 20px">
+            <div class="col-xs-3 nopadding" align="center">
+                <div style="display: inline-block;" align="left">
+                <p class="font-med color-black font-bold">อันดับมือ</p>
+                <button class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display">เลือกอันดับ</span> <span class="icon dropdown">▼</span></button>
+                </div>
+                
+                <select style="display: none" id="selector_rank" name="selector_rank" class="form-control" style="transform: translateY(-20%);">
+                <option value="" disabled selected>เลือกอันดับมือ</option>
+                <option value="">All</option>
+                    @foreach ($list_race as $race)
+                            <option value="{{$race->race_name}}">{{$race->race_name}}</option>
+                    @endforeach
+                </select>
+            </div>
 
-            <select id="selector_rank" name="selector_rank" class="form-control">
-            <option value="">All</option>
-                @foreach ($list_race as $race)
-                        <option value="{{$race->race_name}}">{{$race->race_name}}</option>
-                @endforeach
-            </select>
-        </div>
-            <div class="col-md-9 description">
-                @foreach($list_race as $race)
-                    <span class="badge badge-orange">{{$race['race_name']}}</span>
-                    {{$race['max_register']- $race['can_register']}} / {{$race['max_register']}}
-                @endforeach
+            <div class="col-xs-9 nopadding flex-container space-around" style="margin-top:30px">
+
+            @foreach($list_race as $race)
+                
+                    <div>
+                        <span class="badge badge-orange">{{$race['race_name']}}</span>
+                        {{$race['max_register']- $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                    </div>
+                
+            @endforeach
             </div>
         </div>
             @include('front/event/member')
@@ -145,18 +141,21 @@
         <div role="tabpanel" class="tab-pane" id="match">
             @include('front/event/match')
         </div>
-        <div role="tabpanel" class="tab-pane" id="picture">...</div>
+        <div role="tabpanel" class="tab-pane" id="picture" style="height: 500px;"></div>
+        <br><br>
     </div>
 
 
 
 </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-2"></div>
 </div>
 
-
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('js/event.js?'.time()) }}"></script>
 @include('front/event/modal')
 
+@endsection
+@section('scripts')
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/event.js"></script>
+<script src="/js/sweetalert2.js"></script>
 @endsection

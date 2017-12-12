@@ -13,7 +13,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wezync.css') }}" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -21,14 +20,14 @@
         <div class="menu-content">
             <div class="menu-white coin">
                 <div class="org-icon coin-icon img-circle">
-                    <img src="images/cart.png" class="absolute middle" width="30">
+                    <img src="/images/cart.png" class="absolute middle" width="30">
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
             </div>
             <div class="menu-white org" style="position: relative;">
                 <div class="org-icon img-circle">
-                    <i class="fa fa-user-o middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+                    <i class="glyphicon glyphicon-user middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span class="font-bold font-big">สมัครเป็นผู้จัด</span>
@@ -37,7 +36,7 @@
             <div class="font-white setting font-big">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="font-white menu-link" href="">
-                    <i class="fa fa-cogs" aria-hidden="true" style="margin-right: 20px"></i>ตั้งค่า
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 20px"></span>ตั้งค่า
                 </a>
             </div>
             <div class="logout font-big">
@@ -46,7 +45,7 @@
                 {{ csrf_field() }}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="menu-link" onclick="$('#logout-form').submit();">
-                       <i class="fa fa-sign-out" aria-hidden="true" style="margin-right: 20px"></i>ออกจากระบบ
+                       <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-right: 20px"></span>ออกจากระบบ
                     </a>
                 </form>
             </div>
@@ -170,5 +169,7 @@
             });
         });
     </script>
+
+    @yield('scripts')
 </body>
 </html>

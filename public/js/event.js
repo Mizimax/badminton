@@ -1,3 +1,8 @@
+var bg = $('.cover2[image-bg]');
+var url = bg.attr('image-bg');
+
+document.styleSheets[0].addRule('.cover2:before','background-image: url("'+url+'");');
+
 function selected_sex(sex, order){
     $('#radio_'+sex+order).prop('checked', true);
     switch(sex){
@@ -66,65 +71,25 @@ function clickminitab(tab){
         case 'group':
             $('#group_tab').addClass('active');
             $('#knockout_tab').removeClass('active');
+            $('#knockout').removeClass('active');
+            setTimeout(function(){
+                $('#knockout').css('display', 'none');
+                $('#group').css('display', 'block');
+                $('#group').addClass('active');
+            }, 100);
             break;
         case 'knockout':
             $('#knockout_tab').addClass('active');
             $('#group_tab').removeClass('active');
+            $('#group').removeClass('active');
+            setTimeout(function(){
+                $('#group').css('display', 'none');
+                $('#knockout').css('display', 'block');
+                $('#knockout').addClass('active');
+            }, 100);
             break;
     }
 }
-
-function clicktab(tab){
-    switch(tab){
-        case 'detail_tab':
-                $('#detail_tab').addClass('active');
-                $('#member_tab').removeClass('active');
-                $('#match_tab').removeClass('active');
-                $('#picture_tab').removeClass('active');
-                $('#detail_tab2').addClass('active');
-                $('#member_tab2').removeClass('active');
-                $('#match_tab2').removeClass('active');
-                $('#picture_tab2').removeClass('active');
-                break;
-        case 'member_tab':
-                $('#detail_tab').removeClass('active');
-                $('#member_tab').addClass('active');
-                $('#match_tab').removeClass('active');
-                $('#picture_tab').removeClass('active');
-                $('#detail_tab2').removeClass('active');
-                $('#member_tab2').addClass('active');
-                $('#match_tab2').removeClass('active');
-                $('#picture_tab2').removeClass('active');
-                break;
-        case 'match_tab':
-                $('#detail_tab').removeClass('active');
-                $('#member_tab').removeClass('active');
-                $('#match_tab').addClass('active');
-                $('#picture_tab').removeClass('active');
-                $('#detail_tab2').removeClass('active');
-                $('#member_tab2').removeClass('active');
-                $('#match_tab2').addClass('active');
-                $('#picture_tab2').removeClass('active');
-                break;
-
-        case 'picture_tab':
-                $('#detail_tab').removeClass('active');
-                $('#member_tab').removeClass('active');
-                $('#match_tab').removeClass('active');
-                $('#picture_tab').addClass('active');
-                $('#detail_tab2').removeClass('active');
-                $('#member_tab2').removeClass('active');
-                $('#match_tab2').removeClass('active');
-                $('#picture_tab2').addClass('active');
-                break;
-
-    }
-
-}
-
-
-
-
 
 function fnCreateSelect( aData )
 {
@@ -175,8 +140,36 @@ $(document).ready(function(){
         tb_member.search($(this).val()).draw();
     })
     
-    
-    
+    $('.button-detail').click(function($e) {
+
+        if($(this).hasClass('is-active'))
+            return false;
+        $(this).toggleClass('is-active');
+        $('.button-detail').not(this).removeClass('is-active');
+
+        var active = $('.tab-pane.active');
+        var ele = '#' + $e.currentTarget.classList[0];
+        $(ele).css('display', 'block');
+        $('#group').css('display', 'block');
+        active.removeClass('active');
+        setTimeout(function(){
+            $('.tab-pane').css('display', 'none');
+            if(ele === '#match'){
+                $('#group').css('display', 'block');
+                setTimeout(function(){
+                    $('#group').addClass('active');
+                });
+            }
+            $(ele).css('display', 'block');
+            setTimeout(function(){
+                $(ele).addClass('active');
+            });
+            
+        }, 100)
+
+
+        return false;
+    })
 
 
     $('[data-toggle="tooltip"]').tooltip();  

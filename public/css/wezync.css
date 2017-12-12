@@ -10,6 +10,45 @@ body{
     position: fixed;
 }
 
+.font-bold {
+    font-weight: bold;
+}
+
+.color-black {
+    color: black;
+}
+
+.font-big {
+    font-size: 18px;
+}
+
+.font-small {
+    font-size: 12px;
+}
+
+.font-med {
+    font-size: 13px;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #888;
+    background: white;
+    width: 129.75px;
+    padding: 3px 0;
+    color: #888;
+}
+
+.input .display {
+    flex: 2 0 auto;
+}
+
+.icon.dropdown {
+    transform: translate(-13px, 1px);
+}
+
 .middle {
     top:50%; left: 50%; transform: translate(-50%, -50%);
 }

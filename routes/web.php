@@ -36,9 +36,12 @@ Route::get('/get_knockout/{event_id}/{race_id}', 'EventController@get_knockout')
 Route::get('/register_special_event/{event_id}', 'EventController@register_special_event')->name('register_special_event');
 Route::get('/prize/{event_id}', 'EventController@prize')->name('prize');
 Route::get('/get_member_special_rewards/{event_id}', 'EventController@get_member_special_rewards')->name('get_member_special_rewards');
-Route::get('/add_score/{event_id}', 'MatchController@add_score')->name('add_score');
-Route::get('/search_match/{match_id}', 'MatchController@search_match')->name('search_match');
-Route::post('/edit_score', 'MatchController@edit_score')->name('edit_score');
+
+Route::middleware('OrgAndAdmin')->group(function () {
+  Route::get('/add_score/{event_id}', 'MatchController@add_score')->name('add_score');
+  Route::get('/search_match/{match_id}', 'MatchController@search_match')->name('search_match');
+  Route::post('/edit_score', 'MatchController@edit_score')->name('edit_score');
+});
 
 Route::get('/show_court/{event_id}', 'TVController@show_court')->name('show_court');
 Route::get('/tv/{event_id}', 'TVController@tv')->name('tv');

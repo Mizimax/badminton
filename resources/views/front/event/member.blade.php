@@ -33,16 +33,15 @@
             @elseif ($data['team_status'] == 1)
             <span class="label label-info">{{$data['team_status_name']}}</span>
             @endif
-            @if($data['team_comment'])
-            <a class="badge badge-white" data-toggle="tooltip" data-placement="top" title="{{$data['team_comment']}}" data-original-title="">!</a>
-            @endif
             
             </td>
             <td style="text-align:center">
             @if($data['team_payment'] == 1)
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
             @elseif($data['team_status'] == 3)
-                <img style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+                @if($data['team_comment'])
+                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+                @endif
             @endif
             </td>
         </tr>

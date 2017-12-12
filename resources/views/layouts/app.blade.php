@@ -11,21 +11,21 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/wezync.css') }}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/wezync.css?{{ time() }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <div class="menu-background"></div>
         <div class="menu-content">
-            <div class="menu-white coin">
+            <div class="menu-white coin" onclick="window.location='/coin_shop'">
                 <div class="org-icon coin-icon img-circle">
                     <img src="/images/cart.png" class="absolute middle" width="30">
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
             </div>
-            <div class="menu-white org" style="position: relative;">
+            <div class="menu-white org" style="position: relative;" onclick="window.location='/event/create'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon glyphicon-user middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>

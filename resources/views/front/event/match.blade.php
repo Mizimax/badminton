@@ -33,8 +33,8 @@
 </div>
 @else
 <div class="row">
-    <div class="col-xs-12" align="center">
-        ตารางแบ่งสายจะขึ้นวันที่ {{$event->event_end}}
+    <div class="col-xs-12" align="center" style="height: 200px">
+        <span class="absolute middle">ตารางแบ่งสายจะขึ้นวันที่ {{$event->event_end}}</span>
     </div>
 </div>
 @endif

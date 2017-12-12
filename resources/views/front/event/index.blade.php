@@ -141,7 +141,7 @@
         <div role="tabpanel" class="tab-pane" id="match">
             @include('front/event/match')
         </div>
-        <div role="tabpanel" class="tab-pane" id="picture" style="height: 500px;"></div>
+        <div role="tabpanel" class="tab-pane" id="picture" style="height: 200px;"></div>
         <br><br>
     </div>
 
@@ -156,6 +156,6 @@
 @endsection
 @section('scripts')
 <script src="/js/jquery.dataTables.min.js"></script>
-<script src="/js/event.js"></script>
+<script src="/js/event.js?{{ time() }}"></script>
 <script src="/js/sweetalert2.js"></script>
 @endsection

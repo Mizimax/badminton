@@ -37,6 +37,8 @@ Route::get('/register_special_event/{event_id}', 'EventController@register_speci
 Route::get('/prize/{event_id}', 'EventController@prize')->name('prize');
 Route::get('/get_member_special_rewards/{event_id}', 'EventController@get_member_special_rewards')->name('get_member_special_rewards');
 
+Route::get('/event/create', 'OrgController@createPage')->name('event_create');
+
 Route::middleware('OrgAndAdmin')->group(function () {
   Route::get('/add_score/{event_id}', 'MatchController@add_score')->name('add_score');
   Route::get('/search_match/{match_id}', 'MatchController@search_match')->name('search_match');

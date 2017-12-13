@@ -11,6 +11,12 @@ body, #app{
     box-shadow: 0 1px 7px rgba(0,0,0,.15);
 }
 
+
+.input-dropdown.event {
+    top: 70px;
+    width: 170px;
+}
+
 .btn-red {
     background: #ED1C24;
 }

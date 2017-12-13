@@ -101,74 +101,94 @@ function fnCreateSelect( aData )
     return r+'</select>';
 }
 
+var searchTable = (function(element){
+    var data = selectDropdown(element);
+    if(data == 'ทั้งหมด')
+        data = ''
+    tb_member.search(data).draw();
+})
 
 
 
 $(document).ready(function(){
+
+    var select;
+    var hash;
+
+    $(window).hashchange(function() {
+      hash = window.location.hash;
+      if(hash)
+        select = hash.slice(2,hash.length);
+      else 
+        select = 'detail';
+
+      if($('.'+select).length == 0) 
+        select = 'detail';
+
+      var active = $('.tab-pane.active');
+      active.removeClass('active');
+      $('.button-detail.is-active').removeClass('is-active');
+      $('#group').css('display', 'block');
+      $('.'+select).addClass('is-active');
+      $('#'+select).css('display', 'block');
+      setTimeout(function(){
+
+         $('.tab-pane').css('display', 'none');
+        if('#'+select === '#match'){
+            $('#group').css('display', 'block');
+            setTimeout(function(){
+                $('#group').addClass('active');
+            });
+        }
+        $('#'+select).css('display', 'block');
+        setTimeout(function(){
+            $('#'+select).addClass('active');
+        });
+            
+      },100)
+    })
+     
     
+
+    hash = window.location.hash;
+
+    if(hash)
+        select = hash.slice(2,hash.length);
+    else
+        select = 'detail';
+
+    if($('.'+select).length == 0) 
+        select = 'detail';
+
+    $('#'+select).addClass('active');
+    $('.'+select).addClass('is-active');
+
     $.fn.dataTable.ext.search.push(
         function( settings, data, dataIndex ) {
-            
-            var age =  data[3]; // use data for the age column
-            var rex = /(<([^>]+)>)/ig;
-            race_id = $( "#selector_rank option:checked" ).val();
-            console.log();
-            if(race_id == ""){
+
+            race_id = $( ".input .display" ).html();
+            if(race_id == "ทั้งหมด" || race_id == "เลือกอันดับ"){
                 return true;
             }
             if(data[3].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
-                return true;
-            }
-            if(data[4].replace(/<a.*>.*?<\/a>/ig,'').trim() == race_id){
                 return true;
             }
             return false;
         }
     );
 
-    var tb_member = $('#table-member').DataTable({
+    window.tb_member = $('#table-member').DataTable({
           pageLength: -1,
           bLengthChange: false,
         //   searching: false,
           bSort:false,
           sDom: 't' 
     });
-
-    $('#selector_rank').on('change', function () {
-        console.log($(this).val());
         
-        tb_member.search($(this).val()).draw();
-    })
-    
     $('.button-detail').click(function($e) {
 
         if($(this).hasClass('is-active'))
-            return false;
-        $(this).toggleClass('is-active');
-        $('.button-detail').not(this).removeClass('is-active');
-
-        var active = $('.tab-pane.active');
-        var ele = '#' + $e.currentTarget.classList[0];
-        $(ele).css('display', 'block');
-        $('#group').css('display', 'block');
-        active.removeClass('active');
-        setTimeout(function(){
-            $('.tab-pane').css('display', 'none');
-            if(ele === '#match'){
-                $('#group').css('display', 'block');
-                setTimeout(function(){
-                    $('#group').addClass('active');
-                });
-            }
-            $(ele).css('display', 'block');
-            setTimeout(function(){
-                $(ele).addClass('active');
-            });
-            
-        }, 100)
-
-
-        return false;
+             return false;
     })
 
 

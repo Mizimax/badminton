@@ -30,6 +30,36 @@ body{
     font-size: 13px;
 }
 
+.input-dropdown {
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    z-index: 10;
+    cursor: pointer;
+    background: white;
+    display: none;
+    font-weight: normal;
+}
+
+.input-dropdown.open {
+    display: block;
+}
+
+.item-dropdown {
+    border-bottom: 1px dotted #ccc;
+    padding: 5px;
+    text-align: center;
+}
+
+.item-dropdown:last-child {
+    border: 0;
+}
+
+.item-dropdown:hover {
+    background: #ccc;
+}
+
 .input {
     position: relative;
     display: flex;
@@ -39,6 +69,7 @@ body{
     width: 129.75px;
     padding: 3px 0;
     color: #888;
+    cursor: pointer;
 }
 
 .input .display {

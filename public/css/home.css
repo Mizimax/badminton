@@ -356,6 +356,12 @@ hr{
     cursor: pointer;
 }
 
+.input-dropdown.home {
+  width: 129.75px;
+  top: 75px;
+}
+
+
 .input .glyphicon-calendar {
     position: absolute;
     top: 50%;

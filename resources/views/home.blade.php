@@ -45,14 +45,32 @@
                 <div class="item">
                     สถานะแข่งขัน <br>
                     <button class="input"><span class="display">ทุกรูปแบบ</span> <span class="icon dropdown">▼</span></button>
+                    <div class="input-dropdown home">
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                    </div>
                 </div>
                 <div class="item">
                     วันที่แข่งขัน <br>
                     <button class="input"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><span class="glyphicon glyphicon-calendar"></span></button>
+                    <div class="input-dropdown home">
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                    </div>
                 </div>
                 <div class="item">
                     เลือกมือ <br>
                     <button class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></button>
+                    <div class="input-dropdown home">
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                    </div>
                 </div>
             </div>
 

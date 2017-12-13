@@ -63,25 +63,25 @@
         </div>    
         <div class="row">
             <div align="center" class="flex-container">
-                <a href="#detail" id="detail_tab2" >
-                    <div class="detail button-detail is-active">
+                <a href="#/detail" id="detail_tab2" >
+                    <div class="detail button-detail">
                     <img src="/images/events/detail_color.png" height="30"style="margin-bottom:6px;"><br>
                     รายละเอียด
                     </div>
                 </a>
-                <a href="#member" id="member_tab2">
+                <a href="#/member" id="member_tab2">
                     <div class="member button-detail">
                         <img src="/images/events/list-player_color.png" height="30"style="margin-bottom:6px;"><br>
                         รายชื่อผู้แข่งขัน
                     </div>
                 </a>
-                <a href="#match" id="match_tab2">
+                <a href="#/match" id="match_tab2">
                     <div class="match button-detail" >
                         <img src="/images/events/match_color.png" height="30"style="margin-bottom:6px;"><br>
                         สายและการแข่งขัน
                     </div>
                 </a>
-                <a href="#picture" id="picture_tab2">
+                <a href="#/picture" id="picture_tab2">
                     <div class="picture button-detail">
                 <img src="/images/events/picture_color.png" height="30"style="margin-bottom:6px;"><br>
                     รูปภาพ
@@ -103,7 +103,7 @@
          
     
     <div class="col-md-12 tab-content">
-        <div role="tabpanel" class="tab-pane active" id="detail">
+        <div role="tabpanel" class="tab-pane" id="detail">
             @include('front/event/detail')
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
@@ -111,17 +111,19 @@
         <div class="row" style="padding: 10px 20px">
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
-                <p class="font-med color-black font-bold">อันดับมือ</p>
-                <button class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display">เลือกอันดับ</span> <span class="icon dropdown">▼</span></button>
-                </div>
+                    <p class="font-med color-black font-bold">อันดับมือ</p>
+                    <button class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
+                    
+                    </button>
+                    <div class="input-dropdown event">
+                        <div class="item-dropdown" onclick="searchTable(this)">ทั้งหมด</div>
+                        @foreach ($list_race as $race)
+                        <div class="item-dropdown" onclick="searchTable(this)">{{$race->race_name}}</div>
+                        @endforeach
+                    </div>
                 
-                <select style="display: none" id="selector_rank" name="selector_rank" class="form-control" style="transform: translateY(-20%);">
-                <option value="" disabled selected>เลือกอันดับมือ</option>
-                <option value="">All</option>
-                    @foreach ($list_race as $race)
-                            <option value="{{$race->race_name}}">{{$race->race_name}}</option>
-                    @endforeach
-                </select>
+                </div>
+
             </div>
 
             <div class="col-xs-9 nopadding flex-container space-around" style="margin-top:30px">
@@ -156,6 +158,7 @@
 @endsection
 @section('scripts')
 <script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/hashchange.min.js"></script>
 <script src="/js/event.js?{{ time() }}"></script>
 <script src="/js/sweetalert2.js"></script>
 @endsection

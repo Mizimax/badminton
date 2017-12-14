@@ -334,21 +334,21 @@ hr{
 
 @media (max-width: 767px) {
     #filter {
-        display: none;
+        display: none !important;
     }
     #calendar {
         display: block;
     }
 }
 
-.items {
+#filter.items {
     display: flex;
     justify-content: center;
     color: black;
     margin-top: 20px;
 }
 
-.item {
+#filter > .item {
     margin: 0 5px;
 }
 
@@ -361,6 +361,85 @@ hr{
   top: 75px;
 }
 
+.input-dropdown.hand {
+  width: 300px;
+  top:75px;
+  transform: translateX(-85px);
+  background: transparent;
+}
+
+.input-dropdown .hand1 {
+  width: 210px;
+  display: flex;
+  background: white;
+  border-radius: 3px;
+  color: #F15A24;
+  font-weight: bold;
+}
+
+.hand1 .item {
+  width: 71px;
+  margin-left: -1px;
+}
+
+.hand1 .item:hover, .hand .item.active {
+  color: white;
+  background: #F15A24;
+}
+
+.hand1 .item:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+.hand1 .item:last-child{
+  border-radius: 0 3px 3px 0;
+}
+
+.hand1 .item:first-child .display {
+  border: 0;
+}
+
+.hand1 .item .display{
+  margin: 5px 0;
+  border-left: 1px solid #ccc;
+}
+
+.input-dropdown .hand2 {
+  width: 300px;
+  background: #FFF;
+  border-radius: 5px;
+  display: flex;
+  margin-top: 5px;
+  color: #3EB4E5;
+  font-weight: bold;
+}
+
+.hand2 .item .display{
+  margin: 5px 0;
+  border-left: 1px solid #8ED5ED;
+}
+
+.hand2 .item {
+  width: 35px;
+  margin-left: -1px;
+}
+
+.hand2 .item:hover {
+  background: #8ED5ED;
+  color: white;
+}
+
+.hand2 .item:first-child .display {
+  border: 0;
+}
+
+.hand2 .item:first-child {
+   border-radius: 5px 0 0 5px;
+}
+
+.hand2 .item:last-child {
+   border-radius: 0 5px 5px 0;
+}
 
 .input .glyphicon-calendar {
     position: absolute;

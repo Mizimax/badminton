@@ -112,13 +112,13 @@
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
-                    <button class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
+                    <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" style="text-align: center">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
                     
-                    </button>
-                    <div class="input-dropdown event">
-                        <div class="item-dropdown" onclick="searchTable(this)">ทั้งหมด</div>
+                    </div>
+                    <div class="input-dropdown event shadow-black">
+                        <div class="item-dropdown" onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
                         @foreach ($list_race as $race)
-                        <div class="item-dropdown" onclick="searchTable(this)">{{$race->race_name}}</div>
+                        <div class="item-dropdown" onclick="searchTable(this)"><div class="item">{{$race->race_name}}</div></div>
                         @endforeach
                     </div>
                 
@@ -157,6 +157,17 @@
 
 @endsection
 @section('scripts')
+<script type="text/javascript">
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
 <script src="/js/event.js?{{ time() }}"></script>

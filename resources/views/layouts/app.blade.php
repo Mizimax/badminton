@@ -58,9 +58,22 @@
                     <!-- wait design login register -->
                 @else
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed">
+                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button type="button" class="navbar-toggle collapsed">
                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="57px">
                     </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-top:1px">
+                        <li>
+                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
+                            {{ csrf_field() }}
+                                <a onclick="$('#logout-form').submit();">
+                                    Logout
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                    </a>
+                    
                 @endif
                 
                 <li class="menu">
@@ -92,36 +105,30 @@
                                     </div>
                                 </li>
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
-                                <a style="margin-top: 3px">
+                                <div style="padding:15px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
                                         <span class="user-coin"><img src="/images/coin.png" height="15">
                                             <i>&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
                                         </span>
-                                    </a>
-                                    <ul class="dropdown-menu" style="margin-top:7px;width:202px;left:0px">
-                                        <li>
-                                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
-                                            {{ csrf_field() }}
-                                                <a onclick="$('#logout-form').submit();">
-                                                    Logout
-                                                </a>
-                                            </form>
-                                        </li>
-                                    </ul>
+                                    </div>
                                 </li>
-                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block">
-                                    <a style="padding:0px;">
+                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
+                                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
                                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
                                     </a>
-                                    <ul class="dropdown-menu" style="margin-top:1px">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-top:1px">
+                                        <a onclick="$('#logout-form').submit();">
                                         <li>
+
                                             <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
                                             {{ csrf_field() }}
-                                                <a onclick="$('#logout-form').submit();">
+                                                
                                                     Logout
-                                                </a>
+                                                
                                             </form>
+                                            
                                         </li>
+                                        </a>
                                     </ul>
                                 </li>
                                 

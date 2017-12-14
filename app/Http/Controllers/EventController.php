@@ -47,23 +47,28 @@ class EventController extends Controller
                 ->orderBy('team.team_status',"ASC")
                 ->get()
             ;
-            $tmp= [];
-        foreach( $members as $member){
+        $tmp= [];
+        $myTeam = [];
+
+       foreach( $members as $member){
             $member->member = json_decode($member->member);
-            if($member->team_status_name=="ผ่านการประเมิน"){
+            if($member->team_status==1){
                 $tmp[] = $member;
             }
-        }
-        foreach( $members as $member){
-            if($member->team_status_name=="รอการประเมิน"){
+            else if($member->team_status==2){
                 $tmp[] = $member;
             }
-        }
-        foreach( $members as $member){
-            if($member->team_status_name=="ไม่ผ่านการประเมิน"){
+            else if($member->team_status==3){
                 $tmp[] = $member;
             }
+
+            /* Check My Team */
+            if($member->team_manager_id != 0 && $member->team_manager_id == Auth::id()) {
+                $myTeam[] = $member;
+            }
         }
+
+
 
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
@@ -163,6 +168,7 @@ class EventController extends Controller
             ->with('number_of_team', $number_of_team)
             ->with('list_race', $list_race)
             ->with('members',$tmp)
+            ->with('my_team', $myTeam)
             ->with('all_team',$all_team)
             ->with('list_rank',$list_rank)
             ->with('result_match',$result_match)

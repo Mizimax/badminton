@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<link href="/css/home.css" rel="stylesheet">
+<link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
@@ -44,32 +45,39 @@
             <div id="filter" class="items font-med font-bold" align="center">
                 <div class="item">
                     สถานะแข่งขัน <br>
-                    <button class="input"><span class="display">ทุกรูปแบบ</span> <span class="icon dropdown">▼</span></button>
-                    <div class="input-dropdown home">
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                    <div class="input"><span class="display">ทุกรูปแบบ</span> <span class="icon dropdown">▼</span></div>
+                    <div class="input-dropdown home shadow-black">
+                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ทุกรูปแบบ</div></div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">รับสมัคร</div></div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ผลการแข่งขัน</div></div>
+                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กำลังแข่งขัน</div></div>
                     </div>
                 </div>
                 <div class="item">
                     วันที่แข่งขัน <br>
-                    <button class="input"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><span class="glyphicon glyphicon-calendar"></span></button>
-                    <div class="input-dropdown home">
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                    </div>
+                    <div class="input" data-toggle="datepicker"><span class="display">วันที่ทั้งหมด</span> <span class="icon date"><span class="glyphicon glyphicon-calendar"></span></div>
                 </div>
                 <div class="item">
                     เลือกมือ <br>
-                    <button class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></button>
-                    <div class="input-dropdown home">
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
-                        <div class="item-dropdown" onclick="selectDropdown(this)">ทั้งหมด</div>
+                    <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
+                    <div class="input-dropdown hand">
+                        <div class="hand1 shadow-black">
+                            <div class="item active"><div class="display">Mix</div></div>
+                            <div class="item"><div class="display">Single</div></div>
+                            <div class="item"><div class="display">Double</div></div>
+                        </div>
+                        <div class="hand2 shadow-black">
+                            <div class="item"><div class="display">S</div></div>
+                            <div class="item"><div class="display">P-</div></div>
+                            <div class="item"><div class="display">P</div></div>
+                            <div class="item"><div class="display">P+</div></div>
+                            <div class="item"><div class="display">C</div></div>
+                            <div class="item"><div class="display">C+</div></div>
+                            <div class="item"><div class="display">B</div></div>
+                            <div class="item"><div class="display">B+</div></div>
+                            <div class="item"><div class="display">A</div></div>
+                            <div class="item"><div class="display">VIP</div></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,5 +152,15 @@
 
     </div>
     </div>
-    <script src="{{ asset('js/home.js') }}"></script>
+@endsection
+@section('scripts')
+    <script src="/js/home.js"></script>
+    <script src="/js/datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('[data-toggle="datepicker"]').datepicker({
+                autoHide: true
+            });
+        });
+    </script>
 @endsection

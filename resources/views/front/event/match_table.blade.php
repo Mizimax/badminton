@@ -1,15 +1,12 @@
 @foreach($result_match as $line => $match)
 @if($match)
-<div class="row">
-    <div class="col-xs-1"></div>    
-    <div class="col-xs-10">
+<div class="row">   
+    <div class="col-xs-12">
     <h2>Rank {{$race_name}} / GROUP {{$line}}</h1>
     </div>
-    <div class="col-xs-1"></div>
 </div>
 <div class="row">
-    <div class="col-xs-1"></div>
-    <div class="col-xs-10" style="overflow-x:auto;">
+    <div class="col-xs-12" style="overflow-x:auto;">
         <table class="table table-bordered " id="table-match">
             <tr>
                 <td class="col-xs-2">คะแนนรวม</td>
@@ -120,7 +117,6 @@
             @endforeach
         </table>
     </div>
-    <div class="col-xs-1"></div>
 </div>
 @endif
 @endforeach

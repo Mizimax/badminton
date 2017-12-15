@@ -72,10 +72,36 @@ a:hover, a:focus {
     transition: .1s all;
 }
 
+.button.max {
+    padding: 6px 30px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    margin: 0 5px;
+}
+
 .button-detail:hover, .button-detail.is-active {
     color: white;
     background: #B2B0D6;
     border: 2px solid #B2B0D6;
+}
+
+.dropdown-match {
+    display: inline-block; padding: 5px 20px 20px 20px; border-right: 1px solid #ccc;
+}
+
+.button-select {
+    margin-top:38px; padding: 0 15px;
+}
+
+@media (max-width: 660px) {
+    .dropdown-match{
+        margin: 0 auto !important;
+        border: 0;
+    }
+    .button-select {
+        margin: 20px auto;
+    }
 }
 
 @media (max-width: 767px) {

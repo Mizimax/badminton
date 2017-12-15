@@ -141,6 +141,7 @@
             @include('front/event/member')
         </div>
         <div role="tabpanel" class="tab-pane" id="match">
+            
             @include('front/event/match')
         </div>
         <div role="tabpanel" class="tab-pane" id="picture" style="height: 200px;"></div>

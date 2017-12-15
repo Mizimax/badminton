@@ -1,7 +1,24 @@
 var bg = $('.cover2[image-bg]');
 var url = bg.attr('image-bg');
 
-document.styleSheets[0].addRule('.cover2:before','background-image: url("'+url+'");');
+$('head').append('<style>.cover2:before{background-image: url("'+url+'")');
+
+function search_match(e){
+    race_id = $(e).attr('value');
+    event_id = $('#event_id').val();
+    $.ajax({
+        url: '/get_math/'+ event_id+'/'+race_id,
+        success: function(data){
+            $('#group').html(data);
+        }
+    });
+    $.ajax({
+        url: '/get_knockout/'+ event_id+'/'+race_id,
+        success: function(data){
+            $('#knockout').html(data);
+        }
+    });
+}
 
 function selected_sex(sex, order){
     $('#radio_'+sex+order).prop('checked', true);
@@ -69,8 +86,8 @@ function check_gender(number_of_team){
 function clickminitab(tab){
     switch(tab){
         case 'group':
-            $('#group_tab').addClass('active');
-            $('#knockout_tab').removeClass('active');
+            $('#group_tab').addClass('is-active');
+            $('#knockout_tab').removeClass('is-active');
             $('#knockout').removeClass('active');
             setTimeout(function(){
                 $('#knockout').css('display', 'none');
@@ -79,8 +96,8 @@ function clickminitab(tab){
             }, 100);
             break;
         case 'knockout':
-            $('#knockout_tab').addClass('active');
-            $('#group_tab').removeClass('active');
+            $('#knockout_tab').addClass('is-active');
+            $('#group_tab').removeClass('is-active');
             $('#group').removeClass('active');
             setTimeout(function(){
                 $('#group').css('display', 'none');
@@ -211,24 +228,6 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();  
 
-    $('#race_math').change(function() {
-        $('#group').html('');
-        event_id = $('#event_id').val();
-        race_id = $( "#race_math option:checked" ).val();
-        $.ajax({
-            url: '/get_math/'+ event_id+'/'+race_id,
-            success: function(data){
-                $('#group').html(data);
-            }
-        });
-
-        $.ajax({
-            url: '/get_knockout/'+ event_id+'/'+race_id,
-            success: function(data){
-                $('#knockout').html(data);
-            }
-        });
-    });
 });
 
   

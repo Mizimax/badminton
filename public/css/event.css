@@ -6,6 +6,10 @@ body, #app{
     
 }
 
+.row {
+    margin: 0;
+}
+
 .input-dropdown.event {
     top: 70px;
     width: 170px;

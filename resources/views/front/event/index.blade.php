@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ asset('css/event.css?'.time()) }}" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<div class="cover cover2" image-bg="{{$covers[0]}}">
+<div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>
     <div class="col-md-8" style="padding: 0">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -36,7 +36,7 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-<div>
+<div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8 body-content shadow">
         <div class="row">

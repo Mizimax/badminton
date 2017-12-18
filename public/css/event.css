@@ -87,14 +87,17 @@ a:hover, a:focus {
 }
 
 .dropdown-match {
-    display: inline-block; padding: 5px 20px 20px 20px; border-right: 1px solid #ccc;
+    display: inline-block;
+    padding: 5px 20px 20px 20px;
+    border-right: 1px solid #ccc;
 }
 
 .button-select {
-    margin-top:38px; padding: 0 15px;
+    margin-top:38px;
+    padding: 0 15px;
 }
 
-@media (max-width: 660px) {
+@media (max-width: 582px) {
     .dropdown-match{
         margin: 0 auto !important;
         border: 0;
@@ -107,6 +110,9 @@ a:hover, a:focus {
 @media (max-width: 767px) {
     .margin-top {
         margin-top: 20px;
+    }
+    .button.max{
+        padding: 6px 10px;
     }
 }
 

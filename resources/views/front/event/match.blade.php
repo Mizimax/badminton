@@ -1,8 +1,7 @@
 @if ($team_math !=[])
 <hr style="margin: 10px 0">
             
-            <div style="padding: 10px 20px; width:90%; margin: 0 auto;">
-
+        <div class="match-container">
             <div class="col-xs-12" align="center" style="display: flex; flex-wrap: wrap;justify-content: flex-start;">
                 <div class="center dropdown-match" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
@@ -11,7 +10,7 @@
                     </div>
                     <div class="input-dropdown event shadow-black">
                         @foreach ($list_race as $race)
-                        <div class="item-dropdown" value="{{$race->race_id}}" onclick="search_match(this)"><div class="item">{{$race->race_name}}</div></div>
+                        <div class="item-dropdown" value="{{$race->race_id}}" onclick="selectDropdown(this);search_match(this)"><div class="item">{{$race->race_name}}</div></div>
                         @endforeach
                     </div>
                 
@@ -25,6 +24,7 @@
                 Knockout
             </a>
         </div>
+            </div>
             </div>
 
             

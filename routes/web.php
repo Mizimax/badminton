@@ -25,12 +25,6 @@ Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');
 
-
-Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
-Route::get('/run_match/{event_id}', 'SplitLineController@run_match')->name('run_match');
-Route::get('/run_set_match/{event_id}', 'SplitLineController@run_set_match')->name('run_set_match');
-Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');
-Route::get('/run_set_knockout/{event_id}', 'SplitLineController@run_set_knockout')->name('run_match_knockout');
 Route::get('/get_math/{event_id}/{race_id}', 'EventController@get_math')->name('get_math');
 Route::get('/get_knockout/{event_id}/{race_id}', 'EventController@get_knockout')->name('get_knockout');
 Route::get('/register_special_event/{event_id}', 'EventController@register_special_event')->name('register_special_event');
@@ -43,6 +37,11 @@ Route::get('/search_match/{match_id}', 'MatchController@search_match')->name('se
 
 Route::middleware('OrgAndAdmin')->group(function () {
   Route::get('/add_score/{event_id}', 'MatchController@add_score')->name('add_score');
+  Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
+  Route::get('/run_match/{event_id}', 'SplitLineController@run_match')->name('run_match');
+  Route::get('/run_set_match/{event_id}', 'SplitLineController@run_set_match')->name('run_set_match');
+  Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');
+  Route::get('/run_set_knockout/{event_id}', 'SplitLineController@run_set_knockout')->name('run_match_knockout');
   Route::post('/edit_score', 'MatchController@edit_score')->name('edit_score');
 });
 

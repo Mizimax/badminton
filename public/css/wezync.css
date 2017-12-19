@@ -14,6 +14,10 @@ a {
     position: fixed;
 }
 
+.left {
+  float: left;
+}
+
 .font-bold {
     font-weight: bold;
 }
@@ -36,6 +40,10 @@ a {
 
 .font-meder {
     font-size: 14px !important;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .shadow {

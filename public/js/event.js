@@ -125,7 +125,15 @@ var searchTable = (function(element){
     tb_member.search(data).draw();
 })
 
+var timeScoreToggle = (function(element){
+    if($(element).hasClass('is-active'))
+        return false;
+    $('.match-select.is-active').removeClass('is-active');
+    $(element).addClass('is-active');
 
+    $('.score').toggleClass('show');
+    $('.match_time').toggleClass('hide');
+})
 
 $(document).ready(function(){
 
@@ -220,7 +228,6 @@ $(document).ready(function(){
     });
         
     $('.button-detail').click(function($e) {
-
         if($(this).hasClass('is-active'))
              return false;
     })

@@ -64,7 +64,7 @@
             <div align="center" class="flex-container">
                 <a href="#/detail" id="detail_tab2" >
                     <div class="detail button-detail">
-                    <img class="menu-img" src="/images/events/detail_color.svg" height="30" style="margin-bottom:6px;"><br>
+                    <img class="menu-img" src="/images/events/detail_color.png" height="30" style="margin-bottom:6px;"><br>
                     รายละเอียด
                     </div>
                 </a>

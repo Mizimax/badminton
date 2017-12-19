@@ -5,7 +5,7 @@
     <div class="rank left" style="display: inline-block;">
         <h2 class="color-black"><span class="font-bold">Rank {{$race_name}}</span> / GROUP {{$line}}</h2>
     </div>
-    @if($line === 'A')
+    <!-- @if($line === 'A')
     <div class="col-xs-6 left rank right">
         <span class="button is-red font-meder is-outlined is-active match-select pointer" onclick="timeScoreToggle(this)">
             <span class="glyphicon glyphicon-time" style="margin-right: 5px"></span> เวลาแข่งขัน
@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-blackboard" style="margin-right: 5px"></span> คะแนน
         </span>
     </div>
-    @endif
+    @endif -->
     </div>
 </div>
 <div class="row">
@@ -83,47 +83,50 @@
                     @if($team != $team_2)
                          <td align="center" style="display: table-cell; vertical-align: middle;">
                             <div class="media">
-                                @if($m['match_status'] == "END")
-                                    <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
-                                    @foreach($m['score'] as $score)
-                                    <?php 
-                                        if($score['set_team_win']){
-                                            $win[$score['set_team_win']]++;
-                                        }
-                                    ?>
-                                    @endforeach
-                                    @if($win[$m['match_team_1']] == 2)
-                                        <div class="media-left media-middle">
-                                            <div style="width: 15px;
-                                            height: 15px;
-                                            background: #{{$color_team[$line][$m['match_team_1']]}};
-                                            -moz-border-radius: 50%;
-                                            -webkit-border-radius: 50%;
-                                            border-radius: 50%;"></div>
+                                    @if($m['match_status'] == "END")
+                                        <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
+                                        @foreach($m['score'] as $score)
+                                        <?php 
+                                            if($score['set_team_win']){
+                                                $win[$score['set_team_win']]++;
+                                            }
+                                        ?>
+                                        @endforeach
+                                        @if($win[$m['match_team_1']] == 2)
+                                            <div class="media-left media-middle">
+                                                <div style="width: 15px;
+                                                height: 15px;
+                                                background: #{{$color_team[$line][$m['match_team_1']]}};
+                                                -moz-border-radius: 50%;
+                                                -webkit-border-radius: 50%;
+                                                border-radius: 50%;"></div>
+                                            </div>
+                                        @endif
+                                        @if($win[$m['match_team_2']] == 2)
+                                            <div class="media-left media-middle">
+                                                <div style="width: 15px;
+                                                height: 15px;
+                                                background: #{{$color_team[$line][$m['match_team_2']]}};
+                                                -moz-border-radius: 50%;
+                                                -webkit-border-radius: 50%;
+                                                border-radius: 50%;"></div>
+                                            </div>
+                                        @endif
+                                        <div class="media-body">
+                                            <span>
+                                            @foreach($m['score'] as $score)
+                                                {{$score['set_score_team_1']}} - {{$score['set_score_team_2']}}<br>
+                                            @endforeach
+                                            </span>
+                                        </div>
+                                    @else
+                                        <div class="media-body">
+                                            <span href="#" class="button is-red font-meder is-outlined is-active match_time" >
+                                                <span class="font-small" style="margin-right: 8px; color: #eee">M{{$m['match_number']}}</span>
+                                                <span class="font-big">{{$m['time_stamp']}}</span>
+                                            </span>
                                         </div>
                                     @endif
-                                    @if($win[$m['match_team_2']] == 2)
-                                        <div class="media-left media-middle">
-                                            <div style="width: 15px;
-                                            height: 15px;
-                                            background: #{{$color_team[$line][$m['match_team_2']]}};
-                                            -moz-border-radius: 50%;
-                                            -webkit-border-radius: 50%;
-                                            border-radius: 50%;"></div>
-                                        </div>
-                                    @endif
-                                
-                                @endif
-                                <div class="media-body">
-                                    <span class="score">
-                                    @foreach($m['score'] as $score)
-                                        {{$score['set_score_team_1']}} - {{$score['set_score_team_2']}}<br>
-                                    @endforeach
-                                    </span>
-                                    <span href="#" class="button is-red font-meder is-outlined is-active match_time" >
-                                        <span class="font-small" style="margin-right: 8px; color: #eee">M{{$m['match_number']}}</span>
-                                        <span class="font-big">{{$m['time_stamp']}}</span>
-                                    </span>
                                 </div>
                             </div>
                             

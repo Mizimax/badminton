@@ -66,7 +66,6 @@ class Match extends Model
             $result[$team]['total'] = count(SetMatch::whereIn('set_match_id',$list_math)->where('set_team_win',$team)->get());
             $result[$team]['score'] = $score;
         }
-        dd($result);
         return $result;
     }
 }

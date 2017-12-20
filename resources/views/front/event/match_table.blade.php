@@ -54,7 +54,7 @@
             <tr>
                 <td align="center" style="border-right:1px solid #ccc">
                     <span style="font-size: 16px">
-                        <span class="font-bold" style="color:#209cee">{{$score_team[$line][$team]['total']}}</span> <span class="font-bold">/ {{ (count($match) * (count($match)-1))/2 }}</span>
+                        <span class="font-bold" style="color:#209cee">{{$score_team[$line][$team]['total']}}</span> <span class="font-bold">/ {{ (count($match) -1) * 2 }}</span>
                     </span>
                     <br>
                     <span class="font-small font-bold" style="color:#888">{{$score_team[$line][$team]['score']}}</span>

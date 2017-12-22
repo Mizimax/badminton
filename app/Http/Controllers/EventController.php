@@ -161,6 +161,14 @@ class EventController extends Controller
                 $knock_match[$match['match_id']]['score'][]=$score;
         }
         ksort($knock_match);
+        $round = [];
+        $i = 0;
+        $match_num = 0;
+        while(isset($number_match_knockout[$i+1])) {
+            $round[$i] = array_slice($knock_match, $number_match_knockout[$i], $number_match_knockout[$i+1]);
+            $i++;
+        }
+
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -179,6 +187,8 @@ class EventController extends Controller
             ->with('knock_match',$knock_match)
             ->with('round_knockout',$round_knockout)
             ->with('number_match_knockout',$number_match_knockout)
+            ->with('round',$round)
+            ->with('match_num',$match_num)
             ;
     }
 

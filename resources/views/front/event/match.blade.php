@@ -5,7 +5,7 @@
             <div class="col-xs-12" align="center" style="display: flex; flex-wrap: wrap;justify-content: flex-start;">
                 <div class="center dropdown-match" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
-                    <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" id="match" style="text-align: center">C</span> <span class="icon dropdown">▼</span>
+                    <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" id="match" style="text-align: center">{{ $list_race[0]->race_name }}</span> <span class="icon dropdown">▼</span>
                     
                     </div>
                     <div class="input-dropdown event shadow-black">

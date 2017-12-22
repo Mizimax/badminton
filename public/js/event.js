@@ -153,18 +153,22 @@ $(document).ready(function(){
       var active = $('.tab-pane.active');
       active.removeClass('active');
       $('.button-detail.is-active').removeClass('is-active');
-      $('#group').css('display', 'block');
+     // $('#group').css('display', 'block');
       $('.'+select).addClass('is-active');
       $('#'+select).css('display', 'block');
       setTimeout(function(){
 
          $('.tab-pane').css('display', 'none');
-        if('#'+select === '#match'){
-            $('#group').css('display', 'block');
+         var tab = $('a.max.is-active');
+         if(tab.length != 0){
+            var tabId = tab.attr('id');
+            var tabEle = tabId.slice(0,tabId.length-4);
+            console.log(tabEle)
+            $('#'+tabEle).css('display', 'block');
             setTimeout(function(){
-                $('#group').addClass('active');
+                $('#'+tabEle).addClass('active');
             });
-        }
+         }
         $('#'+select).css('display', 'block');
         setTimeout(function(){
             $('#'+select).addClass('active');

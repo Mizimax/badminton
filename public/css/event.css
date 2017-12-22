@@ -392,3 +392,191 @@ h1{
         width: 800px;
     }
 }
+
+.team.my {
+    background: #ccc;
+}
+
+.team {
+    position: relative;
+    margin: 40px 0;
+    width:15%;
+}
+
+.round {
+    position: absolute;
+    top: 30px;
+    left: 100%;
+    width: 100%;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.round-bottom {
+    position: absolute;
+    bottom: 30px;
+    left: 100%;
+    width: 100%;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-left: 0;
+    border-top: 0;
+}
+
+.line-pass {
+    position: absolute;
+    left: 100%;
+    top: 38px;
+    border-top: 2px solid #ccc;
+    height: 10px;
+    width: 100%;
+}
+
+.round-bottom .line-pass {
+    top:0;
+    bottom:38px;
+}
+
+.final {
+    position: absolute;
+    top: -2px;
+    left: 100%;
+    width: 100%;
+    height: 92px;
+    border: 2px solid #ccc;
+    border-top: 0;
+    border-right:0;
+}
+
+.team:nth-child(2n) .final {
+    top:auto;
+    bottom: 8px;
+    border: 2px solid #ccc;
+    border-bottom: 0;
+    border-right:0;
+}
+
+.finish {
+    position: absolute;
+    top: -2px;
+    left: 100%;
+    width: 100%;
+    height: 362px;
+    border: 2px solid #ccc;
+    border-top: 0;
+    border-right:0;
+}
+
+.top > .team:nth-child(1) .finish, .top > .team:nth-child(2) .finish {
+    top: 180px;
+}
+
+.bottom > .team:nth-child(4n) .finish, .bottom > .team:nth-child(4n+3) .finish{
+    top:auto;
+    bottom: 180px;
+    border: 2px solid #ccc;
+    border-right: 0;
+    border-bottom:0;
+}
+
+.bottom > .team:nth-child(4n+1) .finish, .bottom > .team:nth-child(4n+2) .finish{
+    top: -180px;
+    border: 2px solid #ccc;
+    border-right: 0;
+    border-bottom:0;
+}
+
+.cup {
+    position: absolute;
+    top: -2px;
+    left: 100%;
+    width: 100%;
+    height: 182px;
+    border: 2px solid #ccc;
+    border-top: 0;
+    border-right:0;
+}
+
+.team:nth-child(1) .cup {
+    top:90px;
+}
+
+.team:nth-child(2n+3) .cup {
+    top:auto;
+    bottom: -2px;
+    border: 2px solid #ccc;
+    border-bottom: 0;
+    border-right:0;
+}
+
+.team:nth-child(2n+4) .cup {
+    top:auto;
+    bottom: 90px;
+    border: 2px solid #ccc;
+    border-bottom: 0;
+    border-right:0;
+}
+
+.final .time-play {
+    display: none;
+}   
+
+.team:nth-child(2n+1) .time-play.match {
+    top: 90px;
+    display: block;
+}
+
+.time-play.match {
+    display: none;
+}
+
+.time-play.start {
+    top: 40px;
+}
+
+.team:first-child .time-play.silver {
+    display: block;
+    top: 540px;
+}
+
+.team:first-child .time-play.finals {
+    display: block;
+    top: 270px;
+}
+
+.team img {
+    margin-right: 10px;
+}
+
+.team:nth-child(1) img.first {
+    position: absolute;
+    left: 100%;
+    bottom:-25px;
+    width: 60px;
+}
+
+.team:nth-child(n+2) .first {
+    display: none;
+}
+
+.members {
+    width:100%;
+    height: 60px;
+    background: black;
+    margin-top: 20px;
+}
+
+.border-active, .round.border-active .line-pass, .round-bottom.border-active .line-pass{
+    border-color: red;
+    z-index: 99;
+}
+
+.time-play {
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    top:50%;
+    transform: translateY(-50%);
+}

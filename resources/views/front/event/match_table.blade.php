@@ -21,7 +21,7 @@
     <div class="shadow" style="overflow-x:auto; padding: 15px 10px">
         <table class="table" id="table-match">
             <tr>
-                <td class="col-xs-1" style="position: relative;" align="center">
+                <td class="col-xs-1" style="position: relative; min-width: 60px" align="center">
                     <a href="#" class="button is-info font-meder max" style="padding: 1px 10px;position: absolute;bottom: 0;left: 44%;transform: translateX(-50%);">
                         Point
                     </a>

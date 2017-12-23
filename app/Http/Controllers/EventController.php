@@ -164,11 +164,12 @@ class EventController extends Controller
         $round = [];
         $i = 0;
         $match_num = 0;
+        $prev = 0;
         while(isset($number_match_knockout[$i+1])) {
-            $round[$i] = array_slice($knock_match, $number_match_knockout[$i], $number_match_knockout[$i+1]);
+            $round[$i] = array_slice($knock_match, $prev + $number_match_knockout[$i], $number_match_knockout[$i+1]);
+            $prev += $number_match_knockout[$i];
             $i++;
         }
-
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -383,11 +384,23 @@ class EventController extends Controller
                 $knock_match[$match['match_id']]['score'][]=$score;
         }
         ksort($knock_match);
+        $round = [];
+        $i = 0;
+        $match_num = 0;
+        $prev = 0;
+        while(isset($number_match_knockout[$i+1])) {
+            $round[$i] = array_slice($knock_match, $prev + $number_match_knockout[$i], $number_match_knockout[$i+1]);
+            $prev += $number_match_knockout[$i];
+            $i++;
+        }
         return view('front/event/knockout_table')
             ->with('knock_match',$knock_match)
             ->with('all_team',$all_team)
             ->with('round_knockout',$round_knockout)
-            ->with('number_match_knockout',$number_match_knockout);
+            ->with('number_match_knockout',$number_match_knockout)
+            ->with('match_num', $match_num)
+            ->with('round', $round)
+            ;
     }
 
     public function register_special_event($event_id){

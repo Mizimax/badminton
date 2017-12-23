@@ -56,6 +56,17 @@
                
                 @if (Auth::guest())
                     <!-- wait design login register -->
+                    <ul class="nav" style="float: right">
+                        <!-- Authentication Links -->
+                                                   <li>
+                                    <div class="navbar-cart" href="{{ url('/coin_shop') }}">
+                                        <img src="/images/cart.png" height="35"><br>
+                                        <span>coin shop</span>
+                                    </div>
+                                </li>
+
+                                            </ul>
+
                 @else
                     <!-- Collapsed Hamburger -->
                     <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

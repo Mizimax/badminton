@@ -599,5 +599,13 @@ h1{
         right: 5px;
     }
     
-    
+}
+
+@media (max-width: 430px) {
+    .team {
+        transform: translateX(-30px);
+    }
+    .round, .final, .finish, .cup, .round-bottom {
+        width: 80%;
+    }
 }

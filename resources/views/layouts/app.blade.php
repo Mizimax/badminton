@@ -39,16 +39,31 @@
                     <span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 20px"></span>ตั้งค่า
                 </a>
             </div>
-            <div class="logout font-big">
+            @if (Auth::guest())
+                <div class="logout font-big">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" href="/login">
+                           <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
+                        </a>
+                </div>
+                <div class="logout font-big font-white">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" href="/register">
+                           <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 20px"></span>สมัครสมาชิก
+                        </a>
+                </div>
+            @else
+                <div class="logout font-big">
                 
-                <form id="logout-form" action="/logout" method="POST">
-                {{ csrf_field() }}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a class="menu-link" onclick="$('#logout-form').submit();">
-                       <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-right: 20px"></span>ออกจากระบบ
-                    </a>
-                </form>
-            </div>
+                    <form id="logout-form" action="/logout" method="POST">
+                    {{ csrf_field() }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" onclick="$('#logout-form').submit();">
+                           <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-right: 20px"></span>ออกจากระบบ
+                        </a>
+                    </form>
+                </div>
+            @endif
         </div>
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid" style="position: relative;">

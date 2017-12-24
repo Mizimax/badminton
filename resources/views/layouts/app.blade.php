@@ -56,10 +56,10 @@
                
                 @if (Auth::guest())
                     <!-- wait design login register -->
-                    <ul class="nav" style="float: right">
+                    <ul class="nav visible-xs-block" style="float: right">
                         <!-- Authentication Links -->
-                                                   <li>
-                                    <div class="navbar-cart" href="{{ url('/coin_shop') }}">
+                               <li>
+                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                                         <img src="/images/cart.png" height="35"><br>
                                         <span>coin shop</span>
                                     </div>
@@ -102,15 +102,33 @@
                     </a>
             
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li class="menu-item"><a href="{{ route('login') }}"><span class="absolute middle">Login</span></a></li>
-                            <li class="menu-item"><a href="{{ route('register') }}"><span class="absolute middle">Register</span></a></li>
+                            <li>
+                                <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
+                                    <img src="/images/cart.png" height="35"><br>
+                                    <span>coin shop</span>
+                                </div>
+                            </li>
+                            <li class="menu-item" style="margin-left: 10px;">
+                                <a href="{{ route('login') }}">
+                                    <div class="input login absolute middle">
+                                        <span style="margin: 0 auto">Login</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="menu-item" style="margin-left: 3px;">
+                                <a href="{{ route('register') }}">
+                                    <div class="input register absolute middle">
+                                        <span style="margin: 0 auto">Register</span>
+                                    </div>
+                                </a>
+                            </li>
                         @else
 
                                 <li class="visible-sm-block visible-md-block visible-lg-block">
-                                    <div class="navbar-cart" href="{{ url('/coin_shop') }}">
+                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                                         <img src="/images/cart.png" height="35"><br>
                                         <span>coin shop</span>
                                     </div>

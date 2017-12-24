@@ -77,6 +77,16 @@ a {
     color: #3EB4E5;
 }
 
+.input.login {
+    text-align: center;
+    width: 65px;
+}
+
+.input.register {
+    text-align: center;
+    width: 80px;
+}
+
 .item-dropdown .item {
   border-bottom: 1px solid #8ED5ED;
   width: 80%;
@@ -151,7 +161,7 @@ a {
 }
 
 .navbar-right {
-    border-left: 1px solid #ccc;
+    /*border-left: 1px solid #ccc;*/
 }
 
 .menu-background {

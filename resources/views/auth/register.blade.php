@@ -2,15 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+    <div class="row" align="center">
+        <div style="width: 550px; max-width: 80%; padding: 40px 0">
+            <div class="panel panel-default" align="left">
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
                      <div class="row">
-                         <div class="col-md-3"></div>
-                         <div class="col-md-6">
+                         <div style="max-width: 300px; width: 70%; margin: 0 auto">
                             <form action="register" method="post" onSubmit="return check_form_register()">
                                 @if (Session::get('error'))
                                 <div class="form-group">
@@ -49,17 +48,18 @@
                                 </div>
                             </form>   
                          </div>
-                         <div class="col-md-3"></div>
                      </div>
                      <div class="row">
                      <div class="col-md-5"></div>
-                     <div class="col-md-2" align="center">or</div>
                      <div class="col-md-5"></div>
                      </div>
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-3" align="center">
-                        <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
-                    </div>
+                   <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-3" align="center" style="border-top: 1px solid #ccc">
+                                <br>
+                              <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                              <br><br>
+                            </div>
+                        </div>
             </div>
                 </div>
             </div>

@@ -10,6 +10,10 @@ a {
     position: absolute;
 }
 
+.nopadding {
+    padding: 0 !important;
+}
+
 .fixed {
     position: fixed;
 }

@@ -49,10 +49,6 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
-.nopadding {
-    padding: 0 !important;
-}
-
 .flex-container {
     display: flex;
     justify-content: center;

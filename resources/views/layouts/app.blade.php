@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/wezync.css?{{ time() }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">

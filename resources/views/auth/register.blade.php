@@ -29,19 +29,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Password" required>
+                                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Firstname</label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Password" required>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Firstname" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Lastname</label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Password" required>
+                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Lastname" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Password" required>
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required>
                                 </div>
                                 <div class="form-group" align="center">
                                     <button type="submit" class="btn btn-default">Register</button>

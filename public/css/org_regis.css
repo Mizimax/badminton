@@ -1,0 +1,27 @@
+
+body {
+  background: white;
+}
+
+#content {
+  width: 500px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.form .col-sm-3 {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-top: 5px;
+}
+
+.form .row {
+  margin-top: 10px;
+}
+
+.form .form-control {
+  border-radius: 0;
+  box-shadow: 0px;
+}

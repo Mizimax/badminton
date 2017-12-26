@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class OrgController extends Controller
 {
@@ -12,8 +14,23 @@ class OrgController extends Controller
     }
 
     public function info() {
-      //if already ไปหน้าแก้ไขข้อมูล
-      return view('org/regis/info');
+      if(Auth::guest()) {
+        Session::flash('title', 'เกิดข้อผิดพลาด'); 
+        Session::flash('message', 'คุณต้องเป็นสมาชิกของเว็บไซต์เราก่อน'); 
+        Session::flash('type', 'warning'); 
+        return redirect('/login?redirect=/org/register');
+      }
+      else if(Auth::isOrganizer()) {
+        Session::flash('title', 'เกิดข้อผิดพลาด'); 
+        Session::flash('message', 'คุณเป็น Organizer อยู่แล้ว'); 
+        Session::flash('type', 'warning'); 
+        return redirect('/');
+      }
+
+      return view('org/regis/info')
+        ->with('Firstname', Auth::user()->Firstname)
+        ->with('Lastname', Auth::user()->Lastname)
+      ;
     }
 
     public function infoRegis() {

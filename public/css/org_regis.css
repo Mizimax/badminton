@@ -4,9 +4,59 @@ body {
 }
 
 #content {
-  width: 500px;
-  max-width: 80%;
+  width: 650px;
+  max-width: 85%;
   margin: 0 auto;
+}
+
+.step {
+  background-color: #E6E6E6;
+  color: black;
+  font-weight: bold;
+  padding: 20px 15px;
+  width: 190px;
+  position: relative;
+}
+
+.step.active {
+  background-color: #D9E021;
+}
+
+.step div {
+  transform: translateX(20px);
+}
+
+.step:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 0; 
+  height: 0; 
+  border-top: 42px solid transparent;
+  border-bottom: 42px solid transparent;
+  
+  border-left: 42px solid white;
+}
+
+.step:after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 99;
+  top:0;
+  left: 100%;
+  width: 0; 
+  height: 0; 
+  border-top: 42px solid transparent;
+  border-bottom: 42px solid transparent;
+  
+  border-left: 42px solid #E6E6E6;
+}
+
+.step.active:after {
+  border-left-color: #D9E021;
 }
 
 .form .col-sm-3 {
@@ -23,5 +73,22 @@ body {
 
 .form .form-control {
   border-radius: 0;
-  box-shadow: 0px;
+}
+
+.form .btn-success {
+  background-color: #7FE18E;
+  color: #444;
+  font-weight: bold;
+  padding: 15px 70px;
+  border: 0;
+  font-size:24px;
+}
+
+@media (max-width: 768px) {
+  .step {
+    margin: 15px 0;
+  }
+  .form .col-sm-3 {
+    text-align: left;
+  }
 }

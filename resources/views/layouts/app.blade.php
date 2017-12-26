@@ -26,7 +26,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
             </div>
-            <div class="menu-white org" style="position: relative;" onclick="window.location='/event/create'">
+            <div class="menu-white org" style="position: relative;" onclick="window.location='/org/register'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon glyphicon-user middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>
@@ -184,10 +184,26 @@
         </nav>
 
         @yield('content')
+        <script type="text/javascript">
+            var swalContent;
+        </script>
+        @if(Session::has('message'))
+        <script type="text/javascript">
+            var swalContent = {
+                title: '{{ Session::get('title') }}',
+                text: '{{ Session::get('message') }}',
+                type: '{{ Session::get('type') }}'
+            }
+        </script>
+        @endif
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/sweetalert2.js"></script>
+
+    @yield('scripts')
+
     <script type="text/javascript">
 
         var menuToggled = false;
@@ -204,6 +220,10 @@
         })
 
         $(document).ready(function(){
+            
+
+            if(swalContent)
+                swal(swalContent);
 
             $('#nav-icon3').click(function(){
                 $(this).toggleClass('open');
@@ -219,9 +239,9 @@
 
                 menuCheck();
             });
+
+
         });
     </script>
-
-    @yield('scripts')
 </body>
 </html>

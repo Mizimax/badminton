@@ -31,6 +31,7 @@ Route::get('/register_special_event/{event_id}', 'EventController@register_speci
 Route::get('/prize/{event_id}', 'EventController@prize')->name('prize');
 Route::get('/get_member_special_rewards/{event_id}', 'EventController@get_member_special_rewards')->name('get_member_special_rewards');
 
+Route::get('/org/register', 'OrgController@info');
 Route::get('/org/register/step/info', 'OrgController@info');
 Route::post('/org/register/step/info', 'OrgController@infoRegis');
 Route::get('/org/register/step/verify', 'OrgController@verify');

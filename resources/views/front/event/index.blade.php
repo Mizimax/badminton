@@ -171,5 +171,4 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
 <script src="/js/event.js?{{ time() }}"></script>
-<script src="/js/sweetalert2.js"></script>
 @endsection

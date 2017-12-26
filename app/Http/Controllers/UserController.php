@@ -51,15 +51,17 @@ class UserController extends Controller
         return redirect()->to('/');
     }
 
-    public function login()
+    public function login(Request $request)
     {
         $input = Input::all();
         $email = $input['email'];
+        $redirect = $request->query('redirect') | '/';
         $user = User::where('email','=',$email)->first();
         if($user){
             if(password_verify($input['password'], $user->password)){
                 auth()->login($user);
-                return redirect()->to('/');
+
+                return redirect()->to($redirect);
             }
         }
         return back()->with('error', 'Your Email or Password is wrong.');

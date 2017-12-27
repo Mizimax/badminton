@@ -11,14 +11,14 @@
         ข้อมูลเบื้องต้น</div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="step">
+    <div class="col-sm-4" onclick="window.location='/org/register/step/verify'">
+      <div class="step pointer">
         <div>ข้อมูลยืนยัน<br>
         และประวัติการจัด</div>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="step">
+      <div class="step pointer" onclick="window.location='/org/register/step/email'">
         <div>ดำเนินการ<br>
         เสร็จสิ้น</div>
       </div>
@@ -30,37 +30,37 @@
       <div class="row">
         <div class="col-sm-3">ชื่อ</div>
         <div class="col-sm-9">
-          <input type="text" class="form-control" value="{{ $Firstname }}">
+          <input type="text" class="form-control" id="org_firstname" name="org_firstname" value="{{ $Firstname }}">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-3">นามสกุล</div>
         <div class="col-sm-9">
-          <input type="text" class="form-control" value="{{ $Lastname }}">
+          <input type="text" class="form-control" id="org_lastname" name="org_lastname" value="{{ $Lastname }}">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-3">ชื่อเล่น</div>
         <div class="col-sm-9">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" id="org_nickname" name="org_nickname" value="{{ $Nickname }}">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-3">เบอร์โทร</div>
         <div class="col-sm-9">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" id="org_phone" name="org_phone" value="{{ $Phone }}">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-3">Email</div>
         <div class="col-sm-9">
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" id="org_email" name="org_email" value="{{ $Email }}">
         </div>
       </div>
       <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-9">
-          <button type="button" class="btn btn-success btn-lg">ถัดไป</button>
+          <button type="submit" class="btn btn-success btn-lg">ถัดไป</button>
         </div>
       </div>
     </form>

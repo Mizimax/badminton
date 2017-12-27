@@ -17,7 +17,7 @@ class OrgAndAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::isAdmin() || Auth::isOrganizer()) {
+        if(isAdmin() || isOrganizer()) {
             return $next($request);
         }
         return redirect()->to('/');

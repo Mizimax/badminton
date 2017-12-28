@@ -71,8 +71,20 @@ class OrgController extends Controller
         return redirect('/org/register');
       else if($org && $org->org_step === 3)
         return redirect('/org/register/step/email');
-
-      return view('org/regis/verify');
+      if($org)
+        return view('org/regis/verify')
+            ->with('org_house_reg', ($org->org_house_reg) ? $org->org_house_reg : '')
+            ->with('org_create_time', ($org->org_create_time) ? $org->org_create_time : '1')
+            ->with('org_last_create', ($org->org_last_create) ? $org->org_last_create : '')
+            ->with('org_id_card', ($org->org_id_card) ? $org->org_id_card : '')
+            ->with('org_bank_account', ($org->org_bank_account) ? $org->org_bank_account : '');
+      else
+        return view('org/regis/verify')
+            ->with('org_house_reg', '')
+            ->with('org_create_time', '')
+            ->with('org_last_create', '')
+            ->with('org_id_card', '')
+            ->with('org_bank_account', '');
     }
 
     public function upload(Request $request) {
@@ -101,20 +113,32 @@ class OrgController extends Controller
       //บันทึกส่งอีเมล 
       $data = $this->validate(request(), [
           'org_create_time' => 'required',
-          'org_id_card' => 'required',
-          'org_house_reg' => 'required',
-          'org_bank_account' => 'required',
           'org_last_create' => 'required'
       ]);
+      $data['org_email_active'] = str_random(30);
 
-      Organizer::where('user_id', Auth::id())->update($data);
+      $org = Organizer::where('user_id', Auth::id());
+      $user = $org->first();
+
+      if(!$user->org_id_card || !$user->org_house_reg || !$user->org_bank_account)
+        return redirect()->back()->with('error', 'Upload image required.');
+
+      $org->update($data);
 
       return redirect('/org/register/step/email');
     }
 
-    public function verifyEmail() {
+    public function verifyEmail(Request $request) {
       //param query = database verify
-      return view('org/regis/info');
+      $org = Organizer::where('user_id', Auth::id());
+      $user = $org->first();
+
+      if($request->query('active') === $user->org_email_active) {
+        \User::where('id', Auth::id())->update(['user_level'=> 2 ])
+        $org->update(['org_active' => 1])
+      }
+
+      return redirect('/org/register/step/success');
     }
 
     public function email() {
@@ -122,6 +146,9 @@ class OrgController extends Controller
     }
 
     public function success() {
+      $org = Organizer::where('user_id', Auth::id())->first();
+      if($org->org_active === 0)
+        return redirect('/org/register/step/email');
       return view('org/regis/success');
     }
 }

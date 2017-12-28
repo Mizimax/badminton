@@ -32,9 +32,9 @@
         <div class="col-sm-7">
           <div class="dropdown-container" style="width: 180px; position: relative;">
             <div class="hide">
-              <input type="text" value="1" id="org_create_time" name="org_create_time">
+              <input type="text" value="{{$org_create_time}}" id="org_create_time" name="org_create_time">
             </div>
-            <div class="input" align="center"><span class="display">1</span> <span class="icon dropdown">▼</span></div>
+            <div class="input" align="center"><span class="display">{{$org_create_time}}</span> <span class="icon dropdown">▼</span></div>
             <div class="input-dropdown home shadow-black" style="top: 45px">
                 <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('1')"><div class="item">1</div></div>
                 <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('2')"><div class="item">2</div></div>
@@ -49,48 +49,48 @@
       <div class="row">
         <div class="col-sm-5">ชื่อรายการล่าสุดที่จัด</div>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="org_last_create" name="org_last_create" style="width: 250px;">
+          <input type="text" class="form-control" value="{{$org_last_create}}" id="org_last_create" name="org_last_create" style="width: 250px;">
         </div>
       </div>
   </div>
 </div>
 <div class="upload">
-    <div class="upload-box">
+    <div class="upload-box" style="background: url({{$org_id_card}})">
       <div class="hider">
         <input type="file" id="org_id_card" name="org_id_card" accept="image/*">
       </div>
       <div class="absolute middle">
-        <span class="glyphicon glyphicon-plus-sign"></span>
+        <span class="glyphicon glyphicon-plus-sign {{$org_id_card ? 'hide': ''}}"></span>
         <div class="text"></div>
-        <span class="glyphicon glyphicon-ok-circle" style="color: #D9E021;display: none"></span>
+        <span class="glyphicon glyphicon-ok-circle {{$org_id_card ? 'show': ''}}" style="color: #D9E021;display: none"></span>
       </div>
       <div class="progress">
         <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
         </div>
       </div>
     </div>
-    <div class="upload-box">
+    <div class="upload-box" style="background: url({{$org_house_reg}})">
       <div class="hider">
         <input type="file" id="org_house_reg" name="org_house_reg" accept="image/*">
       </div>
       <div class="absolute middle">
-        <span class="glyphicon glyphicon-plus-sign"></span>
+        <span class="glyphicon glyphicon-plus-sign {{$org_house_reg ? 'hide': ''}}"></span>
         <div class="text"></div>
-        <span class="glyphicon glyphicon-ok-circle" style="color: #D9E021;display: none"></span>
+        <span class="glyphicon glyphicon-ok-circle {{$org_house_reg ? 'show': ''}}" style="color: #D9E021;display: none"></span>
       </div>
       <div class="progress">
         <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
         </div>
       </div>
     </div>
-    <div class="upload-box">
+    <div class="upload-box" style="background: url({{$org_bank_account}})">
       <div class="hider">
         <input type="file" id="org_bank_account" name="org_bank_account" accept="image/*">
       </div>
       <div class="absolute middle">
-        <span class="glyphicon glyphicon-plus-sign"></span>
+        <span class="glyphicon glyphicon-plus-sign {{$org_bank_account ? 'hide': ''}}"></span>
         <div class="text"></div>
-        <span class="glyphicon glyphicon-ok-circle" style="color: #D9E021;display: none"></span>
+        <span class="glyphicon glyphicon-ok-circle {{$org_bank_account ? 'show': ''}}" style="color: #D9E021;display: none"></span>
       </div>
       <div class="progress">
         <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -103,8 +103,27 @@
 </div>
 </form>
 <br><br><br>
-
+<div class="hide errors">
+  {{$errors}}
+</div>
 @endsection
 @section('scripts')
 <script type="text/javascript" src="/js/org_reg.js"></script>
+  @if(count($errors) != 0)
+
+  <script>
+    var errors = $('.errors').html();
+    var errorData = JSON.parse(errors);
+    var error = '';
+    for (var k in errorData){
+        error += errorData[k] + '<br>';
+    }
+    
+    var swalContent = {
+        title: 'เกิดข้อผิดพลาด',
+        html: error,
+        type: 'warning'
+    }
+  </script>
+  @endif
 @endsection

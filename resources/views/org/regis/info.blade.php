@@ -11,8 +11,8 @@
         ข้อมูลเบื้องต้น</div>
       </div>
     </div>
-    <div class="col-sm-4" onclick="window.location='/org/register/step/verify'">
-      <div class="step pointer">
+    <div class="col-sm-4">
+      <div class="step pointer" onclick="window.location='/org/register/step/verify'">
         <div>ข้อมูลยืนยัน<br>
         และประวัติการจัด</div>
       </div>
@@ -67,5 +67,26 @@
   </div>
 </div>
 <br><br><br>
+<div class="hide errors">
+  {{$errors}}
+</div>
+@endsection
+@section('scripts')
+  @if(count($errors) != 0)
 
+  <script>
+    var errors = $('.errors').html();
+    var errorData = JSON.parse(errors);
+    var error = '';
+    for (var k in errorData){
+        error += errorData[k] + '<br>';
+    }
+    
+    var swalContent = {
+        title: 'เกิดข้อผิดพลาด',
+        html: error,
+        type: 'warning'
+    }
+  </script>
+  @endif
 @endsection

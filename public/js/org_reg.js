@@ -47,7 +47,6 @@ $(document).ready(function() {
           success: function(result) {
             progress.children().eq(0).css('width', '0');
             box.css('background', 'url('+ result.image +')');
-            box.css('background-size', '100% 100%')
             success.show();
             progress.hide();
             text.hide();

@@ -11,11 +11,11 @@ use App\Models\Organizer;
 class OrgController extends Controller
 {
 
-    public function info() {
+    public function info(Request $req) {
 
       $org = Organizer::where('user_id', Auth::id())->first();
 
-      if($org && $org->org_step === 3)
+      if($org && $org->org_step === 3 && $req->query('edit') !== 'true')
         return redirect('/org/register/step/email');
 
       if($org) {
@@ -63,13 +63,13 @@ class OrgController extends Controller
       return redirect('/org/register/step/verify');
     }
 
-    public function verify() {
+    public function verify(Request $req) {
       //if ไม่มีข้อมูล go to step 1
       $org = Organizer::where('user_id', Auth::id())->first();
 
       if(!$org || $org->org_step === 1)
         return redirect('/org/register');
-      else if($org && $org->org_step === 3)
+      else if($org && $org->org_step === 3 && $req->query('edit') !== 'true')
         return redirect('/org/register/step/email');
       if($org)
         return view('org/regis/verify')
@@ -116,12 +116,16 @@ class OrgController extends Controller
           'org_last_create' => 'required'
       ]);
       $data['org_email_active'] = str_random(30);
+      $data['org_step'] = 3;
 
       $org = Organizer::where('user_id', Auth::id());
       $user = $org->first();
 
-      if(!$user->org_id_card || !$user->org_house_reg || !$user->org_bank_account)
+      if(!$user->org_id_card || !$user->org_house_reg || !$user->org_bank_account){
+        $data['org_step'] = 2;
+        $org->update($data);
         return redirect()->back()->with('error', 'Upload image required.');
+      }
 
       $org->update($data);
 
@@ -134,8 +138,8 @@ class OrgController extends Controller
       $user = $org->first();
 
       if($request->query('active') === $user->org_email_active) {
-        \User::where('id', Auth::id())->update(['user_level'=> 2 ])
-        $org->update(['org_active' => 1])
+        \User::where('id', Auth::id())->update(['user_level'=> 2 ]);
+        $org->update(['org_active' => 1]);
       }
 
       return redirect('/org/register/step/success');

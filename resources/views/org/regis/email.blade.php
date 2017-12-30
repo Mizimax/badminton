@@ -5,13 +5,13 @@
 <div id="content">
   <div class="row" style="margin: 15px 0 50px 0;" align="center">
     <div class="col-sm-4">
-      <div class="step pointer" onclick="window.location='/org/register'">
+      <div class="step pointer" onclick="window.location='/org/register?edit=true'">
         <div>กรอกใบสมัคร<br>
         ข้อมูลเบื้องต้น</div>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="step pointer" onclick="window.location='/org/register/step/verify'">
+      <div class="step pointer" onclick="window.location='/org/register/step/verify?edit=true'">
         <div>ข้อมูลยืนยัน<br>
         และประวัติการจัด</div>
       </div>

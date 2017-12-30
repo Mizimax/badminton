@@ -12,13 +12,13 @@
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="step pointer" onclick="window.location='/org/register/step/verify'">
+      <div class="step pointer" onclick="window.location='/org/register/step/verify?edit=true'">
         <div>ข้อมูลยืนยัน<br>
         และประวัติการจัด</div>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="step pointer" onclick="window.location='/org/register/step/email'">
+      <div class="step pointer" onclick="window.location='/org/register/step/email?edit=true'">
         <div>ดำเนินการ<br>
         เสร็จสิ้น</div>
       </div>

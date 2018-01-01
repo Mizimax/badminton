@@ -7,6 +7,8 @@ use Auth;
 use Session;
 
 use App\Models\Organizer;
+use App\Models\User;
+use App\Mail\OrgRegisterEmail;
 
 class OrgController extends Controller
 {
@@ -132,13 +134,13 @@ class OrgController extends Controller
       return redirect('/org/register/step/email');
     }
 
-    public function verifyEmail(Request $request) {
+    public function verifyEmail(Request $request, $token) {
       //param query = database verify
       $org = Organizer::where('user_id', Auth::id());
       $user = $org->first();
 
-      if($request->query('active') === $user->org_email_active) {
-        \User::where('id', Auth::id())->update(['user_level'=> 2 ]);
+      if($token === $user->org_email_active) {
+        User::where('id', Auth::id())->update(['user_level'=> 2 ]);
         $org->update(['org_active' => 1]);
       }
 
@@ -146,6 +148,10 @@ class OrgController extends Controller
     }
 
     public function email() {
+      $org = Organizer::where('user_id', Auth::id())->first();
+
+      if(!$org || $org->org_step === 1)
+        return redirect('/org/register');
       return view('org/regis/email');
     }
 
@@ -154,5 +160,50 @@ class OrgController extends Controller
       if($org->org_active === 0)
         return redirect('/org/register/step/email');
       return view('org/regis/success');
+    }
+
+    public function check($user_id) {
+      $org = Organizer::where('user_id', $user_id)->first();
+      if($org){
+        return view('org/regis/check')
+          ->with('Firstname', $org->org_firstname)
+          ->with('Lastname', $org->org_lastname)
+          ->with('Phone', $org->org_phone)
+          ->with('Email', $org->org_email)
+          ->with('Nickname', $org->org_nickname)
+          ->with('org_house_reg', $org->org_house_reg)
+          ->with('org_create_time', $org->org_create_time)
+          ->with('org_last_create', $org->org_last_create)
+          ->with('org_id_card', $org->org_id_card )
+          ->with('org_bank_account', $org->org_bank_account)
+        ;
+      }
+      else {
+        Session::flash('title', 'เกิดข้อผิดพลาด'); 
+        Session::flash('message', 'User นี้ไม่ได้สมัคร Organizer'); 
+        Session::flash('type', 'error'); 
+        return redirect('/');
+      }
+
+    }
+
+    public function checkActive(Request $req, $user_id) {
+      $data = $this->validate(request(), [
+          'org_active' => 'required'
+      ]);
+      $data['org_active'] = (int)$data['org_active'];
+      
+      $org = Organizer::where('user_id', $user_id);
+      if($data['org_active'] === 1){
+        $user = $org->first();
+        $link = url('/') . '/org/register/step/verify/' . $user->org_email_active;
+        \Mail::to('maxsayr6@gmail.com')->send(new OrgRegisterEmail($user->org_firstname, $user->org_lastname, $link));
+      }
+      $org->update($data);
+
+      Session::flash('title', 'สำเร็จ'); 
+      Session::flash('message', 'คุณได้บันทึกข้อมูลไว้แล้ว'); 
+      Session::flash('type', 'success'); 
+      return back();
     }
 }

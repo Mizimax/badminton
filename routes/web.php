@@ -40,10 +40,15 @@ Route::middleware('org_reg')->group(function () {
   Route::post('/org/register/step/verify', 'OrgController@verifyRegis');
   Route::post('/org/register/step/verify/upload', 'OrgController@upload');
   Route::get('/org/register/step/email', 'OrgController@email');
-  Route::get('/org/register/step/success', 'OrgController@success');
+});
+
+Route::middleware('admin')->group(function () {
+  Route::get('/org/check/{user_id}', 'OrgController@check');
+  Route::post('/org/check/{user_id}', 'OrgController@checkActive');
 });
 
 Route::middleware('OrgAndAdmin')->group(function () {
+  Route::get('/org/register/step/success', 'OrgController@success');
   Route::get('/add_score/{event_id}', 'MatchController@add_score')->name('add_score');
   Route::get('/search_match/{match_id}', 'MatchController@search_match')->name('search_match');
   Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');

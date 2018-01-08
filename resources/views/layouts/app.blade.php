@@ -14,6 +14,10 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/wezync.css?{{ time() }}" rel="stylesheet">
     @yield('css')
+
+    @if(config('app.env') == 'local')
+        <script src="http://localhost:35729/livereload.js"></script>
+    @endif
 </head>
 <body>
     <div id="app">

@@ -9,7 +9,7 @@
             <div class="panel panel-default" align="left">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login').'?redirect='.Request::query('redirect') }}">
+                    <form class="form-horizontal" method="POST" action="{{ url()->current() }}">
 
                         <div style="max-width: 250px; width: 70%; margin: 0 auto">
                             <form action="login" method="post" onSubmit="return check_form_register()">

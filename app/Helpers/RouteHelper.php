@@ -6,17 +6,17 @@ function checkRoute($name) {
 
 function isAdmin() {
   $user = \Auth::user();
-  return $user->user_level === 3 | false;
+  return $user ? $user->user_level === 3 : false;
 }
 
 function isOrganizer() {
   $user = \Auth::user();
-  return $user->user_level === 2 | false;
+  return $user ? $user->user_level === 2 : false;
 }
 
 function isUser() {
   $user = \Auth::user();
-  return $user->user_level <= 1 | false;
+  return $user ? $user->user_level <= 1 : false;
 }
 
 ?>

@@ -128,7 +128,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-11 text-right  remove-padding notop">
-                                    <a type="button" href="/event_detail/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom">รายละเอียด</a>
+                                    <a type="button" href="/event/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom">รายละเอียด</a>
                                     @if( $event['event_status'] == 1)
                                     <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim margin-bottom" style="width: 120px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
                                     @else

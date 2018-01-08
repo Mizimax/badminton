@@ -55,7 +55,7 @@ class UserController extends Controller
     {
         $input = Input::all();
         $email = $input['email'];
-        $redirect = $request->query('redirect') | '/';
+        $redirect = $request->query('redirect') ? $request->query('redirect') : '/';
         $user = User::where('email','=',$email)->first();
         if($user){
             if(password_verify($input['password'], $user->password)){

@@ -260,7 +260,7 @@ class EventController extends Controller
             $data['team_member_team_id'] = $team_id;
             TeamMember::insert($data);
         }
-        return redirect('event_detail/'.$input['event_id'])->with('message','ลงทะเบียนเรียบร้อย');
+        return redirect('event/'.$input['event_id'])->with('message','ลงทะเบียนเรียบร้อย');
     }
 
     public function get_math($event_id, $race_id)
@@ -418,10 +418,10 @@ class EventController extends Controller
         $user = SpecialEventMember::where("special_event_member_user_id",$user_id)
         ->where("special_event_member_special_event_id",$event_id)->first();
 	if($user){
-            return redirect('event_detail/'.$event_id)->with('message','ท่านเคยลงทะเบียนรายการนี้แล้ว');
+            return redirect('event/'.$event_id)->with('message','ท่านเคยลงทะเบียนรายการนี้แล้ว');
         }
         SpecialEventMember::register($data);
-        return redirect('event_detail/'.$event_id)->with('message','ลงทะเบียนเรียบร้อย');
+        return redirect('event/'.$event_id)->with('message','ลงทะเบียนเรียบร้อย');
     }
 
     public function prize($event_id){

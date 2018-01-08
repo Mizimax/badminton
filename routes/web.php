@@ -19,7 +19,11 @@ Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/event_detail/{event_id}', 'EventController@detail')->name('event_detail');
+Route::middleware('org')->group(function () {
+  Route::get('event/create', 'OrgController@create');
+});
+
+Route::get('/event/{event_id}', 'EventController@detail')->name('event_detail');
 Route::get('/event_modal/{event_id}', 'EventController@modal')->name('event_modal');
 Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
@@ -40,10 +44,6 @@ Route::middleware('org_reg')->group(function () {
   Route::post('/org/register/step/verify', 'OrgController@verifyRegis');
   Route::post('/org/register/step/verify/upload', 'OrgController@upload');
   Route::get('/org/register/step/email', 'OrgController@email');
-});
-
-Route::middleware('org')->group(function () {
-  Route::get('event/create', 'OrgController@create');
 });
 
 Route::middleware('admin')->group(function () {

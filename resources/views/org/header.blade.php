@@ -4,5 +4,5 @@
 @endsection
 
 <div class="header">
-  <img src="/images/events/2/1.jpg" class="img-responsive" style="width: 100%">
+  <img src="/images/events/Organise.wezync-05.png" class="img-responsive" style="width: 100%">
 </div>

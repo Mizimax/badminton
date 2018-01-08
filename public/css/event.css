@@ -378,17 +378,6 @@ h1{
     display: none !important;
 }
 
-@media (min-width: 1200px){
-    .container {
-        width: 970px !important;
-    }
-}
-@media (min-width: 768px){
-    .container {
-        width: 800px;
-    }
-}
-
 .team.my {
     background: #ccc;
 }

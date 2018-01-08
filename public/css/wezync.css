@@ -14,6 +14,14 @@ a {
     padding: 0 !important;
 }
 
+.padding-side-40 {
+    padding: 0 40px;
+}
+
+.padding-vert-40 {
+    padding: 40px 0;
+}
+
 .fixed {
     position: fixed;
 }
@@ -568,4 +576,15 @@ a {
   -webkit-box-shadow: none;
           box-shadow: none;
   color: #fff;
+}
+
+@media (min-width: 1200px){
+    .container {
+        width: 970px !important;
+    }
+}
+@media (min-width: 768px){
+    .container {
+        width: 800px;
+    }
 }

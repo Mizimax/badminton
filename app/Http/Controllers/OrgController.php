@@ -13,6 +13,10 @@ use App\Mail\OrgRegisterEmail;
 class OrgController extends Controller
 {
 
+    public function create(Request $req) {
+      return view('org/event/create');
+    }
+
     public function info(Request $req) {
 
       $org = Organizer::where('user_id', Auth::id())->first();

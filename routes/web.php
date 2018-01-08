@@ -42,6 +42,10 @@ Route::middleware('org_reg')->group(function () {
   Route::get('/org/register/step/email', 'OrgController@email');
 });
 
+Route::middleware('org')->group(function () {
+  Route::get('event/create', 'OrgController@create');
+});
+
 Route::middleware('admin')->group(function () {
   Route::get('/org/check/{user_id}', 'OrgController@check');
   Route::post('/org/check/{user_id}', 'OrgController@checkActive');

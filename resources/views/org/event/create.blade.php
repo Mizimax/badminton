@@ -214,11 +214,43 @@
         async defer></script>
 <script src="/js/map.js"></script>
 <script>
-
+    var handCount = 2;
+    var accountCount = 2;
     var addHand = (function() {
-        var text =
-  '\n                <div class="flex column wrap dropdown-group">\n                    <div class="dropdown">\n                        <div class="input"><span class="display">\u0E2D\u0E31\u0E19\u0E14\u0E31\u0E1A\u0E21\u0E37\u0E2D</span> <span class="icon dropdown">\u25BC</span></div>\n                        <div class="input-dropdown home shadow-black">\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S+</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S-</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>\n                        </div>\n                    </div>\n                    <div class="space"></div>\n                    <div class="dropdown">\n                        <div class="input"><span class="display">\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E39\u0E48</span> <span class="icon dropdown">\u25BC</span></div>\n                        <div class="input-dropdown home shadow-black">\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">3</div></div>\n                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>\n                        </div>\n                    </div>\n                    <div class="space"></div>\n                    <div class="dropdown reward">\n                        <div class="input" onclick="toggleDropdown(this)"><span class="display">\u0E40\u0E07\u0E34\u0E19\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25</span> <span class="icon dropdown">\u25BC</span></div>\n                        <div class="dropdown-box shadow-black">\n                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="\u0E17\u0E35\u0E48 1">\n                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="\u0E17\u0E35\u0E48 2">\n                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="\u0E17\u0E35\u0E48 3">\n                        </div>\n                    </div>\n                    <span class="glyphicon glyphicon-remove" onclick="removeHand(this)" style="margin:9px; color:red; cursor:pointer"></span>\n                </div>\n        ';
-
+        var text = `
+                <div class="flex column wrap dropdown-group">
+                    <div class="dropdown">
+                        <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
+                        <div class="input-dropdown home shadow-black">
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S+</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S-</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="dropdown">
+                        <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
+                        <div class="input-dropdown home shadow-black">
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">3</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
+                        </div>
+                    </div>
+                    <div class="space"></div>
+                    <div class="dropdown reward">
+                        <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
+                        <div class="dropdown-box shadow-black">
+                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 1">
+                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 2">
+                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 3">
+                        </div>
+                    </div>
+                    <span class="glyphicon glyphicon-remove" onclick="removeHand(this)" style="margin:9px; color:red; cursor:pointer"></span>
+                </div>
+        `
+        handCount++;
         $("#hand").append(text);
     });
 
@@ -235,7 +267,7 @@
                     </div>
                     <div class="form-group eiei">
                         
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" name="account_${handCount}" id="account_${handCount}">
                         <label for="name">ชื่อบัญชี</label>
                         
                     </div>
@@ -258,6 +290,7 @@
                 </div>
                 
         `
+        accountCount++;
         $('#account').append(text);
     });
 

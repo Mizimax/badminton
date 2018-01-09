@@ -13,6 +13,7 @@
 
 .form-control {
     border-radius: 7px;
+    margin-top: 5px;
 }
 
 .form-group label {
@@ -77,10 +78,30 @@
     width:calc(100% - 120px);
 }
 
+.form-group.eiei label {
+    margin-top: 15px;
+}
+
+.form-group.eiei.za label {
+    margin-top: 7px;
+}
+
 .form-group.eiei {
     margin: 0;
     display: inline-block;
     width: 100%;
+}
+
+.dropdown-group {
+    margin-top: 5px;
+}
+
+.dropdown-box {
+    width:100%;
+    position: absolute;
+    top: 40px;
+    display: none;
+    z-index: 99;
 }
 
 #map {

@@ -1,0 +1,126 @@
+/* Event Create Page Css */
+#slides {
+    margin-bottom: 0px;
+}
+
+.slide-add {
+    margin-right: 30px;
+}
+
+.slide-add:last-child {
+    margin-right: 0;
+}
+
+.form-control {
+    border-radius: 7px;
+}
+
+.form-group label {
+    font-weight: 400;
+    font-size: 18px;
+    color: #aaa;
+}
+
+.form-control:focus ~ label {
+    font-weight: bold;
+}
+
+.icon.map {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.form-container {
+    width:700px;
+    margin:0 auto;
+    max-width:100%;
+}
+
+.input {
+    border-color: #ccd0d2;
+    border-radius: 7px;
+    padding: 5px 0;
+}
+
+.input-dropdown {
+    top: 40px;
+}
+
+.space {
+    padding: 0 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.account {
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.form-group.eiei input{
+    width:calc(100% - 80px);
+    display: inline-block;
+    float:right;
+}
+
+.form-group.eiei label {
+    float:left;
+    margin-top:7px;
+    font-size: 14px;
+}
+
+.form-group.eiei.za input {
+    width:calc(100% - 120px);
+}
+
+.form-group.eiei {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+}
+
+#map {
+    height:300px;
+}
+
+@media (max-width: 556px) {
+    .dropdown-group .space {
+        padding: 0 2px;
+    }
+}
+
+@media (max-width: 524px) {
+    .dropdown-group {
+        justify-content: center;
+    }
+    .input {
+        margin:5px
+    }
+}
+
+@media (max-width: 500px) {
+    .form-group.eiei input {
+        width:calc(100% - 70px);
+    }
+    .form-group.eiei label {
+        font-size: 12px;
+    }
+    
+    .form-group.eiei.za {
+        display: table;
+        width: 100%;
+    }
+    .form-group.eiei.za label {
+        display: table-header-group;
+        float:none;
+    }
+    
+    .form-group.eiei.za .form-control {
+        display: table-row-group;
+        width:100%;
+    }
+}

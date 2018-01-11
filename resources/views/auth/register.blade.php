@@ -3,7 +3,7 @@
 @section('content')
 <div class="container transparent">
     <div class="row" align="center">
-        <div style="width: 550px; max-width: 90%; padding: 40px 0">
+        <div style="width: 500px; max-width: 90%; padding: 40px 0">
             <div class="panel panel-default" align="left">
                 <div class="panel-heading">Register</div>
 

@@ -89,7 +89,7 @@
                     @for( $order = 1; $order <= $number_of_team; $order++)
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <h6 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h6>
+                                <h4 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h4>
                             </div>
                         </div>
                         @if($number_of_team == 1)

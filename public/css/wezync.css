@@ -125,6 +125,10 @@ a {
     color: black;
 }
 
+.transparent {
+    background: transparent;
+}
+
 .font-big {
     font-size: 18px !important;
 }

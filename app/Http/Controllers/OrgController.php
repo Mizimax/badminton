@@ -205,7 +205,7 @@ class OrgController extends Controller
       if($data['org_active'] === 1){
         $user = $org->first();
         $link = url('/') . '/org/register/step/verify/' . $user->org_email_active;
-        \Mail::to('maxsayr6@gmail.com')->send(new OrgRegisterEmail($user->org_firstname, $user->org_lastname, $link));
+        \Mail::to(Auth::user()->email)->send(new OrgRegisterEmail($user->org_firstname, $user->org_lastname, $link));
       }
       $org->update($data);
 

@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('org')->group(function () {
   Route::get('event/create', 'OrgController@create');
+  Route::post('event/create', 'OrgController@save');
 });
 
 Route::get('/event/{event_id}', 'EventController@detail')->name('event_detail');

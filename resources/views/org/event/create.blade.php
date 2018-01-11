@@ -27,12 +27,12 @@
                 </div>
             </div>
             <div class="form-group max">
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="event_title" name="event_title">
                 <label for="name">ชื่อรายการ</label>
             </div>
             <div class="form-group max">
                 <div class="flex column">
-                    <input type="text" class="form-control" id="map-input">
+                    <input type="text" class="form-control" id="map-input" name="map-input">
                     <div class="icon map mar-side" data-toggle="collapse" data-target="#map" onclick="setTimeout(()=>initMap(),500)">Map</div>
                 </div>
                 <label for="name">สถาณที่จัดแข่ง</label>
@@ -41,26 +41,42 @@
             <div class="form-group max">
                 <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" id="event_date" name="event_date">
+                    </div>
                         <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
-                        <div class="input-dropdown home shadow-black">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">3</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
+                        <div class="input-dropdown home shadow-black has-scroll">
+                            @for($i = 1; $i <= 30; $i++)
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
+                            @endfor
                         </div>
                     </div>
                     <div class="space"></div>
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" id="event_month" name="event_month">
+                    </div>
                         <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
-                        <div class="input-dropdown home shadow-black">
+                        <div class="input-dropdown home shadow-black has-scroll">
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กุมพา</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มีนา</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">เมษา</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">พฤษภาคม</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มิถุนายน</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กรกฎาคม</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">สิงหาคม</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กันยายน</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ตุลาคม</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">พฤศจิกายน</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                         </div>
                     </div>
                     <div class="space"></div>
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" id="event_month" name="event_year">
+                    </div>
                         <div class="input"><span class="display">ปี</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black">
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
@@ -81,31 +97,55 @@
             <div id="hand" class="form-group max">
             <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" id="hand" name="hand">
+                    </div>
                         <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
-                        <div class="input-dropdown home shadow-black">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S+</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S-</div></div>
+                        <div class="input-dropdown home shadow-black has-scroll">
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B+</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C+</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P+</div></div>
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P-</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">N</div></div>
                         </div>
                     </div>
                     <div class="space"></div>
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" id="team_num" name="team_num">
+                    </div>
                         <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
-                        <div class="input-dropdown home shadow-black">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">3</div></div>
+                        <div class="input-dropdown home shadow-black has-scroll">
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">8</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">16</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">24</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">32</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">48</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">64</div></div>
                         </div>
                     </div>
                     <div class="space"></div>
                     <div class="dropdown reward">
                         <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                         <div class="dropdown-box shadow-black">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 1">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 2">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 3">
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" id="reward_1" name="reward_1" style="width: 100%; border:0" placeholder="ที่ 1">
+                                <span class="bath">บาท</span>
+                            </div>
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" id="reward_2" name="reward_2" style="width: 100%; border:0" placeholder="ที่ 2">
+                                <span class="bath">บาท</span>
+                            </div>
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" id="reward_3" name="reward_3" style="width: 100%; border:0" placeholder="ที่ 3">
+                                <span class="bath">บาท</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,23 +157,23 @@
                 <div class="account">
                     <div class="form-group eiei">
                         
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="name" name="name">
                         <label for="name">ชื่อบัญชี</label>
                         
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="account" name="account">
                         <label for="name">เลขบัญชี</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="promptpay" name="promptpay">
                         <label for="name">Promptpay</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="bank" name="bank">
                         <label for="name">ธนาคาร</label>
                     </div>
                     <br>
@@ -143,24 +183,24 @@
             <br><br>
             <p class="font-bold font-big" style="margin-bottom:5px">ลูกแบตที่ใช้ในการแข่ง</p>
             <div class="form-group eiei za">
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="sonbad_band" name="sonbad_band">
                 <label class="font-big" for="name">ยี่ห้อลูกแบด</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="sonbad" name="sonbad"></textarea>
                 <label class="font-big" for="name">ข้อมูลลูกแบด</label>
             </div>
             <div class="form-group eiei za">
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">
                 <label class="font-big" for="name">ราคาลูกแบด</label>
             </div>
             <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
             <div class="form-group max">
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="firstname" name="firstname">
                 <label class="font-big" for="name">ชื่อ</label>
             </div>
             <div class="form-group max">
-                <input type="text" class="form-control" id="name">
+                <input type="text" class="form-control" id="lastname" name="lastname">
                 <label class="font-big" for="name">นามสกุล</label>
             </div>
             <div class="form-group max">
@@ -169,27 +209,27 @@
             </div>
             <h1 class="font-bold color-black">รายละเอียด</h1>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="objective" name="objective"></textarea>
                 <label class="font-big" for="name">วัตถุประสงค์</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="reg_duration" name="reg_duration"></textarea>
                 <label class="font-big" for="name">ระยะเวลาในการสมัคร</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="event_special" name="event_special"></textarea>
                 <label class="font-big" for="name">กิจกรรมพิเศษ</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="rule" name="rule"></textarea>
                 <label class="font-big" for="name">กติกาการแข่งขัน</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="consideration" name="consideration"></textarea>
                 <label class="font-big" for="name">การพิจารณามือนักกีฬา</label>
             </div>
             <div class="form-group max">
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control" rows="5" id="postscript" name="postscript"></textarea>
                 <label class="font-big" for="name">กล่าวจบ</label>
             </div>
             <div align="center">
@@ -221,11 +261,17 @@
                 <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
                         <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
-                        <div class="input-dropdown home shadow-black">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S+</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S-</div></div>
+                        <div class="input-dropdown home shadow-black has-scroll">
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B+</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C+</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P+</div></div>
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P-</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">N</div></div>
                         </div>
                     </div>
                     <div class="space"></div>
@@ -242,9 +288,18 @@
                     <div class="dropdown reward">
                         <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                         <div class="dropdown-box shadow-black">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 1">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 2">
-                            <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 3">
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 1">
+                                <span class="bath">บาท</span>
+                            </div>
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 2">
+                                <span class="bath">บาท</span>
+                            </div>
+                            <div class="reward-container">
+                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 3">
+                                <span class="bath">บาท</span>
+                            </div>
                         </div>
                     </div>
                     <span class="glyphicon glyphicon-remove" onclick="removeHand(this)" style="margin:9px; color:red; cursor:pointer"></span>

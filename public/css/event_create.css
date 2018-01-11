@@ -104,6 +104,18 @@
     z-index: 99;
 }
 
+.reward-container {
+    position: relative;
+}
+
+.bath {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    font-size: 12px;
+    color: #ccc;
+}
+
 #map {
     height:300px;
 }

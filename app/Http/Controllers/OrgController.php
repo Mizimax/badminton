@@ -17,6 +17,10 @@ class OrgController extends Controller
       return view('org/event/create');
     }
 
+    public function save(Request $req) {
+      dd($req->input());
+    }
+
     public function info(Request $req) {
 
       $org = Organizer::where('user_id', Auth::id())->first();

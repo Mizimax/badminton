@@ -1,6 +1,24 @@
 body{
     margin:0;
     font-family: 'Kanit', sans-serif;
+    
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    background: white;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #8ED5ED;
+}
+
+div::-webkit-scrollbar {
+    width: 8px;
 }
 
 a {
@@ -129,6 +147,11 @@ a {
 
 .show {
     display: block;
+}
+
+.input-dropdown.has-scroll {
+    max-height:97px;
+    overflow-y:scroll
 }
 
 .form-group.max {

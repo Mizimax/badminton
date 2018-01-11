@@ -12,8 +12,11 @@ this.activeTarget=b,this.clear();var c=this.selector+'[data-target="'+b+'"],'+th
 
 var selectDropdown = (function(element){
     var data = $(element).children(':first').html();
-    var select = $('.input-dropdown.open').prev();
+    var value = $(element).attr('value');
+    var select = $(element).parent().prev();
+    var input = select.prev().children(':first');
     select.children(':first').html(data);
+    input.val(value | data);
     return data;
 });
 

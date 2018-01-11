@@ -8,6 +8,7 @@ use Session;
 
 use App\Models\Organizer;
 use App\Models\User;
+use App\Models\Event;
 use App\Mail\OrgRegisterEmail;
 
 class OrgController extends Controller
@@ -18,7 +19,32 @@ class OrgController extends Controller
     }
 
     public function save(Request $req) {
-      dd($req->input());
+      $input = $req->input();
+      $data = [];
+      $detail = [
+        'by' => $input['by'],
+        'location' => [ 
+          'name' => $input['map-input'],
+          'position' => 'https://www.google.co.th/maps/place/' . $input['map-input']
+        ],
+        'date' =>  ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'],
+        'expenses' =>  $input['expenses'] . ' บาท / คู่',
+        'bookbank_organizers' =>  [
+          'name' => $input['name'],
+          'bank' => $input['bank'],
+          'prompypay' => $input['promptpay'],
+          'account' => $input['account']
+        ],
+        'organizers' =>  $input['organizer'] . 'ติดต่อ : ' . $input['contact'],
+        'objective' =>  $input['objective'],
+        'event_type' =>  $input['map-input'],
+      ];
+
+      $data['event_title'] = $input['event_title'];
+      $data['event_description'] = 
+      dd($input);
+      $event = Event::insert($data);
+      return redirect('/event/'.$event->event_id);
     }
 
     public function info(Request $req) {

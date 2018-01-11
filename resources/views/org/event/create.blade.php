@@ -29,14 +29,18 @@
                 </div>
                 <div class="form-group max">
                     <input type="text" class="form-control" id="event_title" name="event_title">
-                    <label for="name">ชื่อรายการ</label>
+                    <label for="event_title">ชื่อรายการ</label>
+                </div>
+                <div class="form-group max">
+                    <input type="text" class="form-control" id="by" name="by">
+                    <label for="by">ผู้จัดแข่ง</label>
                 </div>
                 <div class="form-group max">
                     <div class="flex column">
                         <input type="text" class="form-control" id="map-input" name="map-input">
                         <div class="icon map mar-side" data-toggle="collapse" data-target="#map" onclick="setTimeout(()=>initMap(),500)">Map</div>
                     </div>
-                    <label for="name">สถาณที่จัดแข่ง</label>
+                    <label for="map-input">สถาณที่จัดแข่ง</label>
                 </div>
                 <div id="map" style="height:0"></div>
                 <div class="form-group max">
@@ -59,24 +63,24 @@
                         </div>
                             <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">พฤษภาคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">มิถุนายน</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กรกฎาคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">สิงหาคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">กันยายน</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ตุลาคม</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">พฤศจิกายน</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
+                                <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
+                                <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
+                                <div class="item-dropdown" value="3" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
+                                <div class="item-dropdown" value="4" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
+                                <div class="item-dropdown" value="5" onclick="selectDropdown(this)"><div class="item">พฤษภาคม</div></div>
+                                <div class="item-dropdown" value="6" onclick="selectDropdown(this)"><div class="item">มิถุนายน</div></div>
+                                <div class="item-dropdown" value="7" onclick="selectDropdown(this)"><div class="item">กรกฎาคม</div></div>
+                                <div class="item-dropdown" value="8" onclick="selectDropdown(this)"><div class="item">สิงหาคม</div></div>
+                                <div class="item-dropdown" value="9" onclick="selectDropdown(this)"><div class="item">กันยายน</div></div>
+                                <div class="item-dropdown" value="10" onclick="selectDropdown(this)"><div class="item">ตุลาคม</div></div>
+                                <div class="item-dropdown" value="11" onclick="selectDropdown(this)"><div class="item">พฤศจิกายน</div></div>
+                                <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                             </div>
                         </div>
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_month" name="event_year">
+                            <input type="text" id="event_year" name="event_year">
                         </div>
                             <div class="input"><span class="display">ปี</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
@@ -87,13 +91,13 @@
                             </div>
                         </div>
                     </div>
-                    <label for="name">วันที่จัดแข่ง</label>
+                    <label for="event_year">วันที่จัดแข่ง</label>
                 </div>
                 <div class="form-group max">
                     
-                    <input type="text" class="form-control mar-side" id="name" style="width:80px;">
-                    <label for="name" style="float:left; margin-top:7px">ค่าสมัครต่อคู่</label>
-                    <label for="name" style="display:inline-block">บาท</label>
+                    <input type="text" class="form-control mar-side" id="expenses_detail" name="expenses_detail" style="width:80px;">
+                    <label for="expenses_detail" style="float:left; margin-top:7px">ค่าสมัครต่อคู่</label>
+                    <label for="expenses_detail" style="display:inline-block">บาท</label>
                 </div>
                 <div id="hand" class="form-group max">
                 <div class="flex column wrap dropdown-group">
@@ -150,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                    <label for="name">ประเภทการแข่งขัน</label>
+                    <label for="reward_1">ประเภทการแข่งขัน</label>
                 </div>
                 <button type="button" class="btn btn-success btn-sm" onclick="addHand()">เพิ่มประเภท +</button>
                 <h3 class="font-bold grey-med">การโอนเงิน</h3>
@@ -165,17 +169,17 @@
                         <br>
                         <div class="form-group eiei">
                             <input type="text" class="form-control" id="account" name="account">
-                            <label for="name">เลขบัญชี</label>
+                            <label for="account">เลขบัญชี</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
                             <input type="text" class="form-control" id="promptpay" name="promptpay">
-                            <label for="name">Promptpay</label>
+                            <label for="promptpay">Promptpay</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
                             <input type="text" class="form-control" id="bank" name="bank">
-                            <label for="name">ธนาคาร</label>
+                            <label for="bank">ธนาคาร</label>
                         </div>
                         <br>
                     </div>
@@ -185,53 +189,62 @@
                 <p class="font-bold font-big" style="margin-bottom:5px">ลูกแบตที่ใช้ในการแข่ง</p>
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_band" name="sonbad_band">
-                    <label class="font-big" for="name">ยี่ห้อลูกแบด</label>
+                    <label class="font-big" for="sonbad_band">ยี่ห้อลูกแบด</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="sonbad" name="sonbad"></textarea>
-                    <label class="font-big" for="name">ข้อมูลลูกแบด</label>
+                    <label class="font-big" for="sonbad">ข้อมูลลูกแบด</label>
                 </div>
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">
-                    <label class="font-big" for="name">ราคาลูกแบด</label>
+                    <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
+                </div>
+                <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ข้อมูลผู้จัดแข่ง</p>
+                <div class="form-group max">
+                    <input type="text" class="form-control" id="organizer" name="organizer">
+                    <label class="font-big" for="organizer">ชื่อ-นามสกุล</label>
+                </div>
+                <div class="form-group max">
+                    <input type="text" class="form-control" id="contact" name="contact">
+                    <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
                 </div>
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
                     <input type="text" class="form-control" id="firstname" name="firstname">
-                    <label class="font-big" for="name">ชื่อ</label>
+                    <label class="font-big" for="firstname">ชื่อ</label>
                 </div>
                 <div class="form-group max">
                     <input type="text" class="form-control" id="lastname" name="lastname">
-                    <label class="font-big" for="name">นามสกุล</label>
+                    <label class="font-big" for="lastname">นามสกุล</label>
                 </div>
                 <div class="form-group max">
                     <button type="button">+</button>
-                    <label class="font-big" for="name">รูปผู้ประเมินมือ</label>
+                    <label class="font-big" for="pic-hand">รูปผู้ประเมินมือ</label>
                 </div>
                 <h1 class="font-bold color-black">รายละเอียด</h1>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="objective" name="objective"></textarea>
-                    <label class="font-big" for="name">วัตถุประสงค์</label>
+                    <label class="font-big" for="objective">วัตถุประสงค์</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="reg_duration" name="reg_duration"></textarea>
-                    <label class="font-big" for="name">ระยะเวลาในการสมัคร</label>
+                    <label class="font-big" for="reg_duration">ระยะเวลาในการสมัคร</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="event_special" name="event_special"></textarea>
-                    <label class="font-big" for="name">กิจกรรมพิเศษ</label>
+                    <label class="font-big" for="event_special">กิจกรรมพิเศษ</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="rule" name="rule"></textarea>
-                    <label class="font-big" for="name">กติกาการแข่งขัน</label>
+                    <label class="font-big" for="rule">กติกาการแข่งขัน</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="consideration" name="consideration"></textarea>
-                    <label class="font-big" for="name">การพิจารณามือนักกีฬา</label>
+                    <label class="font-big" for="consideration">การพิจารณามือนักกีฬา</label>
                 </div>
                 <div class="form-group max">
                     <textarea class="form-control" rows="5" id="postscript" name="postscript"></textarea>
-                    <label class="font-big" for="name">กล่าวจบ</label>
+                    <label class="font-big" for="postscript">กล่าวจบ</label>
                 </div>
                 <div align="center">
                     <button type="submit" class="btn btn-success btn-lg">สร้างรายการ</button>

@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Kanit:200,400,600&amp;subset=thai" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/wezync.css?{{ time() }}" rel="stylesheet">
+    <link href="/css/wezync.css" rel="stylesheet">
     @yield('css')
 
     @if(config('app.env') == 'local')

@@ -203,7 +203,16 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            
+            families: ['Kanit:200,400,600:thai']
+        }
+    });
+    </script>
+    <script src="/js/app.js"></script>
     <script src="/js/sweetalert2.js"></script>
 
     @yield('scripts')

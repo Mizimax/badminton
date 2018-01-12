@@ -1,80 +1,89 @@
 @extends('layouts.app')
 
-@section('content')
+@section('css')
+<style>
+  .col-sm-3 {
+    margin-top:10px;
+  }
+</style>
+@endsection
 
-@include('org/header')
-<div id="content">
-  <div class="form">
-      <div class="row">
-        <div class="col-sm-3">ชื่อ</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_firstname" name="org_firstname" value="{{ $Firstname }}">
+@section('content')
+<br><br>
+<div id="content" class="container pad">
+  <div class="card">
+    <div class="card-block">
+        <div class="row">
+          <div class="col-sm-3" align="right">ชื่อ</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_firstname" name="org_firstname" value="{{ $Firstname }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">นามสกุล</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_lastname" name="org_lastname" value="{{ $Lastname }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">นามสกุล</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_lastname" name="org_lastname" value="{{ $Lastname }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">ชื่อเล่น</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_nickname" name="org_nickname" value="{{ $Nickname }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">ชื่อเล่น</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_nickname" name="org_nickname" value="{{ $Nickname }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">เบอร์โทร</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_phone" name="org_phone" value="{{ $Phone }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">เบอร์โทร</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_phone" name="org_phone" value="{{ $Phone }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">Email</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_email" name="org_email" value="{{ $Email }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">Email</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_email" name="org_email" value="{{ $Email }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">เคยจัดมากี่รายการ</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_create_time" name="org_create_time" value="{{ $org_create_time }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">เคยจัดมากี่รายการ</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_create_time" name="org_create_time" value="{{ $org_create_time }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3">ชื่อรายการล่าสุดที่จัด</div>
-        <div class="col-sm-9">
-          <input type="text" class="form-control" id="org_last_create" name="org_last_create" value="{{ $org_last_create }}">
+        <div class="row">
+          <div class="col-sm-3" align="right">ชื่อรายการล่าสุดที่จัด</div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="org_last_create" name="org_last_create" value="{{ $org_last_create }}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <img src="{{$org_id_card}}">
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <img src="{{$org_id_card}}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <img src="{{$org_house_reg}}">
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <img src="{{$org_house_reg}}">
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <img src="{{$org_bank_account}}">
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <img src="{{$org_bank_account}}">
+          </div>
         </div>
-      </div>
-    <form action="" method="post">
-      <div class="row">
-        <div class="col-sm-12 font-big font-bold" align="center">
-          <label class="checkbox-inline"><input type="radio" name="org_active" value="1" style="margin-right: 7px">ผ่าน</label>
-          <label class="checkbox-inline"><input type="radio" name="org_active" value="0" style="margin-right: 7px">ไม่ผ่าน</label>
+      <form action="" method="post">
+        <div class="row">
+          <div class="col-sm-12 font-big font-bold" align="center">
+            <label class="checkbox-inline"><input type="radio" name="org_active" value="1" style="margin-right: 7px">ผ่าน</label>
+            <label class="checkbox-inline"><input type="radio" name="org_active" value="0" style="margin-right: 7px">ไม่ผ่าน</label>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12" align="center">
-          <button type="submit" class="btn btn-success btn-lg">บันทึก</button>
+        <div class="row">
+          <div class="col-sm-12" align="center">
+            <button type="submit" class="btn btn-success btn-lg">บันทึก</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 <br><br><br>

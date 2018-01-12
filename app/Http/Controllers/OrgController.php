@@ -215,8 +215,16 @@ class OrgController extends Controller
       return view('org/regis/success');
     }
 
-    public function check($user_id) {
-      $org = Organizer::where('user_id', $user_id)->first();
+    public function getCheck() {
+      $orgs = Organizer::select('org_id', 'org_firstname', 'org_lastname', 'org_nickname')
+                       ->where('user_id', Auth::id())
+                       ->where('org_active', 0)->get();
+      
+      return view('org/regis/checkAll')->with('orgs', $orgs);
+    }
+
+    public function check($org_id) {
+      $org = Organizer::where('org_id', $org_id)->first();
       if($org){
         return view('org/regis/check')
           ->with('Firstname', $org->org_firstname)

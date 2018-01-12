@@ -48,6 +48,7 @@ Route::middleware('org_reg')->group(function () {
 });
 
 Route::middleware('admin')->group(function () {
+  Route::get('/org/checks', 'OrgController@getCheck');
   Route::get('/org/check/{user_id}', 'OrgController@check');
   Route::post('/org/check/{user_id}', 'OrgController@checkActive');
 });

@@ -1,4 +1,9 @@
 /* Event Create Page Css */
+
+textarea {
+    /* white-space: pre; */
+}
+
 #slides {
     margin-bottom: 0px;
 }

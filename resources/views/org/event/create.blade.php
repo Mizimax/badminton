@@ -198,8 +198,8 @@
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">
                     <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
-                </div>
-                <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ข้อมูลผู้จัดแข่ง</p>
+                </div>              
+                <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
                     <input type="text" class="form-control" id="organizer" name="organizer">
                     <label class="font-big" for="organizer">ชื่อ-นามสกุล</label>
@@ -207,15 +207,6 @@
                 <div class="form-group max">
                     <input type="text" class="form-control" id="contact" name="contact">
                     <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
-                </div>
-                <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
-                <div class="form-group max">
-                    <input type="text" class="form-control" id="firstname" name="firstname">
-                    <label class="font-big" for="firstname">ชื่อ</label>
-                </div>
-                <div class="form-group max">
-                    <input type="text" class="form-control" id="lastname" name="lastname">
-                    <label class="font-big" for="lastname">นามสกุล</label>
                 </div>
                 <div class="form-group max">
                     <button type="button">+</button>

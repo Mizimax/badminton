@@ -21,28 +21,47 @@ class OrgController extends Controller
     public function save(Request $req) {
       $input = $req->input();
       $data = [];
+      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
+      $date_start = date_create_from_format('d/m/Y:H:i:s', $date);
       $detail = [
         'by' => $input['by'],
         'location' => [ 
           'name' => $input['map-input'],
           'position' => 'https://www.google.co.th/maps/place/' . $input['map-input']
         ],
-        'date' =>  ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'],
-        'expenses' =>  $input['expenses'] . ' บาท / คู่',
+        'date' => $date_start,
+        'expenses' =>  $input['expenses_detail'] . ' บาท / คู่',
         'bookbank_organizers' =>  [
           'name' => $input['name'],
           'bank' => $input['bank'],
           'prompypay' => $input['promptpay'],
           'account' => $input['account']
         ],
-        'organizers' =>  $input['organizer'] . 'ติดต่อ : ' . $input['contact'],
+        'organizers' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
         'objective' =>  $input['objective'],
-        'event_type' =>  $input['map-input'],
+        'event_type' => [
+          'type' => 'คู่ เดี่ยว', //ยังไม่มีให้เลือก
+          'detail' => $input['hand'] . $input['team_num'] //แก้ front มีหลายมือ
+        ],
+        'detail' =>  $input['reg_duration'],
+        'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
+        'rule' => $input['rule'],
+        'consideration' => $input['consideration'],
+        'accessory' => $input['sonbad_band'] . $input['sonbad'] . $input['sonbad_price'],
+        'screening_person' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
+        'postscript' => $input['postscript']
       ];
 
+      $data['event_start'] = $date_start;
       $data['event_title'] = $input['event_title'];
-      $data['event_description'] = 
-      dd($input);
+      $data['event_description'] = json_encode($detail);
+      $data['event_race'] = json_encode([
+        [ 'race_id' =>  $input['hand'], 'count' =>  $input['team_num'] ]
+      ]);
+      $data['event_cover'] = []; //เหลือทำ upload
+      $data['event_package'] = 1;
+      //ที่เหลือยังไม่ยู้
+      //dd($data);
       $event = Event::insert($data);
       return redirect('/event/'.$event->event_id);
     }

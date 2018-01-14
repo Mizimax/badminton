@@ -57,17 +57,17 @@
         </div>
         <div class="row">
           <div class="col-sm-12" align="center">
-            <img src="{{$org_id_card}}">
+            <img src="{{$org_id_card}}" width="400">
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12" align="center">
-            <img src="{{$org_house_reg}}">
+            <img src="{{$org_house_reg}}" width="400">
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12" align="center">
-            <img src="{{$org_bank_account}}">
+            <img src="{{$org_bank_account}}" width="400">
           </div>
         </div>
       <form action="" method="post">

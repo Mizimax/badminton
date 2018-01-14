@@ -144,8 +144,24 @@ class OrgController extends Controller
 
     public function upload(Request $request) {
       //ajax อัพรูป
+      $name = $request->query('name');
+      $org = Organizer::select($name)->where('user_id', Auth::id());
+      $user = $org->first();
+
+      if($user[$name]) {
+        $splitName = explode("/", $user[$name]);
+        $fileName = $splitName[count($splitName)-1];
+        $path = base_path() . '/public/images/user/' . $fileName;
+        try{
+          unlink($path);
+        }
+        catch (\Exception $e) {
+          
+        }
+      }
 
       try {
+
         $imageName = time() . '.' . 
           $request->file('image')->getClientOriginalExtension();
 
@@ -157,9 +173,9 @@ class OrgController extends Controller
       }
 
       $url = url('/') . '/images/user/' . $imageName;
-      $data[$request->query('name')] = $url;
+      $data[$name] = $url;
 
-      Organizer::where('user_id', Auth::id())->update($data);
+      $org->update($data);
 
       return response()->json(['status' => 'ok', 'message' => 'Upload Complete.', 'image' => $url]);
     }

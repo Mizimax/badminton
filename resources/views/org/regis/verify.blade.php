@@ -55,7 +55,7 @@
   </div>
 </div>
 <div class="upload">
-    <div class="upload-box" style="background: url({{$org_id_card}})">
+    <div class="upload-box" style="background-image: url({{$org_id_card}})">
       <div class="hider">
         <input type="file" id="org_id_card" name="org_id_card" accept="image/*">
       </div>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <div class="upload-box" style="background: url({{$org_house_reg}})">
+    <div class="upload-box" style="background-image: url({{$org_house_reg}})">
       <div class="hider">
         <input type="file" id="org_house_reg" name="org_house_reg" accept="image/*">
       </div>
@@ -83,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div class="upload-box" style="background: url({{$org_bank_account}})">
+    <div class="upload-box" style="background-image: url({{$org_bank_account}})">
       <div class="hider">
         <input type="file" id="org_bank_account" name="org_bank_account" accept="image/*">
       </div>

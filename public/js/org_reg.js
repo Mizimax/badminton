@@ -21,6 +21,7 @@ $(document).ready(function() {
        icon.hide();
        progress.show();
        text.show();
+       success.removeClass('show');
        success.hide();
        text.html(fileName);
        $.ajax({
@@ -46,7 +47,7 @@ $(document).ready(function() {
           processData: false,
           success: function(result) {
             progress.children().eq(0).css('width', '0');
-            box.css('background', 'url('+ result.image +')');
+            box.css('background-image', 'url('+ result.image +')');
             success.show();
             progress.hide();
             text.hide();

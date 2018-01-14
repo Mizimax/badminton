@@ -217,7 +217,6 @@ class OrgController extends Controller
 
     public function getCheck() {
       $orgs = Organizer::select('org_id', 'org_firstname', 'org_lastname', 'org_nickname')
-                       ->where('user_id', Auth::id())
                        ->where('org_active', 0)->get();
       
       return view('org/regis/checkAll')->with('orgs', $orgs);

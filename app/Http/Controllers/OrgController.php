@@ -21,8 +21,14 @@ class OrgController extends Controller
     public function save(Request $req) {
       $input = $req->input();
       $data = [];
+      dd($input);
       $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
       $date_start = date_create_from_format('d/m/Y:H:i:s', $date);
+      $hand = [];
+      for($i = 0; $i < count($input['hand']); $i++) {
+        $hand[] = $input['hand'][$i] . $input['team_num'][$i] . 'กลุ่มละ 4 ทีม ( ที่1 ที่ 2 เข้ารอบน๊อคเอ้าท์)';
+      }
+
       $detail = [
         'by' => $input['by'],
         'location' => [ 
@@ -40,8 +46,8 @@ class OrgController extends Controller
         'organizers' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
         'objective' =>  $input['objective'],
         'event_type' => [
-          'type' => 'คู่ เดี่ยว', //ยังไม่มีให้เลือก
-          'detail' => $input['hand'] . $input['team_num'] //แก้ front มีหลายมือ
+          'type' => 'เปิดรับสมัครลงแข่งขัน ประเภท คู่ จำกัดมือ', //ยังไม่มีให้เลือก
+          'detail' => $hand //แก้ front มีหลายมือ
         ],
         'detail' =>  $input['reg_duration'],
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
@@ -60,8 +66,8 @@ class OrgController extends Controller
       ]);
       $data['event_cover'] = []; //เหลือทำ upload
       $data['event_package'] = 1;
-      //ที่เหลือยังไม่ยู้
-      //dd($data);
+
+      dd($data);
       $event = Event::insert($data);
       return redirect('/event/'.$event->event_id);
     }

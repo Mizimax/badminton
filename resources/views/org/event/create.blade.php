@@ -103,7 +103,7 @@
                 <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="hand" name="hand">
+                            <input type="text" name="hand[]">
                         </div>
                             <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
@@ -122,7 +122,7 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="team_num" name="team_num">
+                            <input type="text" name="team_num[]">
                         </div>
                             <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
@@ -140,15 +140,15 @@
                             <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                             <div class="dropdown-box shadow-black">
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" id="reward_1" name="reward_1" style="width: 100%; border:0" placeholder="ที่ 1">
+                                    <input type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" id="reward_2" name="reward_2" style="width: 100%; border:0" placeholder="ที่ 2">
+                                    <input type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" id="reward_3" name="reward_3" style="width: 100%; border:0" placeholder="ที่ 3">
+                                    <input type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
                                     <span class="bath">บาท</span>
                                 </div>
                             </div>
@@ -162,23 +162,23 @@
                     <div class="account">
                         <div class="form-group eiei">
                             
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
                             
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" id="account" name="account">
+                            <input type="text" class="form-control" name="account[]">
                             <label for="account">เลขบัญชี</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" id="promptpay" name="promptpay">
+                            <input type="text" class="form-control" name="promptpay[]">
                             <label for="promptpay">Promptpay</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" id="bank" name="bank">
+                            <input type="text" class="form-control" name="bank[]">
                             <label for="bank">ธนาคาร</label>
                         </div>
                         <br>
@@ -266,6 +266,9 @@
         var text = `
                 <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" name="hand[]">
+                    </div>
                         <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black has-scroll">
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
@@ -282,6 +285,9 @@
                     </div>
                     <div class="space"></div>
                     <div class="dropdown">
+                    <div class="hide">
+                        <input type="text" name="team_num[]">
+                    </div>
                         <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black">
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>
@@ -295,15 +301,15 @@
                         <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                         <div class="dropdown-box shadow-black">
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 1">
+                                <input type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                 <span class="bath">บาท</span>
                             </div>
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 2">
+                                <input type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
                                 <span class="bath">บาท</span>
                             </div>
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" style="width: 100%; border:0" placeholder="ที่ 3">
+                                <input type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
                                 <span class="bath">บาท</span>
                             </div>
                         </div>
@@ -328,23 +334,23 @@
                     </div>
                     <div class="form-group eiei">
                         
-                        <input type="text" class="form-control" name="account_${handCount}" id="account_${handCount}">
+                        <input type="text" class="form-control" name="name[]">
                         <label for="name">ชื่อบัญชี</label>
                         
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" name="account[]">
                         <label for="name">เลขบัญชี</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" name="promptpay[]">
                         <label for="name">Promptpay</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" name="bank[]">
                         <label for="name">ธนาคาร</label>
                     </div>
                     <br>

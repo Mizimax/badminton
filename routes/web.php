@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('OrgAndAdmin')->group(function () {
   Route::get('event/create', 'OrgController@create');
   Route::post('event/create', 'OrgController@save');
+  Route::post('event/create/upload', 'OrgController@uploadSlide');
 });
 
 Route::get('/event/{event_id}', 'EventController@detail')->name('event_detail');

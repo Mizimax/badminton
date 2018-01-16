@@ -10,6 +10,34 @@ textarea {
 
 .slide-add {
     margin-right: 30px;
+    position: relative;
+    width: 70px;
+    height: 100px;
+}
+
+.slide-add .glyphicon {
+    color: #29ABE2;
+    font-size: 70px;
+}
+
+.slide-add .add-circle{
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    z-index: 99;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.slide-add .add-circle input {
+    opacity: 0;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
 }
 
 .slide-add:last-child {

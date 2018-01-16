@@ -16,7 +16,7 @@ var selectDropdown = (function(element){
     var select = $(element).parent().prev();
     var input = select.prev().children(':first');
     select.children(':first').html(data);
-    input.val(value | data);
+    input.val(value ? value : data);
     return data;
 });
 

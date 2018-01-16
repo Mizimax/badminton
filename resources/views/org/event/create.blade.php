@@ -12,18 +12,46 @@
             <div class="col-sm-12 pad-side">
                 <br>
                 <h1 class="font-bold color-black">ข้อมูลสำคัญ</h1>
+                <h3 class="font-bold grey-med">รูปโปสเตอร์ <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
+                <div class="slide-add" style="height:70px">
+                    <div class="hide">
+                        <input type="text" name="poster">
+                    </div>
+                    <div class="add-circle">
+                        <input type="file" accept="image/*" name="slide_1">
+                    </div>
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </div>
                 <h3 class="font-bold grey-med">รูปหน้าปก <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
                 <div id="slides" class="flex column center wrap mar-vert">
                     <div class="slide-add">
-                        +
+                        <div class="hide">
+                            <input type="text" name="cover[]">
+                        </div>
+                        <div class="add-circle">
+                            <input type="file" accept="image/*" name="slide_1">
+                        </div>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
                         <p class="grey-small">Slide ที่ 1</p>
                     </div>
                     <div class="slide-add">
-                        +
+                        <div class="hide">
+                            <input type="text" name="cover[]">
+                        </div>
+                        <div class="add-circle">
+                            <input type="file" accept="image/*" name="slide_2">
+                        </div>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
                         <p class="grey-small">Slide ที่ 2</p>
                     </div>
                     <div class="slide-add">
-                        +
+                        <div class="hide">
+                            <input type="text" name="cover[]">
+                        </div>
+                        <div class="add-circle">
+                            <input type="file" accept="image/*" name="slide_3">
+                        </div>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
                         <p class="grey-small">Slide ที่ 3</p>
                     </div>
                 </div>
@@ -209,7 +237,15 @@
                     <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
                 </div>
                 <div class="form-group max">
-                    <button type="button">+</button>
+                    <div class="slide-add" style="margin-top:7px;height:70px">
+                        <div class="hide">
+                            <input type="text" name="hand_img">
+                        </div>
+                        <div class="add-circle">
+                            <input type="file" accept="image/*" name="hand_pic">
+                        </div>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </div>
                     <label class="font-big" for="pic-hand">รูปผู้ประเมินมือ</label>
                 </div>
                 <h1 class="font-bold color-black">รายละเอียด</h1>
@@ -259,6 +295,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqij_a4O1A9CmXrqg2EkA9fWwmg9g_HaI&libraries=places&callback=initMap"
         async defer></script>
 <script src="/js/map.js"></script>
+<script src="/js/create_upload.js"></script>
 <script>
     var handCount = 2;
     var accountCount = 2;
@@ -290,10 +327,13 @@
                     </div>
                         <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">1</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">3</div></div>
                             <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">8</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">16</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">24</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">32</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">48</div></div>
+                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">64</div></div>
                         </div>
                     </div>
                     <div class="space"></div>

@@ -9,6 +9,7 @@ use Session;
 use App\Models\Organizer;
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Upload;
 use App\Mail\OrgRegisterEmail;
 
 class OrgController extends Controller
@@ -20,13 +21,26 @@ class OrgController extends Controller
 
     public function save(Request $req) {
       $input = $req->input();
+      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'] . ' 00:00:00';
+      $date_start = strtotime($date);
       $data = [];
-      dd($input);
-      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
-      $date_start = date_create_from_format('d/m/Y:H:i:s', $date);
+      $handText = [];
       $hand = [];
+      $account = [];
+      $reward = [];
+
       for($i = 0; $i < count($input['hand']); $i++) {
-        $hand[] = $input['hand'][$i] . $input['team_num'][$i] . 'กลุ่มละ 4 ทีม ( ที่1 ที่ 2 เข้ารอบน๊อคเอ้าท์)';
+        $hand[] = [ 'race_id' => $input['hand'][$i], 'count' => $input['team_num'][$i]];
+        $handText[] = $input['hand'][$i] . $input['team_num'][$i] . 'กลุ่มละ 4 ทีม ( ที่1 ที่ 2 เข้ารอบน๊อคเอ้าท์)';
+        $reward[] = $i+1 . '. มือ' . $input['hand'][$i] . ' : ชนะเลิศ '. $input['reward_1'][$i] .' รองชนะเลิศอันดับหนึ่ง ที่สอง '. $input['reward_2'][$i] .' รองชนะเลิศอันดับ2 ที่สาม ' . $input['reward_3'][$i];
+      }
+      for($j = 0; $j < count($input['name']); $j++) {
+        $account[] = [
+          'name' => $input['name'][$j],
+          'bank' => $input['bank'][$j],
+          'prompypay' => $input['promptpay'][$j],
+          'account' => $input['account'][$j]
+        ];
       }
 
       $detail = [
@@ -37,39 +51,76 @@ class OrgController extends Controller
         ],
         'date' => $date_start,
         'expenses' =>  $input['expenses_detail'] . ' บาท / คู่',
-        'bookbank_organizers' =>  [
-          'name' => $input['name'],
-          'bank' => $input['bank'],
-          'prompypay' => $input['promptpay'],
-          'account' => $input['account']
-        ],
+        'bookbank_organizers' =>  $account,
         'organizers' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
         'objective' =>  $input['objective'],
         'event_type' => [
           'type' => 'เปิดรับสมัครลงแข่งขัน ประเภท คู่ จำกัดมือ', //ยังไม่มีให้เลือก
-          'detail' => $hand //แก้ front มีหลายมือ
+          'detail' => $handText //แก้ front มีหลายมือ
         ],
         'detail' =>  $input['reg_duration'],
+        'rewards' => $reward,
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
         'rule' => $input['rule'],
         'consideration' => $input['consideration'],
         'accessory' => $input['sonbad_band'] . $input['sonbad'] . $input['sonbad_price'],
         'screening_person' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
+        'screening_person_img' => $input['hand_img'],
         'postscript' => $input['postscript']
       ];
 
       $data['event_start'] = $date_start;
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
-      $data['event_race'] = json_encode([
-        [ 'race_id' =>  $input['hand'], 'count' =>  $input['team_num'] ]
-      ]);
-      $data['event_cover'] = []; //เหลือทำ upload
+      $data['event_race'] = json_encode($hand);
+      $data['event_cover'] = json_encode($input['cover']);
+      $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
 
+      $event = Event::create($data);
       dd($data);
-      $event = Event::insert($data);
       return redirect('/event/'.$event->event_id);
+    }
+
+    public function uploadSlide(Request $request) {
+      $name = $request->query('name');
+      $slides = Upload::select('upload_path')->where('upload_name', $name)->where('upload_type', 'event_cover')->where('user_id', Auth::id());
+      $slide = $slides->firstOrNew([
+        'upload_name' => $name,
+        'upload_type' => 'event_cover',
+        'user_id' => Auth::id()
+      ]);
+      $slide->save();
+
+      if($slide['upload_path']) {
+        $splitName = explode("/", $slide['upload_path']);
+        $fileName = $splitName[count($splitName)-1];
+        $path = base_path() . '/public/images/user/' . $fileName;
+        try{
+          unlink($path);
+        }
+        catch (\Exception $e) {
+          
+        }
+      }
+
+      try {
+        $imageName = time() . '.' . 
+          $request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(
+            base_path() . '/public/images/user/', $imageName
+        );
+      }catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);
+      }
+
+      $url = url('/') . '/images/user/' . $imageName;
+      $data['upload_path'] = $url;
+
+      $slides->update($data);
+
+      return response()->json(['status' => 'ok', 'message' => 'Upload Complete.', 'image' => $url]);
     }
 
     public function info(Request $req) {

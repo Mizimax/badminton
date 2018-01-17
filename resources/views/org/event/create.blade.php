@@ -15,10 +15,10 @@
                 <h3 class="font-bold grey-med">รูปโปสเตอร์ <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
                 <div class="slide-add" style="height:70px">
                     <div class="hide">
-                        <input type="text" name="poster">
+                        <input required type="text" name="poster" value="{{ old('poster') }}">
                     </div>
-                    <div class="add-circle">
-                        <input type="file" accept="image/*" name="slide_1">
+                    <div class="add-circle" style="background-image: url({{ old('poster') }})">
+                        <input required type="file" accept="image/*" name="post">
                     </div>
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </div>
@@ -26,19 +26,19 @@
                 <div id="slides" class="flex column center wrap mar-vert">
                     <div class="slide-add">
                         <div class="hide">
-                            <input type="text" name="cover[]">
+                            <input required type="text" name="cover[]" value="{{ old('cover[0]') }}">
                         </div>
-                        <div class="add-circle">
-                            <input type="file" accept="image/*" name="slide_1">
+                        <div class="add-circle" style="background-image: url({{ old('cover[0]') }})">
+                            <input required type="file" accept="image/*" name="slide_1">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
                         <p class="grey-small">Slide ที่ 1</p>
                     </div>
                     <div class="slide-add">
                         <div class="hide">
-                            <input type="text" name="cover[]">
+                            <input type="text" name="cover[]" value="{{ old('cover[1]') }}">
                         </div>
-                        <div class="add-circle">
+                        <div class="add-circle" style="background-image: url({{ old('cover[1]') }})">
                             <input type="file" accept="image/*" name="slide_2">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
@@ -46,9 +46,9 @@
                     </div>
                     <div class="slide-add">
                         <div class="hide">
-                            <input type="text" name="cover[]">
+                            <input type="text" name="cover[]" value="{{ old('cover[2]') }}">
                         </div>
-                        <div class="add-circle">
+                        <div class="add-circle" style="background-image: url({{ old('cover[2]') }})">
                             <input type="file" accept="image/*" name="slide_3">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
@@ -56,17 +56,19 @@
                     </div>
                 </div>
                 <div class="form-group max">
-                    <input type="text" class="form-control" id="event_title" name="event_title">
+                    <input required type="text" class="form-control" value="{{ old('event_title') }}" id="event_title" name="event_title">
                     <label for="event_title">ชื่อรายการ</label>
                 </div>
                 <div class="form-group max">
-                    <input type="text" class="form-control" id="by" name="by">
+                    <input required type="text" class="form-control" value="{{ old('by') }}" id="by" name="by">
                     <label for="by">ผู้จัดแข่ง</label>
                 </div>
                 <div class="form-group max">
                     <div class="flex column">
-                        <input type="text" class="form-control" id="map-input" name="map-input">
-                        <div class="icon map mar-side" data-toggle="collapse" data-target="#map" onclick="setTimeout(()=>initMap(),500)">Map</div>
+                        <input required type="text" class="form-control" value="{{ old('map-input') }}" id="map-input" name="map-input">
+                        <div class="icon map mar-side" data-toggle="collapse" data-target="#map" onclick="setTimeout(()=>initMap(),500)">
+                          <span class="glyphicon glyphicon-map-marker" style="color:#ED1C24; font-size: 24px"></span>
+                        </div>
                     </div>
                     <label for="map-input">สถาณที่จัดแข่ง</label>
                 </div>
@@ -75,9 +77,9 @@
                     <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_date" name="event_date">
+                            <input required type="text" value="{{ old('event_date') }}" id="event_date" name="event_date">
                         </div>
-                            <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ old('event_date')? old('event_date') : 'วันที่' }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @for($i = 1; $i <= 30; $i++)
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
@@ -87,9 +89,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_month" name="event_month">
+                            <input required type="text" value="{{ old('event_month') }}" id="event_month" name="event_month">
                         </div>
-                            <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ old('event_month')? old('event_month') : 'เดือน' }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
                                 <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
@@ -108,9 +110,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_year" name="event_year">
+                            <input required type="text" value="{{ old('event_year') }}" id="event_year" name="event_year">
                         </div>
-                            <div class="input"><span class="display">ปี</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ old('event_year')? old('event_year') : 'เดือน' }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
@@ -123,7 +125,7 @@
                 </div>
                 <div class="form-group max">
                     
-                    <input type="text" class="form-control mar-side" id="expenses_detail" name="expenses_detail" style="width:80px;">
+                    <input required type="text" class="form-control mar-side" value="{{ old('expenses_detail') }}" id="expenses_detail" name="expenses_detail" style="width:80px;">
                     <label for="expenses_detail" style="float:left; margin-top:7px">ค่าสมัครต่อคู่</label>
                     <label for="expenses_detail" style="display:inline-block">บาท</label>
                 </div>
@@ -131,9 +133,9 @@
                 <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="hand[]">
+                            <input required type="text" value="{{ old('hand[0]') }}" name="hand[]">
                         </div>
-                            <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ old('hand[0]')? old('hand[0]') : 'อันดับมือ' }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B+</div></div>
@@ -150,7 +152,7 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="team_num[]">
+                            <input required type="text" name="team_num[]">
                         </div>
                             <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
@@ -168,15 +170,15 @@
                             <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                             <div class="dropdown-box shadow-black">
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
+                                    <input required type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
+                                    <input required type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
+                                    <input required type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
                                     <span class="bath">บาท</span>
                                 </div>
                             </div>
@@ -190,23 +192,23 @@
                     <div class="account">
                         <div class="form-group eiei">
                             
-                            <input type="text" class="form-control" name="name[]">
+                            <input required type="text" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
                             
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" name="account[]">
+                            <input required type="text" class="form-control" name="account[]">
                             <label for="account">เลขบัญชี</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" name="promptpay[]">
+                            <input required type="text" class="form-control" name="promptpay[]">
                             <label for="promptpay">Promptpay</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input type="text" class="form-control" name="bank[]">
+                            <input required type="text" class="form-control" name="bank[]">
                             <label for="bank">ธนาคาร</label>
                         </div>
                         <br>
@@ -229,20 +231,20 @@
                 </div>              
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
-                    <input type="text" class="form-control" id="organizer" name="organizer">
+                    <input required type="text" class="form-control" id="organizer" name="organizer">
                     <label class="font-big" for="organizer">ชื่อ-นามสกุล</label>
                 </div>
                 <div class="form-group max">
-                    <input type="text" class="form-control" id="contact" name="contact">
+                    <input required type="text" class="form-control" id="contact" name="contact">
                     <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
                 </div>
                 <div class="form-group max">
                     <div class="slide-add" style="margin-top:7px;height:70px">
                         <div class="hide">
-                            <input type="text" name="hand_img">
+                            <input required type="text" name="hand_img">
                         </div>
                         <div class="add-circle">
-                            <input type="file" accept="image/*" name="hand_pic">
+                            <input required type="file" accept="image/*" name="hand_pic">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
                     </div>
@@ -250,11 +252,11 @@
                 </div>
                 <h1 class="font-bold color-black">รายละเอียด</h1>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="objective" name="objective"></textarea>
+                    <textarea required class="form-control" rows="5" id="objective" name="objective"></textarea>
                     <label class="font-big" for="objective">วัตถุประสงค์</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="reg_duration" name="reg_duration"></textarea>
+                    <textarea required class="form-control" rows="5" id="reg_duration" name="reg_duration"></textarea>
                     <label class="font-big" for="reg_duration">ระยะเวลาในการสมัคร</label>
                 </div>
                 <div class="form-group max">
@@ -262,15 +264,15 @@
                     <label class="font-big" for="event_special">กิจกรรมพิเศษ</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="rule" name="rule"></textarea>
+                    <textarea required class="form-control" rows="5" id="rule" name="rule"></textarea>
                     <label class="font-big" for="rule">กติกาการแข่งขัน</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="consideration" name="consideration"></textarea>
+                    <textarea required class="form-control" rows="5" id="consideration" name="consideration"></textarea>
                     <label class="font-big" for="consideration">การพิจารณามือนักกีฬา</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="postscript" name="postscript"></textarea>
+                    <textarea required class="form-control" rows="5" id="postscript" name="postscript"></textarea>
                     <label class="font-big" for="postscript">กล่าวจบ</label>
                 </div>
                 <div align="center">
@@ -289,9 +291,31 @@
         </div>
     </div>
 </form>
+@if(count($errors) != 0)
+<div class="hide errors">
+    {{$errors}}
+</div>
+@endif
 @endsection
-
 @section('scripts')
+@if(count($errors) != 0)
+    
+    <script>
+        var errors = $('.errors').html();
+        var errorData = JSON.parse(errors);
+        var error = '';
+        for (var k in errorData){
+            error += errorData[k] + '<br>';
+            break;
+        }
+
+        var swalContent = {
+            title: 'เกิดข้อผิดพลาด',
+            html: error,
+            type: 'warning'
+        }
+    </script>
+@endif
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqij_a4O1A9CmXrqg2EkA9fWwmg9g_HaI&libraries=places&callback=initMap"
         async defer></script>
 <script src="/js/map.js"></script>
@@ -304,7 +328,7 @@
                 <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
                     <div class="hide">
-                        <input type="text" name="hand[]">
+                        <input required type="text" name="hand[]">
                     </div>
                         <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black has-scroll">
@@ -323,7 +347,7 @@
                     <div class="space"></div>
                     <div class="dropdown">
                     <div class="hide">
-                        <input type="text" name="team_num[]">
+                        <input required type="text" name="team_num[]">
                     </div>
                         <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black">
@@ -341,15 +365,15 @@
                         <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                         <div class="dropdown-box shadow-black">
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
+                                <input required type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                 <span class="bath">บาท</span>
                             </div>
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
+                                <input required type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
                                 <span class="bath">บาท</span>
                             </div>
                             <div class="reward-container">
-                                <input type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
+                                <input required type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
                                 <span class="bath">บาท</span>
                             </div>
                         </div>
@@ -374,23 +398,23 @@
                     </div>
                     <div class="form-group eiei">
                         
-                        <input type="text" class="form-control" name="name[]">
+                        <input required type="text" class="form-control" name="name[]">
                         <label for="name">ชื่อบัญชี</label>
                         
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" name="account[]">
+                        <input required type="text" class="form-control" name="account[]">
                         <label for="name">เลขบัญชี</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" name="promptpay[]">
+                        <input required type="text" class="form-control" name="promptpay[]">
                         <label for="name">Promptpay</label>
                     </div>
                     <br>
                     <div class="form-group eiei">
-                        <input type="text" class="form-control" name="bank[]">
+                        <input required type="text" class="form-control" name="bank[]">
                         <label for="name">ธนาคาร</label>
                     </div>
                     <br>

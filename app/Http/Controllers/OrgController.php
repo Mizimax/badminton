@@ -21,6 +21,47 @@ class OrgController extends Controller
 
     public function save(Request $req) {
       $input = $req->input();
+
+      $rules = [
+          'poster' => 'required',
+          'cover' => 'required|array',
+          'event_title' => 'required',
+          'by' => 'required',
+          'map-input' => 'required',
+          'event_date' => 'required|integer',
+          'event_month' => 'required|integer',
+          'event_year' => 'required|integer',
+          'expenses_detail' => 'required|integer',
+          'hand' => 'required',
+          'team_num' => 'required|array',
+          'team_num.*' => 'integer',
+          'reward_1' => 'required|array',
+          'reward_1' => 'integer',
+          'reward_2' => 'required|array',
+          'reward_2' => 'integer',
+          'reward_3' => 'required|array',
+          'reward_3' => 'integer',
+          'name' => 'required|array',
+          'account' => 'required|array',
+          'promptpay' => 'required|array',
+          'bank' => 'required|array',
+          'organizer' => 'required',
+          'contact' => 'required',
+          'objective' => 'required',
+          'reg_duration' => 'required',
+          'rule' => 'required',
+          'consideration' => 'required',
+          'postscript' => 'required',
+      ];
+
+      $customMessages = [
+          'required' => 'กรุณากรอกข้อมูลให้ครบถ้วน',
+          'integer' => ':attribute ต้องเป็นตัวเลขเท่านั้น'
+      ];
+
+      $this->validate($req, $rules, $customMessages);
+
+
       $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'] . ' 00:00:00';
       $date_start = strtotime($date);
       $data = [];

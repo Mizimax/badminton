@@ -36,11 +36,11 @@ class OrgController extends Controller
           'team_num' => 'required|array',
           'team_num.*' => 'integer',
           'reward_1' => 'required|array',
-          'reward_1' => 'integer',
+          'reward_1.*' => 'integer',
           'reward_2' => 'required|array',
-          'reward_2' => 'integer',
+          'reward_2.*' => 'integer',
           'reward_3' => 'required|array',
-          'reward_3' => 'integer',
+          'reward_3.*' => 'integer',
           'name' => 'required|array',
           'account' => 'required|array',
           'promptpay' => 'required|array',
@@ -62,7 +62,8 @@ class OrgController extends Controller
       $this->validate($req, $rules, $customMessages);
 
 
-      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'] . ' 00:00:00';
+      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
+      $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
       $data = [];
       $handText = [];
@@ -90,7 +91,7 @@ class OrgController extends Controller
           'name' => $input['map-input'],
           'position' => 'https://www.google.co.th/maps/place/' . $input['map-input']
         ],
-        'date' => $date_start,
+        'date' => $date,
         'expenses' =>  $input['expenses_detail'] . ' บาท / คู่',
         'bookbank_organizers' =>  $account,
         'organizers' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
@@ -110,7 +111,7 @@ class OrgController extends Controller
         'postscript' => $input['postscript']
       ];
 
-      $data['event_start'] = $date_start;
+      $data['event_start'] = date('Y/M/d H:i:s', $date_start);
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);
@@ -119,16 +120,18 @@ class OrgController extends Controller
       $data['event_package'] = 1;
 
       $event = Event::create($data);
-      dd($data);
-      return redirect('/event/'.$event->event_id);
+
+      return response()->json(['status' => 'ok', 'message' => 'Event Created.', 'redirect' => $event->id], 200);
     }
 
     public function uploadSlide(Request $request) {
       $name = $request->query('name');
-      $slides = Upload::select('upload_path')->where('upload_name', $name)->where('upload_type', 'event_cover')->where('user_id', Auth::id());
+      $id = Event::latest()->first();
+      $slides = Upload::select('upload_path')->where('event_id', $id['event_id']+1);
       $slide = $slides->firstOrNew([
         'upload_name' => $name,
         'upload_type' => 'event_cover',
+        'event_id' => $id['event_id']+1,
         'user_id' => Auth::id()
       ]);
       $slide->save();

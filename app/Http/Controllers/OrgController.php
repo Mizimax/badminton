@@ -106,7 +106,7 @@ class OrgController extends Controller
         'rule' => $input['rule'],
         'consideration' => $input['consideration'],
         'accessory' => $input['sonbad_band'] . $input['sonbad'] . $input['sonbad_price'],
-        'screening_person' => [ $input['organizer'] . 'ติดต่อ : ' . $input['contact'] ],
+        'screening_person' => [ $input['organizer'] . ' ติดต่อ : ' . $input['contact'] ],
         'screening_person_img' => $input['hand_img'],
         'postscript' => $input['postscript']
       ];

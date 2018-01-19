@@ -262,9 +262,8 @@ h1{
 
 .detail-content{
     font-size: 13px;
-    text-indent:-10px;
     margin: 0px;
-    margin-left:10px;
+    white-space: pre;
 }
 
 .detail-container {

@@ -10,17 +10,18 @@ use App\Models\Organizer;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Upload;
+use App\Models\Race;
 use App\Mail\OrgRegisterEmail;
 
 class OrgController extends Controller
 {
 
     public function create(Request $req) {
-      return view('org/event/create');
+      $races = Race::select('race_id', 'race_name')->limit(10)->get();
+      return view('org/event/create')->with('races', $races);
     }
 
     public function save(Request $req) {
-      $input = $req->input();
 
       $rules = [
           'poster' => 'required',
@@ -61,20 +62,29 @@ class OrgController extends Controller
 
       $this->validate($req, $rules, $customMessages);
 
-
+      $input = $req->input();
       $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
       $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
+      $handStr = ['A', 'B+', 'B', 'C+', 'C', 'P+', 'P', 'P-', 'S', 'N'];
       $data = [];
       $handText = [];
       $hand = [];
       $account = [];
       $reward = [];
+      $covers = [];
+
+      foreach($input['cover'] as $cover) {
+        if($cover)
+          $covers[] = $cover;
+        else
+          break;
+      }
 
       for($i = 0; $i < count($input['hand']); $i++) {
         $hand[] = [ 'race_id' => $input['hand'][$i], 'count' => $input['team_num'][$i]];
-        $handText[] = $input['hand'][$i] . $input['team_num'][$i] . 'กลุ่มละ 4 ทีม ( ที่1 ที่ 2 เข้ารอบน๊อคเอ้าท์)';
-        $reward[] = $i+1 . '. มือ' . $input['hand'][$i] . ' : ชนะเลิศ '. $input['reward_1'][$i] .' รองชนะเลิศอันดับหนึ่ง ที่สอง '. $input['reward_2'][$i] .' รองชนะเลิศอันดับ2 ที่สาม ' . $input['reward_3'][$i];
+        $handText[] = '- มือ ' . $handStr[$input['hand'][$i]-1] . ' รับ ' . $input['team_num'][$i] . ' ทีม กลุ่มละ 4 ทีม ( ที่1 ที่ 2 เข้ารอบน๊อคเอ้าท์)';
+        $reward[] = '- มือ ' . $handStr[$input['hand'][$i]-1] . ' : ชนะเลิศ '. $input['reward_1'][$i] .' บาท รองชนะเลิศอันดับหนึ่ง (ที่สอง) '. $input['reward_2'][$i] .' บาท รองชนะเลิศอันดับ2 (ที่สาม) ' . $input['reward_3'][$i]. ' บาท';
       }
       for($j = 0; $j < count($input['name']); $j++) {
         $account[] = [
@@ -115,7 +125,7 @@ class OrgController extends Controller
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);
-      $data['event_cover'] = json_encode($input['cover']);
+      $data['event_cover'] = json_encode($covers);
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
 

@@ -137,16 +137,9 @@
                         </div>
                             <div class="input"><span class="display">{{ old('hand[0]')? old('hand[0]') : 'อันดับมือ' }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B+</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C+</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P+</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P-</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">N</div></div>
+                                @foreach($races as $race)
+                                <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="space"></div>
@@ -343,16 +336,9 @@
                     </div>
                         <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                         <div class="input-dropdown home shadow-black has-scroll">
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">A</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B+</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">B</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C+</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">C</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P+</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">P-</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">S</div></div>
-                            <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">N</div></div>
+                            @foreach($races as $race)
+                            <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="space"></div>

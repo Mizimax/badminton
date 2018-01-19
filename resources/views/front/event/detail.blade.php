@@ -75,10 +75,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">วัตถุประสงค์</span><br>    
                 
-                <p class="detail-content">
-                    
-                    {{$event_description->objective}}<br>
-                    
+                <p class="detail-content">{{$event_description->objective}}
                 </p>
                 
                 <br>
@@ -88,13 +85,10 @@
         <div class="row">
             <div class="col-md-12 description">
                 <span class="square-head">{{$event_description->event_type->type}}</span><br>    
-                
-                <p class="detail-content">
-                    
-                    {{event_description->event_type->detail}}<br>
-                    
+                @foreach($event_description->event_type->detail as $detail)
+                <p class="detail-content">{{ $detail }}
                 </p>
-                
+                @endforeach
                 <br>
             </div>
         </div>
@@ -103,8 +97,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">ระยะเวลาในการสมัคร</span><br>    
                 
-                <p class="detail-content">
-                    {{$event_description->detail}}<br>
+                <p class="detail-content">{{$event_description->detail}}
                 </p>
                 
                 <br>
@@ -115,8 +108,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">รางวัลการแข่งขัน</span>
                 @foreach($event_description->rewards as $reward)
-                <p class="detail-content">
-                    {{$reward}}<br>
+                <p class="detail-content">{{$reward}}
                 </p>
                 @endforeach
                 <br>
@@ -127,8 +119,7 @@
             <div class="col-md-12 description">
                 <span class="square-head-special">รางวัลพิเศษ</span>
 
-                <p class="detail-content">
-                    {{$event_description->special_rewards}}<br>
+                <p class="detail-content">{{$event_description->special_rewards}}
                 </p>
 
                 <br>
@@ -139,8 +130,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">กติกาการแข่งขัน</span>
                 
-                <p class="detail-content">
-                    {{$event_description->rule}}<br>
+                <p class="detail-content">{{$event_description->rule}}
                 </p>
                 
                 <br>
@@ -151,8 +141,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">การพิจารณามือนักกีฬา</span>
                
-                <p class="detail-content">
-                    {{$event_description->consideration}}<br>
+                <p class="detail-content">{{$event_description->consideration}}
                 </p>
                 
                 <br>
@@ -163,8 +152,7 @@
         <div class="row">
             <div class="col-md-12 description">
                 <span class="square-head">ลูกแบตที่ใช้ในการแข่ง</span>
-                <p class="detail-content">
-                    {{$event_description->accessory}}<br>
+                <p class="detail-content">{{$event_description->accessory}}
                 </p>
                 <br>
             </div>
@@ -175,9 +163,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">ประเมินมือ</span>
                 @foreach($event_description->screening_person as $screening_person)
-                <p class="detail-content">
-                    {{$screening_person}}<br>
-                </p>
+                <p class="detail-content">{{$screening_person}}</p>
                 @endforeach
                 <br>
             </div>
@@ -187,14 +173,9 @@
             <div class="col-md-12 description">
                 <span class="square-head">ค่าใช้จ่าย</span>
                 
-                <p class="detail-content">
-                    {{$event_description->expenses}}<br>
-                </p>
-                @endforeach
-                
-                <p class="detail-content">
-                    {{$event_description->postscript}}<br>
-                </p>
+                <p class="detail-content">{{$event_description->expenses}}<br></p>
+                <br>
+                <p class="detail-content">{{$event_description->postscript}}</p>
                 
                 <br>
             </div>

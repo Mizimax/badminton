@@ -103,7 +103,11 @@
     
     <div class="col-md-12 tab-content">
         <div role="tabpanel" class="tab-pane" id="detail">
-            @include('front/event/detail')
+            @if($event_id <= 3)
+                @include('front/event/detail')
+            @else
+                @include('front/event/detail_create')
+            @endif
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
             <hr style="margin: 10px 0">

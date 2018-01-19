@@ -190,6 +190,7 @@ class EventController extends Controller
             ->with('number_match_knockout',$number_match_knockout)
             ->with('round',$round)
             ->with('match_num',$match_num)
+            ->with('event_id', $event_id)
             ;
     }
 

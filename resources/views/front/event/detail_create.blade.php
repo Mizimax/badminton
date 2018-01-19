@@ -1,3 +1,10 @@
+@section('css')
+<style>
+    .pre{
+        white-space: pre;
+    }
+</style>
+@endsection
 <br>
 <div class="detail-container">
         <div class="row">
@@ -75,7 +82,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">วัตถุประสงค์</span><br>    
                 
-                <p class="detail-content">{{$event_description->objective}}
+                <p class="detail-content pre">{{$event_description->objective}}
                 </p>
                 
                 <br>
@@ -97,7 +104,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">ระยะเวลาในการสมัคร</span><br>    
                 
-                <p class="detail-content">{{$event_description->detail}}
+                <p class="detail-content pre">{{$event_description->detail}}
                 </p>
                 
                 <br>
@@ -119,7 +126,7 @@
             <div class="col-md-12 description">
                 <span class="square-head-special">รางวัลพิเศษ</span>
 
-                <p class="detail-content">{{$event_description->special_rewards}}
+                <p class="detail-content pre">{{$event_description->special_rewards}}
                 </p>
 
                 <br>
@@ -130,7 +137,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">กติกาการแข่งขัน</span>
                 
-                <p class="detail-content">{{$event_description->rule}}
+                <p class="detail-content pre">{{$event_description->rule}}
                 </p>
                 
                 <br>
@@ -141,7 +148,7 @@
             <div class="col-md-12 description">
                 <span class="square-head">การพิจารณามือนักกีฬา</span>
                
-                <p class="detail-content">{{$event_description->consideration}}
+                <p class="detail-content pre">{{$event_description->consideration}}
                 </p>
                 
                 <br>
@@ -152,7 +159,7 @@
         <div class="row">
             <div class="col-md-12 description">
                 <span class="square-head">ลูกแบตที่ใช้ในการแข่ง</span>
-                <p class="detail-content">{{$event_description->accessory}}
+                <p class="detail-content pre">{{$event_description->accessory}}
                 </p>
                 <br>
             </div>
@@ -173,9 +180,9 @@
             <div class="col-md-12 description">
                 <span class="square-head">ค่าใช้จ่าย</span>
                 
-                <p class="detail-content">{{$event_description->expenses}}<br></p>
+                <p class="detail-content pre">{{$event_description->expenses}}<br></p>
                 <br>
-                <p class="detail-content">{{$event_description->postscript}}</p>
+                <p class="detail-content pre">{{$event_description->postscript}}</p>
                 
                 <br>
             </div>

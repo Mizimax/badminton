@@ -1,7 +1,7 @@
+<div class="table-responsive">
 <table id="table-member" class="table table-hover">
     <thead>
         <tr>
-            <th class="col-xs-1" style="text-align:center">no.</th>
             <th class="col-xs-2" style="text-align:center">ทีม</th>
             @for( $order = 1; $order <= $number_of_team; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
@@ -12,10 +12,43 @@
         </tr>
     </thead>
     <tbody>
+        @foreach($my_team as $team)
+        <tr style="background: #8ED5ED; color: white">
+            <td style="text-align:center; font-weight: bold">
+                {{$team['team_name']}}
+            </td>
+            @for( $order = 0; $order < $number_of_team; $order++)
+            <td style="text-align:center">{{$team['member'][$order]->name}}</td>
+            @endfor
+            <td style="text-align:center">
+                <span class="label" style="background-color:{{$team['race_color']}}">
+                    {{$team['race_name']}}
+                </span>
+            </td>
+             <td style="text-align:center">
+            @if ($team['team_status'] == 2)
+            <span class="label label-success">{{$team['team_status_name']}}</span>
+            @elseif ($team['team_status'] == 3)
+            <span class="label label-danger">{{$team['team_status_name']}}</span>
+            @elseif ($team['team_status'] == 1)
+            <span class="label label-info">{{$team['team_status_name']}}</span>
+            @endif
+            
+            </td>
+            <td style="text-align:center">
+            @if($team['team_payment'] == 1)
+                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
+            @elseif($team['team_status'] == 3)
+                @if($team['team_comment'])
+                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$team['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+                @endif
+            @endif
+            </td>
+        </tr>
+        @endforeach
         @foreach($members as $key=>$data)
         <tr>
-            <td>{{$key+1}}</td>
-            <td style="text-align:center">
+            <td style="text-align:center; font-weight: bold">
                 {{$data['team_name']}}
             </td>
             @for( $order = 0; $order < $number_of_team; $order++)
@@ -34,17 +67,19 @@
             @elseif ($data['team_status'] == 1)
             <span class="label label-info">{{$data['team_status_name']}}</span>
             @endif
-            @if($data['team_comment'])
-            <a class="badge badge-white" data-toggle="tooltip" data-placement="top" title="{{$data['team_comment']}}" data-original-title="">!</a>
-            @endif
             
             </td>
             <td style="text-align:center">
             @if($data['team_payment'] == 1)
-                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047"></span>
+                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
+            @elseif($data['team_status'] == 3)
+                @if($data['team_comment'])
+                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+                @endif
             @endif
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+</div>

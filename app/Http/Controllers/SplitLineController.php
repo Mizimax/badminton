@@ -308,6 +308,6 @@ class SplitLineController extends Controller
             }
             $max=$tmp;
         }
-        // $this->run_set_knockout($event_id);
+     $this->run_set_knockout($event_id);
     }
 }

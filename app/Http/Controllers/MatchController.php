@@ -41,6 +41,7 @@ class MatchController extends Controller
         $match = Match::where('match_number',$match_id)
         ->first();
         $teams = [];
+
         if($match){
             $team1 = TeamMember::select('team_member_team_id','team_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member"))
                         ->join('team','team_id','=','team_member_team_id')

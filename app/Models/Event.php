@@ -8,6 +8,7 @@ class Event extends Model
 {
     // protected $connection = 'mongodb_test';
     protected $table = 'event';
+    protected $guarded = ['event_id'];
     public static function get_detail($event_id)
     {
         return Event::where('event_id',$event_id)->first();

@@ -1,0 +1,192 @@
+/* Event Create Page Css */
+
+textarea {
+    /* white-space: pre; */
+}
+
+#slides {
+    margin-bottom: 0px;
+}
+
+.slide-add {
+    margin-right: 30px;
+    position: relative;
+    width: 70px;
+    height: 100px;
+}
+
+.slide-add .glyphicon {
+    color: #29ABE2;
+    font-size: 70px;
+}
+
+.slide-add .add-circle{
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+    top:0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    z-index: 99;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.slide-add .add-circle input {
+    opacity: 0;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+}
+
+.slide-add:last-child {
+    margin-right: 0;
+}
+
+.form-control {
+    border-radius: 7px;
+    margin-top: 5px;
+}
+
+.form-group label {
+    font-weight: 400;
+    font-size: 18px;
+    color: #aaa;
+}
+
+.form-control:focus ~ label {
+    font-weight: bold;
+}
+
+.icon.map {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.form-container {
+    width:700px;
+    margin:0 auto;
+    max-width:100%;
+}
+
+.input {
+    border-color: #ccd0d2;
+    border-radius: 7px;
+    padding: 5px 0;
+}
+
+.input-dropdown {
+    top: 40px;
+}
+
+.space {
+    padding: 0 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.account {
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.form-group.eiei input{
+    width:calc(100% - 80px);
+    display: inline-block;
+    float:right;
+}
+
+.form-group.eiei label {
+    float:left;
+    margin-top:7px;
+    font-size: 14px;
+}
+
+.form-group.eiei.za input {
+    width:calc(100% - 120px);
+}
+
+.form-group.eiei label {
+    margin-top: 15px;
+}
+
+.form-group.eiei.za label {
+    margin-top: 7px;
+}
+
+.form-group.eiei {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-group {
+    margin-top: 5px;
+}
+
+.dropdown-box {
+    width:100%;
+    position: absolute;
+    top: 40px;
+    display: none;
+    z-index: 99;
+}
+
+.reward-container {
+    position: relative;
+}
+
+.bath {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+#map {
+    height:300px;
+}
+
+@media (max-width: 556px) {
+    .dropdown-group .space {
+        padding: 0 2px;
+    }
+}
+
+@media (max-width: 524px) {
+    .dropdown-group {
+        justify-content: center;
+    }
+    .input {
+        margin:5px
+    }
+}
+
+@media (max-width: 500px) {
+    .form-group.eiei input {
+        width:calc(100% - 70px);
+    }
+    .form-group.eiei label {
+        font-size: 12px;
+    }
+    
+    .form-group.eiei.za {
+        display: table;
+        width: 100%;
+    }
+    .form-group.eiei.za label {
+        display: table-header-group;
+        float:none;
+    }
+    
+    .form-group.eiei.za .form-control {
+        display: table-row-group;
+        width:100%;
+    }
+}

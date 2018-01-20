@@ -1,6 +1,5 @@
-
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div class="modal-dialog" role="document">
+        <div class="modal-content" style="padding: 20px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">สมัครแข่งขัน</h4>
@@ -15,7 +14,7 @@
                             <div class="col-sm-2 control-label">
                                 ชื่อทีม
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" id="team_name" name="team_name" value="" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -24,7 +23,7 @@
                             <div class="col-sm-2 control-label">
                                 ชื่อทีม
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="team_name" name="team_name" value="" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -34,10 +33,10 @@
                             <div class="col-sm-2 control-label">
                                 ชื่อผู้จัดการ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="team_manager" name="team_manager" value="" type="text" autocomplete="off" >
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control hidden" id="team_manager_id" name="team_manager_id" value="0" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -45,7 +44,7 @@
                             <div class="col-sm-2 control-label">
                                 เบอร์โทรศัพท์
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="team_phone" name="team_phone" value="" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -54,10 +53,10 @@
                             <div class="col-sm-2 control-label">
                                 ชื่อผู้จัดการ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="team_manager" name="team_manager" value="{{ Auth::user()->name }}" type="text" autocomplete="off" >
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control hidden" id="team_manager_id" name="team_manager_id" value="{{ Auth::user()->id }}" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -65,7 +64,7 @@
                             <div class="col-sm-2 control-label">
                                 เบอร์โทรศัพท์
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="team_phone" name="team_phone" value="{{ Auth::user()->user_phone }}" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -74,7 +73,7 @@
                             <div class="col-sm-2 control-label">
                                 ประเภทลงแข่ง
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <select id="race" name="race" class="form-control">
                                     @foreach ($list_race as $race)
                                         @if($race->can_register > 0)
@@ -88,7 +87,7 @@
                     @for( $order = 1; $order <= $number_of_team; $order++)
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <h6 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h6>
+                                <h4 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h4>
                             </div>
                         </div>
                         @if($number_of_team == 1)
@@ -96,7 +95,7 @@
                                 <div class="col-sm-2 control-label">
                                     ชื่อ
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" onkeyup="createTeamName()" required id="first_name{{$order}}" name="first_name{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -104,7 +103,7 @@
                                 <div class="col-sm-2 control-label">
                                     นามสกุล
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" onkeyup="createTeamName()" required id="last_name{{$order}}" name="last_name{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -112,7 +111,7 @@
                                 <div class="col-sm-2 control-label">
                                     ชื่อเล่น
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" onkeyup="createTeamName()" required id="nickname{{$order}}" name="nickname{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -121,7 +120,7 @@
                                 <div class="col-sm-2 control-label">
                                     ชื่อ
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" required id="first_name{{$order}}" name="first_name{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -129,7 +128,7 @@
                                 <div class="col-sm-2 control-label">
                                     นามสกุล
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" required id="last_name{{$order}}" name="last_name{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -137,7 +136,7 @@
                                 <div class="col-sm-2 control-label">
                                     ชื่อเล่น
                                 </div>    
-                                <div class="col-sm-8">
+                                <div class="col-sm-10">
                                     <input class="form-control" required id="nickname{{$order}}" name="nickname{{$order}}" value="" type="text" autocomplete="off" >
                                 </div>    
                             </div>
@@ -146,7 +145,7 @@
                             <div class="col-sm-2 control-label">
                                 เพศ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="gender hidden" type="radio" id="radio_male{{$order}}" name="gender{{$order}}" value="m">
                                 <input class="gender hidden" type="radio" id="radio_female{{$order}}" name="gender{{$order}}" value="f">
                                 <button onclick="selected_sex('male', {{$order}})" id="button_male{{$order}}" type="button" class="btn btn-default">ชาย</button>
@@ -158,7 +157,7 @@
                             <div class="col-sm-2 control-label">
                                 อายุ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="age{{$order}}" name="age{{$order}}" value="" type="text" autocomplete="off" maxlength="2">
                             </div>    
                         </div>
@@ -167,7 +166,7 @@
                             <div class="col-sm-2 control-label">
                                 เบอร์โทรศัพท์
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" required id="phone{{$order}}" name="phone{{$order}}" value="" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -176,7 +175,7 @@
                             <div class="col-sm-2 control-label">
                                 รางวัลที่เคยได้รับ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" id="prize{{$order}}" name="prize{{$order}}" value="" type="text" autocomplete="off" >
                             </div>    
                         </div>
@@ -185,7 +184,7 @@
                             <div class="col-sm-2 control-label">
                                 อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <input class="form-control" id="pic{{$order}}" name="pic{{$order}}" type="file" />
                             </div>    
                         </div>
@@ -194,7 +193,7 @@
                             <div class="col-sm-2 control-label">
                                 ระดับ
                             </div>    
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <select id="rank{{$order}}" name="rank{{$order}}" class="form-control">
                                     @foreach ($list_rank as $rank)
                                         <option value="{{$rank['rank_id']}}">{{$rank['rank_name']}}</option>

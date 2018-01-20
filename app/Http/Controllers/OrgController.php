@@ -16,9 +16,24 @@ use App\Mail\OrgRegisterEmail;
 class OrgController extends Controller
 {
 
-    public function create(Request $req) {
+    public function create() {
       $races = Race::select('race_id', 'race_name')->limit(10)->get();
       return view('org/event/create')->with('races', $races);
+    }
+
+    public function edit($event_id) {
+      $races = Race::select('race_id', 'race_name')->limit(10)->get();
+      $event = Event::where('event_id', $event_id)->first();
+      $event_cover = json_decode($event->event_cover);
+      $event_description = json_decode($event->event_description);
+      $event_race = json_decode($event->event_race);
+
+      return view('org/event/edit')
+             ->with('event_cover', $event_cover)
+             ->with('event_description', $event_description)
+             ->with('event_race', $event_race)
+             ->with('event', $event)
+             ->with('races', $races);
     }
 
     public function save(Request $req) {

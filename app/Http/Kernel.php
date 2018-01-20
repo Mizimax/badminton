@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'OrgAndAdmin' => \App\Http\Middleware\OrgAndAdmin::class,
         'org_reg' => \App\Http\Middleware\org_reg::class,
         'admin' => \App\Http\Middleware\admin_only::class,
-        'org' => \App\Http\Middleware\Org::class
+        'org' => \App\Http\Middleware\Org::class,
+        'my_org' => \App\Http\Middleware\my_org::class
     ];
 }

@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-3"></div>
 </div>
-<form action="/edit_score" method="post">
+<form action="/edit_score{{ isset($event_id) ? '/'. $event_id : ' ' }}" method="post">
 
 @if (Session::get('message'))
 <div class="form-group">
@@ -66,8 +66,19 @@
 </div>
 </form>
 
+@endsection
+@section('scripts')
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('js/match.js?'.time()) }}"></script>
-
-
+<script>
+    function search_match(){
+        match = $('#match').val();
+        match = match? match:1;
+        $.ajax({
+            url: '/search_match/' + "{{ isset($event_id) ? $event_id .'/' : '' }}" + match,
+            success: function(data){
+                $('#form_match').html(data);
+            }
+        });
+    }
+</script>
 @endsection

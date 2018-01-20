@@ -8,16 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Wezync') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css?v=1" rel="stylesheet">
     <link href="/css/wezync.css?v=1" rel="stylesheet">
     @yield('css')
 
-    @if(config('app.env') == 'local')
-        <script src="http://localhost:35729/livereload.js"></script>
-    @endif
 </head>
 <body>
     <div id="app">

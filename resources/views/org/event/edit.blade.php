@@ -2,10 +2,25 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/event_create.css">
+<style>
+    .header img {
+        height: 578px;
+        margin: 0 auto;
+    }
+    @media(max-width: 818px) {
+        .header img {
+            width: 100%;
+            height: auto !important;
+        }
+    }
+</style>
 @endsection
 
 @section('content')
-@include('org/header')
+<div class="header">
+  <div class="coverBg" image-bg="{{ $event_cover[0] }}"></div>
+  <img src="{{ $event_cover[0] }}" class="img-responsive">
+</div>
 <form method="post">
     <div class="container shadow">
         <div class="row form-container">
@@ -13,32 +28,30 @@
                 <br>
                 <h1 class="font-bold color-black">ข้อมูลสำคัญ</h1>
                 <h3 class="font-bold grey-med">รูปโปสเตอร์ <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
-                <div class="slide-add" style="height:70px">
+                <div class="slide-add" style="height:70px;')">
                     <div class="hide">
-                        <input required type="text" name="poster">
+                        <input type="text" name="poster" value="{{ $event->event_poster }}">
                     </div>
-                    <div class="add-circle">
+                    <div class="add-circle" style="opacity:1;background-image: url('{{ $event->event_poster }}')">
                         <input required type="file" accept="image/*" name="post">
                     </div>
-                    <span class="glyphicon glyphicon-plus-sign"></span>
                 </div>
                 <h3 class="font-bold grey-med">รูปหน้าปก <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
                 <div id="slides" class="flex column center wrap mar-vert">
                     <div class="slide-add">
                         <div class="hide">
-                            <input required type="text" name="cover[]">
+                            <input type="text" name="cover[]" value="{{ $event_cover[0] }}">
                         </div>
-                        <div class="add-circle">
-                            <input required type="file" accept="image/*" name="slide_1">
+                        <div class="add-circle" style="opacity:1;background-image: url('{{ $event_cover[0] }}')">
+                            <input type="file" accept="image/*" name="slide_1">
                         </div>
-                        <span class="glyphicon glyphicon-plus-sign"></span>
                         <p class="grey-small">Slide ที่ 1</p>
                     </div>
                     <div class="slide-add">
                         <div class="hide">
-                            <input type="text" name="cover[]">
+                            <input type="text" name="cover[]" value="{{ isset($event_cover[1]) ? $event_cover[1] : '' }}">
                         </div>
-                        <div class="add-circle">
+                        <div class="add-circle" style="background-image: url('{{ isset($event_cover[1]) ? $event_cover[1] : '' }}')">
                             <input type="file" accept="image/*" name="slide_2">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
@@ -46,9 +59,9 @@
                     </div>
                     <div class="slide-add">
                         <div class="hide">
-                            <input type="text" name="cover[]">
+                            <input type="text" name="cover[]" value="{{ isset($event_cover[2]) ? $event_cover[2] : '' }}">
                         </div>
-                        <div class="add-circle">
+                        <div class="add-circle" style="background-image: url('{{ isset($event_cover[2]) ? $event_cover[2] : '' }}')">
                             <input type="file" accept="image/*" name="slide_3">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
@@ -56,16 +69,16 @@
                     </div>
                 </div>
                 <div class="form-group max">
-                    <input required type="text" class="form-control" id="event_title" name="event_title">
+                    <input required type="text" class="form-control" value="{{ $event->event_title }}" id="event_title" name="event_title">
                     <label for="event_title">ชื่อรายการ</label>
                 </div>
                 <div class="form-group max">
-                    <input required type="text" class="form-control" id="by" name="by">
+                    <input required type="text" class="form-control" value="{{ $event_description->by }}" id="by" name="by">
                     <label for="by">ผู้จัดแข่ง</label>
                 </div>
                 <div class="form-group max">
                     <div class="flex column">
-                        <input required type="text" class="form-control" id="map-input" name="map-input">
+                        <input required type="text" class="form-control" value="{{ $event_description->location->name }}" id="map-input" name="map-input">
                         <div class="icon map mar-side" data-toggle="collapse" data-target="#map" onclick="setTimeout(()=>initMap(),500)">
                           <span class="glyphicon glyphicon-map-marker" style="color:#ED1C24; font-size: 24px"></span>
                         </div>
@@ -73,13 +86,17 @@
                     <label for="map-input">สถาณที่จัดแข่ง</label>
                 </div>
                 <div id="map" style="height:0"></div>
+
+                @php
+                $event_date = explode("-", $event_description->date);
+                @endphp
                 <div class="form-group max">
                     <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_date" name="event_date">
+                            <input type="text" value="{{ $event_date[2] }}" id="event_date" name="event_date">
                         </div>
-                            <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_date[2] }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @for($i = 1; $i <= 30; $i++)
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
@@ -89,9 +106,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_month" name="event_month">
+                            <input type="text" value="{{ $event_date[1] }}" id="event_month" name="event_month">
                         </div>
-                            <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_date[1] }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
                                 <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
@@ -110,9 +127,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_year" name="event_year">
+                            <input type="text" value="{{ $event_date[0] }}" id="event_year" name="event_year">
                         </div>
-                            <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_date[0] }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
@@ -123,9 +140,11 @@
                     </div>
                     <label for="event_year">วันที่จัดแข่ง</label>
                 </div>
+                @php
+                    preg_match_all('!\d+!', $event_description->expenses, $expenses);
+                @endphp
                 <div class="form-group max">
-                    
-                    <input required type="text" class="form-control mar-side" id="expenses_detail" name="expenses_detail" style="width:80px;">
+                    <input required type="text" value="{{ $expenses[0][0] }}" class="form-control mar-side" id="expenses_detail" name="expenses_detail" style="width:80px;">
                     <label for="expenses_detail" style="float:left; margin-top:7px">ค่าสมัครต่อคู่</label>
                     <label for="expenses_detail" style="display:inline-block">บาท</label>
                 </div>
@@ -133,9 +152,9 @@
                 <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="hand[]">
+                            <input type="text" value="{{ $event_race->race_id }}" name="hand[]">
                         </div>
-                            <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_race->race_id }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @foreach($races as $race)
                                 <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
@@ -145,9 +164,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="team_num[]">
+                            <input type="text" value="{{ $event_race->count }}" name="team_num[]">
                         </div>
-                            <div class="input"><span class="display">จำนวนคู่</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_race->count }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">8</div></div>
@@ -163,7 +182,7 @@
                             <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                             <div class="dropdown-box shadow-black">
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
+                                    <input type="text" value="{{ $event_race->count }}" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
@@ -234,7 +253,7 @@
                 <div class="form-group max">
                     <div class="slide-add" style="margin-top:7px;height:70px">
                         <div class="hide">
-                            <input required type="text" name="hand_img">
+                            <input type="text" name="hand_img">
                         </div>
                         <div class="add-circle">
                             <input required type="file" accept="image/*" name="hand_pic">
@@ -318,6 +337,12 @@
     var accountCount = 2;
 
     $(document).ready(function() {
+
+        var bg = $('.coverBg');
+        var url = bg.attr('image-bg');
+
+        bg.css('background-image', 'url('+url+')');
+
         $("form").submit(function(e) {
 
             e.preventDefault();

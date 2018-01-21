@@ -32,6 +32,9 @@ function toggleDropdownIcon(select) {
 $(document).ready(function(){
   var lastOpen;
   $(document).on("click",function(ele) {
+      var disable = $('.input.disable').has(ele.target);
+      if(disable.length !== 0)
+        return false;
       var select = $('.input').has(ele.target);
       var button = $('.input').find(ele.target).addBack(ele.target);
 

@@ -130,16 +130,26 @@
                     <label for="expenses_detail" style="display:inline-block">บาท</label>
                 </div>
                 <div id="hand" class="form-group max">
-                <div class="flex column wrap dropdown-group">
+                <div class="flex column wrap dropdown-group hand">
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" name="hand[]">
+                        </div>
+                            <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                                <div class="item-dropdown" value="0" onclick="selectDropdown(this);filterType('normal', this)"><div class="item">ปกติ</div></div>
+                                <div class="item-dropdown" value="1" onclick="selectDropdown(this);filterType('special', this)"><div class="item">พิเศษ</div></div>
+
+                            </div>
+                        </div>
+                        <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
                             <input type="text" name="hand[]">
                         </div>
                             <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black has-scroll">
-                                @foreach($races as $race)
-                                <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
-                                @endforeach
+                            <div class="input-dropdown home shadow-black has-scroll hand">
+                                
                             </div>
                         </div>
                         <div class="space"></div>
@@ -284,6 +294,7 @@
         </div>
     </div>
 </form>
+<div class="hide hand">{{ $races }}</div>
 @if(count($errors) != 0)
 <div class="hide errors">
     {{$errors}}
@@ -316,8 +327,11 @@
 <script>
     var handCount = 2;
     var accountCount = 2;
+    var hand = $('.hand.hide').html();
+    hand = JSON.parse(hand);
 
     $(document).ready(function() {
+        filterType('normal', $('.dropdown-group.hand .item-dropdown')[0]);
         $("form").submit(function(e) {
 
             e.preventDefault();
@@ -330,6 +344,18 @@
     var addHand = (function() {
         var text = `
                 <div class="flex column wrap dropdown-group">
+                    <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" name="hand[]">
+                        </div>
+                            <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                                <div class="item-dropdown" value="0" onclick="selectDropdown(this);filterType('normal', this)"><div class="item">ปกติ</div></div>
+                                <div class="item-dropdown" value="1" onclick="selectDropdown(this);filterType('special', this)"><div class="item">พิเศษ</div></div>
+
+                            </div>
+                    </div>
+                    <div class="space"></div>
                     <div class="dropdown">
                     <div class="hide">
                         <input type="text" name="hand[]">
@@ -427,7 +453,30 @@
     });
 
     var toggleDropdown = (function (ele) {
+        if($(ele).hasClass('disable'))
+            return false;
         $(ele).next().toggleClass('show');
+    });
+
+    var filterType = (function(type, ele) {
+        var dropdownText = '';
+        var normal = hand.slice(0, 14);
+        var special = hand.slice(14, hand.length);
+        if(type === 'normal'){
+            normal.forEach(function (data) {
+                dropdownText += `
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                `;
+            })
+        }
+        else{
+            special.forEach(function (data) {
+                dropdownText += `
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                `;
+            })
+        }
+        $(ele).parents('.dropdown-group').children().eq(2).children().eq(2).html(dropdownText);
     });
 
     var saveEvent = (function() {

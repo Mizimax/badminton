@@ -149,12 +149,13 @@
                     <label for="expenses_detail" style="display:inline-block">บาท</label>
                 </div>
                 <div id="hand" class="form-group max">
+                @foreach($event_race as $key => $race_event)
                 <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" value="{{ $event_race->race_id }}" name="hand[]">
+                            <input type="text" value="{{ $race_event->race_id }}" name="hand[]">
                         </div>
-                            <div class="input"><span class="display">{{ $event_race->race_id }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $race_event->race_id }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @foreach($races as $race)
                                 <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
@@ -164,9 +165,9 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" value="{{ $event_race->count }}" name="team_num[]">
+                            <input type="text" value="{{ $race_event->count }}" name="team_num[]">
                         </div>
-                            <div class="input"><span class="display">{{ $event_race->count }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $race_event->count }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">4</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">8</div></div>
@@ -182,7 +183,7 @@
                             <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                             <div class="dropdown-box shadow-black">
                                 <div class="reward-container">
-                                    <input type="text" value="{{ $event_race->count }}" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
+                                    <input type="text" value="{{ $race_event->race_id }}" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
@@ -195,9 +196,14 @@
                                 </div>
                             </div>
                         </div>
+                        @if($key !== 0)
+                        <span class="glyphicon glyphicon-remove" onclick="removeHand(this)" style="margin:9px; color:red; cursor:pointer"></span>
+                        @endif
                     </div>
+                    @endforeach
                     <label for="reward_1">ประเภทการแข่งขัน</label>
                 </div>
+                
                 <button type="button" class="btn btn-success btn-sm" onclick="addHand()">เพิ่มประเภท +</button>
                 <h3 class="font-bold grey-med">การโอนเงิน</h3>
                 <div id="account">

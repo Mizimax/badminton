@@ -230,6 +230,21 @@ a {
     width: 80px;
 }
 
+.input.disable , .input.disable:hover {
+    background: #ddd !important;
+    color: #ddd !important;
+    border-color: #ddd;
+}
+
+.input.disable:hover .icon.dropdown {
+    color: white;
+    background: #ddd;
+}
+
+.input.disable .icon.dropdown {
+    color: white;
+}
+
 .item-dropdown .item {
   border-bottom: 1px solid #8ED5ED;
   width: 80%;

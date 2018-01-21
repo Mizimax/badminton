@@ -82,7 +82,7 @@ textarea {
 }
 
 .space {
-    padding: 0 10px;
+    padding: 0 5px;
 }
 
 .dropdown {
@@ -172,7 +172,7 @@ textarea {
     }
 }
 
-@media (max-width: 524px) {
+@media (max-width: 629px) {
     .dropdown-group {
         justify-content: center;
     }

@@ -14,3 +14,4 @@ yarn-error.log
 /public/images/user/
 package-lock.json
 yarn.lock
+composer.lock

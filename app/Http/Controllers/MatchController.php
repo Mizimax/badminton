@@ -27,19 +27,22 @@ class MatchController extends Controller
         // $this->middleware('auth');
     }
 
-    public static function add_score($event_id)
+    public function add_score()
     {
-        // $event = Event::get_detail($event_id);
-        // if(Auth::guest() || $event->event_user_id != Auth::user()->id){
-        //     return redirect()->to('/');
-        // }
         return view('back/event/add_score');
     }
 
-    public static function search_match($match_id)
+    public function add_score_id($event_id)
     {
-        $match = Match::where('match_number',$match_id)
-        ->first();
+        return view('back/event/add_score')
+              ->with('event_id', $event_id);
+    }
+
+    public function search_match_id($event_id, $match_id)
+    {
+        $match = Match::where('match_number', $match_id)
+                      ->where('match_event_id', $event_id)
+                      ->first();
         $teams = [];
 
         if($match){
@@ -51,7 +54,7 @@ class MatchController extends Controller
                         ->where('team_member_team_id',$match->match_team_2)->first();
             $team1->member = json_decode($team1->member);
             $team2->member = json_decode($team2->member);
-            if(!$team1->member || !$team1->member){
+            if(!$team1->member || !$team2->member){
                 return "ไม่พบข้อมูล";
             }
             $teams[]=$team1;
@@ -66,6 +69,58 @@ class MatchController extends Controller
             ->with('set',$set)
             ;
     }
+
+    public function search_match($match_id)
+    {
+        $match = Match::where('match_number', $match_id)
+                      ->first();
+        $teams = [];
+
+        if($match){
+            $team1 = TeamMember::select('team_member_team_id','team_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member"))
+                        ->join('team','team_id','=','team_member_team_id')
+                        ->where('team_member_team_id',$match->match_team_1)->first();
+            $team2 = TeamMember::select('team_member_team_id','team_name',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member"))
+                        ->join('team','team_id','=','team_member_team_id')
+                        ->where('team_member_team_id',$match->match_team_2)->first();
+            $team1->member = json_decode($team1->member);
+            $team2->member = json_decode($team2->member);
+            if(!$team1->member || !$team2->member){
+                return "ไม่พบข้อมูล";
+            }
+            $teams[]=$team1;
+            $teams[]=$team2;
+            $set = SetMatch::where('set_match_id',$match->match_id)->get()->toArray();
+        }else{
+            return "ไม่พบข้อมูล";
+        }
+        
+        return view('back/event/form_score')
+            ->with('teams',$teams)
+            ->with('set',$set)
+            ;
+    }
+
+    function edit_score_id($event_id){
+      $input = Input::all();
+      $match = Match::where('match_number',$input['match'])
+                    ->where('match_event_id',$event_id)
+                    ->first();
+      if($match){
+          $set = SetMatch::where('set_match_id',$match->match_id)->get();
+          foreach($set as $s){
+              $s->set_score_team_1 = $input['team1_'.$s->set_id];
+              $s->set_score_team_2 = $input['team2_'.$s->set_id];
+              $s->set_team_win = $input['set_team_win_'.$s->set_id];
+              $s->save();
+          }
+          $match->match_status = "END";
+          $match->save();
+          return back()->with('message', 'update score Match: ' . $input['match']);
+      }
+      return back()->with('error', 'Error some thing');
+      
+  }
 
     function edit_score(){
         $input = Input::all();

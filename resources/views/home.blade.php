@@ -4,8 +4,6 @@
 <link href="/css/home.css" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @foreach ($sponsors as $k=>$sponsor)
@@ -34,8 +32,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
-        <div class="col-sm-1"></div>
     </div>
     <div class="row">
         <div class="col-sm-1"></div>

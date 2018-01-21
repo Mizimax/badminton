@@ -19,13 +19,13 @@
             @foreach ($covers as $k=>$cover)
                 @if ($k==0)
                     <div class="item active">
-                        <img class="cover-image" src="{{$cover}}" style="width: auto;height: 578px; margin:0 auto;">
+                        <img class="cover-image" src="{{$cover}}">
                             <div class="carousel-caption">
                             </div>
                     </div>
                 @else
                     <div class="item">
-                    <img class="cover-image" src="{{$cover}}" style="width: auto; height: 578px; margin:0 auto;">
+                    <img class="cover-image" src="{{$cover}}">
                         <div class="carousel-caption">
                         </div>
                     </div>

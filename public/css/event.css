@@ -164,10 +164,10 @@ h1{
     
 }
 
-@media (max-width: 550px) {
-    .cover-image {
-        height: 400px !important;
-    }
+.cover-image {
+    width: auto;
+    height: 578px !important;
+    margin:0 auto;
 }
 
 
@@ -590,5 +590,49 @@ h1{
     }
     .round, .final, .finish, .cup, .round-bottom {
         width: 80%;
+    }
+}
+
+/* Event org edit */
+
+.OrgMenu {
+    position: absolute;
+    left: calc(100% + 20px);
+    top: -120px;
+    z-index: 999;
+}
+
+.editbtn {
+    background-color: #F15A24;
+    font-size:18px;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(153,153,153,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(153,153,153,1);
+    box-shadow: 2px 2px 5px 0px rgba(153,153,153,1);
+}
+
+.editbtn, .editbtn:hover, .editbtn:focus, .editbtn:active {
+    color: white;
+}
+
+@media(max-width: 1100px) {
+    .OrgMenu {
+        top: 20px;
+        left: calc(100% - 140px);
+    }
+}
+
+@media(max-width: 460px) {
+    .OrgMenu {
+        position:relative;
+        top: 0;
+        left: 0;
+        text-align: center;
+    }
+}
+
+@media(max-width: 810px) {
+    .cover-image {
+        width: 100%;
+        height: auto !important;
     }
 }

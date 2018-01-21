@@ -17,7 +17,10 @@ class OrgController extends Controller
 {
 
     public function create() {
-      $races = Race::select('race_id', 'race_name')->limit(10)->get();
+      $races = Race::select('race_id', 'race_name')
+                   ->orderBy('race_event_type', 'desc')
+                   ->orderBy('race_special', 'asc')
+                   ->orderBy('race_id', 'asc')->get();
       return view('org/event/create')->with('races', $races);
     }
 
@@ -208,7 +211,7 @@ class OrgController extends Controller
       else {
         $name = explode(" ", Auth::user()->name);
         $Firstname = $name[0];
-        $Lastname = $name[1];
+        $Lastname = !isset($name[1]) ? $name[1]: '';
         $Phone = Auth::user()->user_phone;
         $Email = Auth::user()->email;
       }

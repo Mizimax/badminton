@@ -157,6 +157,17 @@
     <div class="col-md-2"></div>
 </div>
 
+<div class="alert">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white" style="z-index:1001">
+        ท่านต้องการลบ
+        <span></span><br>
+        หรือไม่ ?
+        <a class="btn btn-success">Success Button</a>
+        <a class="btn btn-success btn-outline">Success Button</a>
+    </div>
+</div>
+
 @include('front/event/modal')
 
 @endsection
@@ -171,6 +182,17 @@
             jQuery.browser.version = RegExp.$1;
         }
     })();
+
+    var remove = (function (ele, member_id) {
+        
+        $.ajax({
+            url: '/event/{{ $event->event_id }}/member/'+ member_id,
+            method: 'delete',
+            success: function(data){
+                $(ele).parent().parent().remove();
+            }
+        });
+    });
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>

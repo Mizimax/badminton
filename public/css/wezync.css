@@ -125,6 +125,17 @@ a {
     color: #bbb;
 }
 
+.btn-outline {
+    background-color: transparent;
+    color: #00c862;
+    border-color: #00c862;
+    transition: all .5s;
+}
+
+.color-white {
+    color: white;
+}
+
 .color-black {
     color: black;
 }
@@ -187,6 +198,20 @@ a {
 
 .form-control:focus + label {
     font-weight: bold;
+}
+
+.overlay {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    z-index: 1000;
+}
+
+.overlay div {
+    z-index: 1020;
 }
 
 .shadow {

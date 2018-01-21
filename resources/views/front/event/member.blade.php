@@ -49,6 +49,7 @@
         @foreach($members as $key=>$data)
         <tr>
             <td style="text-align:center; font-weight: bold">
+                <div class="remove" onclick="remove(this, {{ $data['team_id'] }})">X</div>
                 {{$data['team_name']}}
             </td>
             @for( $order = 0; $order < $number_of_team; $order++)
@@ -58,6 +59,14 @@
                 <span class="label" style="background-color:{{$data['race_color']}}">
                     {{$data['race_name']}}
                 </span>
+                <div class="dropdown">
+                    <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
+                    <div class="input-dropdown home shadow-black has-scroll">
+                        @for($i = 1; $i <= 30; $i++)
+                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
+                        @endfor
+                    </div>
+                </div>
             </td>
             <td style="text-align:center">
             @if ($data['team_status'] == 2)

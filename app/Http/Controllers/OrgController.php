@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Upload;
 use App\Models\Race;
+use App\Models\Team;
 use App\Mail\OrgRegisterEmail;
 
 class OrgController extends Controller
@@ -297,6 +298,7 @@ class OrgController extends Controller
         $request->file('image')->move(
             base_path() . '/public/images/user/', $imageName
         );
+
       }catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => 'Upload failed.'], 400);
       }
@@ -410,5 +412,13 @@ class OrgController extends Controller
       Session::flash('message', 'คุณได้บันทึกข้อมูลไว้แล้ว'); 
       Session::flash('type', 'success'); 
       return back();
+    }
+
+    public function removeMember(Request $req, $event_id, $member_id) {
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->delete();
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Member removed.'
+      ], 200);
     }
 }

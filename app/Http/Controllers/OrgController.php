@@ -211,7 +211,7 @@ class OrgController extends Controller
       else {
         $name = explode(" ", Auth::user()->name);
         $Firstname = $name[0];
-        $Lastname = !isset($name[1]) ? $name[1]: '';
+        $Lastname = isset($name[1]) ? $name[1]: '';
         $Phone = Auth::user()->user_phone;
         $Email = Auth::user()->email;
       }

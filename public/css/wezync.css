@@ -41,6 +41,10 @@ a {
     padding: 40px 0;
 }
 
+.mar-side-10 {
+    margin: 0 10px;
+}
+
 .mar-side {
     margin: 0 20px;
 }
@@ -125,13 +129,6 @@ a {
     color: #bbb;
 }
 
-.btn-outline {
-    background-color: transparent;
-    color: #00c862;
-    border-color: #00c862;
-    transition: all .5s;
-}
-
 .color-white {
     color: white;
 }
@@ -142,6 +139,10 @@ a {
 
 .transparent {
     background: transparent;
+}
+
+.font-bigger {
+    font-size: 20px !important;
 }
 
 .font-big {

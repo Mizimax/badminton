@@ -277,6 +277,38 @@ h1{
     margin-left: -5px;
 }
 
+td {
+    position: relative;
+}
+
+td .input-dropdown {
+    left: 0;
+    top: 35px;
+}
+
+.btn-success {
+    border-radius: 20px;
+    transition: all .3s;
+    width: 80px;
+}
+
+.btn-success:active {
+    background-color: rgb(5, 138, 5) !important;
+    border-color: rgb(5, 138, 5) !important;
+}
+
+.btn-success, .btn-success:hover, .btn-success:focus {
+    color: white;
+    background-color: #00B900;
+    border-color: #00B900;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: rgb(4, 216, 4);
+    border-color: #08A608;
+}
+
 @media (max-width: 650px) {
     .detail-container {
         width: 100%;

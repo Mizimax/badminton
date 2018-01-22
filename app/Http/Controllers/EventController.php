@@ -52,19 +52,12 @@ class EventController extends Controller
 
        foreach( $members as $member){
             $member->member = json_decode($member->member);
-            if($member->team_status==1){
-                $tmp[] = $member;
-            }
-            else if($member->team_status==2){
-                $tmp[] = $member;
-            }
-            else if($member->team_status==3){
-                $tmp[] = $member;
-            }
-
             /* Check My Team */
             if($member->team_manager_id != 0 && $member->team_manager_id == Auth::id()) {
                 $myTeam[] = $member;
+            }
+            else if($member->team_status >= 1 && $member->team_status<=3){
+                $tmp[] = $member;
             }
         }
 

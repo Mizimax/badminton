@@ -49,36 +49,50 @@
         @foreach($members as $key=>$data)
         <tr>
             <td style="text-align:center; font-weight: bold">
-                <div class="remove" onclick="remove(this, {{ $data['team_id'] }})">X</div>
+                @if($event->event_user_id === Auth::id() || isAdmin())
+                <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>
+                @endif
                 {{$data['team_name']}}
             </td>
             @for( $order = 0; $order < $number_of_team; $order++)
             <td style="text-align:center">{{$data['member'][$order]->name}}</td>
             @endfor
             <td style="text-align:center">
-                <span class="label" style="background-color:{{$data['race_color']}}">
+                <span class="label {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
+                @if($event->event_user_id === Auth::id() || isAdmin())
+                onclick="race(this, {{ $data['team_id'] }})"
+                @endif
+                style="background-color:{{$data['race_color']}}">
                     {{$data['race_name']}}
                 </span>
-                <div class="dropdown">
-                    <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
-                    <div class="input-dropdown home shadow-black has-scroll">
-                        @for($i = 1; $i <= 30; $i++)
-                        <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
-                        @endfor
-                    </div>
-                </div>
             </td>
             <td style="text-align:center">
             @if ($data['team_status'] == 2)
-            <span class="label label-success">{{$data['team_status_name']}}</span>
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-success {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">{{$data['team_status_name']}}</span>
             @elseif ($data['team_status'] == 3)
-            <span class="label label-danger">{{$data['team_status_name']}}</span>
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-danger {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">{{$data['team_status_name']}}</span>
             @elseif ($data['team_status'] == 1)
-            <span class="label label-info">{{$data['team_status_name']}}</span>
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-info pointer">{{$data['team_status_name']}}</span>
             @endif
             
             </td>
-            <td style="text-align:center">
+            <td class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="payment(this, {{ $data['team_id'] }})"
+            @endif
+            style="text-align:center">
             @if($data['team_payment'] == 1)
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
             @elseif($data['team_status'] == 3)

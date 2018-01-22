@@ -1,4 +1,4 @@
-@if($event->event_user_id === Auth::id())
+@if($event->event_user_id === Auth::id() || isAdmin())
 <div class="OrgMenu">
     <div class="edit">
         <a class="btn editbtn" href="/event/{{ $event_id }}/edit">

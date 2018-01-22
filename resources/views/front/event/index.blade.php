@@ -132,12 +132,12 @@
             <div class="col-xs-9 nopadding flex-container space-around" style="margin-top:30px">
 
             @foreach($list_race as $race)
-                
-                    <div>
+                <div>
+                    <div style="position:relative" onclick="closeHand(this, {{ $event->event_id }}, {{$race['race_id']}}, '{{$race['race_name']}}')" class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">
                         <span class="badge badge-orange">{{$race['race_name']}}</span>
-                        {{$race['max_register']- $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                        {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>
                     </div>
-                
+                </div>
             @endforeach
             </div>
         </div>
@@ -157,14 +157,44 @@
     <div class="col-md-2"></div>
 </div>
 
-<div class="alert">
+<div class="alert delete hide">
     <div class="overlay"></div>
     <div class="fixed middle color-white" style="z-index:1001">
-        ท่านต้องการลบ
-        <span></span><br>
-        หรือไม่ ?
-        <a class="btn btn-success">Success Button</a>
-        <a class="btn btn-success btn-outline">Success Button</a>
+        <div class="font-bigger" align="center">ท่านต้องการลบ</div>
+        <br>
+        <div align="center" class="delete-name font-bigger" style="color: #84BA3D"></div>
+        <div class="font-bigger" align="center">หรือไม่ ?</div>
+        <br>
+        <div align="center">
+            <a class="btn btn-success mar-side-10 delete">ลบชื่อ</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-close hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white" style="z-index:1001">
+        <div class="font-bigger" align="center">หากท่านปิดรับสมัคร<br>ผู้เข้าแข่งขันจะไม่สามารถสมัครได้</div>
+        <br>
+        <div align="center">
+            <a class="btn btn-success mar-side-10 close-btn">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+        </div>
+    </div>
+</div>
+
+<div class="alert cancel hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white" style="z-index:1001">
+        <div class="font-bigger" align="center">หากท่านยกเลิกมือ<br>รายชื่อและรายการจะไม่แสดง<br>บนเว็บไซต์อีกต่อไป</div>
+        <br>
+        <div class="font-bigger" align="center">ท่านต้องการยกเลิกมือ <span class="cancel-hand"></span> หรือไม่ ?</div>
+        <br>
+        <div align="center">
+            <a class="btn btn-danger mar-side-10 cancel-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+        </div>
     </div>
 </div>
 
@@ -183,15 +213,162 @@
         }
     })();
 
-    var remove = (function (ele, member_id) {
-        
-        $.ajax({
-            url: '/event/{{ $event->event_id }}/member/'+ member_id,
-            method: 'delete',
-            success: function(data){
-                $(ele).parent().parent().remove();
-            }
+    var remove = (function (ele, member) {
+        $('.alert.delete').removeClass('hide');
+        $('.delete-name').html('');
+        $.each(member['name'], function(index, data){
+            if(index !== 1)
+                $('.delete-name').append(data['name']);
+            else
+                $('.delete-name').append(' + ' + data['name']);
         });
+        $('.btn.delete').click(function() {
+            $('.alert.delete').addClass('hide');
+            $.ajax({
+                url: '/event/{{ $event->event_id }}/member/'+ member['id'],
+                method: 'delete',
+                success: function(data){
+                    $(ele).parent().parent().remove();
+                }
+            });
+        });
+    });
+
+    var race = (function (ele, member_id) {
+        
+        var hasDropdown = $(ele).next().length == 0;
+        $('.input-dropdown.show').remove();
+        if(hasDropdown) {
+            $(ele).parent().append(
+                `
+                <div class="input-dropdown home shadow-black show">
+                    @foreach ($list_race as $race)
+                        <div class="item-dropdown" value="{{$race->race_id}}"><div class="item">{{$race->race_name}}</div></div>
+                    @endforeach
+                </div>
+            `);
+            $('td .item-dropdown').click(function() {
+                $(this).parent().remove();
+                var race = $(this).attr('value');
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=race',
+                    method: 'update',
+                    data: {
+                        'race_id': race
+                    },
+                    success: function(data){
+                        $(ele).text(data.race_id);
+                    }
+                });
+            });
+        }
+    });
+
+    var hand = (function (ele, member_id) {
+        var hasDropdown = $(ele).next().length == 0;
+        $('.input-dropdown.show').remove();
+        if(hasDropdown) {
+            $(ele).parent().append(
+                `
+                <div class="input-dropdown home shadow-black show">
+                        <div class="item-dropdown" value="0"><div class="item">ผ่านการประเมิน</div></div>
+                        <div class="item-dropdown" value="1"><div class="item">ไม่ผ่านการประเมิน</div></div>
+                </div>
+            `);
+            $('td .item-dropdown').click(function() {
+                $(this).parent().remove();
+                var hand = $(this).attr('value');
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=hand',
+                    method: 'update',
+                    data: {
+                        'hand': hand
+                    },
+                    success: function(data){
+                        $(ele).text(data.race_id);
+                    }
+                });
+            });
+        }
+    });
+
+    var payment = (function (ele, member_id) {
+        var hasDropdown = $(ele).has('.input-dropdown.show').length == 0;
+
+        $('.input-dropdown.show').remove();
+        if(hasDropdown) {
+            $(ele).append(
+                `
+                <div class="input-dropdown home shadow-black show">
+                        <div class="item-dropdown" value="0"><div class="item">ชำระแล้ว</div></div>
+                        <div class="item-dropdown" value="1"><div class="item">ยังไม่ชำระ</div></div>
+                </div>
+            `);
+            $('td .item-dropdown').click(function() {
+                $(this).parent().remove();
+                var payment = $(this).attr('value');
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=payment',
+                    method: 'update',
+                    data: {
+                        'payment': payment
+                    },
+                    success: function(data){
+                        $(ele).text(data.race_id);
+                    }
+                });
+                $(this).parent().remove();
+            });
+        }
+    });
+
+    var closeHand = (function (ele, member_id, race_id, race_name) {
+        var hasDropdown = $(ele).next().length == 0;
+        $('.input-dropdown.show').remove();
+        if(hasDropdown) {
+            $(ele).parent().append(
+                `
+                <div class="input-dropdown home shadow-black show" style="width: 120px; top:30px">
+                        <div class="item-dropdown item-close" value="0"><div class="item">ปิดรับสมัคร</div></div>
+                        <div class="item-dropdown" value="1"><div class="item">แก้ไขจำนวนคู่</div></div>
+                        <div class="item-dropdown item-cancel" value="2"><div class="item" style="color:#F15A24">ยกเลิกมือ</div></div>
+                </div>
+            `);
+            $('.item-close').click(function() {
+                $('.alert-close').removeClass('hide');
+                $(this).parent().remove();
+            });
+            $('.item-cancel').click(function() {
+                $('.alert.cancel').removeClass('hide');
+                $(this).parent().remove();
+                $('.cancel-hand').text(race_name);
+            });
+            $('.close-btn').click(function() {
+                var race = $(this).attr('value');
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/race/'+ race_id,
+                    method: 'update',
+                    data: {
+                        'race_list': race
+                    },
+                    success: function(data){
+                        $(ele).text(data.race_id);
+                    }
+                });
+                $('.alert-close').addClass('hide');
+            });
+            $('.alert.cancel').click(function() {
+                var race = $(this).attr('value');
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/race/'+ race_id,
+                    method: 'delete',
+                    success: function(data){
+                        $(ele).text(data.race_id);
+                    }
+                });
+                $('.alert.cancel').addClass('hide');
+            });
+        }
     });
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>

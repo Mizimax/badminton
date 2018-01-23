@@ -27,7 +27,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
             </div>
-            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ isOrganizer() ? '/event/create' : '/org/register'}}'">
+            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ (isOrganizer() || isAdmin() ) ? '/event/create' : '/org/register'}}'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon {{ isOrganizer() ? 'glyphicon-list-alt': 'glyphicon-user' }} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>

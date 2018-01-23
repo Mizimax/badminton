@@ -167,7 +167,7 @@
         <br>
         <div align="center">
             <a class="btn btn-success mar-side-10 delete">ลบชื่อ</a>
-            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ย้อนกลับ</a>
         </div>
     </div>
 </div>
@@ -179,7 +179,7 @@
         <br>
         <div align="center">
             <a class="btn btn-success mar-side-10 close-btn">ยืนยัน</a>
-            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ย้อนกลับ</a>
         </div>
     </div>
 </div>
@@ -189,11 +189,25 @@
     <div class="fixed middle color-white" style="z-index:1001">
         <div class="font-bigger" align="center">หากท่านยกเลิกมือ<br>รายชื่อและรายการจะไม่แสดง<br>บนเว็บไซต์อีกต่อไป</div>
         <br>
-        <div class="font-bigger" align="center">ท่านต้องการยกเลิกมือ <span class="cancel-hand"></span> หรือไม่ ?</div>
+        <div class="font-bigger" align="center" style="font-style: italic;color:#F15A24">ท่านต้องการยกเลิกมือ <span class="cancel-hand"></span> หรือไม่ ?</div>
         <br>
         <div align="center">
             <a class="btn btn-danger mar-side-10 cancel-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
-            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').addClass('hide');">ย้อนกลับ</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ย้อนกลับ</a>
+        </div>
+    </div>
+</div>
+
+<div class="alert roll hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white" style="z-index:1001">
+        <div class="font-bigger" align="center">หากท่านทำการ "สุ่ม" ผู้เล่นแล้ว<br>ระบบจะปิดการรับสมัครอัตโนมัติ</div>
+        <br>
+        <div class="font-bigger" align="center" style="font-style: italic;color:#F15A24">ท่านต้องการสุ่มใบสายผู้เข้าแข่งขันหรือไม่ ?</div>
+        <br>
+        <div align="center">
+            <a class="btn btn-info mar-side-10 roll-btn" style="border-radius:20px; width:80px">สุ่มใบสาย</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ย้อนกลับ</a>
         </div>
     </div>
 </div>
@@ -214,7 +228,7 @@
     })();
 
     var remove = (function (ele, member) {
-        $('.alert.delete').removeClass('hide');
+        $('.alert.delete').fadeIn();
         $('.delete-name').html('');
         $.each(member['name'], function(index, data){
             if(index !== 1)
@@ -223,7 +237,7 @@
                 $('.delete-name').append(' + ' + data['name']);
         });
         $('.btn.delete').click(function() {
-            $('.alert.delete').addClass('hide');
+            $('.alert.delete').fadeOut();
             $.ajax({
                 url: '/event/{{ $event->event_id }}/member/'+ member['id'],
                 method: 'delete',
@@ -297,7 +311,7 @@
 
         $('.input-dropdown.show').remove();
         if(hasDropdown) {
-            $(ele).append(
+            $(ele).parent().append(
                 `
                 <div class="input-dropdown home shadow-black show">
                         <div class="item-dropdown" value="0"><div class="item">ชำระแล้ว</div></div>
@@ -335,11 +349,11 @@
                 </div>
             `);
             $('.item-close').click(function() {
-                $('.alert-close').removeClass('hide');
+                $('.alert-close').fadeIn();
                 $(this).parent().remove();
             });
             $('.item-cancel').click(function() {
-                $('.alert.cancel').removeClass('hide');
+                $('.alert.cancel').fadeIn();
                 $(this).parent().remove();
                 $('.cancel-hand').text(race_name);
             });
@@ -355,9 +369,9 @@
                         $(ele).text(data.race_id);
                     }
                 });
-                $('.alert-close').addClass('hide');
+                $('.alert-close').fadeOut();
             });
-            $('.alert.cancel').click(function() {
+            $('.cancel-btn').click(function() {
                 var race = $(this).attr('value');
                 $.ajax({
                     url: '/event/{{ $event->event_id }}/race/'+ race_id,
@@ -366,7 +380,7 @@
                         $(ele).text(data.race_id);
                     }
                 });
-                $('.alert.cancel').addClass('hide');
+                $('.alert.cancel').fadeOut();
             });
         }
     });

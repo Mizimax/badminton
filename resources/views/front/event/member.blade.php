@@ -88,11 +88,12 @@
             @endif
             
             </td>
-            <td class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
+            <td class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}" style="text-align:center">
+            <div
             @if($event->event_user_id === Auth::id() || isAdmin())
             onclick="payment(this, {{ $data['team_id'] }})"
             @endif
-            style="text-align:center">
+            >
             @if($data['team_payment'] == 1)
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
             @elseif($data['team_status'] == 3)
@@ -100,6 +101,7 @@
                     <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
                 @endif
             @endif
+            </div>
             </td>
         </tr>
         @endforeach

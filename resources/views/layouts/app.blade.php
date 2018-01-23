@@ -32,7 +32,7 @@
                     <i class="glyphicon {{ isOrganizer() ? 'glyphicon-list-alt': 'glyphicon-user' }} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="font-bold font-big">{{ isOrganizer() ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
+                <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
             </div>
             <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
             <div class="font-white setting font-big">

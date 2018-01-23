@@ -93,7 +93,7 @@ class OrgController extends Controller
       $covers = [];
 
       /* Query */
-      $handStr = Race::plunk('race_id', 'race_name');
+      $handStr = Race::pluck('race_id', 'race_name');
 
       foreach($input['cover'] as $cover) {
         if($cover)

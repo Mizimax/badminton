@@ -133,7 +133,7 @@
                 <div class="flex column wrap dropdown-group hand">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="hand[]">
+                            <input type="text" name="type[]">
                         </div>
                             <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">

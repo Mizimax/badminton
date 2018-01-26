@@ -26,6 +26,7 @@ class Event extends Model
         $list_races = Race::get_race_by_list($race);
         foreach($list_races as $list_race){
             $list_race->can_register = $can_register[$list_race->race_id];
+            $list_race->max_register = $can_register[$list_race->race_id];
             foreach($number_teams as $number_team){
                 if($list_race->race_id ==$number_team['team_race'] ){
                     $list_race->can_register = $can_register[$list_race->race_id]- $number_team['total'];
@@ -33,6 +34,7 @@ class Event extends Model
                 }
             }
         }
+
         return $list_races;
     }
 }

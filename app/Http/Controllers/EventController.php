@@ -61,8 +61,7 @@ class EventController extends Controller
             }
         }
 
-
-
+        
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);

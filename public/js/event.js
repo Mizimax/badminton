@@ -226,7 +226,7 @@ $(document).ready(function(){
     window.tb_member = $('#table-member').DataTable({
           pageLength: -1,
           bLengthChange: false,
-          order: [[ 5, "asc" ]],
+          order: [[ 5, "desc" ]],
         //   searching: false,
           bSort:true,
           sDom: 't' 

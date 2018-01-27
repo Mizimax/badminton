@@ -423,4 +423,68 @@ class OrgController extends Controller
         'message' => 'Member removed.'
       ], 200);
     }
+
+    public function updateHand(Request $req, $event_id, $member_id) {
+      $race = $req->json()->all()['race_id'];
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->update(array('team_race' => (int)$race));
+      $result = Race::select('race_name', 'race_color')->where('race_id', $race)->first();
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Race updated.',
+        'race_id' => $result['race_name'],
+        'race_color' => $result['race_color']
+      ], 200);
+    }
+
+    public function updateHandStatus(Request $req, $event_id) {
+      $race_id = $req->json()->all()['race_id'];
+      $event = Event::where('event_id', $event_id);
+      $event_race = json_decode($event->first()->event_race, true);
+      $find = array_filter($event_race, function($var) use ($race_id) {
+        return $var['race_id'] === $race_id;
+      });
+
+      $event_race[current(array_keys($find))]['status'] = 1;
+      $event_race = json_encode($event_race);
+      $event->update(['event_race' => $event_race]);
+      
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Hand closed.'
+      ], 200);
+    }
+
+    public function updateStatus(Request $req, $event_id, $member_id) {
+      $status = $req->json()->all()['status'];
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->update(array('team_status' => (int)$status));
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Member status updated.'
+      ], 200);
+    }
+
+    public function updatePayment(Request $req, $event_id, $member_id) {
+      $payment = $req->json()->all()['payment'];
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->update(array('team_payment' => (int)$payment));
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Member payment updated.'
+      ], 200);
+    }
+
+    public function raceRemove(Request $req, $event_id) {
+      $race_id = $req->json()->all()['race_id'];
+      $event = Event::select('event_race')->where('event_id', $event_id);
+      $event_race = json_decode($event->first()->event_race, true);
+      $find = array_filter($event_race, function($var) use ($race_id) {
+        return $var['race_id'] !== $race_id;
+      });
+      $event_race = json_encode(array_values($find));
+      $event->update(['event_race' => $event_race]);
+
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Member payment updated.'
+      ], 200);
+    }
 }

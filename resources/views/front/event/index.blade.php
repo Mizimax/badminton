@@ -133,9 +133,23 @@
 
             @foreach($list_race as $race)
                 <div>
-                    <div style="position:relative" onclick="closeHand(this, {{ $event->event_id }}, {{$race['race_id']}}, '{{$race['race_name']}}')" class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">
+                    <div style="position:relative"
+                    @if($event->event_user_id === Auth::id() || isAdmin())
+                    onclick="closeHand(this, {{ $event->event_id }}, {{$race['race_id']}}, '{{$race['race_name']}}')"
+                    @endif
+                    class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">
                         <span class="badge badge-orange">{{$race['race_name']}}</span>
+                        <span class="hand-status">
+                        @if(isset($race->status))
+                            @if($race->status === 1)
+                                <b>ปิดรับสมัครแล้ว</b>
+                            @else
+                                {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                            @endif
+                        @else
                         {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                        @endif
+                        </span>
                     </div>
                 </div>
             @endforeach
@@ -265,13 +279,22 @@
                 $(this).parent().remove();
                 var race = $(this).attr('value');
                 $.ajax({
-                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=race',
-                    method: 'update',
-                    data: {
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '/hand',
+                    method: 'patch',
+                    data: JSON.stringify({
                         'race_id': race
-                    },
+                    }),
+                    dataType: 'json',
+                    contentType:"application/json; charset=utf-8",
                     success: function(data){
                         $(ele).text(data.race_id);
+                        $(ele).css('background-color', data.race_color)
+                        // swalContent = {
+                        //     title: 'สำเร็จ',
+                        //     text: 'เปลี่ยนเป็นมือ ' + data.race_id + ' เรียบร้อย',
+                        //     type: 'success'
+                        // }
+                        // swal(swalContent);
                     }
                 });
             });
@@ -285,21 +308,29 @@
             $(ele).parent().append(
                 `
                 <div class="input-dropdown home shadow-black show">
-                        <div class="item-dropdown" value="0"><div class="item">ผ่านการประเมิน</div></div>
-                        <div class="item-dropdown" value="1"><div class="item">ไม่ผ่านการประเมิน</div></div>
+                        <div class="item-dropdown" value="2"><div class="item">ผ่านการประเมิน</div></div>
+                        <div class="item-dropdown" value="3"><div class="item">ไม่ผ่านการประเมิน</div></div>
                 </div>
             `);
             $('td .item-dropdown').click(function() {
                 $(this).parent().remove();
-                var hand = $(this).attr('value');
+                var status = $(this).attr('value');
+                var statusName = $(this).children(':first').text();
                 $.ajax({
-                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=hand',
-                    method: 'update',
-                    data: {
-                        'hand': hand
-                    },
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '/status',
+                    method: 'patch',
+                    data: JSON.stringify({
+                        'status': status
+                    }),
+                    dataType: 'json',
+                    contentType:"application/json; charset=utf-8",
                     success: function(data){
-                        $(ele).text(data.race_id);
+                        $(ele).text(statusName);
+                        if(status == 2) {
+                            $(ele).css('background-color', '#7fe18e');
+                        }else {
+                            $(ele).css('background-color', '#FF2b06');
+                        }
                     }
                 });
             });
@@ -307,28 +338,40 @@
     });
 
     var payment = (function (ele, member_id) {
-        var hasDropdown = $(ele).has('.input-dropdown.show').length == 0;
+        var hasDropdown = $(ele).next().length == 0;
 
         $('.input-dropdown.show').remove();
         if(hasDropdown) {
             $(ele).parent().append(
                 `
                 <div class="input-dropdown home shadow-black show">
-                        <div class="item-dropdown" value="0"><div class="item">ชำระแล้ว</div></div>
-                        <div class="item-dropdown" value="1"><div class="item">ยังไม่ชำระ</div></div>
+                        <div class="item-dropdown" value="1"><div class="item">ชำระแล้ว</div></div>
+                        <div class="item-dropdown" value="0"><div class="item">ยังไม่ชำระ</div></div>
                 </div>
             `);
             $('td .item-dropdown').click(function() {
                 $(this).parent().remove();
                 var payment = $(this).attr('value');
                 $.ajax({
-                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '?name=payment',
-                    method: 'update',
-                    data: {
+                    url: '/event/{{ $event->event_id }}/member/'+ member_id + '/payment',
+                    method: 'patch',
+                    data: JSON.stringify({
                         'payment': payment
-                    },
+                    }),
+                    dataType: 'json',
+                    contentType:"application/json; charset=utf-8",
                     success: function(data){
-                        $(ele).text(data.race_id);
+                        console.dir(ele);
+                        if($(ele).children(':first').length == 0) {
+                            $(ele).append(
+                                `
+                                <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
+                                `
+                            )
+                        }
+                        else {
+                            $(ele).children(':first').remove();
+                        }
                     }
                 });
                 $(this).parent().remove();
@@ -348,39 +391,58 @@
                         <div class="item-dropdown item-cancel" value="2"><div class="item" style="color:#F15A24">ยกเลิกมือ</div></div>
                 </div>
             `);
-            $('.item-close').click(function() {
+            $('.item-close').bind( "click", function() {
                 $('.alert-close').fadeIn();
                 $(this).parent().remove();
+                
             });
-            $('.item-cancel').click(function() {
+            $('.item-cancel').bind( "click", function() {
                 $('.alert.cancel').fadeIn();
                 $(this).parent().remove();
                 $('.cancel-hand').text(race_name);
+                
             });
-            $('.close-btn').click(function() {
-                var race = $(this).attr('value');
+            $('.close-btn').bind( "click", function() {
                 $.ajax({
-                    url: '/event/{{ $event->event_id }}/race/'+ race_id,
-                    method: 'update',
-                    data: {
-                        'race_list': race
-                    },
+                    url: '/event/{{ $event->event_id }}/race',
+                    method: 'patch',
+                    data: JSON.stringify({
+                        'race_id': race_id
+                    }),
+                    dataType: 'json',
+                    contentType:"application/json; charset=utf-8",
                     success: function(data){
-                        $(ele).text(data.race_id);
+                        $(ele).children().eq(1).html('<b>ปิดรับสมัครแล้ว</b>')
                     }
                 });
                 $('.alert-close').fadeOut();
+                $('.cancel-btn').unbind("click");
+                $('.close-btn').unbind("click");
             });
-            $('.cancel-btn').click(function() {
-                var race = $(this).attr('value');
+            $('.cancel-btn').bind( "click", function() {
                 $.ajax({
-                    url: '/event/{{ $event->event_id }}/race/'+ race_id,
-                    method: 'delete',
+                    url: '/event/{{ $event->event_id }}/race/remove',
+                    method: 'patch',
+                    data: JSON.stringify({
+                        'race_id': race_id
+                    }),
                     success: function(data){
-                        $(ele).text(data.race_id);
+                        
+                        $(ele).parent().remove();
+                        
+                        var filterOut = $('#table-member tr').filter(function(index, element){
+                            return $(element).children().eq(3).children(':first').text().trim() === race_name;
+                        });
+                                    
+                        tb_member
+                            .rows(filterOut)
+                            .remove()
+                            .draw();
                     }
                 });
                 $('.alert.cancel').fadeOut();
+                $('.cancel-btn').unbind("click");
+                $('.close-btn').unbind("click");
             });
         }
     });

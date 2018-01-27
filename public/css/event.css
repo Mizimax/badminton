@@ -653,6 +653,10 @@ td .input-dropdown {
     color: white;
 }
 
+.pay .payment {
+    height: 20px;
+}
+
 @media(max-width: 1100px) {
     .OrgMenu {
         top: 20px;

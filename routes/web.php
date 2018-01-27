@@ -61,6 +61,11 @@ Route::middleware('admin')->group(function () {
 Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::get('/event/{event_id}/edit', 'OrgController@edit')->name('event_edit');
   Route::delete('/event/{event_id}/member/{member_id}', 'OrgController@removeMember')->name('member_remove');
+  Route::patch('/event/{event_id}/member/{member_id}/hand', 'OrgController@updateHand')->name('hand_update');
+  Route::patch('/event/{event_id}/member/{member_id}/status', 'OrgController@updateStatus')->name('member_status_update');
+  Route::patch('/event/{event_id}/member/{member_id}/payment', 'OrgController@updatePayment')->name('member_payment_update');
+  Route::patch('/event/{event_id}/race', 'OrgController@updateHandStatus')->name('race_close');
+  Route::patch('/event/{event_id}/race/remove', 'OrgController@raceRemove')->name('race_remove');
   Route::get('/add_score/{event_id}', 'MatchController@add_score_id')->name('add_score');
   Route::get('/search_match/{event_id}/{match_id}', 'MatchController@search_match_id')->name('search_match');
   Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');

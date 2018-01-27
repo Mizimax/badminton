@@ -39,6 +39,11 @@ class EventController extends Controller
         $list_rank = Rank::get()->toArray();
         $members = Team::select('team.*','team_status_name','race_name','race_color',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
                 ->where("team_event_id",$event_id)
+                ->where(function($query) use ($list_race){
+                    foreach($list_race as $race){
+                        $query->orWhere("team_race",$race['race_id']);
+                    }
+                })
                 ->join('team_member','team_id','=','team_member_team_id')
                 ->join('race_type','team_race','=','race_id')
                 ->join('team_status','team_status','=','team_status_id')

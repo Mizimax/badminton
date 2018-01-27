@@ -2,11 +2,11 @@
 <table id="table-member" class="table table-hover">
     <thead>
         <tr>
-            <th class="col-xs-2" style="text-align:center">ทีม</th>
+            <th class="col-xs-2" style="text-align:center;padding-top: 0;">ทีม</th>
             @for( $order = 1; $order <= $number_of_team; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
-            <th class="col-xs-2" style="text-align:center"><strong>อันดับมือ</strong></th>
+            <th class="col-xs-1" style="text-align:center"><strong>อันดับมือ</strong></th>
             <th class="col-xs-2" style="text-align:center"><strong>สถานะประเมิน</strong></th>
             <th class="col-xs-1" style="text-align:center"><strong>ชำระเงิน</strong></th>
         </tr>
@@ -88,8 +88,8 @@
             @endif
             
             </td>
-            <td class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}" style="text-align:center">
-            <div
+            <td class="pay {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}" style="text-align:center">
+            <div class="payment"
             @if($event->event_user_id === Auth::id() || isAdmin())
             onclick="payment(this, {{ $data['team_id'] }})"
             @endif

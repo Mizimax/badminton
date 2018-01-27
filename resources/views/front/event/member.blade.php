@@ -1,3 +1,15 @@
+<!-- manager -->
+<div id="manager" align="center" class="absolute">
+    <div class="manager">
+        <div class="circle shadow-black" style="background-image: url({{ Auth::user()->user_profile }})">
+        </div>
+    </div>
+    <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
+    <b class="color-black">{{ Auth::user()->name }}</b>
+    <div>
+        <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+    </div>
+</div>
 <div class="table-responsive">
 <table id="table-member" class="table table-hover">
     <thead>

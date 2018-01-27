@@ -1,4 +1,24 @@
 @if ($team_math !=[])
+<!-- manager -->
+<div id="manager" align="center" class="absolute">
+    <div class="manager">
+        <div class="circle shadow-black" style="background-image: url({{ Auth::user()->user_profile }})">
+        </div>
+    </div>
+    <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
+    <b class="color-black">{{ Auth::user()->name }}</b>
+    <div>
+        <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+    </div>
+    <br>
+    <button class="btn btn-warning" style="font-size:12px;padding: 6px 12px; border-radius: 20px">Premium</button>
+    <br><br>
+    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
+    <br>
+    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
+    <br>
+    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
+</div>
 <hr style="margin: 10px 0">
             
         <div class="match-container">

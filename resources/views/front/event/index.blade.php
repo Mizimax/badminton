@@ -37,7 +37,7 @@
     <div class="col-md-2"></div>
 </div>
 <div class="row">
-    <div class="container body-content shadow">
+    <div class="container body-content shadow relative">
         <div class="row">
             <div class="col-md-12" align="center">
                 <h1>{{$event->event_title}}</h1>
@@ -99,8 +99,7 @@
         </div>
         <br>
         @endif
-         
-    
+
     <div class="col-md-12 tab-content">
         <div role="tabpanel" class="tab-pane" id="detail">
             @if($event_id <= 3)

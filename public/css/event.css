@@ -634,6 +634,26 @@ td .input-dropdown {
 
 /* Event org edit */
 
+#manager {
+    left: -170px;
+    top: 30px;
+    width: 150px;
+}
+
+.manager {
+    width: 70px;
+}
+
+.manager .circle {
+    width: 70px;
+    height: 70px;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background-position: center center;
+}
+
+
+
 .OrgMenu {
     position: absolute;
     left: calc(100% + 20px);

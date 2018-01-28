@@ -1,4 +1,5 @@
 @if ($team_math !=[])
+@if($event->event_user_id === Auth::id() || isAdmin())
 <!-- manager -->
 <div id="manager" align="center" class="absolute">
     <div class="manager">
@@ -19,6 +20,7 @@
     <br>
     <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
 </div>
+@endif
 <hr style="margin: 10px 0">
             
         <div class="match-container">

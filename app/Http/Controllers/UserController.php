@@ -59,9 +59,8 @@ class UserController extends Controller
         $user = User::where('email','=',$email)->first();
         if($user){
             if(password_verify($input['password'], $user->password)){
-                auth()->login($user);
-
-                return redirect()->to($redirect);
+                if(\Auth::attempt(array('email' => $email, 'password' => $input['password']), true))
+                    return redirect()->to($redirect);
             }
         }
         return back()->with('error', 'Your Email or Password is wrong.');

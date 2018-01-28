@@ -1,15 +1,23 @@
 <!-- manager -->
 @if($event->event_user_id === Auth::id() || isAdmin())
-<div id="manager" align="center" class="absolute">
-    <div class="manager">
+<div class="nav-manage" id="manager" align="center">
+    <div class="manager fixed">
         <div class="circle shadow-black" style="background-image: url({{ Auth::user()->user_profile }})">
         </div>
+        <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
+        <b class="color-black">{{ Auth::user()->name }}</b>
+        <div>
+            <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+        </div>
     </div>
-    <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
-    <b class="color-black">{{ Auth::user()->name }}</b>
-    <div>
-        <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+    
+    <div class="manager-right fixed" align="center">
+        <span class="normal">Normal</span>
+        <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;">
+        <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
+        <br>
     </div>
+    
 </div>
 @endif
 <div class="table-responsive">

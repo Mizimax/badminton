@@ -634,13 +634,68 @@ td .input-dropdown {
 
 /* Event org edit */
 
-#manager {
-    left: -170px;
-    top: 30px;
-    width: 150px;
+.nav-manage-mobile {
+    display: none;
+}
+
+@media (max-width: 1120px) {
+    .nav-manage {
+        display: none;
+    }
+    .nav-manage-mobile {
+        display: block;
+    }
+}
+
+.nav-manage-mobile .left {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 1001;
+}
+
+.nav-manage-mobile .right {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1001;
+}
+
+.menu-btn {
+    display: block;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    background-color: #00A99D;
+    position: relative;
+}
+
+.premium {
+    display: block;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 10px;
+    background-color: orange;
 }
 
 .manager {
+    left: 33px;
+    top: 1100px;
+    width: 120px;
+}
+
+.manager-right {
+    right: 33px;
+    top: 1100px;
+    width: 120px;
+}
+
+.manager-right .dice {
     width: 70px;
 }
 
@@ -652,7 +707,59 @@ td .input-dropdown {
     background-position: center center;
 }
 
+.nav-bottom {
+    position: absolute;
+    bottom: -200px;
+    width: 120px;
+}
 
+.nav-bottom img {
+    width: 60px;
+    height: 60px;
+    margin-top:10px;
+}
+
+.normal {
+    display: block;
+    font-size: 12px;
+    padding: 5px 5px;
+    border-radius: 20px;
+    color: white;
+    width: 80px;
+    background: rgba(0,0,0,0.15);
+}
+
+.confirm {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.confirm:hover {
+    transform: scale(1.1,1.1);
+}
+
+.confirm-txt {
+    font-size: 10px;
+    margin-top: 10px;
+    color: #00B900;
+}
+
+.dice-txt {
+    font-size: 10px;
+    margin-top: 10px;
+    color: #00A99D;
+}
+
+.dice {
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.dice:hover {
+    transform: scale(1.1,1.1);
+}
 
 .OrgMenu {
     position: absolute;

@@ -1,24 +1,44 @@
 @if ($team_math !=[])
 @if($event->event_user_id === Auth::id() || isAdmin())
 <!-- manager -->
-<div id="manager" align="center" class="absolute">
-    <div class="manager">
-        <div class="circle shadow-black" style="background-image: url({{ Auth::user()->user_profile }})">
+<div class="nav-manage" id="manager_2" align="center">
+
+        <div class="manager fixed">
+            <div class="circle shadow-black" style="background-image: url({{ Auth::user()->user_profile }})">
+            </div>
+            <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
+            <b class="color-black">{{ Auth::user()->name }}</b>
+            <div>
+                <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+            </div>
         </div>
+        <div class="manager-right fixed" align="center">
+            <span class="normal">Normal</span>
+            <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;">
+            <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
+            <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;">
+            <div class="confirm-txt">ยืนยันและประกาศ<br>การจัดสาย</div>
+            <div class="nav-bottom">
+                <div class="print"><img src="/images/events/print.svg"></div>
+                <div class="excel"><img src="/images/events/excel.svg"></div>
+            </div>
+        </div>
+
+</div>
+
+<div class="nav-manage-mobile">
+    <div class="left">
+        <span class="premium" onclick="menuToggle(this)">
+            <span class="absolute middle">Premium</span>
+            <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
+        </span>
     </div>
-    <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
-    <b class="color-black">{{ Auth::user()->name }}</b>
-    <div>
-        <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+    <div class="right">
+        <span class="menu-btn" onclick="menuToggle(this)">
+            <span class="absolute middle">Menu</span>
+            <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
+        </span>
     </div>
-    <br>
-    <button class="btn btn-warning" style="font-size:12px;padding: 6px 12px; border-radius: 20px">Premium</button>
-    <br><br>
-    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
-    <br>
-    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
-    <br>
-    <div class="circle shadow-black" style="background-color: orange; width:50px; height: 50px"></div>
 </div>
 @endif
 <hr style="margin: 10px 0">

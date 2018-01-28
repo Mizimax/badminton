@@ -37,7 +37,7 @@
     <div class="col-md-2"></div>
 </div>
 <div class="row">
-    <div class="container body-content shadow relative">
+    <div class="container body-content shadow">
         <div class="row">
             <div class="col-md-12" align="center">
                 <h1>{{$event->event_title}}</h1>
@@ -94,7 +94,7 @@
         <br>
         @endif
 
-    <div class="col-md-12 tab-content">
+    <div class="col-md-12 tab-content" style="position:initial">
         <div role="tabpanel" class="tab-pane" id="detail">
             @if($event_id <= 3)
                 @include('front/event/detail')
@@ -219,6 +219,10 @@
     </div>
 </div>
 
+<div class="alert menu hide">
+    <div class="overlay"></div>
+</div>
+
 @include('front/event/modal')
 
 @endsection
@@ -233,6 +237,84 @@
             jQuery.browser.version = RegExp.$1;
         }
     })();
+    /*
+    * Replace all SVG images with inline SVG
+    */
+
+    var navTop = $('.tab-content').offset().top;
+
+    $(window).scroll(function(){
+        navTop = $('.tab-content').offset().top;
+        if ($(this).scrollTop() >= navTop) {
+            $('.nav-manage .manager').css('position', 'fixed');
+            $('.nav-manage .manager-right').css('position', 'fixed');
+            $('.nav-manage .manager-right').css('right', '33px');
+            $('.nav-manage .manager').css('left', '33px');
+            $('.nav-manage .manager').css('top', '70px');
+            $('.nav-manage .manager-right').css('top', '50px');
+            $('.nav-bottom').css('position', 'fixed');
+            $('.nav-bottom').css('bottom', '50px');
+        } else {
+            $('.nav-manage .manager').css('position', 'absolute');
+            $('.nav-manage .manager-right').css('position', 'absolute');
+            $('.nav-manage .manager').css('top', '1100px');
+            $('.nav-manage .manager-right').css('top', '1100px');
+            $('.nav-bottom').css('position', 'absolute');
+            $('.nav-bottom').css('bottom', '-200px');
+        }
+    });
+	
+    jQuery('img.svg').each(function(){
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+            if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, 'xml');
+
+    });
+
+    var menuToggle = (function(ele) {
+        
+        if($(ele).hasClass('active')){
+            $('.alert.menu').fadeOut();
+            $(ele).children().eq(1).fadeOut('fast', function(){
+                $(ele).children().eq(0).fadeIn('fast');
+            });
+        }
+        else{
+            $('.alert.menu').fadeIn();
+            $(ele).children().eq(0).fadeOut('fast', function(){
+                $(ele).children().eq(1).fadeIn('fast');
+            });
+        }
+        $(ele).toggleClass('active');
+        
+    });
 
     var remove = (function (ele, member) {
         $('.alert.delete').fadeIn();

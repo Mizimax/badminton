@@ -19,6 +19,20 @@
     </div>
     
 </div>
+<div class="nav-manage-mobile">
+    <div class="left">
+        <span class="premium" onclick="menuToggle(this)">
+            <span class="absolute middle">Premium</span>
+            <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
+        </span>
+    </div>
+    <div class="right">
+        <span class="menu-btn" onclick="menuToggle(this)">
+            <span class="absolute middle">Menu</span>
+            <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
+        </span>
+    </div>
+</div>
 @endif
 <div class="table-responsive">
 <table id="table-member" class="table table-hover">

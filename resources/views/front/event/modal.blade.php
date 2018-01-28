@@ -78,8 +78,10 @@
                             <div class="col-sm-10">
                                 <select id="race" name="race" class="form-control">
                                     @foreach ($list_race as $race)
-                                        @if($race->can_register > 0)
+                                        @if($race->can_register > 0 && $race->status === 0)
                                             <option value="{{$race->race_id}}">{{$race->race_name}}</option>
+                                        @else
+                                            <option value="{{$race->race_id}}">มือ {{$race->race_name}} ปิดรับสมัคร</option>
                                         @endif
                                     @endforeach
                                 </select>

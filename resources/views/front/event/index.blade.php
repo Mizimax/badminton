@@ -41,12 +41,6 @@
         <div class="row">
             <div class="col-md-12" align="center">
                 <h1>{{$event->event_title}}</h1>
-                @if(Session::has('message'))
-                <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {{Session::get('message')}}
-                </div>
-                @endif
             </div>
         </div>
         <div class="row">

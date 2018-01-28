@@ -212,6 +212,13 @@ class EventController extends Controller
         $input = Input::all();
         $team_name = $input['team_name'];
         $race = $input['race'];
+        $event = Event::get_detail($input['event_id']);
+        $raw_race = json_decode($event->event_race);
+        $list_race = Event::get_list_race_from_event($input['event_id'], $raw_race);
+        foreach($list_race as $races) 
+            if($races->race_id === (int)$race && $races->status === 1)
+                return redirect()->back()->with('message', 'มือ ' . $races->race_name . ' ปิดรับสมัครแล้ว')
+                                         ->with('type', 'error');
 
         $team_id = Team::create([
             "team_name" => $team_name,

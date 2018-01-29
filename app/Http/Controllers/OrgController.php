@@ -26,18 +26,28 @@ class OrgController extends Controller
     }
 
     public function edit($event_id) {
-      $races = Race::select('race_id', 'race_name')->limit(10)->get();
+      $races = Race::select('race_id', 'race_name')
+                   ->orderBy('race_event_type', 'desc')
+                   ->orderBy('race_special', 'asc')
+                   ->orderBy('race_id', 'asc')->get();
       $event = Event::where('event_id', $event_id)->first();
+      $race = json_decode($event->event_race);
+      $list_race = Event::get_list_race_from_event($event_id, $race);
       $event_cover = json_decode($event->event_cover);
       $event_description = json_decode($event->event_description);
       $event_race = json_decode($event->event_race);
+
+      foreach($list_race as $myrace){
+        $list_races[$myrace->race_id] = $myrace->race_name;
+      }
 
       return view('org/event/edit')
              ->with('event_cover', $event_cover)
              ->with('event_description', $event_description)
              ->with('event_race', $event_race)
              ->with('event', $event)
-             ->with('races', $races);
+             ->with('races', $races)
+             ->with('list_race', $list_races);
     }
 
     public function save(Request $req) {
@@ -136,7 +146,7 @@ class OrgController extends Controller
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
         'rule' => $input['rule'],
         'consideration' => $input['consideration'],
-        'accessory' => $input['sonbad_band'] . $input['sonbad'] . $input['sonbad_price'],
+        'accessory' => [ $input['sonbad_band'] , $input['sonbad'] , $input['sonbad_price'] ],
         'screening_person' => [ $input['organizer'] . ' ติดต่อ : ' . $input['contact'] ],
         'screening_person_img' => $input['hand_img'],
         'postscript' => $input['postscript']
@@ -147,6 +157,7 @@ class OrgController extends Controller
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);
       $data['event_cover'] = json_encode($covers);
+      $data['event_user_id'] = Auth::id();
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
 

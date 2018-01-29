@@ -149,7 +149,9 @@
                         </div>
                             <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll hand">
-                                
+                                @for($i = 0; $i < 17; $i++)
+                                <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $list_race[$i]->race_name }}</div></div>
+                                @endfor
                             </div>
                         </div>
                         <div class="space"></div>
@@ -331,7 +333,6 @@
     hand = JSON.parse(hand);
 
     $(document).ready(function() {
-        filterType('normal', $('.dropdown-group.hand .item-dropdown')[0]);
         $("form").submit(function(e) {
 
             e.preventDefault();

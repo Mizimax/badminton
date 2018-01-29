@@ -150,16 +150,28 @@
                 </div>
                 <div id="hand" class="form-group max">
                 @foreach($event_race as $key => $race_event)
-                <div class="flex column wrap dropdown-group">
+                <div class="flex column wrap dropdown-group hand">
+                        <div class="dropdown">
+                            <div class="hide">
+                                <input type="text" name="type[]">
+                            </div>
+                                <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
+                                <div class="input-dropdown home shadow-black">
+                                    <div class="item-dropdown" value="0" onclick="selectDropdown(this);filterType('normal', this)"><div class="item">ปกติ</div></div>
+                                    <div class="item-dropdown" value="1" onclick="selectDropdown(this);filterType('special', this)"><div class="item">พิเศษ</div></div>
+
+                                </div>
+                            </div>
+                        <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
                             <input type="text" value="{{ $race_event->race_id }}" name="hand[]">
                         </div>
-                            <div class="input"><span class="display">{{ $race_event->race_id }}</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black has-scroll">
-                                @foreach($races as $race)
-                                <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $race->race_name }}</div></div>
-                                @endforeach
+                            <div class="input"><span class="display">{{ $list_race[$race_event->race_id] }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black has-scroll hand">
+                                @for($i = 0; $i < 14; $i++)
+                                <div class="item-dropdown" value="{{ $races[$i]->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $races[$i]->race_name }}</div></div>
+                                @endfor
                             </div>
                         </div>
                         <div class="space"></div>
@@ -210,23 +222,23 @@
                     <div class="account">
                         <div class="form-group eiei">
                             
-                            <input required type="text" class="form-control" name="name[]">
+                            <input required type="text" value="{{ $event_description->bookbank_organizers->name }}" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
                             
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" class="form-control" name="account[]">
+                            <input required type="text" value="{{ $event_description->bookbank_organizers->account }}" class="form-control" name="account[]">
                             <label for="account">เลขบัญชี</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" class="form-control" name="promptpay[]">
+                            <input required type="text" value="{{ $event_description->bookbank_organizers->prompypay }}" class="form-control" name="promptpay[]">
                             <label for="promptpay">Promptpay</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" class="form-control" name="bank[]">
+                            <input required type="text" value="{{ $event_description->bookbank_organizers->bank }}" class="form-control" name="bank[]">
                             <label for="bank">ธนาคาร</label>
                         </div>
                         <br>
@@ -236,26 +248,55 @@
                 <br><br>
                 <p class="font-bold font-big" style="margin-bottom:5px">ลูกแบตที่ใช้ในการแข่ง</p>
                 <div class="form-group eiei za">
-                    <input type="text" class="form-control" id="sonbad_band" name="sonbad_band">
+                    <input type="text" value="{{ $event_description->accessory[0] }}" class="form-control" id="sonbad_band" name="sonbad_band">
                     <label class="font-big" for="sonbad_band">ยี่ห้อลูกแบด</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="sonbad" name="sonbad"></textarea>
+                    <textarea class="form-control" rows="5" id="sonbad" name="sonbad">{{ $event_description->accessory[1] }}</textarea>
                     <label class="font-big" for="sonbad">ข้อมูลลูกแบด</label>
                 </div>
                 <div class="form-group eiei za">
-                    <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">
+                    <input type="text" value="{{ $event_description->accessory[2] }}" class="form-control" id="sonbad_price" name="sonbad_price">
                     <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
-                </div>              
+                </div>    
+                @if($event->event_id >= 3)          
+                @php
+                    $screening_person = explode(' ติดต่อ : ',$event_description->screening_person);
+                @endphp
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
-                    <input required type="text" class="form-control" id="organizer" name="organizer">
+                    <input required type="text" value="{{ $screening_person[0] }}" class="form-control" id="organizer" name="organizer">
                     <label class="font-big" for="organizer">ชื่อ-นามสกุล</label>
                 </div>
                 <div class="form-group max">
-                    <input required type="text" class="form-control" id="contact" name="contact">
+                    <input required type="text" value="{{ $screening_person[1] }}" class="form-control" id="contact" name="contact">
                     <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
                 </div>
+
+                <div class="form-group max">
+                    <div class="slide-add" style="margin-top:7px;height:70px">
+                        <div class="hide">
+                            <input type="text" name="hand_img" value="{{ $event_description->screening_person_img }}">
+                        </div>
+                        <div class="add-circle" style="opacity:1;background-image: url('{{ $event_description->screening_person_img }}')">
+                            <input required type="file" accept="image/*" name="hand_pic">
+                        </div>
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </div>
+                    <label class="font-big" for="pic-hand">รูปผู้ประเมินมือ</label>
+                </div>
+                
+                @else
+                <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
+                <div class="form-group max">
+                    <input required type="text" value="{{ $event_description->screening_person[0] }}" class="form-control" id="organizer" name="organizer">
+                    <label class="font-big" for="organizer">ชื่อ-นามสกุล</label>
+                </div>
+                <div class="form-group max">
+                    <input required type="text" value="{{ $event_description->screening_person[1] }}" class="form-control" id="contact" name="contact">
+                    <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
+                </div>
+                
                 <div class="form-group max">
                     <div class="slide-add" style="margin-top:7px;height:70px">
                         <div class="hide">
@@ -268,29 +309,30 @@
                     </div>
                     <label class="font-big" for="pic-hand">รูปผู้ประเมินมือ</label>
                 </div>
+                @endif
                 <h1 class="font-bold color-black">รายละเอียด</h1>
                 <div class="form-group max">
-                    <textarea required class="form-control" rows="5" id="objective" name="objective"></textarea>
+                    <textarea required class="form-control" rows="5" id="objective" name="objective">{{ $event_description->objective }}</textarea>
                     <label class="font-big" for="objective">วัตถุประสงค์</label>
                 </div>
                 <div class="form-group max">
-                    <textarea required class="form-control" rows="5" id="reg_duration" name="reg_duration"></textarea>
+                    <textarea required class="form-control" rows="5" id="reg_duration" name="reg_duration">{{ $event_description->detail }}</textarea>
                     <label class="font-big" for="reg_duration">ระยะเวลาในการสมัคร</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="event_special" name="event_special"></textarea>
+                    <textarea class="form-control" rows="5" id="event_special" name="event_special">{{ $event_description->special_rewards }}</textarea>
                     <label class="font-big" for="event_special">กิจกรรมพิเศษ</label>
                 </div>
                 <div class="form-group max">
-                    <textarea required class="form-control" rows="5" id="rule" name="rule"></textarea>
+                    <textarea required class="form-control" rows="5" id="rule" name="rule">{{ $event_description->rule }}</textarea>
                     <label class="font-big" for="rule">กติกาการแข่งขัน</label>
                 </div>
                 <div class="form-group max">
-                    <textarea required class="form-control" rows="5" id="consideration" name="consideration"></textarea>
+                    <textarea required class="form-control" rows="5" id="consideration" name="consideration">{{ $event_description->consideration }}</textarea>
                     <label class="font-big" for="consideration">การพิจารณามือนักกีฬา</label>
                 </div>
                 <div class="form-group max">
-                    <textarea required class="form-control" rows="5" id="postscript" name="postscript"></textarea>
+                    <textarea required class="form-control" rows="5" id="postscript" name="postscript">{{ $event_description->postscript }}</textarea>
                     <label class="font-big" for="postscript">กล่าวจบ</label>
                 </div>
                 <div align="center">
@@ -309,6 +351,7 @@
         </div>
     </div>
 </form>
+<div class="hide hand">{{ $races }}</div>
 @if(count($errors) != 0)
 <div class="hide errors">
     {{$errors}}
@@ -341,6 +384,8 @@
 <script>
     var handCount = 2;
     var accountCount = 2;
+    var hand = $('.hand.hide').html();
+    hand = JSON.parse(hand);
 
     $(document).ready(function() {
 
@@ -358,9 +403,43 @@
         });
     });
 
+    var filterType = (function(type, ele) {
+        var dropdownText = '';
+        var normal = hand.slice(0, 14);
+        var special = hand.slice(14, hand.length);
+        if(type === 'normal'){
+            
+            normal.forEach(function (data) {
+                dropdownText += `
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                `;
+            })
+        }
+        else{
+            special.forEach(function (data) {
+                dropdownText += `
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                `;
+            })
+        }
+        $(ele).parents('.dropdown-group').children().eq(2).children().eq(2).html(dropdownText);
+    });
+
     var addHand = (function() {
         var text = `
                 <div class="flex column wrap dropdown-group">
+                    <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" name="hand[]">
+                        </div>
+                            <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                                <div class="item-dropdown" value="0" onclick="selectDropdown(this);filterType('normal', this)"><div class="item">ปกติ</div></div>
+                                <div class="item-dropdown" value="1" onclick="selectDropdown(this);filterType('special', this)"><div class="item">พิเศษ</div></div>
+
+                            </div>
+                    </div>
+                    <div class="space"></div>
                     <div class="dropdown">
                     <div class="hide">
                         <input type="text" name="hand[]">
@@ -408,7 +487,7 @@
                     </div>
                     <span class="glyphicon glyphicon-remove" onclick="removeHand(this)" style="margin:9px; color:red; cursor:pointer"></span>
                 </div>
-        `
+        `;
         handCount++;
         $("#hand").append(text);
     });

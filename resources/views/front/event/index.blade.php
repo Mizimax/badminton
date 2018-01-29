@@ -166,7 +166,7 @@
 
 <div class="alert delete hide">
     <div class="overlay"></div>
-    <div class="fixed middle color-white" style="z-index:1001">
+    <div class="fixed middle color-white">
         <div class="font-bigger" align="center">ท่านต้องการลบ</div>
         <br>
         <div align="center" class="delete-name font-bigger" style="color: #84BA3D"></div>
@@ -181,7 +181,7 @@
 
 <div class="alert alert-close hide">
     <div class="overlay"></div>
-    <div class="fixed middle color-white" style="z-index:1001">
+    <div class="fixed middle color-white">
         <div class="font-bigger" align="center">หากท่านปิดรับสมัคร<br>ผู้เข้าแข่งขันจะไม่สามารถสมัครได้</div>
         <br>
         <div align="center">
@@ -193,7 +193,7 @@
 
 <div class="alert cancel hide">
     <div class="overlay"></div>
-    <div class="fixed middle color-white" style="z-index:1001">
+    <div class="fixed middle color-white">
         <div class="font-bigger" align="center">หากท่านยกเลิกมือ<br>รายชื่อและรายการจะไม่แสดง<br>บนเว็บไซต์อีกต่อไป</div>
         <br>
         <div class="font-bigger" align="center" style="font-style: italic;color:#F15A24">ท่านต้องการยกเลิกมือ <span class="cancel-hand"></span> หรือไม่ ?</div>
@@ -207,7 +207,7 @@
 
 <div class="alert roll hide">
     <div class="overlay"></div>
-    <div class="fixed middle color-white" style="z-index:1001">
+    <div class="fixed middle color-white">
         <div class="font-bigger" align="center">หากท่านทำการ "สุ่ม" ผู้เล่นแล้ว<br>ระบบจะปิดการรับสมัครอัตโนมัติ</div>
         <br>
         <div class="font-bigger" align="center" style="font-style: italic;color:#F15A24">ท่านต้องการสุ่มใบสายผู้เข้าแข่งขันหรือไม่ ?</div>
@@ -220,7 +220,7 @@
 </div>
 
 <div class="alert menu hide">
-    <div class="overlay"></div>
+    <div class="overlay" style="z-index:1000" onclick="menuToggle(this);$(this).parent().fadeOut('fast')"></div>
 </div>
 
 @include('front/event/modal')
@@ -299,18 +299,27 @@
     });
 
     var menuToggle = (function(ele) {
-        
+        var active = $('.nav-manage-mobile .active');
+        if(active.length !== 0 && !$(ele).is(active)) {
+            active.children().eq(1).fadeOut('fast', function(){
+                active.children().eq(0).fadeIn('fast');
+            });
+            active.prev().slideUp('fast');
+            active.removeClass('active');
+        }
         if($(ele).hasClass('active')){
             $('.alert.menu').fadeOut();
             $(ele).children().eq(1).fadeOut('fast', function(){
                 $(ele).children().eq(0).fadeIn('fast');
             });
+            $(ele).prev().slideUp('fast');
         }
         else{
             $('.alert.menu').fadeIn();
             $(ele).children().eq(0).fadeOut('fast', function(){
                 $(ele).children().eq(1).fadeIn('fast');
             });
+            $(ele).prev().slideDown('fast');
         }
         $(ele).toggleClass('active');
         

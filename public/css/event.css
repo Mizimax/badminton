@@ -615,6 +615,11 @@ td .input-dropdown {
     transform: translateY(-50%);
 }
 
+.fixed.middle.color-white {
+    z-index: 1001;
+    width: 100%;
+}
+
 @media (max-width: 691px) {
     .members .name {
         font-size: 12px;
@@ -632,10 +637,37 @@ td .input-dropdown {
     }
 }
 
+@media (max-width: 610px) {
+    .team_status {
+        display: none !important;
+    }
+}
+
 /* Event org edit */
+
+.menu-mobile {
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.menu-mobile:hover {
+    transform: scale(1.2,1.2)
+}
 
 .nav-manage-mobile {
     display: none;
+}
+
+.left-txt {
+    display: block;
+    font-size: 11px;
+    color:#FBB03B;
+    margin: 7px 0;
+}
+
+.red-txt {
+    color: #F15A24;
 }
 
 @media (max-width: 1120px) {
@@ -659,6 +691,18 @@ td .input-dropdown {
     bottom: 50px;
     right: 50px;
     z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .nav-manage-mobile .left {
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .nav-manage-mobile .right {
+        bottom: 20px;
+        right: 20px;
+    }
 }
 
 .menu-btn {
@@ -741,13 +785,13 @@ td .input-dropdown {
 }
 
 .confirm-txt {
-    font-size: 10px;
+    font-size: 11px;
     margin-top: 10px;
     color: #00B900;
 }
 
 .dice-txt {
-    font-size: 10px;
+    font-size: 11px;
     margin-top: 10px;
     color: #00A99D;
 }

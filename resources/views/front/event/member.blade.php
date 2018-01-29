@@ -7,7 +7,7 @@
         <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
         <b class="color-black">{{ Auth::user()->name }}</b>
         <div>
-            <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+            <div class="circle inline" style="width: 10px; height: 10px; background:#7EE08D"></div> <span style="color:#999">Online/Editable</span>
         </div>
     </div>
     
@@ -21,12 +21,18 @@
 </div>
 <div class="nav-manage-mobile">
     <div class="left">
-        <span class="premium" onclick="menuToggle(this)">
+        <div class="hide">
+            <img class="menu-mobile" src="/images/events/confirm.svg">
+        </div>
+        <span class="premium relative" onclick="menuToggle(this)">
             <span class="absolute middle">Premium</span>
             <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
         </span>
     </div>
     <div class="right">
+        <div class="hide">
+            <img class="menu-mobile" src="/images/events/dice.svg">
+        </div>
         <span class="menu-btn" onclick="menuToggle(this)">
             <span class="absolute middle">Menu</span>
             <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
@@ -43,7 +49,7 @@
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
             <th class="col-xs-1" style="text-align:center"><strong>อันดับมือ</strong></th>
-            <th class="col-xs-2" style="text-align:center"><strong>สถานะประเมิน</strong></th>
+            <th class="col-xs-2 team_status" style="text-align:center"><strong>สถานะประเมิน</strong></th>
             <th class="col-xs-1" style="text-align:center"><strong>ชำระเงิน</strong></th>
         </tr>
     </thead>
@@ -61,7 +67,7 @@
                     {{$team['race_name']}}
                 </span>
             </td>
-             <td style="text-align:center">
+             <td class="team_status" style="text-align:center">
             @if ($team['team_status'] == 2)
             <span class="label label-success">{{$team['team_status_name']}}</span>
             @elseif ($team['team_status'] == 3)
@@ -102,7 +108,7 @@
                     {{$data['race_name']}}
                 </span>
             </td>
-            <td style="text-align:center">
+            <td class="team_status" style="text-align:center">
             @if ($data['team_status'] == 2)
             <span
             @if($event->event_user_id === Auth::id() || isAdmin())

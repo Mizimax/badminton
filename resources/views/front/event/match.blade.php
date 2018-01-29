@@ -9,8 +9,17 @@
             <div style="color:#888; margin-top:10px">แก้ไขสถานะโดย</div>
             <b class="color-black">{{ Auth::user()->name }}</b>
             <div>
-                <div class="circle inline" style="width: 10px; height: 10px; background:green"></div> <span style="color:#999">Online/Editable</span>
+                <div class="circle inline" style="width: 10px; height: 10px; background:#7EE08D"></div> <span style="color:#999">Online/Editable</span>
             </div>
+            <br>
+            <span class="normal" style="background:#FBB03B">Premium</span>
+            <br>
+            <img src="/images/events/manage.svg" width="50">
+            <span class="left-txt">เพิ่มและแก้ไขคะแนนได้ระหว่างการแข่งรองรับใน <span class="red-txt">"คอม"</span> และใน <span class="red-txt">"มือถือ"</span></span>
+            <img src="/images/events/knockout.svg" width="50">
+            <span class="left-txt">แสดงรายชื่อถึงใบสาย <br><span class="red-txt">Knock out อัตโนมัติ</span></span>
+            <img src="/images/events/mobile.svg" width="50">
+            <span class="left-txt">แสดงบนมือถือทุกคน</span>
         </div>
         <div class="manager-right fixed" align="center">
             <span class="normal">Normal</span>
@@ -28,12 +37,24 @@
 
 <div class="nav-manage-mobile">
     <div class="left">
-        <span class="premium" onclick="menuToggle(this)">
+        <div class="hide">
+            <img class="menu-mobile" src="/images/events/confirm.svg">
+            <img class="menu-mobile" src="/images/events/dice.svg">
+            <img class="menu-mobile" src="/images/events/print.svg">
+            <img class="menu-mobile" src="/images/events/excel.svg">
+        </div>
+        <span class="premium relative" onclick="menuToggle(this)">
             <span class="absolute middle">Premium</span>
             <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>
         </span>
     </div>
     <div class="right">
+        <div class="hide">
+            <img class="menu-mobile" src="/images/events/confirm.svg">
+            <img class="menu-mobile" src="/images/events/dice.svg">
+            <img class="menu-mobile" src="/images/events/print.svg">
+            <img class="menu-mobile" src="/images/events/excel.svg">
+        </div>
         <span class="menu-btn" onclick="menuToggle(this)">
             <span class="absolute middle">Menu</span>
             <span class="glyphicon glyphicon-remove absolute middle hide" style="font-size:18px;"></span>

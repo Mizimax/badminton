@@ -5,8 +5,19 @@
     }
 </style>
 @endsection
-<br>
+@if($event->event_user_id === Auth::id() || isAdmin())
+<div class="relative">
+    <div class="OrgMenu">
+        <div class="edit">
+            <a class="btn editbtn" href="/event/{{ $event_id }}/edit">
+                <span class="glyphicon glyphicon-pencil"></span> แก้ไขข้อมูล
+            </a>
+        </div>
+    </div>
+</div>
+@endif
 <div class="detail-container">
+    <br>
         <div class="row">
             <div class="col-md-12 description">
                 <span class="glyphicon glyphicon-map-marker" style="color:#ee5b36"></span>

@@ -50,7 +50,7 @@ class OrgController extends Controller
              ->with('list_race', $list_races);
     }
 
-    public function save(Request $req) {
+    public function save(Request $req, $event_id) {
 
       $rules = [
           'poster' => 'required',
@@ -161,9 +161,16 @@ class OrgController extends Controller
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
 
-      $event = Event::create($data);
+      if(isset($event_id)){
+        $event = Event::where('event_id', $event_id)->update($data);
+        $eventId = $event_id;
+      }
+      else{
+        $event = Event::create($data);
+        $eventId = $event->id;
+      }
 
-      return response()->json(['status' => 'ok', 'message' => 'Event Created.', 'redirect' => $event->id], 200);
+      return response()->json(['status' => 'ok', 'message' => 'Event Created.', 'redirect' => $eventId], 200);
     }
 
     public function uploadSlide(Request $request) {

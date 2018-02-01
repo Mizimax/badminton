@@ -33,7 +33,7 @@
                         <input type="text" name="poster" value="{{ $event->event_poster }}">
                     </div>
                     <div class="add-circle" style="opacity:1;background-image: url('{{ $event->event_poster }}')">
-                        <input required type="file" accept="image/*" name="post">
+                        <input type="file" accept="image/*" name="post">
                     </div>
                 </div>
                 <h3 class="font-bold grey-med">รูปหน้าปก <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
@@ -219,49 +219,51 @@
                 <button type="button" class="btn btn-success btn-sm" onclick="addHand()">เพิ่มประเภท +</button>
                 <h3 class="font-bold grey-med">การโอนเงิน</h3>
                 <div id="account">
+                    @foreach($event_description->bookbank_organizers as $bookbank)
                     <div class="account">
                         <div class="form-group eiei">
                             
-                            <input required type="text" value="{{ $event_description->bookbank_organizers->name }}" class="form-control" name="name[]">
+                            <input required type="text" value="{{ $bookbank->name }}" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
                             
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" value="{{ $event_description->bookbank_organizers->account }}" class="form-control" name="account[]">
+                            <input required type="text" value="{{ $bookbank->account }}" class="form-control" name="account[]">
                             <label for="account">เลขบัญชี</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" value="{{ $event_description->bookbank_organizers->prompypay }}" class="form-control" name="promptpay[]">
+                            <input required type="text" value="{{ $bookbank->prompypay }}" class="form-control" name="promptpay[]">
                             <label for="promptpay">Promptpay</label>
                         </div>
                         <br>
                         <div class="form-group eiei">
-                            <input required type="text" value="{{ $event_description->bookbank_organizers->bank }}" class="form-control" name="bank[]">
+                            <input required type="text" value="{{ $bookbank->bank }}" class="form-control" name="bank[]">
                             <label for="bank">ธนาคาร</label>
                         </div>
                         <br>
                     </div>
+                    @endforeach
                 </div>
                 <button type="button" class="btn btn-info btn-sm" onclick="addAccount()" style="margin-top:10px">เพิ่มบัญชี +</button>
                 <br><br>
                 <p class="font-bold font-big" style="margin-bottom:5px">ลูกแบตที่ใช้ในการแข่ง</p>
                 <div class="form-group eiei za">
-                    <input type="text" value="{{ $event_description->accessory[0] }}" class="form-control" id="sonbad_band" name="sonbad_band">
+                    <input type="text" value="{{ isset($event_description->accessory[0]) ? $event_description->accessory[0] : '' }}" class="form-control" id="sonbad_band" name="sonbad_band">
                     <label class="font-big" for="sonbad_band">ยี่ห้อลูกแบด</label>
                 </div>
                 <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="sonbad" name="sonbad">{{ $event_description->accessory[1] }}</textarea>
+                    <textarea class="form-control" rows="5" id="sonbad" name="sonbad">{{ isset($event_description->accessory[1]) ? $event_description->accessory[1] : '' }}</textarea>
                     <label class="font-big" for="sonbad">ข้อมูลลูกแบด</label>
                 </div>
                 <div class="form-group eiei za">
-                    <input type="text" value="{{ $event_description->accessory[2] }}" class="form-control" id="sonbad_price" name="sonbad_price">
+                    <input type="text" value="{{ isset($event_description->accessory[2]) ? $event_description->accessory[2] : '' }}" class="form-control" id="sonbad_price" name="sonbad_price">
                     <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
                 </div>    
                 @if($event->event_id >= 3)          
                 @php
-                    $screening_person = explode(' ติดต่อ : ',$event_description->screening_person);
+                    $screening_person = explode(' ติดต่อ : ',$event_description->screening_person[0]);
                 @endphp
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
@@ -279,7 +281,7 @@
                             <input type="text" name="hand_img" value="{{ $event_description->screening_person_img }}">
                         </div>
                         <div class="add-circle" style="opacity:1;background-image: url('{{ $event_description->screening_person_img }}')">
-                            <input required type="file" accept="image/*" name="hand_pic">
+                            <input type="file" accept="image/*" name="hand_pic">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
                     </div>
@@ -303,7 +305,7 @@
                             <input type="text" name="hand_img">
                         </div>
                         <div class="add-circle">
-                            <input required type="file" accept="image/*" name="hand_pic">
+                            <input type="file" accept="image/*" name="hand_pic">
                         </div>
                         <span class="glyphicon glyphicon-plus-sign"></span>
                     </div>
@@ -545,13 +547,13 @@
         button.text('Loading...');
         
         $.ajax({
-            type: 'POST',
-            url: '/event/create',
+            type: 'PATCH',
+            url: window.location.pathname,
             data: $("form").serialize(), 
 
             success: function(res) { 
                 var swalContent = {
-                    title: 'สร้างรายการสำเร็จ',
+                    title: 'แก้ไขรายการสำเร็จ',
                     html: res.errors,
                     type: 'success'
                 }

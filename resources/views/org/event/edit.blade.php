@@ -129,7 +129,7 @@
                         <div class="hide">
                             <input type="text" value="{{ $event_date[0] }}" id="event_year" name="event_year">
                         </div>
-                            <div class="input"><span class="display">{{ $event_date[0] }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">{{ $event_date[0] + 543 }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
@@ -195,15 +195,15 @@
                             <div class="input" onclick="toggleDropdown(this)"><span class="display">เงินรางวัล</span> <span class="icon dropdown">▼</span></div>
                             <div class="dropdown-box shadow-black">
                                 <div class="reward-container">
-                                    <input type="text" value="{{ $race_event->race_id }}" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
+                                    <input type="text" value="{{ $event_description->reward[0][$key] }}" class="item-dropdown" name="reward_1[]" style="width: 100%; border:0" placeholder="ที่ 1">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
+                                    <input type="text" value="{{ $event_description->reward[1][$key] }}" class="item-dropdown" name="reward_2[]" style="width: 100%; border:0" placeholder="ที่ 2">
                                     <span class="bath">บาท</span>
                                 </div>
                                 <div class="reward-container">
-                                    <input type="text" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
+                                    <input type="text" value="{{ $event_description->reward[2][$key] }}" class="item-dropdown" name="reward_3[]" style="width: 100%; border:0" placeholder="ที่ 3">
                                     <span class="bath">บาท</span>
                                 </div>
                             </div>
@@ -338,7 +338,7 @@
                     <label class="font-big" for="postscript">กล่าวจบ</label>
                 </div>
                 <div align="center">
-                    <button id="submit" type="submit" class="btn btn-success btn-lg">สร้างรายการ</button>
+                    <button id="submit" type="submit" class="btn btn-success btn-lg">แก้ไขรายการ</button>
                 </div>
                 <br>
                 <div style="color:red">
@@ -432,7 +432,7 @@
                 <div class="flex column wrap dropdown-group">
                     <div class="dropdown">
                         <div class="hide">
-                            <input type="text" name="hand[]">
+                            <input type="text" name="type[]">
                         </div>
                             <div class="input"><span class="display">ปกติ</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">

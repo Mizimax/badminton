@@ -166,12 +166,14 @@
             </div>
         </div>
 
-        @if($event_description->accessory)
+        @if(isset($event_description->accessory[0]) || isset($event_description->accessory[1]) || isset($event_description->accessory[2]))
         <div class="row">
             <div class="col-md-12 description">
                 <span class="square-head">ลูกแบตที่ใช้ในการแข่ง</span>
-                <p class="detail-content pre">{{$event_description->accessory}}
+                @foreach($event_description->accessory as $accessory)
+                <p class="detail-content pre">{{$accessory}}
                 </p>
+                @endforeach
                 <br>
             </div>
         </div>

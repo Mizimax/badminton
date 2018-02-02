@@ -142,6 +142,11 @@ class OrgController extends Controller
           'detail' => $handText //แก้ front มีหลายมือ
         ],
         'detail' =>  $input['reg_duration'],
+        'reward' => [
+          0 => $input['reward_1'],
+          1 => $input['reward_2'],
+          2 => $input['reward_3']
+        ],
         'rewards' => $reward,
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
         'rule' => $input['rule'],

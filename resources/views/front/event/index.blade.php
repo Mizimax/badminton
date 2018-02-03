@@ -227,6 +227,7 @@
 
 @endsection
 @section('scripts')
+<script src="/js/drag.js"></script>
 <script type="text/javascript">
     jQuery.browser = {};
     (function () {
@@ -236,6 +237,15 @@
             jQuery.browser.msie = true;
             jQuery.browser.version = RegExp.$1;
         }
+        var dragAndSwap = new DragAndSwap({
+            containers: ['#table-match'],
+            element: '.team_mem',
+            isEnabled: true,
+            swapBetweenContainers: true,
+            onChange: function (boxes) {
+                console.log(boxes);
+            }
+        });
     })();
     /*
     * Replace all SVG images with inline SVG

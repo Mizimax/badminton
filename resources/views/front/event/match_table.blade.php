@@ -70,7 +70,7 @@
                         -webkit-border-radius: 2px;
                         border-radius: 50%;"></div>
                     </div>
-                    <div class="media-body">
+                    <div class="media-body team_mem">
                     @foreach($team_math[$line][$team] as $mem)
                         {{$mem->name}} <br>
                     @endforeach

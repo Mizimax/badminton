@@ -323,6 +323,22 @@ td .input-dropdown {
     font-size: 12px;
 }
 
+@media (max-width: 595px) {
+    #table-member td {
+        font-size: 8px;
+    }
+    #table-member th {
+        font-size: 8px;
+    }
+    .col-md-12.tab-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    table.dataTable thead th, table.dataTable tbody td {
+        padding: 5px 0 !important;
+    }
+}
+
 .label-danger{
     background-color:#FF2b06
 }

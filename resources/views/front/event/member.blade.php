@@ -49,7 +49,7 @@
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
             <th class="col-xs-1" style="text-align:center"><strong>อันดับมือ</strong></th>
-            <th class="col-xs-2 team_status" style="text-align:center"><strong>สถานะประเมิน</strong></th>
+            <th class="col-xs-2" style="text-align:center"><strong>สถานะประเมิน</strong></th>
             <th class="col-xs-1" style="text-align:center"><strong>ชำระเงิน</strong></th>
         </tr>
     </thead>
@@ -67,13 +67,13 @@
                     {{$team['race_name']}}
                 </span>
             </td>
-             <td class="team_status" style="text-align:center">
+             <td style="text-align:center">
             @if ($team['team_status'] == 2)
-            <span class="label label-success">{{$team['team_status_name']}}</span>
+            <span class="label label-success"><span class="team_status">{{$team['team_status_name']}}</span></span>
             @elseif ($team['team_status'] == 3)
-            <span class="label label-danger">{{$team['team_status_name']}}</span>
+            <span class="label label-danger"><span class="team_status">{{$team['team_status_name']}}</span></span>
             @elseif ($team['team_status'] == 1)
-            <span class="label label-info">{{$team['team_status_name']}}</span>
+            <span class="label label-info"><span class="team_status">{{$team['team_status_name']}}</span></span>
             @endif
             
             </td>
@@ -108,25 +108,25 @@
                     {{$data['race_name']}}
                 </span>
             </td>
-            <td class="team_status" style="text-align:center">
+            <td style="text-align:center">
             @if ($data['team_status'] == 2)
             <span
             @if($event->event_user_id === Auth::id() || isAdmin())
             onclick="hand(this, {{ $data['team_id'] }})"
             @endif
-            class="label label-success {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">{{$data['team_status_name']}}</span>
+            class="label label-success {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"><span class="team_status">{{$data['team_status_name']}}</span></span>
             @elseif ($data['team_status'] == 3)
             <span
             @if($event->event_user_id === Auth::id() || isAdmin())
             onclick="hand(this, {{ $data['team_id'] }})"
             @endif
-            class="label label-danger {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">{{$data['team_status_name']}}</span>
+            class="label label-danger {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"><span class="team_status">{{$data['team_status_name']}}</span></span>
             @elseif ($data['team_status'] == 1)
             <span
             @if($event->event_user_id === Auth::id() || isAdmin())
             onclick="hand(this, {{ $data['team_id'] }})"
             @endif
-            class="label label-info pointer">{{$data['team_status_name']}}</span>
+            class="label label-info pointer"><span class="team_status">{{$data['team_status_name']}}</span></span>
             @endif
             
             </td>

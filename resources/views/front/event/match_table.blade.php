@@ -21,16 +21,16 @@
     <div class="shadow" style="overflow-x:auto; padding: 15px 10px">
         <table class="table" id="table-match">
             <tr>
-                <td class="col-xs-1" style="position: relative; min-width: 60px" align="center">
+                <td class="col-xs-1 team_status" style="position: relative; min-width: 60px" align="center">
                     <a href="#" class="button is-info font-meder max" style="padding: 1px 10px;position: absolute;bottom: 0;left: 44%;transform: translateX(-50%);">
                         Point
                     </a>
                 </td>
-                <td class="col-xs-2" align="center"></td>
+                <td class="col-xs-2 table-name" align="center"></td>
                 @foreach($team_math[$line] as $k=> $team)
-                <td class="col-xs-2" style="min-width: 140px">
+                <td class="col-xs-2 table-width">
                 <div class="media">
-                    <div class="media-left media-middle">
+                    <div class="media-left media-middle team-mobile">
                         <div style="width: 15px;
                         height: 15px;
                         background: #{{$color_team[$line][$k]}};
@@ -38,7 +38,7 @@
                         -webkit-border-radius: 2px;
                         border-radius: 50%;"></div>
                     </div>
-                    <div class="media-body">
+                    <div class="media-body team_status">
                     @foreach($team as $mem)
                     {{$mem->name}} <br>
                     @endforeach
@@ -52,9 +52,9 @@
 
             @foreach($match as $team =>$detail_math)
             <tr>
-                <td align="center" style="border-right:1px solid #ccc">
+                <td align="center" class="team_status" style="border-right:1px solid #ccc">
                     <span style="font-size: 16px">
-                        <span class="font-bold" style="color:#209cee">{{$score_team[$line][$team]['total']}}</span> <span class="font-bold">/ {{ (count($match) -1) * 2 }}</span>
+                        <span class="font-bold team" style="color:#209cee">{{$score_team[$line][$team]['total']}}</span> <span class="font-bold">/ {{ (count($match) -1) * 2 }}</span>
                     </span>
                     <br>
                     <span class="font-small font-bold" style="color:#888">{{$score_team[$line][$team]['score']}}</span>
@@ -62,7 +62,7 @@
                 <td style="display: table-cell;vertical-align: middle;">
                 <div class="media">
                     
-                    <div class="media-left media-middle">
+                    <div class="media-left media-middle" style="padding-right: 5px">
                         <div style="width: 15px;
                         height: 15px;
                         background: #{{$color_team[$line][$team]}};
@@ -124,7 +124,7 @@
                                     @else
                                         <div class="media-body">
                                             <span href="#" class="button is-red font-meder is-outlined is-active match_time" >
-                                                <span class="font-small" style="margin-right: 8px; color: #eee">M{{$m['match_number']}}</span>
+                                                <span class="font-small team_status" style="color: #eee">M{{$m['match_number']}}</span>
                                                 <span class="font-big">{{$m['time_stamp']}}</span>
                                             </span>
                                         </div>

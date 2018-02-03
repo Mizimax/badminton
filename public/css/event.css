@@ -374,6 +374,10 @@ td .input-dropdown {
     margin-top: 25px;
 }
 
+.table-width {
+    min-width: 140px;
+}
+
 @media (max-width: 660px) {
     .left.rank {
         float: none;
@@ -382,11 +386,39 @@ td .input-dropdown {
         margin-bottom: 30px;
     }
     .button.is-red {
-        padding: 5px 10px;
+        padding: 1px 6px;
+    }
+    .shadow td {
+        padding: 0 !important;
     }
     .left.rank.right {
         margin-top: 0;
     }
+    .table-width {
+        min-width: 40px;
+    }
+    td .font-small {
+        font-size: 8px !important;
+    }
+    td .font-big {
+        font-size: 8px !important;
+    }
+    td .media-body {
+        font-size: 8px;
+    }
+    .table-name {
+        width: 1% !important;
+    }
+    table tr:first-child td{
+        padding-bottom: 5px !important;
+    }
+    table tr:first-child .media-left {
+        padding-right: 0 !important;
+    }
+}
+
+#match .row .col-xs-12 {
+    padding: 0;
 }
 @media (max-width: 380px) {
     .col-xs-6.rank {
@@ -656,6 +688,13 @@ td .input-dropdown {
 @media (max-width: 610px) {
     .team_status {
         display: none !important;
+    }
+    .team-mobile {
+        display: block;
+       
+    }
+    .team-mobile div {
+        margin: 0 auto;
     }
 }
 

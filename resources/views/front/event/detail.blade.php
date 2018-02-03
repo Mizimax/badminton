@@ -1,4 +1,4 @@
-@if($event->event_user_id === Auth::id() || isAdmin())
+@if(($event->event_user_id === Auth::id() || isAdmin()) && $event_id > 3)
 <div class="relative">
     <div class="OrgMenu">
         <div class="edit">

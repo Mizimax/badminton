@@ -22,7 +22,7 @@
 <div class="nav-manage-mobile">
     <div class="left">
         <div class="hide">
-            <img class="menu-mobile" src="/images/events/confirm.svg">
+
         </div>
         <span class="premium relative" onclick="menuToggle(this)">
             <span class="absolute middle">Premium</span>
@@ -31,7 +31,7 @@
     </div>
     <div class="right">
         <div class="hide">
-            <img class="menu-mobile" src="/images/events/dice.svg">
+            <img class="menu-mobile" src="/images/events/dice.svg" onclick="judsai()">
         </div>
         <span class="menu-btn" onclick="menuToggle(this)">
             <span class="absolute middle">Menu</span>

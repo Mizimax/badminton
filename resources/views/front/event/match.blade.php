@@ -39,10 +39,6 @@
 <div class="nav-manage-mobile">
     <div class="left">
         <div class="hide">
-            <img class="menu-mobile" src="/images/events/confirm.svg">
-            <img class="menu-mobile" src="/images/events/dice.svg">
-            <img class="menu-mobile" src="/images/events/print.svg">
-            <img class="menu-mobile" src="/images/events/excel.svg">
         </div>
         <span class="premium relative" onclick="menuToggle(this)">
             <span class="absolute middle">Premium</span>
@@ -51,8 +47,8 @@
     </div>
     <div class="right">
         <div class="hide">
-            <img class="menu-mobile" src="/images/events/confirm.svg">
-            <img class="menu-mobile" src="/images/events/dice.svg">
+            <img class="menu-mobile" src="/images/events/confirm.svg" onclick="judsaiConfirm()">
+            <img class="menu-mobile" src="/images/events/dice.svg" onclick="judsai()">>
             <img class="menu-mobile" src="/images/events/print.svg">
             <img class="menu-mobile" src="/images/events/excel.svg">
         </div>

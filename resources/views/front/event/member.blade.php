@@ -13,7 +13,7 @@
     
     <div class="manager-right fixed" align="center">
         <span class="normal">Normal</span>
-        <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;">
+        <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
         <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
         <br>
     </div>

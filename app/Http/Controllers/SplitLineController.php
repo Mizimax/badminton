@@ -40,11 +40,8 @@ class SplitLineController extends Controller
         // if(Auth::guest() || $event->event_user_id != Auth::user()->id){
         //     return redirect()->to('/');
         // }
-        if(count(LineTeam::where('line_event_id','=',$event_id)->get())){
-            echo "Please delete data in 'line_team', 'match' and 'set_match' bye";
-            die();
-        }
-        
+       
+        LineTeam::where('line_event_id', $event_id)->delete();
         $raw_race = json_decode($event->event_race);
         $this->group = [];
         $this->group_id = [];
@@ -87,15 +84,14 @@ class SplitLineController extends Controller
                         array_push($line_team_id,$team_id);
                     }
                     $team['line_team_id']= json_encode($line_team_id);
+                    $team['line_type'] = 1;
                     LineTeam::addTeam($team);
                     $index_char++;
                 }
             // }
         }
-
-        // $this->run_match($event_id);
-        // $this->run_match_knockout($event_id);
-        return redirect()->to('/');
+        $this->run_match($event_id);
+        $this->run_match_knockout($event_id);
     }
 
     function split_group($race_id,$team_name,$team_id,$max_group){
@@ -117,6 +113,7 @@ class SplitLineController extends Controller
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
         $array = [];
+        Match::where('match_event_id', $event_id)->delete();
         foreach($raw_race as $race){
             $num = 1;
             $all_line = LineTeam::select('line_name','line_team_id')
@@ -174,10 +171,11 @@ class SplitLineController extends Controller
     }
 
     public function run_set_match($event_id){
+        SetMatch::where('set_match_event_id', $event_id)->delete();
         $all_match = Match::select('match_id')->where('match_event_id','=',$event_id)->where('match_type','=','MATcH')->get()->toArray();
         foreach($all_match as $match){
-            SetMatch::insert(['set_match_id' => $match['match_id']]);
-            SetMatch::insert(['set_match_id' => $match['match_id']]);
+            SetMatch::insert(['set_match_id' => $match['match_id'], 'set_match_event_id' => $event_id]);
+            SetMatch::insert(['set_match_id' => $match['match_id'], 'set_match_event_id' => $event_id]);
         }
     }
 
@@ -309,5 +307,9 @@ class SplitLineController extends Controller
             $max=$tmp;
         }
      $this->run_set_knockout($event_id);
+    }
+
+    public function verify() {
+        LineTeam::where('line_event_id', 3)->update([ 'line_type' => 0]);
     }
 }

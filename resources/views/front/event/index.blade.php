@@ -257,8 +257,8 @@
         } else {
             $('.nav-manage .manager').css('position', 'absolute');
             $('.nav-manage .manager-right').css('position', 'absolute');
-            $('.nav-manage .manager').css('top', '1100px');
-            $('.nav-manage .manager-right').css('top', '1100px');
+            $('.nav-manage .manager').css('top', '1000px');
+            $('.nav-manage .manager-right').css('top', '1000px');
             $('.nav-bottom').css('position', 'absolute');
             $('.nav-bottom').css('bottom', '-200px');
         }
@@ -529,6 +529,45 @@
                 $('.close-btn').unbind("click");
             });
         }
+    });
+
+    var judsai = (function() {
+        swal({
+            title: "โปรดรอสักครู่...",
+            html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
+            showConfirmButton: false
+        });
+        $.ajax({
+                    url: '/split_line/{{ $event->event_id }}',
+                    method: 'get',
+                    success: function(data){
+                        swal({
+                            title: "สำเร็จ !",
+                            text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
+                        }).then(function(){
+                            window.location = '/event/{{ $event->event_id }}#/match';
+                            search_match($('#match .input-dropdown.event .item-dropdown')[0]);
+                        })
+                    }
+        });
+    });
+
+    var judsaiConfirm = (function() {
+        swal({
+            title: "โปรดรอสักครู่...",
+            html: "<br><div class='lds-dual-ring'></div><br>กำลังยืนยันการจัดสาย",
+            showConfirmButton: false
+        });
+        $.ajax({
+            url: '/confirm/{{ $event->event_id }}',
+            method: 'patch',
+            success: function(data){
+                swal({
+                    title: "สำเร็จ !",
+                    text: "ยืนยันการจัดสายเรียบร้อยแล้ว"
+                });
+            }
+        });
     });
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>

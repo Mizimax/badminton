@@ -70,6 +70,7 @@ class EventController extends Controller
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
+        $line_type = LineTeam::select('line_type')->where('line_event_id', $event_id)->first()['line_type'];
 
         $result_match = [];
         $team_math = [];
@@ -188,6 +189,7 @@ class EventController extends Controller
             ->with('round',$round)
             ->with('match_num',$match_num)
             ->with('event_id', $event_id)
+            ->with('line_type', $line_type)
             ;
     }
 

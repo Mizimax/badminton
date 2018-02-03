@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
+    @if(count($knock_match) !== 0)
         <?php
 
             function checkTeamWin($match, $round_match, $team) {
@@ -175,7 +176,13 @@
                 </div>
             @endforeach
         </div>
-        
+    @else
+            <div align="center" style="height: 300px">
+                <div class="absolute middle">
+                    ยังไม่มีการแบ่งตารางแข่งรอบ Knockout
+                </div>
+            </div>
+    @endif
     </div>
 </div>
                     

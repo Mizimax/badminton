@@ -8,6 +8,7 @@ class LineTeam extends Model
 {
     // protected $connection = 'mongodb_test';
     protected $table = 'line_team';
+    public $timestamps = false;
     
     public static function addTeam($team)
     {

@@ -7,7 +7,7 @@ function search_match(e){
     race_id = $(e).attr('value');
     event_id = $('#event_id').val();
     $.ajax({
-        url: '/get_math/'+ event_id+'/'+race_id,
+        url: '/get_match/'+ event_id+'/'+race_id,
         success: function(data){
             $('#group').html(data);
         }

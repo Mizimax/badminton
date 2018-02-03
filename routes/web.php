@@ -70,6 +70,7 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::get('/add_score/{event_id}', 'MatchController@add_score_id')->name('add_score');
   Route::get('/search_match/{event_id}/{match_id}', 'MatchController@search_match_id')->name('search_match');
   Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
+  Route::patch('/confirm/{event_id}', 'SplitLineController@verify')->name('confirm_line');
   Route::get('/run_match/{event_id}', 'SplitLineController@run_match')->name('run_match');
   Route::get('/run_set_match/{event_id}', 'SplitLineController@run_set_match')->name('run_set_match');
   Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');

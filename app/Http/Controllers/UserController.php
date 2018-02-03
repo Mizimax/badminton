@@ -58,7 +58,7 @@ class UserController extends Controller
         $redirect = $request->query('redirect') ? $request->query('redirect') : '/';
         $user = User::where('email','=',$email)->first();
         if($user)
-            if(password_verify($input['password'], $user->password)){
+            if(password_verify($input['password'], $user->password))
                 if(\Auth::attempt(array('email' => $email, 'password' => $input['password']), true))
                     return redirect()->to($redirect);
 

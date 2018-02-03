@@ -1,4 +1,5 @@
-@if ($team_math !=[])
+
+@if ($team_math !=[] && ((($event->event_user_id === Auth::id() || isAdmin()) && $line_type === 1) || $line_type === 0))
 @if($event->event_user_id === Auth::id() || isAdmin())
 <!-- manager -->
 <div class="nav-manage" id="manager_2" align="center">
@@ -23,9 +24,9 @@
         </div>
         <div class="manager-right fixed" align="center">
             <span class="normal">Normal</span>
-            <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;">
+            <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
             <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
-            <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;">
+            <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;" onclick="judsaiConfirm()">
             <div class="confirm-txt">ยืนยันและประกาศ<br>การจัดสาย</div>
             <div class="nav-bottom">
                 <div class="print"><img src="/images/events/print.svg"></div>

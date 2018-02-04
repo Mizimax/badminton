@@ -267,8 +267,8 @@
         } else {
             $('.nav-manage .manager').css('position', 'absolute');
             $('.nav-manage .manager-right').css('position', 'absolute');
-            $('.nav-manage .manager').css('top', '1000px');
-            $('.nav-manage .manager-right').css('top', '1000px');
+            $('.nav-manage .manager').css('top', '1100px');
+            $('.nav-manage .manager-right').css('top', '1100px');
             $('.nav-bottom').css('position', 'absolute');
             $('.nav-bottom').css('bottom', '-200px');
         }

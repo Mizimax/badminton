@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link href="{{ asset('css/event.css?'.time()) }}" rel="stylesheet">
+<link href="/css/event.css?v=1" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>

@@ -149,8 +149,8 @@
                         </div>
                             <div class="input"><span class="display">อันดับมือ</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll hand">
-                                @for($i = 0; $i < 17; $i++)
-                                <div class="item-dropdown" value="{{ $race->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $list_race[$i]->race_name }}</div></div>
+                                @for($i = 0; $i < 14; $i++)
+                                <div class="item-dropdown" value="{{ $races[$i]->race_id }}" onclick="selectDropdown(this)"><div class="item">{{ $races[$i]->race_name }}</div></div>
                                 @endfor
                             </div>
                         </div>

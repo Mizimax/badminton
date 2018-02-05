@@ -70,7 +70,9 @@
                         -webkit-border-radius: 2px;
                         border-radius: 50%;"></div>
                     </div>
+                    
                     <div class="media-body team_mem">
+                    <div class="hide" race-id="{{ $race_id }}" team-id="{{ $team }}" line="{{ $line }}"></div>
                     @foreach($team_math[$line][$team] as $mem)
                         {{$mem->name}} <br>
                     @endforeach

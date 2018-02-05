@@ -168,6 +168,7 @@ class EventController extends Controller
             $prev += $number_match_knockout[$i];
             $i++;
         }
+        
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -183,6 +184,7 @@ class EventController extends Controller
             ->with('score_team',$score_team)
             ->with('color_team',$color_team)
             ->with('race_name',$race_name)
+            ->with('race_id', $race_id)
             ->with('knock_match',$knock_match)
             ->with('round_knockout',$round_knockout)
             ->with('number_match_knockout',$number_match_knockout)
@@ -272,6 +274,7 @@ class EventController extends Controller
 
     public function get_math($event_id, $race_id)
     {
+        
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
 
@@ -325,7 +328,9 @@ class EventController extends Controller
                 $i++;
             }
         }
+        
         return view('front/event/match_table')
+        ->with('race_id', $race_id)
         ->with('result_match',$result_match)
         ->with('team_math',$team_math)
         ->with('score_team',$score_team)

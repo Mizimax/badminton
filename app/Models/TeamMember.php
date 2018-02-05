@@ -14,6 +14,7 @@ class TeamMember extends Model
             ->where("team_member_team_id",'=',$team)
             ->first()->member);
         }
+        
         return $result;
     }   
 }

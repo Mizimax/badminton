@@ -36,12 +36,8 @@ class SplitLineController extends Controller
      */
     public function split($event_id)
     {
-        $event = Event::get_detail($event_id);
-        // if(Auth::guest() || $event->event_user_id != Auth::user()->id){
-        //     return redirect()->to('/');
-        // }
-       
         LineTeam::where('line_event_id', $event_id)->delete();
+        $event = Event::get_detail($event_id); 
         $raw_race = json_decode($event->event_race);
         $this->group = [];
         $this->group_id = [];
@@ -57,7 +53,9 @@ class SplitLineController extends Controller
             ;
 
             $team = $members->toArray();
+            
             shuffle($team);
+
             $max_group = $race->count/4;
             for($number_group = 1; $number_group<=$max_group;$number_group++){
                 if(!in_array($number_group,$this->group)){
@@ -65,6 +63,7 @@ class SplitLineController extends Controller
                     $this->group_id[$race_id][$number_group] = [];
                 }   
             }
+            dd($team);
             while($element = array_pop($team)){
                 $this->split_group($race_id,$element['team_name'],$element['team_id'],$max_group);
             }    
@@ -309,7 +308,28 @@ class SplitLineController extends Controller
      $this->run_set_knockout($event_id);
     }
 
-    public function verify() {
-        LineTeam::where('line_event_id', 3)->update([ 'line_type' => 0]);
+    public function verify(Request $req, $event_id) {
+        $data = $req->json()->all();
+        if($data){
+            foreach($data as $race_id => $arrData){
+                $line_team = LineTeam::where('line_event_id', $event_id)
+                                 ->where('line_race_id', $race_id);
+                $line_team->delete();
+                foreach($arrData as $line => $line_team_id){
+                    LineTeam::insert([
+                        'line_event_id' => $event_id,
+                        'line_name' => $line,
+                        'line_team_id' => json_encode($line_team_id),
+                        'line_race_id' => $race_id,
+                        'line_type' => 0
+                    ]);
+                }
+            }
+        }
+        else {
+            LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 1 ]);
+        }
+        
+        // $this->run_match($event_id);
     }
 }

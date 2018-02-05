@@ -10,6 +10,36 @@ function search_match(e){
         url: '/get_match/'+ event_id+'/'+race_id,
         success: function(data){
             $('#group').html(data);
+            var dragAndSwap = new DragAndSwap({
+                containers: ['#table-match'],
+                element: '.team_mem',
+                isEnabled: true,
+                swapBetweenContainers: true,
+                onChange: function (boxes) {
+                    var latestLine;
+                    var race_id;
+                    var team_id;
+                    var line;
+                    boxes.forEach(function(ele) {
+                        race_id = $(ele).children(':first').attr('race-id');
+                        team_id = $(ele).children(':first').attr('team-id');
+                        line = $(ele).children(':first').attr('line');
+    
+                        if(!lineChanged[race_id]){
+                            lineChanged[race_id] = {}
+                            lineChanged[race_id][line] = [];
+                        }
+                        if(!lineChanged[race_id][line]) {
+                            lineChanged[race_id][line] = [];
+                        }
+                        if(line !== latestLine){
+                            lineChanged[race_id][line] = [];
+                        }
+                        lineChanged[race_id][line].push(parseInt(team_id));
+                        latestLine = line;
+                    })
+                }
+            });
         }
     });
     $.ajax({

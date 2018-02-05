@@ -229,6 +229,9 @@
 @section('scripts')
 <script src="/js/drag.js"></script>
 <script type="text/javascript">
+
+    var lineChanged = {};
+
     jQuery.browser = {};
     (function () {
         jQuery.browser.msie = false;
@@ -243,7 +246,28 @@
             isEnabled: true,
             swapBetweenContainers: true,
             onChange: function (boxes) {
-                console.log(boxes);
+                var latestLine;
+                var race_id;
+                var team_id;
+                var line;
+                boxes.forEach(function(ele) {
+                    race_id = $(ele).children(':first').attr('race-id');
+                    team_id = $(ele).children(':first').attr('team-id');
+                    line = $(ele).children(':first').attr('line');
+
+                    if(!lineChanged[race_id]){
+                        lineChanged[race_id] = {}
+                        lineChanged[race_id][line] = [];
+                    }
+                    if(!lineChanged[race_id][line]) {
+                        lineChanged[race_id][line] = [];
+                    }
+                    if(line !== latestLine){
+                        lineChanged[race_id][line] = [];
+                    }
+                    lineChanged[race_id][line].push(parseInt(team_id));
+                    latestLine = line;
+                })
             }
         });
     })();
@@ -570,7 +594,8 @@
         });
         $.ajax({
             url: '/confirm/{{ $event->event_id }}',
-            method: 'patch',
+            method: 'post',
+            data: JSON.stringify(lineChanged),
             success: function(data){
                 swal({
                     title: "สำเร็จ !",

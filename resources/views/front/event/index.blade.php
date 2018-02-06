@@ -575,6 +575,7 @@
                     url: '/split_line/{{ $event->event_id }}',
                     method: 'get',
                     success: function(data){
+                        lineChanged = {};
                         swal({
                             title: "สำเร็จ !",
                             text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"

@@ -104,12 +104,18 @@ class EventController extends Controller
                 $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
             }
+
+            
+            $i = 0;
             foreach($result_match[$line] as $team_1 =>$a){
-                ksort($result_match[$line][$team_1]);
+                $keys = array_keys($result_match[$line][$team_1]);
+                $newArray = array_swap_assoc($team_1, $keys[$i], $result_match[$line][$team_1]);
+                $result_match[$line][$team_1] = $newArray;
+                $i++;
             }
-            ksort($result_match[$line]);
-            ksort($team_math[$line]);
+
         }
+        
         $color_team = [];
         $all_team = [];
         foreach($team_math as $line_name => $line){
@@ -313,11 +319,13 @@ class EventController extends Controller
                 $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
             }
+            $i = 0;
             foreach($result_match[$line] as $team_1 =>$a){
-                ksort($result_match[$line][$team_1]);
+                $keys = array_keys($result_match[$line][$team_1]);
+                $newArray = array_swap_assoc($team_1, $keys[$i], $result_match[$line][$team_1]);
+                $result_match[$line][$team_1] = $newArray;
+                $i++;
             }
-            ksort($result_match[$line]);
-            ksort($team_math[$line]);
         }
         $color_team = [];
         foreach($team_math as $line_name => $line){

@@ -63,10 +63,11 @@ class SplitLineController extends Controller
                     $this->group_id[$race_id][$number_group] = [];
                 }   
             }
-            dd($team);
+            
             while($element = array_pop($team)){
                 $this->split_group($race_id,$element['team_name'],$element['team_id'],$max_group);
-            }    
+            }
+            
         }
         foreach($this->group_id as $race_id => $race){
             // if($race_id == 30 ){
@@ -325,11 +326,10 @@ class SplitLineController extends Controller
                     ]);
                 }
             }
+            $this->run_match($event_id);
         }
         else {
             LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 1 ]);
         }
-        
-        // $this->run_match($event_id);
     }
 }

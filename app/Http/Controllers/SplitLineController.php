@@ -156,7 +156,7 @@ class SplitLineController extends Controller
                     'match_event_id' => $event_id,
                     'match_race_id' => $val['race'],
                     'match_status' => 'NOT START',
-                    'match_number' => $val['race'].$k.sprintf("%03s", $num),
+                    'match_number' => $num,
                     'match_type' => 'MATcH'
                 ];
                 Match::insert($data);

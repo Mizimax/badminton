@@ -219,8 +219,13 @@
                 <button type="button" class="btn btn-success btn-sm" onclick="addHand()">เพิ่มประเภท +</button>
                 <h3 class="font-bold grey-med">การโอนเงิน</h3>
                 <div id="account">
-                    @foreach($event_description->bookbank_organizers as $bookbank)
-                    <div class="account">
+                    @foreach($event_description->bookbank_organizers as $key => $bookbank)
+                    <div class="account" style="position:relative; margin-top:15px">
+                        @if($key !== 0)
+                        <div class="absolute" style="right:-40px;top:50%; transform:translateY(-50%)">
+                        <span class="glyphicon glyphicon-remove font-big" onclick="removeAccount(this)" style="margin:9px; color:red; cursor:pointer"></span>
+                        </div>
+                        @endif
                         <div class="form-group eiei">
                             
                             <input required type="text" value="{{ $bookbank->name }}" class="form-control" name="name[]">

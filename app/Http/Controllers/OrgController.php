@@ -50,7 +50,9 @@ class OrgController extends Controller
              ->with('list_race', $list_races);
     }
 
-    public function save(Request $req, $event_id) {
+    public function save(Request $req) {
+
+      $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
 
       $rules = [
           'poster' => 'required',
@@ -166,7 +168,7 @@ class OrgController extends Controller
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
 
-      if(isset($event_id)){
+      if($event_id){
         $event = Event::where('event_id', $event_id)->update($data);
         $eventId = $event_id;
       }

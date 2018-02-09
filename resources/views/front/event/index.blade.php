@@ -497,14 +497,21 @@
         }
     });
 
+    var raceTemp = {};
+
     var closeHand = (function (ele, member_id, race_id, race_name) {
         var hasDropdown = $(ele).next().length == 0;
         $('.input-dropdown.show').remove();
         if(hasDropdown) {
+            var textReg = 'ปิดรับสมัคร';
+            if($(ele).children().eq(1).html().trim() == '<b>ปิดรับสมัครแล้ว</b>'){
+                $('.alert-close .font-bigger').html('หากท่านเปิดรับสมัคร<br>ผู้เข้าแข่งขันจะสามารถสมัครแข่งขันได้');
+                textReg = 'เปิดรับสมัคร';
+            }
             $(ele).parent().append(
                 `
                 <div class="input-dropdown home shadow-black show" style="width: 120px; top:30px">
-                        <div class="item-dropdown item-close" value="0"><div class="item">ปิดรับสมัคร</div></div>
+                        <div class="item-dropdown item-close" value="0"><div class="item">${textReg}</div></div>
                         <div class="item-dropdown" value="1"><div class="item">แก้ไขจำนวนคู่</div></div>
                         <div class="item-dropdown item-cancel" value="2"><div class="item" style="color:#F15A24">ยกเลิกมือ</div></div>
                 </div>
@@ -530,7 +537,15 @@
                     dataType: 'json',
                     contentType:"application/json; charset=utf-8",
                     success: function(data){
-                        $(ele).children().eq(1).html('<b>ปิดรับสมัครแล้ว</b>')
+                        var dataEiei = $(ele).children().eq(1).html().trim();
+                        if(dataEiei == '<b>ปิดรับสมัครแล้ว</b>'){
+                            $(ele).children().eq(1).html(raceTemp[race_id]);
+                        }
+                        else{
+                            raceTemp[race_id] = dataEiei;
+                            $(ele).children().eq(1).html('<b>ปิดรับสมัครแล้ว</b>');
+                        }
+                            
                     }
                 });
                 $('.alert-close').fadeOut();

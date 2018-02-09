@@ -469,7 +469,13 @@ class OrgController extends Controller
         return $var['race_id'] === $race_id;
       });
 
-      $event_race[current(array_keys($find))]['status'] = 1;
+      if(isset($event_race[current(array_keys($find))]['status']) && $event_race[current(array_keys($find))]['status'] == 1) {
+        $toggleStatus = 0;
+      }
+      else {
+        $toggleStatus = 1;
+      }
+      $event_race[current(array_keys($find))]['status'] = $toggleStatus;
       $event_race = json_encode($event_race);
       $event->update(['event_race' => $event_race]);
       
@@ -509,7 +515,7 @@ class OrgController extends Controller
 
       return response()->json([
         'status' => 'ok',
-        'message' => 'Member payment updated.'
+        'message' => 'Race Removed'
       ], 200);
     }
 }

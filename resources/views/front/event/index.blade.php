@@ -291,8 +291,8 @@
         } else {
             $('.nav-manage .manager').css('position', 'absolute');
             $('.nav-manage .manager-right').css('position', 'absolute');
-            $('.nav-manage .manager').css('top', '1100px');
-            $('.nav-manage .manager-right').css('top', '1100px');
+            $('.nav-manage .manager').css('top', '1000px');
+            $('.nav-manage .manager-right').css('top', '1000px');
             $('.nav-bottom').css('position', 'absolute');
             $('.nav-bottom').css('bottom', '-200px');
         }
@@ -617,6 +617,41 @@
                     title: "สำเร็จ !",
                     text: "ยืนยันการจัดสายเรียบร้อยแล้ว"
                 });
+            }
+        });
+    });
+
+    var editScore = (function(match_no) {
+        // swal({
+        //     title: "โปรดรอสักครู่...",
+        //     html: "<br><div class='lds-dual-ring'></div><br>ค้นหา Match",
+        //     showConfirmButton: false
+        // });
+        $.ajax({
+            url: '/search_match/{{ $event->event_id }}/'+match_no,
+            method: 'get',
+            success: function(data){
+                swal({
+                    title: "แก้ไขคะแนนแมทซ์ที่ "+ match_no,
+                    html: '<form id="editForm" onsubmit="editScoreSubmit('+match_no+', this);return false;"><input type="hidden" name="match" value="'+match_no+'">'+data+'</form>',
+                    showConfirmButton: false
+                });
+            }
+        });
+    });
+
+    var editScoreSubmit = (function(match_no, ele) {
+        $.ajax({
+            url: '/edit_score/{{ $event->event_id }}',
+            method: 'post',
+            data: $('#editForm').serialize(),
+            success: function(data){
+                swal({
+                    title: "แก้ไขคะแนนแมทซ์ที่ "+ match_no,
+                    text: 'แก้ไขเรียบร้อยแล้ว',
+                    showConfirmButton: false
+                });
+                search_match($('#match .input-dropdown.event .item-dropdown')[0]);
             }
         });
     });

@@ -116,9 +116,7 @@ class MatchController extends Controller
           }
           $match->match_status = "END";
           $match->save();
-          return back()->with('message', 'update score Match: ' . $input['match']);
       }
-      return back()->with('error', 'Error some thing');
       
   }
 

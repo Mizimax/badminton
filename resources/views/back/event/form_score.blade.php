@@ -1,16 +1,20 @@
 <div class="row">
     <div class="col-xs-4" align="center">
-        <h4>{{$teams[0]->team_name}}</h4><br>
+        <h4 class="font-bold">{{$teams[0]->team_name}}</h4>
         @foreach($teams[0]->member as $m)
-            {{$m->name}}<br>
+        <span class="font-med">{{$m->name}}</span><br>
         @endforeach
     </div>
     <div class="col-xs-1" align="center"><h2>VS</h2></div>
     <div class="col-xs-4" align="center">
-        <h4>{{$teams[1]->team_name}}</h4><br>
+        <h4 class="font-bold">{{$teams[1]->team_name}}</h4>
         @foreach($teams[1]->member as $m)
-            {{$m->name}}<br>
+            <span class="font-med">{{$m->name}}</span><br>
         @endforeach
+    </div>
+    <div class="col-xs-3">
+    <br><br>
+    <span class="font-med font-bold">เลือกทีมที่ชนะ</span>
     </div>
 </div>
 
@@ -43,11 +47,11 @@
     <div class="col-xs-3"></div>
 </div>
 @endforeach
-
+<br>
 <div class="row">
     <div class="col-xs-3"></div>
     <div class="col-xs-6" align="center">
-        <button class="btn btn-primary">ok</button>
+        <button class="btn btn-primary">แก้ไขคะแนน</button>
     </div>
     <div class="col-xs-3"></div>
 </div>

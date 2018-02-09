@@ -125,7 +125,7 @@
                                         </div>
                                     @else
                                         <div class="media-body">
-                                            <span href="#" class="button is-red font-meder is-outlined is-active match_time" >
+                                            <span href="#" class="button is-red font-meder is-outlined is-active match_time pointer" onclick="editScore({{$m['match_number']}})">
                                                 <span class="font-small team_status" style="color: #eee">M{{$m['match_number']}}</span>
                                                 <span class="font-big">{{$m['time_stamp']}}</span>
                                             </span>

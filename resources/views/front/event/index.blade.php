@@ -108,8 +108,9 @@
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
-                    <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" style="text-align: center">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
-                    
+        
+                    <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px">
+                        <span class="display" style="text-align: center">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
                     </div>
                     <div class="input-dropdown event shadow-black">
                         <div class="item-dropdown" onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
@@ -596,7 +597,7 @@
                             text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
                         }).then(function(){
                             window.location = '/event/{{ $event->event_id }}#/match';
-                            search_match($('#match .input-dropdown.event .item-dropdown')[0]);
+                            search_match({{ $list_race[0]->race_id }});
                         })
                     }
         });
@@ -617,6 +618,7 @@
                     title: "สำเร็จ !",
                     text: "ยืนยันการจัดสายเรียบร้อยแล้ว"
                 });
+                search_match($('#hand_dropdown').val());    
             }
         });
     });
@@ -648,10 +650,10 @@
             success: function(data){
                 swal({
                     title: "แก้ไขคะแนนแมทซ์ที่ "+ match_no,
-                    text: 'แก้ไขเรียบร้อยแล้ว',
-                    showConfirmButton: false
+                    text: 'แก้ไขเรียบร้อยแล้ว'
                 });
-                search_match($('#match .input-dropdown.event .item-dropdown')[0]);
+                
+                search_match($('#hand_dropdown').val());
             }
         });
     });

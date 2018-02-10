@@ -52,8 +52,6 @@ class OrgController extends Controller
 
     public function save(Request $req) {
 
-      $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
-
       $rules = [
           'poster' => 'required',
           'cover' => 'required|array',
@@ -94,6 +92,7 @@ class OrgController extends Controller
       $this->validate($req, $rules, $customMessages);
 
       $input = $req->input();
+      $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
       $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
       $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
@@ -177,7 +176,7 @@ class OrgController extends Controller
         $eventId = $event->id;
       }
 
-      return response()->json(['status' => 'ok', 'message' => 'Event Created.', 'redirect' => $eventId], 200);
+      return response()->json(['status' => 'ok', 'message' => 'Event saved.', 'redirect' => $eventId], 200);
     }
 
     public function uploadSlide(Request $request) {

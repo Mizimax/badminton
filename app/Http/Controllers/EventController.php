@@ -286,6 +286,7 @@ class EventController extends Controller
 
         $race_name = Race::where('race_id',$race_id)->first()->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
+        $line_type = LineTeam::select('line_type')->where('line_event_id', $event_id)->first()['line_type'];
 
         $result_match = [];
         $team_math = [];
@@ -340,6 +341,7 @@ class EventController extends Controller
         return view('front/event/match_table')
         ->with('race_id', $race_id)
         ->with('result_match',$result_match)
+        ->with('line_type', $line_type)
         ->with('team_math',$team_math)
         ->with('score_team',$score_team)
         ->with('color_team',$color_team)

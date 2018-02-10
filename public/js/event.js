@@ -3,8 +3,7 @@ var url = bg.attr('image-bg');
 
 $('head').append('<style>.cover2:before{background-image: url("'+url+'")');
 
-function search_match(e){
-    race_id = $(e).attr('value');
+function search_match(race_id){
     event_id = $('#event_id').val();
     $.ajax({
         url: '/get_match/'+ event_id+'/'+race_id,
@@ -193,7 +192,6 @@ $(document).ready(function(){
          if(tab.length != 0){
             var tabId = tab.attr('id');
             var tabEle = tabId.slice(0,tabId.length-4);
-            console.log(tabEle)
             $('#'+tabEle).css('display', 'block');
             setTimeout(function(){
                 $('#'+tabEle).addClass('active');
@@ -258,7 +256,7 @@ $(document).ready(function(){
           bLengthChange: false,
           order: [[ 5, "desc" ]],
         //   searching: false,
-          bSort:true,
+          bSort:false,
           sDom: 't' 
     });
         

@@ -109,8 +109,8 @@ class SplitLineController extends Controller
 
     public function run_match($event_id)
     {    
-        $court = 11;
         $event = Event::get_detail($event_id);
+        $court = $event->event_court_no;
         $raw_race = json_decode($event->event_race);
         $array = [];
         Match::where('match_event_id', $event_id)->delete();

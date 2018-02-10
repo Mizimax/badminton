@@ -146,8 +146,8 @@ a:hover, a:focus {
     font-size: xx-large;
 }
 h1{
-    font-weight: bold;
-    text-shadow: 3px 0 #000;
+    font-weight: 400;
+    /* text-shadow: 3px 0 #000; */
     color: #000;
 }
 .cover2[image-bg]::before {
@@ -780,6 +780,11 @@ td .input-dropdown {
     cursor: pointer;
     font-size: 10px;
     background-color: orange;
+}
+
+.toTop {
+    bottom: auto;
+    top: 100px;
 }
 
 .manager {

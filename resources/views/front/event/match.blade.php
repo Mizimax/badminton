@@ -24,11 +24,13 @@
         </div>
         <div class="manager-right fixed" align="center">
             <span class="normal">Normal</span>
+            @if($line_type === 0)
             <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
             <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
             <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;" onclick="judsaiConfirm()">
             <div class="confirm-txt">ยืนยันและประกาศ<br>การจัดสาย</div>
-            <div class="nav-bottom">
+            @endif
+            <div class="nav-bottom {{ $line_type === 1 ? 'toTop': '' }}">
                 <div class="print"><img src="/images/events/print.svg"></div>
                 <div class="excel"><img src="/images/events/excel.svg"></div>
             </div>
@@ -47,8 +49,10 @@
     </div>
     <div class="right">
         <div class="hide">
+            @if($line_type === 0)
             <img class="menu-mobile" src="/images/events/confirm.svg" onclick="judsaiConfirm()">
             <img class="menu-mobile" src="/images/events/dice.svg" onclick="judsai()">>
+            @endif
             <img class="menu-mobile" src="/images/events/print.svg">
             <img class="menu-mobile" src="/images/events/excel.svg">
         </div>
@@ -65,12 +69,15 @@
             <div class="col-xs-12" align="center" style="display: flex; flex-wrap: wrap;justify-content: flex-start;">
                 <div class="center dropdown-match" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
+                    <div class="hide">
+                        <input type="text" name="hand_dropdown" id="hand_dropdown" value="{{ $list_race[0]->race_id }}">
+                    </div>
                     <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" id="match" style="text-align: center">{{ $list_race[0]->race_name }}</span> <span class="icon dropdown">▼</span>
                     
                     </div>
                     <div class="input-dropdown event shadow-black">
                         @foreach ($list_race as $race)
-                        <div class="item-dropdown" value="{{$race->race_id}}" onclick="selectDropdown(this);search_match(this)"><div class="item">{{$race->race_name}}</div></div>
+                        <div class="item-dropdown" value="{{$race->race_id}}" onclick="selectDropdown(this);search_match({{$race->race_id}})"><div class="item">{{$race->race_name}}</div></div>
                         @endforeach
                     </div>
                 

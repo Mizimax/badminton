@@ -56,35 +56,60 @@
     <tbody>
         @foreach($my_team as $team)
         <tr style="background: #8ED5ED; color: white">
-            <td style="text-align:center; font-weight: bold">
-                {{$team['team_name']}}
+        <td style="text-align:center; font-weight: bold">
+                @if($event->event_user_id === Auth::id() || isAdmin())
+                <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>
+                @endif
+                {{$data['team_name']}}
             </td>
             @for( $order = 0; $order < $number_of_team; $order++)
-            <td style="text-align:center">{{$team['member'][$order]->name}}</td>
+            <td style="text-align:center">{{$data['member'][$order]->name}}</td>
             @endfor
             <td style="text-align:center">
-                <span class="label" style="background-color:{{$team['race_color']}}">
-                    {{$team['race_name']}}
+                <span class="label {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
+                @if($event->event_user_id === Auth::id() || isAdmin())
+                onclick="race(this, {{ $data['team_id'] }})"
+                @endif
+                style="background-color:{{$data['race_color']}}">
+                    {{$data['race_name']}}
                 </span>
             </td>
-             <td style="text-align:center">
-            @if ($team['team_status'] == 2)
-            <span class="label label-success"><span class="team_status">{{$team['team_status_name']}}</span></span>
-            @elseif ($team['team_status'] == 3)
-            <span class="label label-danger"><span class="team_status">{{$team['team_status_name']}}</span></span>
-            @elseif ($team['team_status'] == 1)
-            <span class="label label-info"><span class="team_status">{{$team['team_status_name']}}</span></span>
+            <td style="text-align:center">
+            @if ($data['team_status'] == 2)
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-success {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"><span class="team_status">{{$data['team_status_name']}}</span></span>
+            @elseif ($data['team_status'] == 3)
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-danger {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"><span class="team_status">{{$data['team_status_name']}}</span></span>
+            @elseif ($data['team_status'] == 1)
+            <span
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="hand(this, {{ $data['team_id'] }})"
+            @endif
+            class="label label-info pointer"><span class="team_status">{{$data['team_status_name']}}</span></span>
             @endif
             
             </td>
-            <td style="text-align:center">
-            @if($team['team_payment'] == 1)
+            <td class="pay {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}" style="text-align:center">
+            <div class="payment"
+            @if($event->event_user_id === Auth::id() || isAdmin())
+            onclick="payment(this, {{ $data['team_id'] }})"
+            @endif
+            >
+            @if($data['team_payment'] == 1)
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
-            @elseif($team['team_status'] == 3)
-                @if($team['team_comment'])
-                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$team['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+            @elseif($data['team_status'] == 3)
+                @if($data['team_comment'])
+                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
                 @endif
             @endif
+            </div>
             </td>
         </tr>
         @endforeach

@@ -429,6 +429,7 @@
                 <div class="input-dropdown home shadow-black show">
                         <div class="item-dropdown" value="2"><div class="item">ผ่านการประเมิน</div></div>
                         <div class="item-dropdown" value="3"><div class="item">ไม่ผ่านการประเมิน</div></div>
+                        <div class="item-dropdown" value="1"><div class="item">รอการประเมิน</div></div>
                 </div>
             `);
             $('td .item-dropdown').click(function() {

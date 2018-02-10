@@ -205,7 +205,7 @@
     WebFont.load({
         google: {
             
-            families: ['Kanit:200,400,600:thai']
+            families: ['Prompt:200,400,600:thai']
         }
     });
     </script>

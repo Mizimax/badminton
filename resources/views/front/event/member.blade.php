@@ -54,7 +54,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($my_team as $team)
+        @foreach($my_team as $key=>$data)
         <tr style="background: #8ED5ED; color: white">
         <td style="text-align:center; font-weight: bold">
                 @if($event->event_user_id === Auth::id() || isAdmin())

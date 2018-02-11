@@ -247,7 +247,7 @@
         if (location.hash === '#register') {
             $('#register_event_modal').modal();
         }
-        
+
         @if($line_type === 1)
         var dragAndSwap = new DragAndSwap({
             containers: ['#table-match'],
@@ -532,7 +532,7 @@
                 `
                 <div class="input-dropdown home shadow-black show" style="width: 120px; top:30px">
                         <div class="item-dropdown item-close" value="0"><div class="item">${textReg}</div></div>
-                        <div class="item-dropdown" value="1"><div class="item">แก้ไขจำนวนคู่</div></div>
+                        <div class="item-dropdown" onclick="editHandCap(${race_id}, this)" value="1"><div class="item">แก้ไขจำนวนคู่</div></div>
                         <div class="item-dropdown item-cancel" value="2"><div class="item" style="color:#F15A24">ยกเลิกมือ</div></div>
                 </div>
             `);
@@ -642,11 +642,14 @@
         });
     });
 
-    var editTime = (function(match_no, ele) {
+    var editHandCap = (function(race_id, ele) {
+        var element = $(ele).parent().prev().find('.hand-status b');
+        var capacity = element.text();
+        var cap = capacity.slice(2,capacity.length);
         swal({
-            title: 'แก้ไขเวลา',
+            title: 'แก้ไขจำนวนผู้สมัคร',
             html:
-                '<input id="swal-input1" class="swal2-input" value="" placeholder="09:00">',
+                '<input id="swal-input1" class="swal2-input" placeholder="'+cap+'">',
             preConfirm: function () {
                 return new Promise(function (resolve) {
                 resolve(
@@ -661,13 +664,51 @@
             var data = (result.value === true) ? '': result.value;
             if(data){
                 $.ajax({
+                    url: '/event/{{ $event->event_id }}/race/'+race_id+'/count',
+                    method: 'patch',
+                    data: JSON.stringify({
+                        handCount: data
+                    }),
+                    success: function(data){
+                        element.text('/ ' + data.count);
+                    }
+                });
+            }
+        }).catch(swal.noop)
+        
+    });
+
+    var editTime = (function(match_no, ele) {
+        var time = $(ele).find('.font-big').text();
+        swal({
+            title: 'แก้ไขเวลา',
+            html:
+                '<input id="swal-input2" class="swal2-input" value="" placeholder="'+time+'">',
+            preConfirm: function () {
+                return new Promise(function (resolve) {
+                resolve(
+                    $('#swal-input2').val()
+                )
+                })
+            },
+            onOpen: function () {
+                $('#swal-input2').focus()
+            }
+        }).then(function (result) {
+            var data = (result.value === true) ? '': result.value;
+            if(data){
+                $.ajax({
                     url: '/event/{{ $event->event_id }}/match/'+match_no+'/time',
                     method: 'patch',
                     data: JSON.stringify({
                         time: data
                     }),
-                    success: function(data){
-                        console.dir($(ele).find('.font-big'));
+                    success: function(result_data){
+                        search_match($('#hand_dropdown').val());
+                    },
+                    error: function(result) {
+                        var error = result.responseJSON;
+                        swal(error['message']);
                     }
                 });
             }

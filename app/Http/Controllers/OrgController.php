@@ -517,4 +517,22 @@ class OrgController extends Controller
         'message' => 'Race Removed'
       ], 200);
     }
+
+    public function updateHandCount(Request $req, $event_id, $race_id) {
+      $handCount = (int)$req->json()->all()['handCount'];
+      $event = Event::select('event_race')->where('event_id', $event_id);
+      $event_race = json_decode($event->first()->event_race, true);
+      $find = array_filter($event_race, function($var) use ($race_id) {
+        return $var['race_id'] === (int)$race_id;
+      });
+      $event_race[current(array_keys($find))]['count'] = $handCount;
+      $event_race = json_encode($event_race);
+      $event->update(['event_race' => $event_race]);
+
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Count updated',
+        'count' => $handCount
+      ], 200);
+    }
 }

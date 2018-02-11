@@ -483,7 +483,6 @@ a {
     width: 80px;
     height: 80px;
     position: relative;
-    border-right: 1px solid #ccc;
     float: left;
 }
 

@@ -30,7 +30,7 @@
             <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;" onclick="judsaiConfirm()">
             <div class="confirm-txt">ยืนยันและประกาศ<br>การจัดสาย</div>
             @endif
-            <div class="nav-bottom {{ $line_type === 1 ? 'toTop': '' }}">
+            <div class="nav-bottom {{ $line_type === 0 ? 'toTop': '' }}">
                 <div class="print"><img src="/images/events/print.svg"></div>
                 <div class="excel"><img src="/images/events/excel.svg"></div>
             </div>

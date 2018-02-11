@@ -14,6 +14,7 @@ use App\Models\Match;
 use App\Models\SetMatch;
 use App\Models\SpecialEventMember;
 use App\Models\SpecialRewards;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -137,6 +138,22 @@ class MatchController extends Controller
         }
         return back()->with('error', 'Error some thing');
         
+    }
+
+    function changeTime(Request $req, $event_id, $match_id) {
+        $time = $req->json()->all()['time'];
+        $timeID = \DB::table('time')->select('time_id')->where('time_stamp', $time)->first();
+        if(!isset($timeID->time_id) || !$timeID->time_id)
+            return response()->json([
+                'status' => 'error',
+                'message' => $time . ' not found'
+            ], 404);
+
+        Match::where('match_event_id', $event_id)->where('match_number', $match_id)->update(['match_time_id' => $timeID->time_id]);
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Time changed to ' . $time
+          ], 200);
     }
 
     function show_table_match($event_id){

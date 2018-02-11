@@ -624,11 +624,11 @@
         });
     });
 
-    var editTime = (function(match_no) {
+    var editTime = (function(match_no, ele) {
         swal({
             title: 'แก้ไขเวลา',
             html:
-                '<input id="swal-input1" class="swal2-input" placeholder="09:00">',
+                '<input id="swal-input1" class="swal2-input" value="" placeholder="09:00">',
             preConfirm: function () {
                 return new Promise(function (resolve) {
                 resolve(
@@ -640,8 +640,19 @@
                 $('#swal-input1').focus()
             }
         }).then(function (result) {
-            var data = result.value;
-            swal(data)
+            var data = (result.value === true) ? '': result.value;
+            if(data){
+                $.ajax({
+                    url: '/event/{{ $event->event_id }}/match/'+match_no+'/time',
+                    method: 'patch',
+                    data: JSON.stringify({
+                        time: data
+                    }),
+                    success: function(data){
+                        console.dir($(ele));
+                    }
+                });
+            }
         }).catch(swal.noop)
         
     });

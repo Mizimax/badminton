@@ -88,7 +88,7 @@
                          <td align="center" style="display: table-cell; vertical-align: middle;">
                             <div class="media {{($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer':''}}"
                             @if($event->event_user_id === Auth::id() || isAdmin())
-                            onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].')' }}"
+                            onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].', this)' }}"
                             @endif        
                             >
                                     @if($m['match_status'] == "END")

@@ -624,6 +624,28 @@
         });
     });
 
+    var editTime = (function(match_no) {
+        swal({
+            title: 'แก้ไขเวลา',
+            html:
+                '<input id="swal-input1" class="swal2-input" placeholder="09:00">',
+            preConfirm: function () {
+                return new Promise(function (resolve) {
+                resolve(
+                    $('#swal-input1').val()
+                )
+                })
+            },
+            onOpen: function () {
+                $('#swal-input1').focus()
+            }
+        }).then(function (result) {
+            var data = result.value;
+            swal(data)
+        }).catch(swal.noop)
+        
+    });
+
     var editScore = (function(match_no) {
         // swal({
         //     title: "โปรดรอสักครู่...",

@@ -71,7 +71,7 @@
                         border-radius: 50%;"></div>
                     </div>
                     
-                    <div class="media-body {{ $line_type === 0 ? 'team_mem' : '' }}">
+                    <div class="media-body {{ $line_type === 1 ? 'team_mem' : '' }}">
                     <div class="hide" race-id="{{ $race_id }}" team-id="{{ $team }}" line="{{ $line }}"></div>
                     @foreach($team_math[$line][$team] as $mem)
                         {{$mem->name}} <br>
@@ -86,7 +86,11 @@
                 
                     @if($team != $team_2)
                          <td align="center" style="display: table-cell; vertical-align: middle;">
-                            <div class="media">
+                            <div class="media {{($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer':''}}"
+                            @if($event->event_user_id === Auth::id() || isAdmin())
+                            onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].')' }}"
+                            @endif        
+                            >
                                     @if($m['match_status'] == "END")
                                         <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
                                         @foreach($m['score'] as $score)
@@ -133,7 +137,7 @@
                                         </div>
                                     @else
                                         <div class="media-body">
-                                            <span href="#" class="button is-red font-meder is-outlined is-active match_time pointer" onclick="{{$line_type === 1 ? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].')' }}">
+                                            <span href="#" class="button is-red font-meder is-outlined is-active match_time">
                                                 <span class="font-small team_status" style="color: #eee">M{{$m['match_number']}}</span>
                                                 <span class="font-big">{{$m['time_stamp']}}</span>
                                             </span>

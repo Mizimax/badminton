@@ -24,7 +24,7 @@
         </div>
         <div class="manager-right fixed" align="center">
             <span class="normal">Normal</span>
-            @if($line_type === 0)
+            @if($line_type === 1)
             <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
             <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
             <img class="confirm" src="/images/events/confirm.svg" style="margin-top:10px;" onclick="judsaiConfirm()">
@@ -49,7 +49,7 @@
     </div>
     <div class="right">
         <div class="hide">
-            @if($line_type === 0)
+            @if($line_type === 1)
             <img class="menu-mobile" src="/images/events/confirm.svg" onclick="judsaiConfirm()">
             <img class="menu-mobile" src="/images/events/dice.svg" onclick="judsai()">>
             @endif

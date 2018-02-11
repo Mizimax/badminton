@@ -11,8 +11,8 @@
     <title>{{ config('app.name', 'Wezync') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css?v=1" rel="stylesheet">
-    <link href="/css/wezync.css?v=2" rel="stylesheet">
+    <link href="/css/app.css?v=2.1" rel="stylesheet">
+    <link href="/css/wezync.css?v=2.1" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -44,7 +44,7 @@
             @if (Auth::guest())
                 <div class="logout font-big">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="menu-link" href="/login">
+                        <a class="menu-link" href="/login?redirect={{ Request::path() }}">
                            <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
                         </a>
                 </div>
@@ -129,7 +129,7 @@
                                 </div>
                             </li>
                             <li class="menu-item" style="margin-left: 10px;">
-                                <a href="{{ route('login') }}">
+                                <a href="/login?redirect={{ Request::path() }}">
                                     <div class="input login absolute middle">
                                         <span style="margin: 0 auto">Login</span>
                                     </div>

@@ -110,7 +110,7 @@ class SplitLineController extends Controller
     public function run_match($event_id)
     {    
         $event = Event::get_detail($event_id);
-        $court = $event->event_court_no;
+        $court = $event->event_court_no | 11;
         $raw_race = json_decode($event->event_race);
         $array = [];
         Match::where('match_event_id', $event_id)->delete();
@@ -329,7 +329,7 @@ class SplitLineController extends Controller
             $this->run_match($event_id);
         }
         else {
-            LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 1 ]);
+            LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 0 ]);
         }
     }
 }

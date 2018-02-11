@@ -275,7 +275,7 @@ class EventController extends Controller
             $data['team_member_team_id'] = $team_id;
             TeamMember::insert($data);
         }
-        return redirect('event/'.$input['event_id'])->with('message','ลงทะเบียนเรียบร้อย');
+        return redirect('event/'.$input['event_id'].'#/member')->with('message','ลงทะเบียนเรียบร้อย');
     }
 
     public function get_math($event_id, $race_id)

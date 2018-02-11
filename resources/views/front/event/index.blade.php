@@ -228,7 +228,9 @@
 
 @endsection
 @section('scripts')
+@if($line_type === 1)
 <script src="/js/drag.js"></script>
+@endif
 <script type="text/javascript">
 
     var lineChanged = {};
@@ -241,6 +243,12 @@
             jQuery.browser.msie = true;
             jQuery.browser.version = RegExp.$1;
         }
+
+        if (location.hash === '#register') {
+            $('#register_event_modal').modal();
+        }
+        
+        @if($line_type === 1)
         var dragAndSwap = new DragAndSwap({
             containers: ['#table-match'],
             element: '.team_mem',
@@ -271,6 +279,7 @@
                 })
             }
         });
+        @endif
     })();
     /*
     * Replace all SVG images with inline SVG
@@ -289,13 +298,22 @@
             $('.nav-manage .manager-right').css('top', '50px');
             $('.nav-bottom').css('position', 'fixed');
             $('.nav-bottom').css('bottom', '50px');
+            @if($line_type === 0)
+            $('.nav-bottom').css('top', '100px');
+            @else
+            $('.nav-bottom').css('bottom', '50px');
+            @endif
         } else {
             $('.nav-manage .manager').css('position', 'absolute');
             $('.nav-manage .manager-right').css('position', 'absolute');
             $('.nav-manage .manager').css('top', '1000px');
             $('.nav-manage .manager-right').css('top', '1000px');
             $('.nav-bottom').css('position', 'absolute');
+            @if($line_type === 0)
+            $('.nav-bottom').css('top', '50px');
+            @else
             $('.nav-bottom').css('bottom', '-200px');
+            @endif
         }
     });
 	
@@ -619,7 +637,7 @@
                     title: "สำเร็จ !",
                     text: "ยืนยันการจัดสายเรียบร้อยแล้ว"
                 });
-                search_match($('#hand_dropdown').val());    
+                location.reload();
             }
         });
     });
@@ -649,7 +667,7 @@
                         time: data
                     }),
                     success: function(data){
-                        console.dir($(ele));
+                        console.dir($(ele).find('.font-big'));
                     }
                 });
             }

@@ -11,14 +11,17 @@
         </div>
     </div>
     
+    @if($line_type === 1)
     <div class="manager-right fixed" align="center">
         <span class="normal">Normal</span>
         <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
         <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
         <br>
     </div>
+    @endif
     
 </div>
+@if($line_type === 1)
 <div class="nav-manage-mobile">
     <div class="left">
         <div class="hide">
@@ -39,6 +42,7 @@
         </span>
     </div>
 </div>
+@endif
 @endif
 <div class="table-responsive">
 <table id="table-member" class="table table-hover">

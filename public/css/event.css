@@ -385,6 +385,9 @@ td .input-dropdown {
         text-align: center;
         margin-bottom: 30px;
     }
+    .remove {
+        margin-left: 0;
+    }
     .button.is-red {
         padding: 1px 6px;
     }

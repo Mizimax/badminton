@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=2.1" rel="stylesheet">
-    <link href="/css/wezync.css?v=2.1" rel="stylesheet">
+    <link href="/css/wezync.css?v=2.2" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -20,7 +20,14 @@
     <div id="app">
         <div class="menu-background"></div>
         <div class="menu-content">
-            <div class="menu-white coin" onclick="window.location='/coin_shop'">
+            <div class="menu-white org" style="position: relative;">
+                <div class="org-icon img-circle">
+                    <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="font-bold font-big">หน้าแรก</span>
+            </div>
+            <div class="menu-white coin" style="position: relative;" onclick="window.location='/coin_shop'">
                 <div class="org-icon coin-icon img-circle">
                     <img src="/images/cart.png" class="absolute middle" width="30">
                 </div>

@@ -122,7 +122,7 @@
                                             <div class="media-left media-middle">
                                                 <div style="width: 15px;
                                                 height: 15px;
-                                                background: linear-gradient(90deg, #{{$color_team[$line][$m['match_team_1']]}} 50%, {{$color_team[$line][$m['match_team_2']]}} 50%);
+                                                background: linear-gradient(90deg, #{{$color_team[$line][$m['match_team_1']]}} 50%, #{{$color_team[$line][$m['match_team_2']]}} 50%);
                                                 -moz-border-radius: 50%;
                                                 -webkit-border-radius: 50%;
                                                 border-radius: 50%;"></div>

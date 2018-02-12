@@ -339,6 +339,7 @@ class EventController extends Controller
         }
         
         return view('front/event/match_table')
+        ->with('event', $event)
         ->with('race_id', $race_id)
         ->with('result_match',$result_match)
         ->with('line_type', $line_type)

@@ -474,8 +474,9 @@ class OrgController extends Controller
       if(isset($event_race[current(array_keys($find))]['status']) && $event_race[current(array_keys($find))]['status'] == 1) {
         $toggleStatus = 0;
         $teamCount = Team::where('team_event_id', $event_id)
-        ->where('team_race', $race_id)
-        ->count();
+                         ->where('team_race', $race_id)
+                         ->where('team_status', '<=', '2')
+                         ->count();
         $max_register = $event_race[current(array_keys($find))]['count'];
       }
       else {

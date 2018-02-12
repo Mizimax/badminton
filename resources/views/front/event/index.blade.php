@@ -517,8 +517,6 @@
         }
     });
 
-    var raceTemp = {};
-
     var closeHand = (function (ele, member_id, race_id, race_name) {
         var hasDropdown = $(ele).next().length == 0;
         $('.input-dropdown.show').remove();
@@ -559,10 +557,9 @@
                     success: function(data){
                         var dataEiei = $(ele).children().eq(1).html().trim();
                         if(dataEiei == '<b>ปิดรับสมัครแล้ว</b>'){
-                            $(ele).children().eq(1).html(raceTemp[race_id]);
+                            $(ele).children().eq(1).html(data['registered'] + ' <b>/ '+ data['max_register'] +'</b>');
                         }
                         else{
-                            raceTemp[race_id] = dataEiei;
                             $(ele).children().eq(1).html('<b>ปิดรับสมัครแล้ว</b>');
                         }
                             

@@ -391,7 +391,7 @@ td .input-dropdown {
     .button.is-red {
         padding: 1px 6px;
     }
-    .shadow td {
+    #match .shadow td {
         padding: 0 !important;
     }
     .left.rank.right {

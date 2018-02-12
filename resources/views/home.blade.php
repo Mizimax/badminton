@@ -113,7 +113,7 @@
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="padding-bottom:10px;">
                                 @foreach($event['event_race'] as $race)
-                                    @if($race->can_register > 0)
+                                    @if($race->can_register > 0 && $race->status == 0)
                                     <span class="badge badge-white">
                                     @else
                                     <span class="badge badge-orange">

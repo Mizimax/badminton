@@ -148,7 +148,7 @@ class EventController extends Controller
         $number_match_knockout[] = $max/4;
 
         $knock_match = [];
-
+        
         foreach($knock as $match){
                 $score = [
                     'set_score_team_1' => $match['set_score_team_1'],

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Wezync') }}</title>
+    <title>@yield('title'){{ config('app.name', 'Wezync') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css?v=2.1" rel="stylesheet">

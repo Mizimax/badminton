@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <link href="/css/event.css?v=1" rel="stylesheet">
-<link media="all" type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<link media="all" type="text/css" rel="stylesheet" href="/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>
     <div class="col-md-8" style="padding: 0">
@@ -132,10 +132,10 @@
                     onclick="closeHand(this, {{ $event->event_id }}, {{$race['race_id']}}, '{{$race['race_name']}}')"
                     @endif
                     class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">
-                        <span class="badge badge-orange">{{$race['race_name']}}</span>
+                        <span class="badge {{ ($race['can_register'] <= 0 || $race->status == 1) ? 'badge-orange' : 'badge-white' }}">{{$race['race_name']}}</span>
                         <span class="hand-status">
                         @if(isset($race->status))
-                            @if($race->status === 1)
+                            @if($race->status == 1)
                                 <b>ปิดรับสมัครแล้ว</b>
                             @else
                                 {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>

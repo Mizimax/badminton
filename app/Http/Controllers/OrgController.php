@@ -166,6 +166,7 @@ class OrgController extends Controller
       $data['event_user_id'] = Auth::id();
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
+      $data['event_status'] = 1;
 
       if($event_id){
         $event = Event::where('event_id', $event_id)->update($data);
@@ -461,7 +462,9 @@ class OrgController extends Controller
     }
 
     public function updateHandStatus(Request $req, $event_id) {
-      $race_id = $req->json()->all()['race_id'];
+      $race_id = (int)$req->json()->all()['race_id'];
+      $teamCount = '';
+      $max_register = '';
       $event = Event::where('event_id', $event_id);
       $event_race = json_decode($event->first()->event_race, true);
       $find = array_filter($event_race, function($var) use ($race_id) {
@@ -470,6 +473,10 @@ class OrgController extends Controller
 
       if(isset($event_race[current(array_keys($find))]['status']) && $event_race[current(array_keys($find))]['status'] == 1) {
         $toggleStatus = 0;
+        $teamCount = Team::where('team_event_id', $event_id)
+        ->where('team_race', $race_id)
+        ->count();
+        $max_register = $event_race[current(array_keys($find))]['count'];
       }
       else {
         $toggleStatus = 1;
@@ -480,7 +487,10 @@ class OrgController extends Controller
       
       return response()->json([
         'status' => 'ok',
-        'message' => 'Hand closed.'
+        'message' => ($toggleStatus === 0) ? 'Hand opened.':'Hand closed.',
+        'toggle_status' => $toggleStatus,
+        'registered' => $teamCount,
+        'max_register' => $max_register
       ], 200);
     }
 
@@ -503,11 +513,11 @@ class OrgController extends Controller
     }
 
     public function raceRemove(Request $req, $event_id) {
-      $race_id = $req->json()->all()['race_id'];
+      $race_id = (int)$req->json()->all()['race_id'];
       $event = Event::select('event_race')->where('event_id', $event_id);
       $event_race = json_decode($event->first()->event_race, true);
       $find = array_filter($event_race, function($var) use ($race_id) {
-        return $var['race_id'] !== $race_id;
+        return $var['race_id'] !== (int)$race_id;
       });
       $event_race = json_encode(array_values($find));
       $event->update(['event_race' => $event_race]);

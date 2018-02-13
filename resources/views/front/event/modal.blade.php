@@ -93,7 +93,7 @@
                         </div>
 
                     @for( $order = 1; $order <= $number_of_team[0]; $order++)
-                    <div id="player-{{$order}}" class="{{($list_races[0]['can_register'] <= 0 || $list_race[0]['status'] === 1)? 'hide':''}}">
+                    <div id="player-{{$order}}" class="{{ (!$list_races || $list_races[0]['can_register'] <= 0 || $list_race[0]['status'] === 1)? 'hide':''}}">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <h4 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h4>

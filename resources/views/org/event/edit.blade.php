@@ -127,7 +127,7 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" value="{{ $event_date[0] }}" id="event_year" name="event_year">
+                            <input type="text" value="{{ $event_date[0]+543 }}" id="event_year" name="event_year">
                         </div>
                             <div class="input"><span class="display">{{ $event_date[0] + 543 }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">

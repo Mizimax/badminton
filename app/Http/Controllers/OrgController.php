@@ -60,7 +60,7 @@ class OrgController extends Controller
           'map-input' => 'required',
           'event_date' => 'required|integer',
           'event_month' => 'required|integer',
-          'event_year' => 'required|integer',
+          'event_year' => 'required|integer|min:'.(date("Y")+543),
           'expenses_detail' => 'required|integer',
           'hand' => 'required',
           'team_num' => 'required|array',

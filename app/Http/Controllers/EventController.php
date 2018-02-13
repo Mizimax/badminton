@@ -35,7 +35,6 @@ class EventController extends Controller
         $raw_race = json_decode($event->event_race);
         $list_race = Event::get_list_race_from_event($event_id, $raw_race);
         $event_description->date = Helper::DateThai($event_description->date);
-        $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
         $list_rank = Rank::get()->toArray();
         $members = Team::select('team.*','team_status_name','race_name','race_color',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
                 ->where("team_event_id",$event_id)
@@ -55,6 +54,10 @@ class EventController extends Controller
         $tmp= [];
         $myTeam = [];
 
+        $number_of_team = [];
+        foreach($list_race as $race) {
+            $number_of_team[] = Race::where('race_id', $race->race_id)->first()->race_event_type;
+        }
        foreach( $members as $member){
             $member->member = json_decode($member->member);
             /* Check My Team */
@@ -206,7 +209,10 @@ class EventController extends Controller
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
         $list_race = Event::get_list_race_from_event($event_id, $raw_race);
-        $number_of_team = TeamType::get_number_of_team($event->event_team_type_id);
+        $number_of_team = [];
+        foreach($list_race as $race) {
+            $number_of_team[] = Race::where('race_id', $race->race_id)->first()->race_event_type;
+        }
         $list_rank = Rank::get()->toArray();
 
         return view('front/event/support_home')

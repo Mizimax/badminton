@@ -49,7 +49,7 @@
     <thead>
         <tr>
             <th class="col-xs-2" style="text-align:center;padding-top: 0;">ทีม</th>
-            @for( $order = 1; $order <= $number_of_team; $order++)
+            @for( $order = 1; $order <= $number_of_team[0]; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
             <th class="col-xs-1" style="text-align:center"><strong>อันดับมือ</strong></th>
@@ -66,7 +66,7 @@
                 @endif
                 {{$data['team_name']}}
             </td>
-            @for( $order = 0; $order < $number_of_team; $order++)
+            @for( $order = 0; $order < $number_of_team[0]; $order++)
             <td style="text-align:center">{{$data['member'][$order]->name}}</td>
             @endfor
             <td style="text-align:center">
@@ -125,7 +125,7 @@
                 @endif
                 {{$data['team_name']}}
             </td>
-            @for( $order = 0; $order < $number_of_team; $order++)
+            @for( $order = 0; $order < $number_of_team[0]; $order++)
             <td style="text-align:center">{{$data['member'][$order]->name}}</td>
             @endfor
             <td style="text-align:center">

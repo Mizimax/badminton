@@ -28,6 +28,24 @@ function toggleDropdownIcon(select) {
     down.text('▼');
 }
 
+function changeMemberNo(ele){
+  var member_no = ele.value;
+  var options = $(ele).children();
+  var result;
+  $.each(options,function(i, option) {
+    if($(option).attr('value') === member_no)
+      result = $(option).attr('key');
+  })
+  if(result == 1){
+    $('#player-1').show();
+    $('#player-2').hide();
+  }
+  else{
+    $('#player-1').show();
+    $('#player-2').show();
+  }
+}
+
 
 $(document).ready(function(){
   var lastOpen;

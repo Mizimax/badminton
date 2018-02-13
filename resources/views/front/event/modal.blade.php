@@ -1,17 +1,17 @@
 
 <div class="modal fade" id="register_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+<div class="modal-dialog" role="document">
         <div class="modal-content" style="padding: 20px">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">สมัครแข่งขัน</h4>
             </div>
-            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team[0]}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                    <input class="hidden" id="number_of_team" name="number_of_team" value="{{$number_of_team}}">
-                    <input class="hidden" id="event_id" name="event_id" value="{{$event->event_id}}">
+                    <input class="hidden" id="number_of_team[0]" name="number_of_team[0]" value="{{$number_of_team[0]}}">
+                    <input class="hidden" id="event_id" name="event_id" value="">
                     
-                    @if($number_of_team == 1)
+                    @if($number_of_team[0] == 1)
                         <div class="form-group hidden">
                             <div class="col-sm-2 control-label">
                                 ชื่อทีม
@@ -76,25 +76,31 @@
                                 ประเภทลงแข่ง
                             </div>    
                             <div class="col-sm-10">
-                                <select id="race" name="race" class="form-control">
-                                    @foreach ($list_race as $race)
-                                        @if($race->can_register > 0 && $race->status === 0)
-                                            <option value="{{$race->race_id}}">{{$race->race_name}}</option>
-                                        @else
-                                            <option value="{{$race->race_id}}">มือ {{$race->race_name}} ปิดรับสมัคร</option>
-                                        @endif
+                                <select id="race" name="race" class="form-control" onchange="changeMemberNo(this)">
+                                @php
+                                $list_races = collect($list_race)->filter(function ($value, $key) {
+                                    return $value['status'] == 0 && $value['can_register'] > 0;
+                                })->toArray();
+                                $list_races = array_values($list_races);
+                                @endphp
+                                    @foreach ($list_races as $key => $race)
+                                        
+                                        <option key="{{ $number_of_team[$key] }}" value="{{$race['race_id']}}">{{$race['race_name']}}</option>
+                                       
                                     @endforeach
                                 </select>
                             </div>    
                         </div>
 
-                    @for( $order = 1; $order <= $number_of_team; $order++)
+                    @for( $order = 1; $order <= $number_of_team[0]; $order++)
+                    <div id="player-{{$order}}" class="{{($list_races[0]['can_register'] <= 0 || $list_race[0]['status'] === 1)? 'hide':''}}">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <h4 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h4>
                             </div>
                         </div>
-                        @if($number_of_team == 1)
+                        @if($number_of_team[0] == 1)
+                        
                             <div class="form-group">
                                 <div class="col-sm-2 control-label">
                                     ชื่อ
@@ -205,8 +211,8 @@
                                 </select>
                             </div>    
                         </div>
+                    </div>
                     @endfor
-
                 
 
 
@@ -221,7 +227,7 @@
 </div>
 
 
-
+@if(Request::path() !== '/')
 <div class="modal fade" id="special_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -230,7 +236,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Login with Fackbook</h4>
             </div>
-            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team[0]}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -249,7 +255,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">ลงทะเบียน กิจกรรมพิเศษ</h4>
             </div>
-            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team[0]}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -269,3 +275,4 @@
         </div>
     </div>
 </div>
+@endif

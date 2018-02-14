@@ -11,8 +11,8 @@
     <title>@yield('title'){{ config('app.name', 'Wezync') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css?v=2.1" rel="stylesheet">
-    <link href="/css/wezync.css?v=2.2" rel="stylesheet">
+    <link href="/css/app.css?v=3" rel="stylesheet">
+    <link href="/css/wezync.css?v=3" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -216,7 +216,7 @@
         }
     });
     </script>
-    <script src="/js/app.js"></script>
+    <script src="/js/app.js?v=3"></script>
     <script src="/js/sweetalert2.js"></script>
 
     @yield('scripts')

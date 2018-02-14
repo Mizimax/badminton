@@ -36,7 +36,7 @@ class EventController extends Controller
         $list_race = Event::get_list_race_from_event($event_id, $raw_race);
         $event_description->date = Helper::DateThai($event_description->date);
         $list_rank = Rank::get()->toArray();
-        $members = Team::select('team.*','team_status_name','race_name','race_color',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
+        $members = Team::select('team.*','team_status_name', 'race_id','race_name','race_color', 'race_event_type',DB::raw("CONCAT('[',GROUP_CONCAT(CONCAT('{ \"name\":\"', team_member_firstname,'(', team_member_nickname,')','\"}') SEPARATOR ','),']') AS member") )
                 ->where("team_event_id",$event_id)
                 ->where(function($query) use ($list_race){
                     foreach($list_race as $race){

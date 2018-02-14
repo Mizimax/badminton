@@ -39,10 +39,13 @@ function changeMemberNo(ele){
   if(result == 1){
     $('#player-1').show();
     $('#player-2').hide();
+    $('#player-2 input').prop('required',false);
+    $('#number_of_team').val(1)
   }
   else{
     $('#player-1').show();
     $('#player-2').show();
+    $('#number_of_team').val(2)
   }
 }
 
@@ -112,4 +115,5 @@ $(document).ready(function(){
         }
       }
   });
+  changeMemberNo($('#race')[0]);
 });

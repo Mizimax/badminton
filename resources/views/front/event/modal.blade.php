@@ -8,28 +8,18 @@
             </div>
             <form class="form-horizontal" onSubmit="return check_gender({{$number_of_team[0]}})" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                    <input class="hidden" id="number_of_team[0]" name="number_of_team[0]" value="{{$number_of_team[0]}}">
-                    <input class="hidden" id="event_id" name="event_id" value="">
+                    <input class="hidden" id="number_of_team" name="number_of_team" value="{{$number_of_team[0]}}">
+                    <input class="hidden" id="event_id" name="event_id" value="{{ $event->event_id }}">
                     
-                    @if($number_of_team[0] == 1)
-                        <div class="form-group hidden">
-                            <div class="col-sm-2 control-label">
-                                ชื่อทีม
-                            </div>    
-                            <div class="col-sm-10">
-                                <input class="form-control" id="team_name" name="team_name" value="" type="text" autocomplete="off" >
-                            </div>    
-                        </div>
-                    @else
-                        <div class="form-group">
-                            <div class="col-sm-2 control-label">
-                                ชื่อทีม
-                            </div>    
-                            <div class="col-sm-10">
-                                <input class="form-control" required id="team_name" name="team_name" value="" type="text" autocomplete="off" >
-                            </div>    
-                        </div>
-                    @endif
+                    
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            ชื่อทีม
+                        </div>    
+                        <div class="col-sm-10">
+                            <input class="form-control" required id="team_name" name="team_name" value="" type="text" autocomplete="off" >
+                        </div>    
+                    </div>
                     @if (Auth::guest())
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
@@ -92,65 +82,37 @@
                             </div>    
                         </div>
 
-                    @for( $order = 1; $order <= $number_of_team[0]; $order++)
-                    <div id="player-{{$order}}" class="{{ (!$list_races || $list_races[0]['can_register'] <= 0 || $list_race[0]['status'] === 1)? 'hide':''}}">
+                    @for( $order = 1; $order <= 2; $order++)
+                    <div id="player-{{$order}}" class="{{ (!$list_races || $list_races[0]['can_register'] <= 0 || $list_race[0]['status'] === 1 || ($order === 2 && $number_of_team[0] === 1))? 'hide':''}}">
                         <div class="form-group">
                             <div class="col-sm-10">
                                 <h4 style="color:black">ชื่อผู้เล่น คนที่ {{$order}}</h4>
                             </div>
                         </div>
-                        @if($number_of_team[0] == 1)
-                        
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    ชื่อ
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" onkeyup="createTeamName()" required id="first_name{{$order}}" name="first_name{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    นามสกุล
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" onkeyup="createTeamName()" required id="last_name{{$order}}" name="last_name{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    ชื่อเล่น
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" onkeyup="createTeamName()" required id="nickname{{$order}}" name="nickname{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                        @else
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    ชื่อ
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" required id="first_name{{$order}}" name="first_name{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    นามสกุล
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" required id="last_name{{$order}}" name="last_name{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2 control-label">
-                                    ชื่อเล่น
-                                </div>    
-                                <div class="col-sm-10">
-                                    <input class="form-control" required id="nickname{{$order}}" name="nickname{{$order}}" value="" type="text" autocomplete="off" >
-                                </div>    
-                            </div>
-                        @endif
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                ชื่อ
+                            </div>    
+                            <div class="col-sm-10">
+                                <input class="form-control" required id="first_name{{$order}}" name="first_name{{$order}}" value="" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                นามสกุล
+                            </div>    
+                            <div class="col-sm-10">
+                                <input class="form-control" required id="last_name{{$order}}" name="last_name{{$order}}" value="" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
+                                ชื่อเล่น
+                            </div>    
+                            <div class="col-sm-10">
+                                <input class="form-control" required id="nickname{{$order}}" name="nickname{{$order}}" value="" type="text" autocomplete="off" >
+                            </div>    
+                        </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 เพศ

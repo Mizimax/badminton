@@ -49,7 +49,7 @@
     <thead>
         <tr>
             <th class="col-xs-2" style="text-align:center;padding-top: 0;">ทีม</th>
-            @for( $order = 1; $order <= $number_of_team[0]; $order++)
+            @for( $order = 1; $order <= 2; $order++)
             <th class="col-xs-2" style="text-align:center"><strong>ผู้เล่น {{$order}}</strong></th>
             @endfor
             <th class="col-xs-1" style="text-align:center"><strong>อันดับมือ</strong></th>
@@ -60,15 +60,22 @@
     <tbody>
         @foreach($my_team as $key=>$data)
         <tr style="background: #8ED5ED; color: white">
-        <td style="text-align:center; font-weight: bold">
+            <td style="text-align:center; font-weight: bold">
                 @if($event->event_user_id === Auth::id() || isAdmin())
                 <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>
                 @endif
                 {{$data['team_name']}}
             </td>
-            @for( $order = 0; $order < $number_of_team[0]; $order++)
-            <td style="text-align:center">{{$data['member'][$order]->name}}</td>
-            @endfor
+            
+            @if($data['race_event_type'] === 2)
+                @for( $order = 0; $order < 2; $order++)
+                <td style="text-align:center">{{$data['member'][$order]->name}}</td>
+                @endfor
+            @else
+                <td style="text-align:center">{{$data['member'][0]->name}}</td>
+                <td style="text-align:center">-</td>
+            @endif
+            
             <td style="text-align:center">
                 <span class="label {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
                 @if($event->event_user_id === Auth::id() || isAdmin())
@@ -125,9 +132,14 @@
                 @endif
                 {{$data['team_name']}}
             </td>
-            @for( $order = 0; $order < $number_of_team[0]; $order++)
-            <td style="text-align:center">{{$data['member'][$order]->name}}</td>
-            @endfor
+            @if($data['race_event_type'] === 2)
+                @for( $order = 0; $order < 2; $order++)
+                <td style="text-align:center">{{$data['member'][$order]->name}}</td>
+                @endfor
+            @else
+                <td style="text-align:center">{{$data['member'][0]->name}}</td>
+                <td style="text-align:center">-</td>
+            @endif
             <td style="text-align:center">
                 <span class="label {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
                 @if($event->event_user_id === Auth::id() || isAdmin())

@@ -128,7 +128,7 @@
                                     @if( $event['event_status'] == 1)
                                     <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim margin-bottom" style="width: 120px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
                                     @else
-                                    <button type="button" class="btn btn-brown btn-slim">ผลการแข่ง</button>
+                                    <button type="button" class="btn btn-brown btn-slim" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
                                     @endif
                                 </div>
                             </div>

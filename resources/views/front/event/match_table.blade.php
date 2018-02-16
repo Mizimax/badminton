@@ -53,11 +53,19 @@
             @foreach($match as $team =>$detail_math)
             <tr>
                 <td align="center" class="team_status" style="border-right:1px solid #ccc">
+                @if(($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3)
                     <span style="font-size: 16px">
                         <span class="font-bold team" style="color:#209cee">{{$score_team[$line][$team]['total']}}</span> <span class="font-bold">/ {{ (count($match) -1) * 2 }}</span>
                     </span>
                     <br>
                     <span class="font-small font-bold" style="color:#888">{{$score_team[$line][$team]['score']}}</span>
+                @else
+                    <span style="font-size: 16px">
+                        <span class="font-bold team" style="color:#209cee">0</span> <span class="font-bold">/ {{ (count($match) -1) * 2 }}</span>
+                    </span>
+                    <br>
+                    <span class="font-small font-bold" style="color:#888">0</span>
+                @endif
                 </td>
                 <td style="display: table-cell;vertical-align: middle;">
                 <div class="media">
@@ -91,7 +99,7 @@
                             onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].', this)' }}"
                             @endif        
                             >   
-                                    @if(($m['match_status'] == "END" && ($event->event_user_id === Auth::id() || isAdmin()) && $event->event_id != 3))
+                                    @if($m['match_status'] == "END" && (($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3))
                                         <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
                                         @foreach($m['score'] as $score)
                                         <?php 

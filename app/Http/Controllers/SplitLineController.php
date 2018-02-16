@@ -34,6 +34,51 @@ class SplitLineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function split_by_race(Request $req, $event_id, $race_id)
+    {
+        $data = $req->json()->all();
+        foreach($data as $race_id => $arrData){
+            foreach($arrData as $line => $line_team_id){
+                LineTeam::where('line_event_id', $event_id)
+                        ->where('line_race_id', $race_id)
+                        ->where('line_name', $line)
+                        ->update([
+                            'line_team_id' => json_encode($line_team_id)
+                        ]);
+            }
+        }
+        $this->run_match($event_id);
+        
+    }
+
+    public function split_by_race_shuffle($event_id, $race_id)
+    {
+        $lines = LineTeam::select('line_team_id')
+                ->where('line_event_id', $event_id)
+                ->where('line_race_id', $race_id)->get();
+        $list_line = [];
+        
+        foreach($lines as $line){
+            $list_line = array_merge($list_line, json_decode($line->line_team_id));
+        }
+        
+        shuffle($list_line);
+        
+        $line = array_chunk($list_line, 4);
+        foreach($line as $l) {
+            $result = LineTeam::where('line_event_id', $event_id)
+                    ->where('line_race_id', $race_id)
+                    ->first();
+            $result->where('line_id', $result->line_id)
+            ->update(['line_team_id' => json_encode($l)]);
+            
+                    
+        }
+        var_dump($line);
+        $this->run_match($event_id);
+    }
+
     public function split($event_id)
     {
         LineTeam::where('line_event_id', $event_id)->delete();

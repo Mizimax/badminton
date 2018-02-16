@@ -277,6 +277,14 @@
                     lineChanged[race_id][line].push(parseInt(team_id));
                     latestLine = line;
                 })
+                $.ajax({
+                    url: '/split_line/{{ $event->event_id }}/race/'+$('#hand_dropdown').val(),
+                    method: 'patch',
+                    data: JSON.stringify(lineChanged),
+                    success: function(data){
+                        search_match($('#hand_dropdown').val());
+                    }
+                });
             }
         });
         @endif
@@ -616,6 +624,27 @@
                             search_match({{ $list_race[0]->race_id }});
                         })
                     }
+        });
+    });
+
+    var judsaiEiei = (function() {
+        swal({
+            title: "โปรดรอสักครู่...",
+            html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
+            showConfirmButton: false
+        });
+        $.ajax({
+            url: '/split_line/{{ $event->event_id }}/race/'+$('#hand_dropdown').val()+'/shuffle',
+            method: 'get',
+            success: function(data){
+                lineChanged = {};
+                swal({
+                    title: "สำเร็จ !",
+                    text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
+                }).then(function(){
+                    search_match($('#hand_dropdown').val());
+                })
+            }
         });
     });
 

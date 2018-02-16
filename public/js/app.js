@@ -36,7 +36,10 @@ function changeMemberNo(ele){
     if($(option).attr('value') === member_no)
       result = $(option).attr('key');
   })
-  if(result == 1){
+  if(!result) {
+    
+  }
+  else if(result == 1){
     $('#player-1').show();
     $('#player-2').hide();
     $('#player-2 input').prop('required',false);

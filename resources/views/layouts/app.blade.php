@@ -216,7 +216,7 @@
         }
     });
     </script>
-    <script src="/js/app.js?v=3"></script>
+    <script src="/js/app.js?v=3.1"></script>
     <script src="/js/sweetalert2.js"></script>
 
     @yield('scripts')

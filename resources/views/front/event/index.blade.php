@@ -259,28 +259,44 @@
                 var race_id;
                 var team_id;
                 var line;
-                boxes.forEach(function(ele) {
-                    race_id = $(ele).children(':first').attr('race-id');
-                    team_id = $(ele).children(':first').attr('team-id');
-                    line = $(ele).children(':first').attr('line');
+                var i,j,x,count=0,temp = [],chunk = 4;
+                var array = Array.from(boxes);
+                for (i=0,j=array.length; i<j; i+=chunk) {
 
-                    if(!lineChanged[race_id]){
-                        lineChanged[race_id] = {}
-                        lineChanged[race_id][line] = [];
+                    
+                    for(x=i; x<i+chunk;x++) {
+                        if(!temp[count])
+                            temp[count] = []
+                        if(!array[x+1])
+                            break;
+                        temp[count].push($(array[x]).children(':first').attr('team-id'));
                     }
-                    if(!lineChanged[race_id][line]) {
-                        lineChanged[race_id][line] = [];
-                    }
-                    if(line !== latestLine){
-                        lineChanged[race_id][line] = [];
-                    }
-                    lineChanged[race_id][line].push(parseInt(team_id));
-                    latestLine = line;
-                })
+                    count++;
+                }
+                
+                // boxes.forEach(function(ele) {
+                //     race_id = $(ele).children(':first').attr('race-id');
+                //     team_id = $(ele).children(':first').attr('team-id');
+                //     line = $(ele).children(':first').attr('line');
+                //     $(ele).children(':first').attr('line', line);
+                //     console.log(team_id);
+                //     if(!lineChanged[race_id]){
+                //         lineChanged[race_id] = {}
+                //         lineChanged[race_id][line] = [];
+                //     }
+                //     if(!lineChanged[race_id][line]) {
+                //         lineChanged[race_id][line] = [];
+                //     }
+                //     if(line !== latestLine){
+                //         lineChanged[race_id][line] = [];
+                //     }
+                //     lineChanged[race_id][line].push(parseInt(team_id));
+                //     latestLine = line;
+                // })
                 $.ajax({
                     url: '/split_line/{{ $event->event_id }}/race/'+$('#hand_dropdown').val(),
                     method: 'patch',
-                    data: JSON.stringify(lineChanged),
+                    data: JSON.stringify(temp),
                     success: function(data){
                         search_match($('#hand_dropdown').val());
                     }

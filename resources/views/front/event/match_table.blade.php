@@ -90,8 +90,8 @@
                             @if($event->event_user_id === Auth::id() || isAdmin())
                             onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].', this)' }}"
                             @endif        
-                            >
-                                    @if($m['match_status'] == "END" && ($event->event_user_id === Auth::id() || isAdmin()))
+                            >   
+                                    @if(($m['match_status'] == "END" && ($event->event_user_id === Auth::id() || isAdmin()) && $event->event_id != 3))
                                         <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
                                         @foreach($m['score'] as $score)
                                         <?php 

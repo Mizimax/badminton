@@ -3,7 +3,7 @@ var url = bg.attr('image-bg');
 
 $('head').append('<style>.cover2:before{background-image: url("'+url+'")');
 
-function search_match(race_id){
+function search_match(race_id, list_line){
     event_id = $('#event_id').val();
     $.ajax({
         url: '/get_match/'+ event_id+'/'+race_id,
@@ -19,24 +19,47 @@ function search_match(race_id){
                     var race_id;
                     var team_id;
                     var line;
-                    boxes.forEach(function(ele) {
-                        race_id = $(ele).children(':first').attr('race-id');
-                        team_id = $(ele).children(':first').attr('team-id');
-                        line = $(ele).children(':first').attr('line');
+                    var i,j,x,count=0,temp = [],chunk = 4;
+                var array = Array.from(boxes);
+                for (i=0,j=array.length; i<j; i+=chunk) {
+
+                    
+                    for(x=i; x<i+chunk;x++) {
+                        if(!temp[count])
+                            temp[count] = []
+                        if(!array[x+1])
+                            break;
+                        temp[count].push($(array[x]).children(':first').attr('team-id'));
+                    }
+                    count++;
+                }
+                    // boxes.forEach(function(ele) {
+                    //     race_id = $(ele).children(':first').attr('race-id');
+                    //     team_id = $(ele).children(':first').attr('team-id');
+                    //     line = $(ele).children(':first').attr('line');
+                    //     console.log(team_id);
     
-                        if(!lineChanged[race_id]){
-                            lineChanged[race_id] = {}
-                            lineChanged[race_id][line] = [];
+                    //     if(!lineChanged[race_id]){
+                    //         lineChanged[race_id] = {}
+                    //         lineChanged[race_id][line] = [];
+                    //     }
+                    //     if(!lineChanged[race_id][line]) {
+                    //         lineChanged[race_id][line] = [];
+                    //     }
+                    //     if(line !== latestLine){
+                    //         lineChanged[race_id][line] = [];
+                    //     }
+                    //     lineChanged[race_id][line].push(parseInt(team_id));
+                    //     latestLine = line;
+                    // })
+                    $.ajax({
+                        url: '/split_line/'+event_id+'/race/'+$('#hand_dropdown').val(),
+                        method: 'patch',
+                        data: JSON.stringify(temp),
+                        success: function(data){
+                            search_match($('#hand_dropdown').val());
                         }
-                        if(!lineChanged[race_id][line]) {
-                            lineChanged[race_id][line] = [];
-                        }
-                        if(line !== latestLine){
-                            lineChanged[race_id][line] = [];
-                        }
-                        lineChanged[race_id][line].push(parseInt(team_id));
-                        latestLine = line;
-                    })
+                    });
                 }
             });
         }

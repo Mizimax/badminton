@@ -11,7 +11,7 @@
         </div>
     </div>
     
-    @if($line_type === 1)
+    @if(!isset($line_type) || $line_type === 1)
     <div class="manager-right fixed" align="center">
         <span class="normal">Normal</span>
         <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
@@ -21,7 +21,7 @@
     @endif
     
 </div>
-@if($line_type === 1)
+@if(!isset($line_type) || $line_type === 1)
 <div class="nav-manage-mobile">
     <div class="left">
         <div class="hide">

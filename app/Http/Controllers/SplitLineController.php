@@ -38,15 +38,17 @@ class SplitLineController extends Controller
     public function split_by_race(Request $req, $event_id, $race_id)
     {
         $data = $req->json()->all();
-        foreach($data as $race_id => $arrData){
-            foreach($arrData as $line => $line_team_id){
-                LineTeam::where('line_event_id', $event_id)
-                        ->where('line_race_id', $race_id)
-                        ->where('line_name', $line)
-                        ->update([
-                            'line_team_id' => json_encode($line_team_id)
-                        ]);
-            }
+        $lines = LineTeam::select('line_name')
+                ->where('line_event_id', $event_id)
+                ->where('line_race_id', $race_id)->get();
+
+        foreach($lines as $key => $line){
+            LineTeam::where('line_event_id', $event_id)
+                    ->where('line_race_id', $race_id)
+                    ->where('line_name', $line->line_name)
+                    ->update([
+                        'line_team_id' => json_encode($data[$key])
+                    ]);
         }
         $this->run_match($event_id);
         
@@ -75,7 +77,6 @@ class SplitLineController extends Controller
             
                     
         }
-        var_dump($line);
         $this->run_match($event_id);
     }
 
@@ -155,7 +156,7 @@ class SplitLineController extends Controller
     public function run_match($event_id)
     {    
         $event = Event::get_detail($event_id);
-        $court = $event->event_court_no | 11;
+        $court = isset($event->event_court_no) && $event->event_court_no != 0 ? $event->event_court_no : 11;
         $raw_race = json_decode($event->event_race);
         $array = [];
         Match::where('match_event_id', $event_id)->delete();
@@ -355,26 +356,26 @@ class SplitLineController extends Controller
     }
 
     public function verify(Request $req, $event_id) {
-        $data = $req->json()->all();
-        if($data){
-            foreach($data as $race_id => $arrData){
-                $line_team = LineTeam::where('line_event_id', $event_id)
-                                 ->where('line_race_id', $race_id);
-                $line_team->delete();
-                foreach($arrData as $line => $line_team_id){
-                    LineTeam::insert([
-                        'line_event_id' => $event_id,
-                        'line_name' => $line,
-                        'line_team_id' => json_encode($line_team_id),
-                        'line_race_id' => $race_id,
-                        'line_type' => 0
-                    ]);
-                }
-            }
-            $this->run_match($event_id);
-        }
-        else {
+        // $data = $req->json()->all();
+        // if($data){
+        //     foreach($data as $race_id => $arrData){
+        //         $line_team = LineTeam::where('line_event_id', $event_id)
+        //                          ->where('line_race_id', $race_id);
+        //         $line_team->delete();
+        //         foreach($arrData as $line => $line_team_id){
+        //             LineTeam::insert([
+        //                 'line_event_id' => $event_id,
+        //                 'line_name' => $line,
+        //                 'line_team_id' => json_encode($line_team_id),
+        //                 'line_race_id' => $race_id,
+        //                 'line_type' => 0
+        //             ]);
+        //         }
+        //     }
+        //     $this->run_match($event_id);
+        // }
+        // else {
             LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 0 ]);
-        }
+        // }
     }
 }

@@ -27,9 +27,7 @@ function search_match(race_id, list_line){
                     for(x=i; x<i+chunk;x++) {
                         if(!temp[count])
                             temp[count] = []
-                        if(!array[x+1])
-                            break;
-                        temp[count].push($(array[x]).children(':first').attr('team-id'));
+                        temp[count].push(parseInt($(array[x]).children(':first').attr('team-id')));
                     }
                     count++;
                 }

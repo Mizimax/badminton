@@ -38,10 +38,10 @@ class SplitLineController extends Controller
     public function split_by_race(Request $req, $event_id, $race_id)
     {
         $data = $req->json()->all();
-        $lines = LineTeam::select('line_name as integer')
+        $lines = LineTeam::select('line_name')
                 ->where('line_event_id', $event_id)
                 ->where('line_race_id', $race_id)->get();
- 
+        
         foreach($lines as $key => $line){
             LineTeam::where('line_event_id', $event_id)
                     ->where('line_race_id', $race_id)

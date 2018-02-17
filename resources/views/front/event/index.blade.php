@@ -267,9 +267,7 @@
                     for(x=i; x<i+chunk;x++) {
                         if(!temp[count])
                             temp[count] = []
-                        if(!array[x+1])
-                            break;
-                        temp[count].push($(array[x]).children(':first').attr('team-id'));
+                        temp[count].push(parseInt($(array[x]).children(':first').attr('team-id')));
                     }
                     count++;
                 }
@@ -795,5 +793,5 @@
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
-<script src="/js/event.js?v=1"></script>
+<script src="/js/event.js?v=2"></script>
 @endsection

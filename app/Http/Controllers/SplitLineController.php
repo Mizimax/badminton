@@ -56,27 +56,22 @@ class SplitLineController extends Controller
 
     public function split_by_race_shuffle($event_id, $race_id)
     {
-        $lines = LineTeam::select('line_team_id')
-                ->where('line_event_id', $event_id)
-                ->where('line_race_id', $race_id)->get();
-        $list_line = [];
+        $lines = Team::select('team_id')
+                ->where('team_event_id', $event_id)
+                ->where('team_race', $race_id)->pluck('team_id')->toArray();
+                
+        shuffle($lines);
         
-        foreach($lines as $line){
-            $list_line = array_merge($list_line, json_decode($line->line_team_id));
+        $line = array_chunk($lines, 4);
+
+        $result = LineTeam::where('line_event_id', $event_id)
+                ->where('line_race_id', $race_id)
+                ->get();
+        foreach($result as $key => $res) {
+            $res->where('line_id', $res->line_id)
+                ->update(['line_team_id' => json_encode($line[$key])]);
         }
-        
-        shuffle($list_line);
-        
-        $line = array_chunk($list_line, 4);
-        foreach($line as $l) {
-            $result = LineTeam::where('line_event_id', $event_id)
-                    ->where('line_race_id', $race_id)
-                    ->first();
-            $result->where('line_id', $result->line_id)
-            ->update(['line_team_id' => json_encode($l)]);
-            
-                    
-        }
+
         $this->run_match($event_id);
     }
 

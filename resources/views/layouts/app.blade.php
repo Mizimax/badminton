@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=3" rel="stylesheet">
+    <link href="/css/wezync.css?v=3.1" rel="stylesheet">
     @yield('css')
 
 </head>

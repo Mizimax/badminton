@@ -122,6 +122,10 @@ a {
     text-align: center;
 }
 
+.div.center {
+    margin: 0 auto;
+}
+
 .wrap {
     flex-wrap: wrap;
 }

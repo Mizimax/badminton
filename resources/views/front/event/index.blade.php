@@ -155,7 +155,19 @@
             
             @include('front/event/match')
         </div>
-        <div role="tabpanel" class="tab-pane" id="picture" style="height: 200px;"></div>
+        <div role="tabpanel" class="tab-pane relative" id="picture" style="min-height: 200px;">
+        @if(count($event_image) > 0)
+            <div class="flex wrap" align="center" style="margin-top:20px">
+            @foreach($event_image as $image)
+                <div class="{{ count($event_image) == 1 ? 'col-sm-4 div center': 'col-md-4 col-sm-6 col-xs-12'}}" style="margin-top:20px">
+                    <img style="width:100%" src="{{ $image }}">
+                </div>
+            @endforeach
+            </div>
+        @else
+            <div class="absolute middle">ยังไม่มีรูปภาพ</div>
+        @endif
+        </div>
         <br><br>
     </div>
 

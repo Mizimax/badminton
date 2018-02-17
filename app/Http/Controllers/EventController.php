@@ -177,10 +177,12 @@ class EventController extends Controller
             $prev += $number_match_knockout[$i];
             $i++;
         }
-        
+        $event_image = json_decode($event->event_image);
+
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
+            ->with('event_image', $event_image)
             ->with('event_description', $event_description)
             ->with('number_of_team', $number_of_team)
             ->with('list_race', $list_race)

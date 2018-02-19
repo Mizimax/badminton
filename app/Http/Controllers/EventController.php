@@ -112,8 +112,10 @@ class EventController extends Controller
             $i = 0;
             foreach($result_match[$line] as $team_1 =>$a){
                 $keys = array_keys($result_match[$line][$team_1]);
-                $newArray = array_swap_assoc($team_1, $keys[$i], $result_match[$line][$team_1]);
-                $result_match[$line][$team_1] = $newArray;
+                for($j = 1; $j <= $i; $j++){
+                    $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
+                    $result_match[$line][$team_1] = $newArray;
+                }  
                 $i++;
             }
 
@@ -178,7 +180,7 @@ class EventController extends Controller
             $i++;
         }
         $event_image = json_decode($event->event_image);
-
+        
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -331,8 +333,10 @@ class EventController extends Controller
             $i = 0;
             foreach($result_match[$line] as $team_1 =>$a){
                 $keys = array_keys($result_match[$line][$team_1]);
-                $newArray = array_swap_assoc($team_1, $keys[$i], $result_match[$line][$team_1]);
-                $result_match[$line][$team_1] = $newArray;
+                for($j = 1; $j <= $i; $j++){
+                    $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
+                    $result_match[$line][$team_1] = $newArray;
+                }  
                 $i++;
             }
         }

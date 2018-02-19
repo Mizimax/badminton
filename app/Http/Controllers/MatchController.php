@@ -114,8 +114,9 @@ class MatchController extends Controller
               $s->set_score_team_2 = $input['team2_'.$s->set_id];
               if($input['team1_'.$s->set_id] - $input['team2_'.$s->set_id] > 0)
                 $s->set_team_win = $match->match_team_1;
-              else
+              else if($input['team1_'.$s->set_id] - $input['team2_'.$s->set_id] < 0)
                 $s->set_team_win = $match->match_team_2;
+
               $s->save();
           }
           $match->match_status = "END";

@@ -49,8 +49,9 @@
                 @endforeach
                 
             </tr>
-
+            
             @foreach($match as $team =>$detail_math)
+           
             <tr>
                 <td align="center" class="team_status" style="border-right:1px solid #ccc">
                 @if(($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3)
@@ -91,7 +92,6 @@
                     
                 </td>
                 @foreach($detail_math as $team_2 => $m)
-                
                     @if($team != $team_2)
                          <td align="center" style="display: table-cell; vertical-align: middle;">
                             <div class="media {{($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer':''}}"
@@ -100,15 +100,24 @@
                             @endif        
                             >   
                                     @if($m['match_status'] == "END" && (($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3))
-                                        <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0];?>
-                                        @foreach($m['score'] as $score)
+                                        <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0]; $my_score=0; ?>
+                                        @foreach($m['score'] as $key => $score)
                                         <?php 
                                             if($score['set_team_win']){
                                                 $win[$score['set_team_win']]++;
+                                                $my_score += $score['set_score_team_1'] - $score['set_score_team_2'];
                                             }
                                         ?>
                                         @endforeach
-                                        @if($win[$m['match_team_1']] == 2)
+                                        <?php
+                                            if($my_score > 0){
+                                                $win[$m['match_team_1']]++;
+                                            }
+                                            else if($my_score < 0){
+                                                $win[$m['match_team_2']]++;
+                                            }
+                                        ?>
+                                        @if($win[$m['match_team_1']] >= 2)
                                             <div class="media-left media-middle">
                                                 <div style="width: 15px;
                                                 height: 15px;
@@ -117,7 +126,7 @@
                                                 -webkit-border-radius: 50%;
                                                 border-radius: 50%;"></div>
                                             </div>
-                                        @elseif($win[$m['match_team_2']] == 2)
+                                        @elseif($win[$m['match_team_2']] >= 2)
                                             <div class="media-left media-middle">
                                                 <div style="width: 15px;
                                                 height: 15px;

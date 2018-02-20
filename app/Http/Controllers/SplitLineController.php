@@ -35,6 +35,37 @@ class SplitLineController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function handSort(Request $req, $event_id)
+    {
+        $data = $req->json()->all();
+        $event = Event::select('event_race')->where('event_id', $event_id);
+        $event_race = json_decode($event->first()->event_race, true);
+        if(count($data) != count($event_race)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Please complete sorting.'
+            ], 403);
+        }
+        $new_event_race = [];
+        foreach($data as $key => $race_id){
+            $find = array_filter($event_race, function($var) use ($race_id) {
+                return $var['race_id'] == (int)$race_id;
+            });
+            $find = array_values($find);
+            $new_event_race[$key] = $find[0];
+        }
+        $event_race = json_encode($new_event_race);
+        $event->update(['event_race' => $event_race]);
+
+        $this->split($event_id);
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Hand sorted'
+        ], 200);
+        
+    }
+
     public function split_by_race(Request $req, $event_id, $race_id)
     {
         $data = $req->json()->all();
@@ -132,7 +163,6 @@ class SplitLineController extends Controller
             // }
         }
         $this->run_match($event_id);
-        $this->run_match_knockout($event_id);
     }
 
     function split_group($race_id,$team_name,$team_id,$max_group){
@@ -162,29 +192,28 @@ class SplitLineController extends Controller
                         ->where('line_race_id','=',$race->race_id)
                         ->get()->toArray();
             $num_line = count($all_line)/2;
-            foreach($all_line as $line){
+            foreach($all_line as $key => $line){
                 $list_team = json_decode($line['line_team_id']);
                 $number_team = count($list_team);
-                $first = 1;
                 for($i=0; $i<$number_team; $i++){
                     for($j=$i+1; $j<$number_team; $j++){
-                        if($first <= $num_line){
-                            $match = $first;
-                        }else{
-                            $match = count($all_line)-$first+1;
-                        }
-                        $array[$match][] = [
+                        // if($first <= $num_line){
+                        //     $match = $first;
+                        // }else{
+                        //     $match = count($all_line)-$first+1;
+                        // }
+                        $array[$race->race_id][] = [
                             'race' => $race->race_id,
                             'team_1' => $list_team[$i],
                             'team_2' => $list_team[$j],
                             'line_name' => $line['line_name']
                         ];
                         $num++;
-                        $first++;
                     }
                 }
             }
         }   
+
         $num = 1;
         $time = 18;
         foreach($array as $k=> $round){
@@ -202,7 +231,6 @@ class SplitLineController extends Controller
                 ];
                 Match::insert($data);
                 if($num%$court == 0){
-                    echo"<br>";
                     $time += 1;
                 }
                 $num++;
@@ -230,7 +258,6 @@ class SplitLineController extends Controller
     }
 
     public function run_match_knockout($event_id){
-        echo "<pre>";
         $court = 11;
         $num = 1;
         $event = Event::get_detail($event_id);
@@ -371,6 +398,7 @@ class SplitLineController extends Controller
         // }
         // else {
             LineTeam::where('line_event_id', $event_id)->update([ 'line_type' => 0 ]);
+            $this->run_match_knockout($event_id);
         // }
     }
 }

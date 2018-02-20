@@ -245,7 +245,7 @@
 @endif
 <script type="text/javascript">
 
-    var lineChanged = {};
+    var handSortList = [];
 
     jQuery.browser = {};
     (function () {
@@ -631,25 +631,68 @@
         }
     });
 
+    handSort = (function(ele) {
+        var button = $(ele).parents(".dropdown-menu").prev();
+        var text = $(ele).text().trim();
+        var value = $(ele).attr('value');
+        button.text(text);
+        handSortList[button.attr('key')] = parseInt(value);
+    });
+
     var judsai = (function() {
         swal({
-            title: "โปรดรอสักครู่...",
-            html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
-            showConfirmButton: false
-        });
-        $.ajax({
-                    url: '/split_line/{{ $event->event_id }}',
-                    method: 'get',
-                    success: function(data){
-                        lineChanged = {};
-                        swal({
-                            title: "สำเร็จ !",
-                            text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
-                        }).then(function(){
-                            window.location = '/event/{{ $event->event_id }}#/match';
-                            search_match({{ $list_race[0]->race_id }});
-                        })
-                    }
+            title: "เรียงลำดับการแข่งขันแต่ละมือ",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "ยืนยัน",
+            closeOnConfirm: false,
+            html: `
+            <div id="handSort" class="flex wrap flex-center">
+            @foreach($list_race as $key=> $races)
+                <div class="dropdown {{ ($key == 0) ? 'open':'ss' }}">
+                    <button key="{{$key}}" class="btn btn-default dropdown-toggle handLabel" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{$key+1}}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <div class="flex pad-side-10">
+                        @foreach($list_race as $race)
+                            <div class="handLabel small" onclick="handSort(this)" value="{{$race->race_id}}">
+                                <div class="absolute middle">
+                                {{$race['race_name']}}
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    </ul>
+                </div>
+            @endforeach
+            </div>
+            `
+        }).then(function(isConfirm){
+            if(isConfirm.value){
+                swal({
+                    title: "โปรดรอสักครู่...",
+                    html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
+                    showConfirmButton: false
+                });
+                $.ajax({
+                            url: '/random/{{ $event->event_id }}',
+                            method: 'post',
+                            data: JSON.stringify(handSortList),
+                            success: function(data){
+                                swal({
+                                    title: "สำเร็จ !",
+                                    text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
+                                }).then(function(){
+                                    window.location = '/event/{{ $event->event_id }}#/match';
+                                    location.reload();
+                                })
+                            },
+                            error: function() {
+                                swal('กรุณาใส่ข้อมูลให้ครบถ้วน');
+                            }
+                });
+            }  
         });
     });
 
@@ -663,7 +706,6 @@
             url: '/split_line/{{ $event->event_id }}/race/'+$('#hand_dropdown').val()+'/shuffle',
             method: 'get',
             success: function(data){
-                lineChanged = {};
                 swal({
                     title: "สำเร็จ !",
                     text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"

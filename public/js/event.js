@@ -3,7 +3,7 @@ var url = bg.attr('image-bg');
 
 $('head').append('<style>.cover2:before{background-image: url("'+url+'")');
 
-function search_match(race_id, list_line){
+function search_match(race_id){
     event_id = $('#event_id').val();
     $.ajax({
         url: '/get_match/'+ event_id+'/'+race_id,

@@ -82,6 +82,10 @@ a {
     padding: 0 20px;
 }
 
+.pad-side-10 {
+    padding: 0 10px;
+}
+
 .pad-vert {
     padding: 20px 0;
 }

@@ -844,6 +844,7 @@
             }
         });
     });
+
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>

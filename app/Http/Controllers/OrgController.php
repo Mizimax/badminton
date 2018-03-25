@@ -546,4 +546,41 @@ class OrgController extends Controller
         'count' => $handCount
       ], 200);
     }
+
+    public function excel($event_id) {
+      $event = Event::get_detail($event_id);
+      $raw_race = json_decode($event->event_race);
+      $list_race = Event::get_list_race_from_event($event_id, $raw_race);
+      $columns = \DB::select("SELECT column_name FROM `information_schema`.`columns` WHERE `table_schema`=DATABASE() AND `table_name`='team_member'");
+      $queryText = "";
+      foreach($columns as $column) {
+        if ($column !== end($columns))
+          $queryText .= "CONCAT('[',GROUP_CONCAT(CONCAT('\"',`" . $column->column_name . "`,'\"')), ']') AS ".$column->column_name." ,";
+        else
+          $queryText .= "CONCAT('[',GROUP_CONCAT(CONCAT('\"',`" . $column->column_name . "`,'\"')), ']') AS ".$column->column_name;
+      }
+      $members = Team::select('team.*','team_status_name', 'race_id','race_name','race_color', 'race_event_type',\DB::raw($queryText) )
+                ->where("team_event_id",$event_id)
+                ->where(function($query) use ($list_race){
+                    foreach($list_race as $race){
+                        $query->orWhere("team_race",$race['race_id']);
+                    }
+                })
+                ->join('team_member','team_id','=','team_member_team_id')
+                ->join('race_type','team_race','=','race_id')
+                ->join('team_status','team_status','=','team_status_id')
+                ->groupBy('team_id')
+                ->orderBy('team_payment',"DESC")
+                ->orderBy('team.team_status',"ASC")
+                ->get();
+      $filename = 'event_'. $event_id . '_member' . ".xls";
+      header('Content-type: text/csv');
+      header("Content-Disposition: attachment; filename=\"$filename\"");
+      echo "
+          <html xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:x=\"urn:schemas-microsoft-com:office:excel\" xmlns=\"http://www.w3.org/TR/REC-html40\">
+          <html>
+          <head><meta http-equiv=\"Content-type\" content=\"text/html;charset=utf-8\" /></head>
+      ";
+      return view('excel/member')->with('members', $members);
+    }
 }

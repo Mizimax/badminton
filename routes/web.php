@@ -59,6 +59,7 @@ Route::middleware('admin')->group(function () {
 });
 
 Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
+  Route::post('/event/{event_id}/member/excel', 'OrgController@excel')->name('export_excel');
   Route::get('/event/{event_id}/edit', 'OrgController@edit')->name('event_edit');
   Route::patch('/event/{event_id}/edit', 'OrgController@save')->name('event_edit');
   Route::delete('/event/{event_id}/member/{member_id}', 'OrgController@removeMember')->name('member_remove');

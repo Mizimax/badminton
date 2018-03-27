@@ -52,7 +52,7 @@
 <TD>{{ json_decode($data['team_member_gender'])[$i] === 'm' ? 'ชาย' : 'หญิง' }}</TD>
 <TD>{{ json_decode($data['team_member_age'])[$i] }}</TD>
 <TD>{{ json_decode($data['team_member_phone'])[$i] }}</TD>
-<TD>{{ json_decode($data['team_member_prize'])[$i] }}</TD>
+<TD>{{ isset(json_decode($data['team_member_prize'])[$i]) ? json_decode($data['team_member_prize'])[$i] : '-' }}</TD>
 
 @endfor
 <TD>ยอมรับ</TD>

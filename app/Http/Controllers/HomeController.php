@@ -32,7 +32,9 @@ class HomeController extends Controller
     public function index()
     {
         $sponsors = Sponsor::getImageAll();
-        $events = Event::get();
+        $events = Event::select(\DB::raw('event_start > NOW() AS event_started, event.*'))
+                        ->orderBy('event_started', 'desc')
+                        ->orderBy('event_start', 'asc')->get();       
         $today = new DateTime('NOW', new DateTimeZone('Asia/Bangkok'));
         foreach($events as $event){
             $event->event_description = json_decode($event->event_description);
@@ -44,8 +46,8 @@ class HomeController extends Controller
             $event->day_left = $dDiff->format('%a');
             $event->event_description->date = Helper::DateThaiNotDate($event->event_description->date);
         }
-        return view('home')
-                           ->with('sponsors',$sponsors)
+
+        return view('home')->with('sponsors',$sponsors)
                            ->with('events',$events->toArray());
     }
 }

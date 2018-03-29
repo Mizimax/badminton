@@ -32,9 +32,13 @@ class HomeController extends Controller
     public function index()
     {
         $sponsors = Sponsor::getImageAll();
-        $events = Event::select(\DB::raw('event_start > NOW() AS event_started, event.*'))
-                        ->orderBy('event_started', 'desc')
-                        ->orderBy('event_start', 'asc')->get();       
+        $event_not_start = Event::where('event_start', '<=', \DB::raw('NOW()'))
+                        ->orderBy('event_start', 'desc')  
+                        ->get();     
+        $event_started = Event::where('event_start', '>',\DB::raw('NOW()'))
+                        ->orderBy('event_start', 'asc')
+                        ->get();  
+        $events = collect($event_started)->merge($event_not_start);
         $today = new DateTime('NOW', new DateTimeZone('Asia/Bangkok'));
         foreach($events as $event){
             $event->event_description = json_decode($event->event_description);

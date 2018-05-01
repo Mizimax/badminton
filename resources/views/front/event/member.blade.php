@@ -70,7 +70,7 @@
     </thead>
     <tbody>
         @foreach($my_team as $key=>$data)
-        <tr style="background: #8ED5ED; color: white">
+        <tr class="pointer" style="background: #8ED5ED; color: white" >
             <td style="text-align:center; font-weight: bold">
                 @if($event->event_user_id === Auth::id() || isAdmin())
                 <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>
@@ -136,7 +136,7 @@
         </tr>
         @endforeach
         @foreach($members as $key=>$data)
-        <tr>
+        <tr class="pointer" onclick="desc({{ $data['team_id'] }})">
             <td style="text-align:center; font-weight: bold">
                 @if($event->event_user_id === Auth::id() || isAdmin())
                 <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>

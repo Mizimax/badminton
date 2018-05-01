@@ -288,6 +288,16 @@ class EventController extends Controller
         return redirect('event/'.$input['event_id'].'#/member')->with('message','ลงทะเบียนเรียบร้อย');
     }
 
+    public function getMember($event_id, $member_id) {
+        $team = Team::select('team.team_name', 'team.team_manager', 'race_type.race_name', 'team.team_manager_phone', 'team_member.*')
+            ->join('team_member', 'team.team_id', '=', 'team_member.team_member_team_id')
+            ->join('race_type', 'team.team_race', '=', 'race_type.race_id')
+            ->where('team_event_id', $event_id)
+            ->where('team_id', $member_id)->get();
+        return view('front/event/modal_desc')
+               ->with('teams', $team);
+    }
+
     public function get_math($event_id, $race_id)
     {
         

@@ -845,6 +845,17 @@
         });
     });
 
+    var desc = (function(id) {
+      $.ajax({
+            url: '/event/{{ $event->event_id }}/member/'+id,
+            method: 'get',
+            success: function(data){
+                $('body').append(data);
+                $('#event_modal_desc').modal();
+            }
+        });
+    })
+
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>

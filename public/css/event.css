@@ -945,3 +945,7 @@ td .input-dropdown {
     top: calc(100% + 10px);
     z-index: 2000;
 }
+
+#event_modal_desc .col-sm-10 {
+    padding-top: 7px;
+}

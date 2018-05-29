@@ -18,13 +18,13 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                                <img src="{{$sponsor['sponsor_image']}}" class="header">
+                                <img src="{{$sponsors[0]['sponsor_image']}}" class="header">
                                     <div class="carousel-caption">
                                     </div>
                             </div>
                         @else
                             <div class="item">
-                            <img src="{{$sponsor['sponsor_image']}}">
+                            <img src="{{$sponsors[0]['sponsor_image']}}">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
@@ -83,23 +83,20 @@
                 <button class="button is-success font-bold font-big"><i style="margin-right: 15px" class="fa fa-table" aria-hidden="true"></i> ปฏิทินการแข่งขัน</button>
             </div>
 
-            <div class="box-container">
+            <div class="box-container box-margin">
                 @foreach ($events as $event)
                 <div class="box">
-                    <div class="row padding" align="center">
-                        <div class="col-sm-6 col-xs-12 padding-side" style="vertical-align: middle;">
-                        <img src="{{$event['event_poster']}}" class="img-responsive img-center" style="width: 100%;max-height:270px;">
-                        </div>
-                        <div class="col-sm-6 col-xs-12 remove-padding">
+                    <div class="row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
+                    <div class="absolute box-overlay"></div>    
+
+                        <div class="remove-padding box-content">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="margin-top: 15px">
-                                    <h2 class="remove-padding" style="color: black; font-weight: 900; font-size: 26px">{{$event['event_title']}}</h2>
-                                    <span class="font-small">ผู้จัด: </span><span class="font-small" style="text-decoration: underline; color:black">{{$event['event_description']->by}}</span>
+                                    <h2 class="remove-padding white" style="color: white; font-weight: 900; font-size: 26px" >{{$event['event_title']}} <span class="font-small tag">อีก {{$event['day_left']}} วัน</span></h2>
+                                    <span class="font-med" style="color: #aaa">สนามแบด: <a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
                                 </div>
                             </div>
-                            
-                            <hr>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-sm-12 remove-padding">
                                     <span class="font-med" style="color:#f11010;font-weight: bold">{{$event['event_description']->date}}</span>
                                     @if($event['day_left_text'] > 0)
@@ -107,9 +104,9 @@
                                     @else
                                         <span class='label label-default'>รายการเสร็จสิ้น</span>
                                     @endif<br>
-                                    <span class="font-med">สนามแบด: <a target="_blank" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span><br>
+                                    
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="padding-bottom:10px;">
                                 @foreach($event['event_race'] as $race)
@@ -120,16 +117,21 @@
                                     @endif
                                     {{$race['race_name']}}</span>
                                 @endforeach
+                                
                                 </div>
+                                
                             </div>
-                            <div class="row">
-                                <div class="col-sm-11 text-right  remove-padding notop">
-                                    <a type="button" href="/event/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom">รายละเอียด</a>
-                                    @if( $event['event_status'] == 1)
-                                    <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim margin-bottom" style="width: 120px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
-                                    @else
-                                    <button type="button" class="btn btn-brown btn-slim" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
-                                    @endif
+                            <div class="row" id="detail-btn">
+                              <div class="col-sm-6"><span class="font-small" style="color:#aaa">ผู้จัด: </span><span class="font-small" style="text-decoration: underline; color:#ccc">{{$event['event_description']->by}}</span><br>
+                              <span class="font-bold" style="color:orange; font-size: 13px">{{$event['event_description']->date}}</span>
+                            </div>
+                              <div class="col-sm-6" align="right">
+                                  <a type="button" href="/event/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom" style="width: 100px" >รายละเอียด</a>
+                                  @if( $event['event_status'] == 1)
+                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary margin-bottom" style="width: 100px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
+                                  @else
+                                  <button type="button" class="btn btn-brown btn-slim" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
+                                  @endif
                                 </div>
                             </div>
                         </div>

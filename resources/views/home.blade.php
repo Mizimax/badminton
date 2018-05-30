@@ -125,12 +125,12 @@
                               <div class="col-sm-6"><span class="font-small" style="color:#aaa">ผู้จัด: </span><span class="font-small" style="text-decoration: underline; color:#ccc">{{$event['event_description']->by}}</span><br>
                               <span class="font-bold" style="color:orange; font-size: 13px">{{$event['event_description']->date}}</span>
                             </div>
-                              <div class="col-sm-6" align="right">
+                              <div class="col-sm-6 pull-down" align="right">
                                   <a type="button" href="/event/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom" style="width: 100px" >รายละเอียด</a>
                                   @if( $event['event_status'] == 1)
                                   <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary margin-bottom" style="width: 100px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
                                   @else
-                                  <button type="button" class="btn btn-brown btn-slim" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
+                                  <button type="button" class="btn btn-brown btn-slim margin-bottom" style="width:100px" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
                                   @endif
                                 </div>
                             </div>

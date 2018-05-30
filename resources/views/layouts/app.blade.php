@@ -20,7 +20,7 @@
     <div id="app">
         <div class="menu-background"></div>
         <div class="menu-content">
-            <div class="menu-white org" style="position: relative;">
+            <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
                 </div>

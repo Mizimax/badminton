@@ -54,8 +54,10 @@
       </div>
   </div>
 </div>
-<div class="upload">
-    <div class="upload-box" style="background-image: url({{$org_id_card}})">
+<div class="upload row" align="center">
+    <div class="">
+      บัตรประจำตัวประชาชน
+    <div class="upload-box" style="background-image: url({{$org_id_card ? $org_id_card: '/images/org/1.jpg'}})">
       <div class="hider">
         <input type="file" id="org_id_card" name="org_id_card" accept="image/*">
       </div>
@@ -69,7 +71,10 @@
         </div>
       </div>
     </div>
-    <div class="upload-box" style="background-image: url({{$org_house_reg}})">
+    </div>
+    <div class="">
+      สำเนาทะเบียนบ้าน
+    <div class="upload-box" style="background-image: url({{$org_house_reg? $org_house_reg: '/images/org/2.jpg'}})">
       <div class="hider">
         <input type="file" id="org_house_reg" name="org_house_reg" accept="image/*">
       </div>
@@ -83,7 +88,10 @@
         </div>
       </div>
     </div>
-    <div class="upload-box" style="background-image: url({{$org_bank_account}})">
+</div>
+<div class="">
+  บัญชีธนาคาร
+    <div class="upload-box" style="background-image: url({{$org_bank_account? $org_bank_account: '/images/org/3.jpg'}})">
       <div class="hider">
         <input type="file" id="org_bank_account" name="org_bank_account" accept="image/*">
       </div>
@@ -97,6 +105,7 @@
         </div>
       </div>
     </div>
+</div>
 </div>
 <div align="center">
   <button type="submit" class="btn btn-success btn-lg">ถัดไป</button>

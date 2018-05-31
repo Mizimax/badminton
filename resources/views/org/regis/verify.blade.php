@@ -117,7 +117,7 @@
 </div>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="/js/org_reg.js"></script>
+<script type="text/javascript" src="/js/org_reg.js?v=2"></script>
   @if(count($errors) != 0)
 
   <script>

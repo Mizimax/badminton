@@ -1,6 +1,6 @@
 
 @section('css')
-  <link rel="stylesheet" href="/css/org_regis.css">
+  <link rel="stylesheet" href="/css/org_regis.css?v=2">
 @endsection
 
 <div class="header">

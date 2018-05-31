@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/coin_shop', 'CoinShopController@index');
+Route::get('/profile', 'ProfileController@index');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');

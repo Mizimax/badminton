@@ -70,7 +70,7 @@
                           <span class="glyphicon glyphicon-map-marker" style="color:#ED1C24; font-size: 24px"></span>
                         </div>
                     </div>
-                    <label for="map-input">สถาณที่จัดแข่ง</label>
+                    <label for="map-input">สถานที่จัดแข่ง</label>
                 </div>
                 <div id="map" style="height:0"></div>
                 <div class="form-group max">
@@ -124,7 +124,7 @@
                     <label for="event_year">วันที่จัดแข่ง</label>
                 </div>
                 <div class="form-group max">
-                    
+
                     <input required type="text" class="form-control mar-side" id="expenses_detail" name="expenses_detail" style="width:80px;">
                     <label for="expenses_detail" style="float:left; margin-top:7px">ค่าสมัครต่อคู่</label>
                     <label for="expenses_detail" style="display:inline-block">บาท</label>
@@ -196,10 +196,10 @@
                 <div id="account">
                     <div class="account">
                         <div class="form-group eiei">
-                            
+
                             <input required type="text" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
-                            
+
                         </div>
                         <br>
                         <div class="form-group eiei">
@@ -233,7 +233,7 @@
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">
                     <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
-                </div>              
+                </div>
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
                     <input required type="text" class="form-control" id="organizer" name="organizer">
@@ -305,7 +305,7 @@
 @endsection
 @section('scripts')
 @if(count($errors) != 0)
-    
+
     <script>
         var errors = $('.errors').html();
         var errorData = JSON.parse(errors);
@@ -337,7 +337,7 @@
 
             e.preventDefault();
             saveEvent();
-            
+
 
         });
     });
@@ -416,15 +416,15 @@
     var addAccount = (function() {
         var text = `
                 <div class="account" style="position:relative; margin-top:15px">
-                    
+
                     <div class="absolute" style="right:-40px;top:50%; transform:translateY(-50%)">
                     <span class="glyphicon glyphicon-remove font-big" onclick="removeAccount(this)" style="margin:9px; color:red; cursor:pointer"></span>
                     </div>
                     <div class="form-group eiei">
-                        
+
                         <input required type="text" class="form-control" name="name[]">
                         <label for="name">ชื่อบัญชี</label>
-                        
+
                     </div>
                     <br>
                     <div class="form-group eiei">
@@ -443,7 +443,7 @@
                     </div>
                     <br>
                 </div>
-                
+
         `
         accountCount++;
         $('#account').append(text);
@@ -466,14 +466,14 @@
         if(type === 'normal'){
             normal.forEach(function (data) {
                 dropdownText += `
-                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>
                 `;
             })
         }
         else{
             special.forEach(function (data) {
                 dropdownText += `
-                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>
                 `;
             })
         }
@@ -483,13 +483,13 @@
     var saveEvent = (function() {
         var button = $('#submit');
         button.text('Loading...');
-        
+
         $.ajax({
             type: 'POST',
             url: '/event/create',
-            data: $("form").serialize(), 
+            data: $("form").serialize(),
 
-            success: function(res) { 
+            success: function(res) {
                 var swalContent = {
                     title: 'สร้างรายการสำเร็จ',
                     html: res.errors,
@@ -515,4 +515,13 @@
 
     });
 </script>
+<script type='text/javascript'>
+window.__lo_site_id = 114394;
+
+	(function() {
+		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+	  })();
+	</script>
 @endsection

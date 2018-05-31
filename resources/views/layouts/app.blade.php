@@ -18,7 +18,71 @@
 </head>
 <body>
     <div id="app">
-        <div class="menu-background"></div>
+      <div class="kaun-container">
+        <div class="kuan shadow" onclick="kuanToggle(this)">
+          <div class="absolute middle">
+            <i class="glyphicon glyphicon-play bottom-icon"></i>
+          </div>
+        </div>
+        <div class="kuan-list">
+          <div class="flex scroll-sm" style="height: 100%">
+            <div class="kuan-title" align="center">
+              ก๊วน<br>วัน<br>จันทร์
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            <div class="kuan-img" align="left">
+              <div class="name">
+                SINGHA HH<br>
+                <span class="font-small">19.00 - 24.00</span><br>
+                <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+        <div class="menu-bacsssskground"></div>
         <div class="menu-content">
             <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
                 <div class="org-icon img-circle">
@@ -204,6 +268,25 @@
             }
         </script>
         @endif
+    </div>
+    <div class="footer">
+      <div class="container" style="padding: 40px 0">
+        <div class="col-sm-6">
+          <div class="flex">
+            <div><img src="" alt=""></div>
+            <div><img src="" alt=""></div>
+            <div><img src="" alt=""></div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="contact-border font-small" style="margin-left: 10px; font-weight: bold; color: #ddd">ติดต่อ Wezync</div>
+          <div class="flex flex-wrap font-small" style="margin-top: 10px; font-weight: 200; color: #ccc">
+            <div class="pad-side-10">Tel: 086-359-2131</div>
+            <div class="pad-side-10">Facebook: Wezync</div>
+            <div class="pad-side-10">Line: @Wezync</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Scripts -->

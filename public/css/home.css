@@ -211,6 +211,9 @@ hr{
     .margin-bottom {
         margin-bottom: 5px;
     }
+    .btn-detail.margin-bottom {
+      margin-bottom: 0px;
+    }
     .notop {
         margin-top: 0;
         margin-bottom: 0;

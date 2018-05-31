@@ -18,13 +18,13 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                                <img src="{{$sponsors[0]['sponsor_image']}}" class="header">
+                                <img src="{{$sponsor['sponsor_image']}}" class="header">
                                     <div class="carousel-caption">
                                     </div>
                             </div>
                         @else
                             <div class="item">
-                            <img src="{{$sponsors[0]['sponsor_image']}}">
+                            <img src="{{$sponsor['sponsor_image']}}">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
@@ -34,8 +34,7 @@
             </div>
     </div>
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10 remove-padding" style="margin: 0 auto;">
+        <div class="col-sm-12 remove-padding" style="margin: 0 auto;">
 
             <!-- pc -->
             <div id="filter" class="items font-med font-bold" align="center">
@@ -108,7 +107,7 @@
                                 </div>
                             </div> -->
                             <div class="row">
-                                <div class="col-sm-12 remove-padding" style="padding-bottom:10px;">
+                                <div class="col-sm-12 remove-padding">
                                 @foreach($event['event_race'] as $race)
                                     @if($race->can_register > 0 && $race->status == 0)
                                     <span class="badge badge-white">
@@ -126,11 +125,11 @@
                               <span class="font-bold" style="color:orange; font-size: 13px">{{$event['event_description']->date}}</span>
                             </div>
                               <div class="col-sm-6 pull-down" align="right">
-                                  <a type="button" href="/event/{{$event['event_id']}}" class="btn btn-white-blue btn-slim margin-bottom" style="width: 100px" >รายละเอียด</a>
+                                  <a type="button" href="/event/{{$event['event_id']}}" class="btn-detail" style="width: 100px" >รายละเอียด</a>
                                   @if( $event['event_status'] == 1)
-                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary margin-bottom" style="width: 100px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
+                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
                                   @else
-                                  <button type="button" class="btn btn-brown btn-slim margin-bottom" style="width:100px" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
+                                  <button type="button" class="btn btn-brown btn-slim" style="width:100px" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
                                   @endif
                                 </div>
                             </div>
@@ -141,9 +140,6 @@
             </div>
         </div>
         <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-    <div class="col-sm-12" style="height:10px"> </div>
     </div>
     <div id="modal-home">
     <div class="modal fade" id="register_event_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

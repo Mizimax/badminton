@@ -52,6 +52,10 @@ function changeMemberNo(ele){
   }
 }
 
+function kuanToggle(ele){
+  $(ele).toggleClass('active');
+  $(ele).next().animate({width:'toggle'},200);;
+}
 
 $(document).ready(function(){
   var lastOpen;

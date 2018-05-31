@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="/css/home.css" rel="stylesheet">
+<link href="/css/home.css?v=1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -148,7 +148,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="/js/home.js"></script>
+    <script src="/js/home.js?v=1"></script>
     <script src="/js/datepicker.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {

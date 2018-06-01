@@ -908,6 +908,7 @@ fieldset[disabled] .btn-red:hover {
 }
 .box {
   height: 300px;
+  z-index: 2;
 }
 
 .box-image {
@@ -977,7 +978,7 @@ fieldset[disabled] .btn-red:hover {
   left: 0;
   width: 100%;
   display: flex;
-  z-index: 999;
+  z-index: 1;
 }
 
 .kuan {
@@ -986,6 +987,7 @@ fieldset[disabled] .btn-red:hover {
   background: #f4f926;
   cursor: pointer;
   position: relative;
+  z-index: 1;
 }
 
 .kuan-list {

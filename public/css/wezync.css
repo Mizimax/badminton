@@ -954,8 +954,8 @@ fieldset[disabled] .btn-red:hover {
   display: inline-block;
 }
 
-.carousel-indicators {
-  right: 20px;
+.carousel.max .carousel-indicators {
+  right: 20px !important;
   left: auto;
   bottom: auto;
   width: auto;
@@ -963,11 +963,11 @@ fieldset[disabled] .btn-red:hover {
   transform: translateY(-50%);
 }
 
-.carousel-indicators li {
+.carousel.max .carousel-indicators li {
   display: block;
   margin: 10px;
 }
-.carousel-indicators li.active {
+.carousel.max .carousel-indicators li.active {
   margin: 10px 9px !important;
 }
 

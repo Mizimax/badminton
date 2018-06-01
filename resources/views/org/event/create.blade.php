@@ -70,7 +70,7 @@
                           <span class="glyphicon glyphicon-map-marker" style="color:#ED1C24; font-size: 24px"></span>
                         </div>
                     </div>
-                    <label for="map-input">สถาณที่จัดแข่ง</label>
+                    <label for="map-input">สถานที่จัดแข่ง</label>
                 </div>
                 <div id="map" style="height:0"></div>
                 <div class="form-group max">

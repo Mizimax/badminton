@@ -4,7 +4,7 @@
 <link href="/css/home.css?v=1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div id="carousel-example-generic" class="carousel slide max" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
@@ -18,13 +18,23 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                                <img src="{{$sponsor['sponsor_image']}}" class="header">
+                                <div class="bg-header">
+                                <img src="{{$sponsor['sponsor_image']}}" style="width:100%; position:absolute;z-index:0" class="img-header">
+                                </div>
+                                <div class="container" style="padding:0; margin-top:50px">
+                                  <img src="{{$sponsor['sponsor_image']}}" style="width:100%" class="img-header">
+                                  </div>
                                     <div class="carousel-caption">
                                     </div>
                             </div>
                         @else
                             <div class="item">
-                            <img src="{{$sponsor['sponsor_image']}}">
+                            <div class="bg-header" style="background-image: url({{$sponsor['sponsor_image']}})">
+                                  
+                                </div>
+                                <div class="container" style="padding:0; padding-top:50px;background:transparent;">
+                                  <img src="{{$sponsor['sponsor_image']}}" style="width:100%" class="img-header">
+                                  </div>
                                 <div class="carousel-caption">
                                 </div>
                             </div>

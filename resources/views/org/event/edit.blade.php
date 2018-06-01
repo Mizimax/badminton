@@ -215,7 +215,7 @@
                     @endforeach
                     <label for="reward_1">ประเภทการแข่งขัน</label>
                 </div>
-                
+
                 <button type="button" class="btn btn-success btn-sm" onclick="addHand()">เพิ่มประเภท +</button>
                 <h3 class="font-bold grey-med">การโอนเงิน</h3>
                 <div id="account">
@@ -227,10 +227,10 @@
                         </div>
                         @endif
                         <div class="form-group eiei">
-                            
+
                             <input required type="text" value="{{ $bookbank->name }}" class="form-control" name="name[]">
                             <label for="name">ชื่อบัญชี</label>
-                            
+
                         </div>
                         <br>
                         <div class="form-group eiei">
@@ -265,8 +265,8 @@
                 <div class="form-group eiei za">
                     <input type="text" value="{{ isset($event_description->accessory[2]) ? $event_description->accessory[2] : '' }}" class="form-control" id="sonbad_price" name="sonbad_price">
                     <label class="font-big" for="sonbad_price">ราคาลูกแบด</label>
-                </div>    
-                @if($event->event_id >= 3)          
+                </div>
+                @if($event->event_id >= 3)
                 @php
                     $screening_person = explode(' ติดต่อ : ',$event_description->screening_person[0]);
                 @endphp
@@ -292,7 +292,7 @@
                     </div>
                     <label class="font-big" for="pic-hand">รูปผู้ประเมินมือ</label>
                 </div>
-                
+
                 @else
                 <p class="font-bold font-big" style="margin-bottom:10px;margin-top:15px">ผู้ประเมินมือ</p>
                 <div class="form-group max">
@@ -303,7 +303,7 @@
                     <input required type="text" value="{{ $event_description->screening_person[1] }}" class="form-control" id="contact" name="contact">
                     <label class="font-big" for="contact">ช่องทางการติดต่อ (เบอร์โทรศัพท์ หรือ Social Network)</label>
                 </div>
-                
+
                 <div class="form-group max">
                     <div class="slide-add" style="margin-top:7px;height:70px">
                         <div class="hide">
@@ -367,7 +367,7 @@
 @endsection
 @section('scripts')
 @if(count($errors) != 0)
-    
+
     <script>
         var errors = $('.errors').html();
         var errorData = JSON.parse(errors);
@@ -405,7 +405,7 @@
 
             e.preventDefault();
             saveEvent();
-            
+
 
         });
     });
@@ -415,17 +415,17 @@
         var normal = hand.slice(0, 14);
         var special = hand.slice(14, hand.length);
         if(type === 'normal'){
-            
+
             normal.forEach(function (data) {
                 dropdownText += `
-                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>
                 `;
             })
         }
         else{
             special.forEach(function (data) {
                 dropdownText += `
-                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>                        
+                    <div class="item-dropdown" value="${data['race_id']}" onclick="selectDropdown(this)"><div class="item">${data['race_name']}</div></div>
                 `;
             })
         }
@@ -506,15 +506,15 @@
     var addAccount = (function() {
         var text = `
                 <div class="account" style="position:relative; margin-top:15px">
-                    
+
                     <div class="absolute" style="right:-40px;top:50%; transform:translateY(-50%)">
                     <span class="glyphicon glyphicon-remove font-big" onclick="removeAccount(this)" style="margin:9px; color:red; cursor:pointer"></span>
                     </div>
                     <div class="form-group eiei">
-                        
+
                         <input required type="text" class="form-control" name="name[]">
                         <label for="name">ชื่อบัญชี</label>
-                        
+
                     </div>
                     <br>
                     <div class="form-group eiei">
@@ -533,7 +533,7 @@
                     </div>
                     <br>
                 </div>
-                
+
         `
         accountCount++;
         $('#account').append(text);
@@ -550,13 +550,13 @@
     var saveEvent = (function() {
         var button = $('#submit');
         button.text('Loading...');
-        
+
         $.ajax({
             type: 'PATCH',
             url: window.location.pathname,
-            data: $("form").serialize(), 
+            data: $("form").serialize(),
 
-            success: function(res) { 
+            success: function(res) {
                 var swalContent = {
                     title: 'แก้ไขรายการสำเร็จ',
                     html: res.errors,
@@ -582,4 +582,13 @@
 
     });
 </script>
+<script type='text/javascript'>
+window.__lo_site_id = 114394;
+
+	(function() {
+		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+	  })();
+	</script>
 @endsection

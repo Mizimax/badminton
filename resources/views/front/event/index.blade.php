@@ -45,15 +45,15 @@
         </div>
         <div class="row">
             <div class="col-md-12" align="center">
-            
+
             <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_event_modal">สมัครแข่งขัน</button>
-            
-                
+
+
             </div>
         </div>
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
-        </div>    
+        </div>
         <div class="row">
             <div align="center" class="flex-container">
                 <a href="#/detail" id="detail_tab2" >
@@ -108,7 +108,7 @@
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
                     <p class="font-med color-black font-bold">อันดับมือ</p>
-        
+
                     <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px">
                         <span class="display" style="text-align: center">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
                     </div>
@@ -118,7 +118,7 @@
                         <div class="item-dropdown" onclick="searchTable(this)"><div class="item">{{$race->race_name}}</div></div>
                         @endforeach
                     </div>
-                
+
                 </div>
 
             </div>
@@ -152,7 +152,7 @@
             @include('front/event/member')
         </div>
         <div role="tabpanel" class="tab-pane" id="match">
-            
+
             @include('front/event/match')
         </div>
         <div role="tabpanel" class="tab-pane relative" id="picture" style="min-height: 200px;">
@@ -275,7 +275,7 @@
                 var array = Array.from(boxes);
                 for (i=0,j=array.length; i<j; i+=chunk) {
 
-                    
+
                     for(x=i; x<i+chunk;x++) {
                         if(!temp[count])
                             temp[count] = []
@@ -283,7 +283,7 @@
                     }
                     count++;
                 }
-                
+
                 // boxes.forEach(function(ele) {
                 //     race_id = $(ele).children(':first').attr('race-id');
                 //     team_id = $(ele).children(':first').attr('team-id');
@@ -350,7 +350,7 @@
             @endif
         }
     });
-	
+
     jQuery('img.svg').each(function(){
         var $img = jQuery(this);
         var imgID = $img.attr('id');
@@ -409,7 +409,7 @@
             $(ele).prev().slideDown('fast');
         }
         $(ele).toggleClass('active');
-        
+
     });
 
     var remove = (function (ele, member) {
@@ -434,7 +434,7 @@
     });
 
     var race = (function (ele, member_id) {
-        
+
         var hasDropdown = $(ele).next().length == 0;
         $('.input-dropdown.show').remove();
         if(hasDropdown) {
@@ -571,13 +571,13 @@
             $('.item-close').bind( "click", function() {
                 $('.alert-close').fadeIn();
                 $(this).parent().remove();
-                
+
             });
             $('.item-cancel').bind( "click", function() {
                 $('.alert.cancel').fadeIn();
                 $(this).parent().remove();
                 $('.cancel-hand').text(race_name);
-                
+
             });
             $('.close-btn').bind( "click", function() {
                 $.ajax({
@@ -596,7 +596,7 @@
                         else{
                             $(ele).children().eq(1).html('<b>ปิดรับสมัครแล้ว</b>');
                         }
-                            
+
                     }
                 });
                 $('.alert-close').fadeOut();
@@ -611,13 +611,13 @@
                         'race_id': race_id
                     }),
                     success: function(data){
-                        
+
                         $(ele).parent().remove();
-                        
+
                         var filterOut = $('#table-member tr').filter(function(index, element){
                             return $(element).children().eq(3).children(':first').text().trim() === race_name;
                         });
-                                    
+
                         tb_member
                             .rows(filterOut)
                             .remove()
@@ -692,7 +692,7 @@
                                 swal('กรุณาใส่ข้อมูลให้ครบถ้วน');
                             }
                 });
-            }  
+            }
         });
     });
 
@@ -769,7 +769,7 @@
                 });
             }
         }).catch(swal.noop)
-        
+
     });
 
     var editTime = (function(match_no, ele) {
@@ -807,7 +807,7 @@
                 });
             }
         }).catch(swal.noop)
-        
+
     });
 
     var editScore = (function(match_no) {
@@ -839,7 +839,7 @@
                     title: "แก้ไขคะแนนแมทซ์ที่ "+ match_no,
                     text: 'แก้ไขเรียบร้อยแล้ว'
                 });
-                
+
                 search_match($('#hand_dropdown').val());
             }
         });
@@ -860,4 +860,14 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
 <script src="/js/event.js?v=3"></script>
+<script type='text/javascript'>
+window.__lo_site_id = 114394;
+
+	(function() {
+		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+	  })();
+	</script>
+
 @endsection

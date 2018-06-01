@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12 description">
                 <span class="glyphicon glyphicon-map-marker" style="color:#ee5b36"></span>
-                <a target="_blank" href="{{$event_description->location->position}}"> 
+                <a target="_blank" href="{{$event_description->location->position}}">
                     <strong>{{$event_description->location->name}}</strong>
                 </a>
             </div>
@@ -76,18 +76,18 @@
                         <strong>
                             {{$event_description->bookbank_organizers->bank}}<br>
                         </strong>
-                    </div>         
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 description">
-                <span class="square-head">วัตถุประสงค์</span><br>    
+                <span class="square-head">วัตถุประสงค์</span><br>
                 @foreach($event_description->objective as $objective)
                 <p class="detail-content">
-                    
+
                     {{$objective}}<br>
-                    
+
                 </p>
                 @endforeach
                 <br>
@@ -96,12 +96,12 @@
 
         <div class="row">
             <div class="col-md-12 description">
-                <span class="square-head">{{$event_description->event_type->type}}</span><br>    
+                <span class="square-head">{{$event_description->event_type->type}}</span><br>
                 @foreach($event_description->event_type->detail as $detail)
                 <p class="detail-content">
-                    
+
                     {{$detail}}<br>
-                    
+
                 </p>
                 @endforeach
                 <br>
@@ -110,7 +110,7 @@
 
         <div class="row">
             <div class="col-md-12 description">
-                <span class="square-head">ระยะเวลาในการสมัคร</span><br>    
+                <span class="square-head">ระยะเวลาในการสมัคร</span><br>
                 @foreach($event_description->detail as $detail)
                 <p class="detail-content">
                     {{$detail}}<br>
@@ -208,4 +208,13 @@
                 <br>
             </div>
         </div>
-</div>    
+</div>
+<script type='text/javascript'>
+window.__lo_site_id = 114394;
+
+	(function() {
+		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+	  })();
+	</script>

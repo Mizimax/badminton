@@ -96,7 +96,7 @@
                 @foreach ($events as $event)
                 <div class="box">
                     <div class="row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
-                    <div class="absolute box-overlay"></div>    
+                    <div class="absolute box-overlay"></div>
 
                         <div class="remove-padding box-content">
                             <div class="row">
@@ -113,7 +113,7 @@
                                     @else
                                         <span class='label label-default'>รายการเสร็จสิ้น</span>
                                     @endif<br>
-                                    
+
                                 </div>
                             </div> -->
                             <div class="row">
@@ -126,9 +126,9 @@
                                     @endif
                                     {{$race['race_name']}}</span>
                                 @endforeach
-                                
+
                                 </div>
-                                
+
                             </div>
                             <div class="row" id="detail-btn">
                               <div class="col-sm-6"><span class="font-small" style="color:#aaa">ผู้จัด: </span><span class="font-small" style="text-decoration: underline; color:#ccc">{{$event['event_description']->by}}</span><br>
@@ -167,4 +167,13 @@
             });
         });
     </script>
+    <script type='text/javascript'>
+    window.__lo_site_id = 114394;
+
+    	(function() {
+    		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+    		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+    		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+    	  })();
+    	</script>
 @endsection

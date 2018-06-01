@@ -36,6 +36,7 @@
             </div>
             <div class="input" align="center"><span class="display">{{$org_create_time}}</span> <span class="icon dropdown">▼</span></div>
             <div class="input-dropdown home shadow-black" style="top: 45px">
+                <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('0')"><div class="item">0</div></div>
                 <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('1')"><div class="item">1</div></div>
                 <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('2')"><div class="item">2</div></div>
                 <div class="item-dropdown" onclick="selectDropdown(this);$('#org_create_time').val('3')"><div class="item">3</div></div>

@@ -311,10 +311,12 @@
         var menuCheck = (function() {
             if(!menuToggled){
                 document.body.style.overflow = 'hidden';
+                document.body.style.marginRight = '10px';
                 menuToggled = true;
             }
             else {
                 document.body.style.overflow = 'scroll';
+                document.body.style.marginRight = '0';
                 menuToggled = false;
             }
         })

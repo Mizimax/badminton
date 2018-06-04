@@ -197,6 +197,7 @@ class OrgController extends Controller
         $fileName = $splitName[count($splitName)-1];
         $path = base_path() . '/public/images/user/' . $fileName;
         try{
+          dd($path);
           unlink($path);
         }
         catch (\Exception $e) {
@@ -207,7 +208,6 @@ class OrgController extends Controller
       try {
         $imageName = time() . '.' . 
           $request->file('image')->getClientOriginalExtension();
-        dd($base_path() . '/public/images/user/');
         $request->file('image')->move(
             base_path() . '/public/images/user/', $imageName
         );

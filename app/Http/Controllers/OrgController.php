@@ -200,7 +200,7 @@ class OrgController extends Controller
           unlink($path);
         }
         catch (\Exception $e) {
-          
+          return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);
         }
       }
 
@@ -209,7 +209,7 @@ class OrgController extends Controller
           $request->file('image')->getClientOriginalExtension();
 
         $request->file('image')->move(
-            base_path() . '/public/images/user/', $imageName
+            base_path() . ' /public/images/user/', $imageName
         );
       }catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);

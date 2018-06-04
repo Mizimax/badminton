@@ -200,7 +200,6 @@ class OrgController extends Controller
           unlink($path);
         }
         catch (\Exception $e) {
-          return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);
         }
       }
 

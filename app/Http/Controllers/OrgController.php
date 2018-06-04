@@ -195,7 +195,7 @@ class OrgController extends Controller
       if($slide['upload_path']) {
         $splitName = explode("/", $slide['upload_path']);
         $fileName = $splitName[count($splitName)-1];
-        $path = base_path() . '/images/user/' . $fileName;
+        $path = base_path() . '/public/images/user/' . $fileName;
         try{
           unlink($path);
         }
@@ -207,9 +207,9 @@ class OrgController extends Controller
       try {
         $imageName = time() . '.' . 
           $request->file('image')->getClientOriginalExtension();
-        dd(base_path() . ' /images/user/');
+
         $request->file('image')->move(
-            base_path() . ' /images/user/', $imageName
+            base_path() . '/public/images/user/', $imageName
         );
       }catch (\Exception $e) {
         return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);

@@ -207,7 +207,7 @@ class OrgController extends Controller
       try {
         $imageName = time() . '.' . 
           $request->file('image')->getClientOriginalExtension();
-
+        dd(base_path() . ' /images/user/');
         $request->file('image')->move(
             base_path() . ' /images/user/', $imageName
         );

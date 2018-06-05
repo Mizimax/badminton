@@ -112,12 +112,10 @@
                         <div class="hide">
                             <input type="text" id="event_year" name="event_year">
                         </div>
-                            <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">ปี</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2563</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2564</div></div>
+
                             </div>
                         </div>
                     </div>

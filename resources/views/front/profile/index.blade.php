@@ -35,7 +35,7 @@
   </div>
 </div>
 <span>Ranking:</span><span>C+</span><br>
-
+<img src="{{}" class="img-circle" height="57px">
 
 
       </div>

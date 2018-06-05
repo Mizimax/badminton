@@ -17,7 +17,7 @@ Route::get('/profile', 'ProfileController@index');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
-
+Route::get('/sequence', 'SequenceController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('OrgAndAdmin')->group(function () {
@@ -84,6 +84,7 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');
   Route::get('/run_set_knockout/{event_id}', 'SplitLineController@run_set_knockout')->name('run_match_knockout');
   Route::post('/edit_score/{event_id}', 'MatchController@edit_score_id')->name('edit_score');
+
 });
 
 Route::get('/show_court/{event_id}', 'TVController@show_court')->name('show_court');

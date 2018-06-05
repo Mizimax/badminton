@@ -104,6 +104,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
             <hr style="margin: 10px 0">
+        @if($event->member_status === 0 || ($event->event_user_id === Auth::id() || isAdmin()))
         <div class="row" style="padding: 10px 20px">
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
@@ -149,6 +150,7 @@
             @endforeach
             </div>
         </div>
+        @endif
             @include('front/event/member')
         </div>
         <div role="tabpanel" class="tab-pane" id="match">

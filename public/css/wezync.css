@@ -908,6 +908,7 @@ fieldset[disabled] .btn-red:hover {
 }
 .box {
   height: 300px;
+  z-index: 2;
 }
 
 .box-image {
@@ -954,7 +955,7 @@ fieldset[disabled] .btn-red:hover {
   display: inline-block;
 }
 
-.carousel-indicators {
+.carousel.max .carousel-indicators {
   right: 20px;
   left: auto;
   bottom: auto;
@@ -963,11 +964,11 @@ fieldset[disabled] .btn-red:hover {
   transform: translateY(-50%);
 }
 
-.carousel-indicators li {
+.carousel.max .carousel-indicators li {
   display: block;
   margin: 10px;
 }
-.carousel-indicators li.active {
+.carousel.max .carousel-indicators li.active {
   margin: 10px 9px !important;
 }
 
@@ -977,7 +978,7 @@ fieldset[disabled] .btn-red:hover {
   left: 0;
   width: 100%;
   display: flex;
-  z-index: 999;
+  z-index: 1;
 }
 
 .kuan {
@@ -986,6 +987,7 @@ fieldset[disabled] .btn-red:hover {
   background: #f4f926;
   cursor: pointer;
   position: relative;
+  z-index: 1;
 }
 
 .kuan-list {

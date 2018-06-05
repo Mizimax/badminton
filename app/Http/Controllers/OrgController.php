@@ -200,20 +200,18 @@ class OrgController extends Controller
           unlink($path);
         }
         catch (\Exception $e) {
-          
         }
       }
 
-      try {
+      // try {
         $imageName = time() . '.' . 
           $request->file('image')->getClientOriginalExtension();
-
         $request->file('image')->move(
             base_path() . '/public/images/user/', $imageName
         );
-      }catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);
-      }
+      // }catch (\Exception $e) {
+      //   return response()->json(['status' => 'error', 'message' => 'Upload failed.', 'error' => $e], 400);
+      // }
 
       $url = url('/') . '/images/user/' . $imageName;
       $data['upload_path'] = $url;

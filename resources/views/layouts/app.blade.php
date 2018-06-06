@@ -22,6 +22,7 @@
         <div class="kuan shadow" onclick="kuanToggle(this)">
           <div class="absolute middle">
             <i class="glyphicon glyphicon-play bottom-icon"></i>
+            
           </div>
         </div>
         <div class="kuan-list">
@@ -82,8 +83,64 @@
           </div>
         </div>
       </div>
-        
+      <div class="menu-background"></div>
+        <div class="menu-content">
+            <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
+                <div class="org-icon img-circle">
+                    <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="font-bold font-big">หน้าแรก</span>
+            </div>
+            <div class="menu-white coin" style="position: relative;" onclick="window.location='/coin_shop'">
+                <div class="org-icon coin-icon img-circle">
+                    <img src="/images/cart.png" class="absolute middle" width="30">
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
+            </div>
+            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ (isOrganizer() || isAdmin() ) ? '/event/create' : '/org/register'}}'">
+                <div class="org-icon img-circle">
+                    <i class="glyphicon {{ isOrganizer() ? 'glyphicon-list-alt': 'glyphicon-user' }} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
+            </div>
+            <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
+            <div class="font-white setting font-big">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="font-white menu-link" href="">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 20px"></span>ตั้งค่า
+                </a>
+            </div>
+            @if (Auth::guest())
+                <div class="logout font-big">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" href="/login?redirect={{ Request::path() }}">
+                           <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
+                        </a>
+                </div>
+                <div class="logout font-big font-white">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" href="/register">
+                           <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 20px"></span>สมัครสมาชิก
+                        </a>
+                </div>
+            @else
+                <div class="logout font-big">
+                
+                    <form id="logout-form" action="/logout" method="POST">
+                    {{ csrf_field() }}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="menu-link" onclick="$('#logout-form').submit();">
+                           <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-right: 20px"></span>ออกจากระบบ
+                        </a>
+                    </form>
+                </div>
+            @endif
+
         </div>
+        
         <nav class="navbar navbar-default navbar-static-top">
             <div style="position: relative;">
             
@@ -120,7 +177,6 @@
                     </a>
                     
                 @endif
-                
                 <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
@@ -142,7 +198,7 @@
                     </a>
             
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin-right:0px;padding: 0 20px; background: #f5f5f5">
+                    <ul class="nav navbar-nav navbar-right" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li>
@@ -169,16 +225,17 @@
 
           
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
-                                <div style="padding:15px">
+                                <div style="padding:7px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
                                         <span class="user-coin"><img src="/images/coin.png" height="15">
-                                            <i>&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
+                                            <i style="font-size:14px">&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
                                         </span>
                                     </div>
                                 </li>
                                 <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
-                                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
-                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
+                                    <a href="#" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
+                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
+                                        <i class="glyphicon glyphicon-menu-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-top:1px">
                                         <a onclick="$('#logout-form').submit();">
@@ -257,12 +314,12 @@
 
         var menuCheck = (function() {
             if(!menuToggled){
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflowY = 'hidden';
                 document.body.style.marginRight = '10px';
                 menuToggled = true;
             }
             else {
-                document.body.style.overflow = 'scroll';
+                document.body.style.overflowY = 'scroll';
                 document.body.style.marginRight = '0';
                 menuToggled = false;
             }
@@ -275,14 +332,12 @@
                 swal(swalContent);
 
             $('#nav-icon3').click(function(){
-                $(this).toggleClass('open');
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 
                 menuCheck();
             });
             $('.menu-background').click(function(){
-                $('#nav-icon3').toggleClass('open');
                 $(this).toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

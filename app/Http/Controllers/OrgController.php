@@ -158,12 +158,14 @@ class OrgController extends Controller
         'postscript' => $input['postscript']
       ];
 
-      $data['event_start'] = date('Y/M/d H:i:s', $date_start);
+      $data['event_start'] = $date;
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);
       $data['event_cover'] = json_encode($covers);
-      $data['event_user_id'] = Auth::id();
+      $edit = \Request::segment(3);
+      if(!$edit)
+        $data['event_user_id'] = Auth::id();
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
       $data['event_status'] = 1;

@@ -946,6 +946,11 @@ fieldset[disabled] .btn-red:hover {
   display: inline-block;
 }
 
+.tag.red {
+  color: red;
+  border: 1px solid red;
+}
+
 .btn-detail {
   border-radius: 4px;
   color: #209cee;

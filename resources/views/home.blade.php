@@ -91,7 +91,7 @@
                         <div class="remove-padding box-content">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="margin-top: 15px">
-                                    <h2 class="remove-padding white" style="color: white; font-weight: 900; font-size: 26px" >{{$event['event_title']}} <span class="font-small tag">อีก {{$event['day_left']}} วัน</span></h2>
+                                    <h2 class="remove-padding white" style="color: white; font-weight: 900; font-size: 26px" >{{$event['event_title']}} <span class="font-small tag {{ $event['event_status'] == 2 ? 'red': '' }}">{{ $event['event_status'] == 1 ? 'อีก ' . $event['day_left'] . ' วัน' : 'สิ้นสุดการแข่งขัน' }}</span></h2>
                                     <span class="font-med" style="color: #aaa">สนามแบด: <a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
                                 </div>
                             </div>

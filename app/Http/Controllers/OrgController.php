@@ -52,6 +52,8 @@ class OrgController extends Controller
 
     public function save(Request $req) {
 
+      dd($req->input());
+
       $rules = [
           'poster' => 'required',
           'cover' => 'required|array',
@@ -93,7 +95,8 @@ class OrgController extends Controller
 
       $input = $req->input();
       $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
-      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
+      $date = date('Y') . '-' . $input['event_month'] . '-' . $input['event_start'];
+      $dateEnd = date('Y') . '-' . $input['event_month'] . '-' . $input['event_end'];
       $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
       $data = [];
@@ -152,13 +155,14 @@ class OrgController extends Controller
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
         'rule' => $input['rule'],
         'consideration' => $input['consideration'],
-        'accessory' => [ $input['sonbad_band'] , $input['sonbad'] , $input['sonbad_price'] ],
+        'accessory' => [ $input['sonbad_band'] , $input['sonbad_price'] ],
         'screening_person' => [ $input['organizer'] . ' ติดต่อ : ' . $input['contact'] ],
         'screening_person_img' => $input['hand_img'],
         'postscript' => $input['postscript']
       ];
 
       $data['event_start'] = $date;
+      $data['event_end'] = $dateEnd;
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);

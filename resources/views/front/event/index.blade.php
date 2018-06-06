@@ -220,6 +220,22 @@
     </div>
 </div>
 
+<div class="alert comment hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white">
+        <div class="font-bigger" align="center">โปรดกรอกเหตุผลที่ไม่ผ่านการประเมิน</div>
+        <br>
+        <div align="center">
+        <input type="text" class="comment_input">
+        </div>
+        <br>
+        <div align="center">
+            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
+        </div>
+    </div>
+</div>
+
 <div class="alert roll hide">
     <div class="overlay"></div>
     <div class="fixed middle color-white">
@@ -490,6 +506,8 @@
                 $(this).parent().remove();
                 var status = $(this).attr('value');
                 var statusName = $(this).children(':first').text();
+                if(statusName == 'ไม่ผ่านการประเมิน')
+                  comment(member_id)
                 $.ajax({
                     url: '/event/{{ $event->event_id }}/member/'+ member_id + '/status',
                     method: 'patch',
@@ -856,6 +874,43 @@
                 $('#event_modal_desc').modal();
             }
         });
+    })
+
+    var hideName = (function() {
+      $.ajax({
+          url: '/event/{{ $event->event_id }}/member/hide',
+          method: 'patch',
+          success: function(result_data){
+            swal(result_data['message']);
+          },
+          error: function(result) {
+              var error = result.responseJSON;
+              swal(error['message']);
+          }
+      });
+    })
+
+    var comment = (function(id) {
+      
+      $('.alert.comment').fadeIn();
+      $('.comment-btn').bind( "click", function() {
+        $.ajax({
+            url: '/event/{{ $event->event_id }}/member/'+ id +'/comment',
+            method: 'patch',
+            data: JSON.stringify({
+              comment: $('.comment_input').val()
+            }),
+            success: function(result_data){
+              swal(result_data['message']);
+            },
+            error: function(result) {
+                var error = result.responseJSON;
+                swal(error['message']);
+            }
+        });
+        $('.comment-btn').unbind("click");
+        $('.alert.comment').fadeOut();
+      });
     })
 
 </script>

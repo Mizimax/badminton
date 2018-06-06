@@ -581,4 +581,25 @@ class OrgController extends Controller
       ";
       return view('excel/member')->with('members', $members);
     }
+
+    public function hideName($event_id) {
+      $event = Event::where('event_id', $event_id);
+      $event_get = $event->get();
+      $data['member_status'] = $event_get[0]->member_status == 0? 1:0;
+      // dd($data['member_status']);
+      $event->update($data);
+      return response()->json([
+        'status' => 'ok',
+        'message' => $data['member_status'] == 0? 'แสดงรายชื่อ':'ซ่อนรายชื่อ'
+      ], 200);
+    }
+    public function comment(Request $req,$event_id, $member_id) {
+      $data['team_comment'] = $req->json()->all()['comment'];
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->update($data);
+
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Comment updated'
+      ], 200);
+    }
 }

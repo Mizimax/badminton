@@ -82,64 +82,10 @@
           </div>
         </div>
       </div>
-        <div class="menu-background"></div>
-        <div class="menu-content">
-            <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
-                <div class="org-icon img-circle">
-                    <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="font-bold font-big">หน้าแรก</span>
-            </div>
-            <div class="menu-white coin" style="position: relative;" onclick="window.location='/coin_shop'">
-                <div class="org-icon coin-icon img-circle">
-                    <img src="/images/cart.png" class="absolute middle" width="30">
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="font-bold font-big" style="color:#EF9729">Coin Shop</i>
-            </div>
-            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ (isOrganizer() || isAdmin() ) ? '/event/create' : '/org/register'}}'">
-                <div class="org-icon img-circle">
-                    <i class="glyphicon {{ isOrganizer() ? 'glyphicon-list-alt': 'glyphicon-user' }} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
-            </div>
-            <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
-            <div class="font-white setting font-big">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="font-white menu-link" href="">
-                    <span class="glyphicon glyphicon-cog" aria-hidden="true" style="margin-right: 20px"></span>ตั้งค่า
-                </a>
-            </div>
-            @if (Auth::guest())
-                <div class="logout font-big">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="menu-link" href="/login?redirect={{ Request::path() }}">
-                           <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
-                        </a>
-                </div>
-                <div class="logout font-big font-white">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="menu-link" href="/register">
-                           <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 20px"></span>สมัครสมาชิก
-                        </a>
-                </div>
-            @else
-                <div class="logout font-big">
-                
-                    <form id="logout-form" action="/logout" method="POST">
-                    {{ csrf_field() }}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="menu-link" onclick="$('#logout-form').submit();">
-                           <span class="glyphicon glyphicon-log-out" aria-hidden="true" style="margin-right: 20px"></span>ออกจากระบบ
-                        </a>
-                    </form>
-                </div>
-            @endif
+        
         </div>
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container-fluid" style="position: relative;">
+            <div style="position: relative;">
             
                
                 @if (Auth::guest())
@@ -175,14 +121,20 @@
                     
                 @endif
                 
-                <li class="menu">
+                <!-- <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
                           <span></span>
                           <span></span>
                           <span></span>
                         </div>
-                    </li>
+                    </li> -->
+                <li class="menu">
+                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
+                        <img src="/images/cart.png" height="35"><br>
+                        <span>coin shop</span>
+                    </div>
+                </li>
 
                 <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -190,7 +142,7 @@
                     </a>
             
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-right:0px;padding: 0 20px; background: #f5f5f5">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li>
@@ -215,12 +167,7 @@
                             </li>
                         @else
 
-                                <li class="visible-sm-block visible-md-block visible-lg-block">
-                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                        <img src="/images/cart.png" height="35"><br>
-                                        <span>coin shop</span>
-                                    </div>
-                                </li>
+          
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
                                 <div style="padding:15px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
@@ -272,10 +219,10 @@
     <div class="footer">
       <div class="container" style="padding: 40px 0">
         <div class="col-sm-6">
-          <div class="flex">
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
+          <div class="flex" style="justify-content: center;">
+            <div style="margin-right:30px; margin-top:10px"><img src="/images/true.png" alt="true" width="70"></div>
+            <div style="margin-right:30px; transform:translateY(-20px)"><img src="/images/kmutt.png" alt="kmutt" width="60"></div>
+            <div><img src="/images/startup-th.png" alt="startup thailand" width="100"></div>
           </div>
         </div>
         <div class="col-sm-6">

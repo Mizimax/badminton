@@ -121,15 +121,15 @@
                     
                 @endif
                 
-                <!-- <li class="menu">
+                <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
                           <span></span>
                           <span></span>
                           <span></span>
                         </div>
-                    </li> -->
-                <li class="menu">
+                    </li>
+                    <li class="menu">
                     <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                         <img src="/images/cart.png" height="35"><br>
                         <span>coin shop</span>

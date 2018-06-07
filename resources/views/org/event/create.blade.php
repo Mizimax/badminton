@@ -9,7 +9,7 @@
 <form method="post">
     <div class="container shadow">
         <div class="row form-container">
-            <div class="col-sm-12 pad-side">
+            <div class="col-sm-12 pad-side" style="z-index:99">
                 <br>
                 <h1 class="font-bold color-black">ข้อมูลสำคัญ</h1>
                 <h3 class="font-bold grey-med">รูปโปสเตอร์ <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>

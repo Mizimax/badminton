@@ -18,13 +18,23 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
+                              <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}')">
+
+                              </div> 
+                              <div class="container">
                                 <img src="{{$sponsor['sponsor_image']}}" class="header">
+                              </div>
                                     <div class="carousel-caption">
                                     </div>
                             </div>
                         @else
                             <div class="item">
-                            <img src="{{$sponsor['sponsor_image']}}">
+                            <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}')">
+
+                            </div> 
+                              <div class="container">
+                                <img src="{{$sponsor['sponsor_image']}}" class="header">
+                              </div>
                                 <div class="carousel-caption">
                                 </div>
                             </div>

@@ -969,6 +969,11 @@ fieldset[disabled] .btn-red:hover {
   z-index: -1;
   top: 0;
   background-size: 100% auto;
+  -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  -o-filter: blur(20px);
+  -ms-filter: blur(20px);
+  filter: blur(20px);
 }
 
 .btn-detail {

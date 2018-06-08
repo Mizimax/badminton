@@ -4,50 +4,16 @@
 <link href="/css/home.css?v=1.1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
-            <div id="carousel-example-generic" class="carousel slide max" data-ride="carousel">
-                <ol class="carousel-indicators">
+            <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
-                        @if ($k==0)
-                            <li data-target="#carousel-example-generic" data-slide-to="{{$k}}" class="active"></li>
-                        @else
-                            <li data-target="#carousel-example-generic" data-slide-to="{{$k}}"></li>
-                        @endif
-                    @endforeach
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    @foreach ($sponsors as $k=>$sponsor)
-                        @if ($k==0)
-                            <div class="item active">
-                              <div style="height:400px">
-                              <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
-                                  width: 100%;
-                                  height: 100%;
-                                  z-index: -1;
-                                  top: 0;
-                                  background-size: 100% auto;
-                                  -webkit-filter: blur(20px);
-                                  -moz-filter: blur(20px);
-                                  -o-filter: blur(20px);
-                                  -ms-filter: blur(20px);
-                                  filter: blur(20px);">
-
-                              </div> 
-                              <!-- <div class="container"> -->
-                                <img src="{{$sponsor['sponsor_image']}}" class="header">
-                              <!-- </div> -->
-                                    <div class="carousel-caption">
-                                    </div>
-                              </div>
-                            </div>
-                        @else
-                            <div class="item">
-                              <div style="height:400px">
-                            <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
+                        <div class="relative slick-height">
+                            <div class="bg-blur slick-height" style="background-image: url('https://wezync.com/images/sponsor/1/wezync.png');position: absolute;
                               width: 100%;
-                              height: 100%;
-                              z-index: -1;
                               top: 0;
-                              background-size: 100% auto;
+                              left: 0;
+                              background-position: top center;
+                              background-repeat: no-repeat;
+                              background-size: cover;
                               -webkit-filter: blur(20px);
                               -moz-filter: blur(20px);
                               -o-filter: blur(20px);
@@ -55,16 +21,13 @@
                               filter: blur(20px);">
 
                             </div> 
-                              <!-- <div class="container"> -->
-                                <img src="{{$sponsor['sponsor_image']}}" class="header">
-                              <!-- </div> -->
+                              
+                                <img src="{{$sponsor['sponsor_image']}}" class="container absolute middle header">
+                             
                                 <div class="carousel-caption">
                                 </div>
-                                </div>
-                            </div>
-                        @endif
+                          </div>
                     @endforeach
-                </div>
             </div>
     </div>
     <div class="row">
@@ -184,6 +147,19 @@
 @section('scripts')
     <script src="/js/home.js?v=1"></script>
     <script src="/js/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.slick.max').slick({
+          autoplay: true,
+          dots: true,
+          arrows: false,
+          vertical: true,
+          verticalSwiping: true,
+          dotsClass: 'carousel-indicators mydots'
+        });
+      });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="datepicker"]').datepicker({

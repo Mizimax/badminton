@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=5.4" rel="stylesheet">
+    <link href="/css/wezync.css?v=5.5" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -177,14 +177,14 @@
                     </a>
                     
                 @endif
-                <li class="menu">
+                <!-- <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
                           <span></span>
                           <span></span>
                           <span></span>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="menu">
                     <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                         <img src="/images/cart.png" height="35"><br>
@@ -233,7 +233,7 @@
                                     </div>
                                 </li>
                                 <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
-                                    <a href="#" id="dropdownMenu5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
+                                    <a href="#" id="dropdownMenu5" style="padding:0px;">
                                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
                                         <i class="glyphicon glyphicon-menu-down"></i>
                                     </a>
@@ -331,7 +331,7 @@
             if(swalContent)
                 swal(swalContent);
 
-            $('#nav-icon3').click(function(){
+            $('.nav.navbar-nav.navbar-right').not($('#dropdownMenu5')).click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

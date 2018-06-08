@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="/css/home.css?v=1" rel="stylesheet">
+<link href="/css/home.css?v=1.1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative;">
             <div id="carousel-example-generic" class="carousel slide max" data-ride="carousel">
@@ -18,24 +18,48 @@
                     @foreach ($sponsors as $k=>$sponsor)
                         @if ($k==0)
                             <div class="item active">
-                              <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}')">
+                              <div style="height:400px">
+                              <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
+                                  width: 100%;
+                                  height: 100%;
+                                  z-index: -1;
+                                  top: 0;
+                                  background-size: 100% auto;
+                                  -webkit-filter: blur(20px);
+                                  -moz-filter: blur(20px);
+                                  -o-filter: blur(20px);
+                                  -ms-filter: blur(20px);
+                                  filter: blur(20px);">
 
                               </div> 
-                              <div class="container">
+                              <!-- <div class="container"> -->
                                 <img src="{{$sponsor['sponsor_image']}}" class="header">
-                              </div>
+                              <!-- </div> -->
                                     <div class="carousel-caption">
                                     </div>
+                              </div>
                             </div>
                         @else
                             <div class="item">
-                            <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}')">
+                              <div style="height:400px">
+                            <div class="bg-blur" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
+                              width: 100%;
+                              height: 100%;
+                              z-index: -1;
+                              top: 0;
+                              background-size: 100% auto;
+                              -webkit-filter: blur(20px);
+                              -moz-filter: blur(20px);
+                              -o-filter: blur(20px);
+                              -ms-filter: blur(20px);
+                              filter: blur(20px);">
 
                             </div> 
-                              <div class="container">
+                              <!-- <div class="container"> -->
                                 <img src="{{$sponsor['sponsor_image']}}" class="header">
-                              </div>
+                              <!-- </div> -->
                                 <div class="carousel-caption">
+                                </div>
                                 </div>
                             </div>
                         @endif

@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-      <div class="kaun-container">
+      <!-- <div class="kaun-container">
         <div class="kuan shadow" onclick="kuanToggle(this)">
           <div class="absolute middle">
             <i class="glyphicon glyphicon-play bottom-icon"></i>
@@ -82,7 +82,7 @@
             
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="menu-background"></div>
         <div class="menu-content">
             <div class="menu-white org" style="position: relative;" onclick="window.location='/'">

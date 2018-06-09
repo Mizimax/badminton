@@ -7,7 +7,7 @@
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
                         <div class="relative slick-height">
-                            <div class="bg-blur slick-height" style="background-image: url('https://wezync.com/images/sponsor/1/wezync.png');position: absolute;
+                            <div class="bg-blur slick-height" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
                               width: 100%;
                               top: 0;
                               left: 0;

@@ -156,6 +156,7 @@
           arrows: false,
           vertical: true,
           verticalSwiping: true,
+          autoplaySpeed: 5000,
           dotsClass: 'carousel-indicators mydots'
         });
       });

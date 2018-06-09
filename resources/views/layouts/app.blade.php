@@ -147,33 +147,21 @@
                
                 @if (Auth::guest())
                     <!-- wait design login register -->
-                    <ul class="nav visible-xs-block" style="float: right">
-                        <!-- Authentication Links -->
-                               <li>
-                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                        <img src="/images/cart.png" height="35"><br>
-                                        <span>coin shop</span>
-                                    </div>
-                                </li>
+                    
+                    <li class="navbar-user-profile visible-xs-block" style="padding-right: 0; float:left">
+                          <a href="#" id="dropdownMenu50" style="padding:0px;">
+                              <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
+                              <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                        </li>
 
-                                            </ul>
 
                 @else
                     <!-- Collapsed Hamburger -->
-                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <a href="#" id="mobile-navv">
                         <button type="button" class="navbar-toggle collapsed">
                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="57px">
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-top:1px">
-                        <li>
-                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
-                            {{ csrf_field() }}
-                                <a onclick="$('#logout-form').submit();">
-                                    Logout
-                                </a>
-                            </form>
-                        </li>
-                    </ul>
+                        </button>
                     </a>
                     
                 @endif
@@ -198,29 +186,29 @@
                     </a>
             
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
+                    <ul class="nav navbar-nav navbar-right pointer" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li>
-                                <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                    <img src="/images/cart.png" height="35"><br>
-                                    <span>coin shop</span>
-                                </div>
-                            </li>
-                            <li class="menu-item" style="margin-left: 10px;">
+                            <li class="menu-item">
                                 <a href="/login?redirect={{ Request::path() }}">
                                     <div class="input login absolute middle">
                                         <span style="margin: 0 auto">Login</span>
                                     </div>
                                 </a>
                             </li>
-                            <li class="menu-item" style="margin-left: 3px;">
+                            <li class="menu-item" style="margin-left: 3px; margin-right: 10px">
                                 <a href="{{ route('register') }}">
                                     <div class="input register absolute middle">
                                         <span style="margin: 0 auto">Register</span>
                                     </div>
                                 </a>
                             </li>
+                            <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
+                          <a href="#" id="dropdownMenu50" style="padding:0px;">
+                              <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
+                              <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                        </li>
                         @else
 
           
@@ -331,7 +319,7 @@
             if(swalContent)
                 swal(swalContent);
 
-            $('.nav.navbar-nav.navbar-right').not($('#dropdownMenu5')).click(function(){
+            $('.nav.navbar-nav.navbar-right, #mobile-navv').not($('#dropdownMenu5')).click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

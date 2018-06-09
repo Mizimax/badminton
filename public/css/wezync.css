@@ -394,12 +394,8 @@ a {
 }
 
 .menu-item a {
-  height: 80px;
+  height: 64px;
   width: 80px;
-}
-
-.navbar-right {
-  /*border-left: 1px solid #ccc;*/
 }
 
 .menu-background {
@@ -996,6 +992,9 @@ img.header {
   }
   .slick-height {
     height: 365px;
+  }
+  .navbar-brand {
+    transform: translate(-50%, 13px);
   }
 }
 

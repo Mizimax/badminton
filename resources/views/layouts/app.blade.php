@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=5.1" rel="stylesheet">
+    <link href="/css/wezync.css?v=5.5" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -22,6 +22,7 @@
         <div class="kuan shadow" onclick="kuanToggle(this)">
           <div class="absolute middle">
             <i class="glyphicon glyphicon-play bottom-icon"></i>
+            
           </div>
         </div>
         <div class="kuan-list">
@@ -82,7 +83,7 @@
           </div>
         </div>
       </div>
-        <div class="menu-background"></div>
+      <div class="menu-background"></div>
         <div class="menu-content">
             <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
                 <div class="org-icon img-circle">
@@ -137,9 +138,11 @@
                     </form>
                 </div>
             @endif
+
         </div>
+        
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container-fluid" style="position: relative;">
+            <div style="position: relative;">
             
                
                 @if (Auth::guest())
@@ -174,15 +177,20 @@
                     </a>
                     
                 @endif
-                
-                <li class="menu">
+                <!-- <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
                           <span></span>
                           <span></span>
                           <span></span>
                         </div>
-                    </li>
+                    </li> -->
+                    <li class="menu">
+                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
+                        <img src="/images/cart.png" height="35"><br>
+                        <span>coin shop</span>
+                    </div>
+                </li>
 
                 <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -190,7 +198,7 @@
                     </a>
             
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li>
@@ -215,23 +223,19 @@
                             </li>
                         @else
 
-                                <li class="visible-sm-block visible-md-block visible-lg-block">
-                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                        <img src="/images/cart.png" height="35"><br>
-                                        <span>coin shop</span>
-                                    </div>
-                                </li>
+          
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
-                                <div style="padding:15px">
+                                <div style="padding:7px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
                                         <span class="user-coin"><img src="/images/coin.png" height="15">
-                                            <i>&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
+                                            <i style="font-size:14px">&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
                                         </span>
                                     </div>
                                 </li>
                                 <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
-                                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
-                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
+                                    <a href="#" id="dropdownMenu5" style="padding:0px;">
+                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
+                                        <i class="glyphicon glyphicon-menu-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-top:1px">
                                         <a onclick="$('#logout-form').submit();">
@@ -272,10 +276,10 @@
     <div class="footer">
       <div class="container" style="padding: 40px 0">
         <div class="col-sm-6">
-          <div class="flex">
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
+          <div class="flex" style="justify-content: center;">
+            <div style="margin-right:30px; margin-top:10px"><img src="/images/true.png" alt="true" width="70"></div>
+            <div style="margin-right:30px; transform:translateY(-20px)"><img src="/images/kmutt.png" alt="kmutt" width="60"></div>
+            <div><img src="/images/startup-th.png" alt="startup thailand" width="100"></div>
           </div>
         </div>
         <div class="col-sm-6">
@@ -310,11 +314,13 @@
 
         var menuCheck = (function() {
             if(!menuToggled){
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflowY = 'hidden';
+                document.body.style.marginRight = '10px';
                 menuToggled = true;
             }
             else {
-                document.body.style.overflow = 'scroll';
+                document.body.style.overflowY = 'scroll';
+                document.body.style.marginRight = '0';
                 menuToggled = false;
             }
         })
@@ -325,15 +331,13 @@
             if(swalContent)
                 swal(swalContent);
 
-            $('#nav-icon3').click(function(){
-                $(this).toggleClass('open');
+            $('.nav.navbar-nav.navbar-right').not($('#dropdownMenu5')).click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 
                 menuCheck();
             });
             $('.menu-background').click(function(){
-                $('#nav-icon3').toggleClass('open');
                 $(this).toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

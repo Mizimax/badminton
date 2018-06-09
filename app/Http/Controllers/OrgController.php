@@ -52,6 +52,8 @@ class OrgController extends Controller
 
     public function save(Request $req) {
 
+      dd($req->input());
+
       $rules = [
           'poster' => 'required',
           'cover' => 'required|array',
@@ -93,7 +95,8 @@ class OrgController extends Controller
 
       $input = $req->input();
       $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
-      $date = ((int)$input['event_year'] - 543) . '-' . $input['event_month'] . '-' . $input['event_date'];
+      $date = date('Y') . '-' . $input['event_month'] . '-' . $input['event_start'];
+      $dateEnd = date('Y') . '-' . $input['event_month'] . '-' . $input['event_end'];
       $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
       $data = [];
@@ -152,18 +155,21 @@ class OrgController extends Controller
         'special_rewards' => $input['event_special'], //แก้ front มีหลายมือเกิ้น
         'rule' => $input['rule'],
         'consideration' => $input['consideration'],
-        'accessory' => [ $input['sonbad_band'] , $input['sonbad'] , $input['sonbad_price'] ],
+        'accessory' => [ $input['sonbad_band'] , $input['sonbad_price'] ],
         'screening_person' => [ $input['organizer'] . ' ติดต่อ : ' . $input['contact'] ],
         'screening_person_img' => $input['hand_img'],
         'postscript' => $input['postscript']
       ];
 
-      $data['event_start'] = date('Y/M/d H:i:s', $date_start);
+      $data['event_start'] = $date;
+      $data['event_end'] = $dateEnd;
       $data['event_title'] = $input['event_title'];
       $data['event_description'] = json_encode($detail);
       $data['event_race'] = json_encode($hand);
       $data['event_cover'] = json_encode($covers);
-      $data['event_user_id'] = Auth::id();
+      $edit = \Request::segment(3);
+      if(!$edit)
+        $data['event_user_id'] = Auth::id();
       $data['event_poster'] = $input['poster'];
       $data['event_package'] = 1;
       $data['event_status'] = 1;
@@ -580,5 +586,26 @@ class OrgController extends Controller
           <head><meta http-equiv=\"Content-type\" content=\"text/html;charset=utf-8\" /></head>
       ";
       return view('excel/member')->with('members', $members);
+    }
+
+    public function hideName($event_id) {
+      $event = Event::where('event_id', $event_id);
+      $event_get = $event->get();
+      $data['member_status'] = $event_get[0]->member_status == 0? 1:0;
+      // dd($data['member_status']);
+      $event->update($data);
+      return response()->json([
+        'status' => 'ok',
+        'message' => $data['member_status'] == 0? 'แสดงรายชื่อ':'ซ่อนรายชื่อ'
+      ], 200);
+    }
+    public function comment(Request $req,$event_id, $member_id) {
+      $data['team_comment'] = $req->json()->all()['comment'];
+      Team::where('team_event_id', $event_id)->where('team_id', $member_id)->update($data);
+
+      return response()->json([
+        'status' => 'ok',
+        'message' => 'Comment updated'
+      ], 200);
     }
 }

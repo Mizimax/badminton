@@ -64,6 +64,8 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::post('/event/{event_id}/member/excel', 'OrgController@excel')->name('export_excel');
   Route::get('/event/{event_id}/edit', 'OrgController@edit')->name('event_edit');
   Route::patch('/event/{event_id}/edit', 'OrgController@save')->name('event_edit');
+  Route::patch('/event/{event_id}/member/hide', 'OrgController@hideName')->name('hideName');
+  Route::patch('/event/{event_id}/member/{member_id}/comment', 'OrgController@comment')->name('member_comment');
   Route::delete('/event/{event_id}/member/{member_id}', 'OrgController@removeMember')->name('member_remove');
   Route::patch('/event/{event_id}/member/{member_id}/hand', 'OrgController@updateHand')->name('hand_update');
   Route::patch('/event/{event_id}/member/{member_id}/status', 'OrgController@updateStatus')->name('member_status_update');

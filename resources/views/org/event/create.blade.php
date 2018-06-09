@@ -9,7 +9,7 @@
 <form method="post">
     <div class="container shadow">
         <div class="row form-container">
-            <div class="col-sm-12 pad-side">
+            <div class="col-sm-12 pad-side" style="z-index:99">
                 <br>
                 <h1 class="font-bold color-black">ข้อมูลสำคัญ</h1>
                 <h3 class="font-bold grey-med">รูปโปสเตอร์ <span class="font-big grey-small">(ขนาดรูปที่แสดง 680 x 828)</span></h3>
@@ -77,9 +77,21 @@
                     <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" id="event_date" name="event_date">
+                            <input type="text" id="event_start" name="event_start">
                         </div>
-                            <div class="input"><span class="display">วันที่</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input"><span class="display">วันที่เริ่ม</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black has-scroll">
+                                @for($i = 1; $i <= 30; $i++)
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
+                                @endfor
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" id="event_end" name="event_end">
+                        </div>
+                            <div class="input"><span class="display">วันจบการแข่ง</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @for($i = 1; $i <= 30; $i++)
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
@@ -92,8 +104,8 @@
                             <input type="text" id="event_month" name="event_month">
                         </div>
                             <div class="input"><span class="display">เดือน</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black has-scroll">
-                                <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
+                            <div class="input-dropdown home shadow-black">
+                            <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
                                 <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
                                 <div class="item-dropdown" value="3" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
                                 <div class="item-dropdown" value="4" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
@@ -107,6 +119,7 @@
                                 <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
@@ -118,6 +131,8 @@
 
                             </div>
                         </div>
+=======
+>>>>>>> 78183dcecf66dcad752c62d0f7c7e280aa34b1fb
                     </div>
                     <label for="event_year">วันที่จัดแข่ง</label>
                 </div>
@@ -223,10 +238,6 @@
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_band" name="sonbad_band">
                     <label class="font-big" for="sonbad_band">ยี่ห้อลูกแบด</label>
-                </div>
-                <div class="form-group max">
-                    <textarea class="form-control" rows="5" id="sonbad" name="sonbad"></textarea>
-                    <label class="font-big" for="sonbad">ข้อมูลลูกแบด</label>
                 </div>
                 <div class="form-group eiei za">
                     <input type="text" class="form-control" id="sonbad_price" name="sonbad_price">

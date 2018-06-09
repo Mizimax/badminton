@@ -14,12 +14,14 @@
     <div class="manager-right fixed" align="center">
     @if(!isset($line_type) || $line_type === 1)
         <span class="normal">Normal</span>
-        <img class="dice" src="/images/events/dice.svg" style="margin-top:25px;" onclick="judsai()">
+        <label class="hideName pointer"><span><input onchange="hideName()" type="checkbox" name="hide-name" style="margin-bottom:7px" {{ $event->member_status == 1 ? 'checked':''}}> ซ่อนรายชื่อ</span></label>
+        <img class="dice" src="/images/events/dice.svg" style="margin-top:5px;" onclick="judsai()">
         <div class="dice-txt">สุ่มรายชื่อใบสาย แบ่งกลุ่ม<br>(จัดทีละมือและแยกชื่อทีม)</div>
         <br>
     @else
         <span class="normal">Normal</span>
-        <div class="print" style="margin-top:30px"><img src="/images/events/print.svg" width="60"></div>
+        <label class="hideName pointer"><span><input onchange="hideName()" type="checkbox" name="hide-name" style="margin-bottom:7px" {{ $event->member_status == 1 ? 'checked':''}}> ซ่อนรายชื่อ</span></label>
+        <div class="print" style="margin-top:10px"><img src="/images/events/print.svg" width="60"></div>
         <form method="post" id="excel" action="/event/{{$event->event_id}}/member/excel" target="_blank">
             <div class="excel pointer" style="margin-top:10px"><img src="/images/events/excel.svg" width="60" onclick="$('#excel').submit()"></div>
         </form>
@@ -55,6 +57,7 @@
     </div>
 </div>
 @endif
+@if($event->member_status === 0 || ($event->event_user_id === Auth::id() || isAdmin()))
 <div class="table-responsive">
 <table id="table-member" class="table table-hover">
     <thead>
@@ -136,7 +139,7 @@
         </tr>
         @endforeach
         @foreach($members as $key=>$data)
-        <tr class="pointer" onclick="desc({{ $data['team_id'] }})">
+        <tr class="pointer">
             <td style="text-align:center; font-weight: bold">
                 @if($event->event_user_id === Auth::id() || isAdmin())
                 <div class="remove pointer" onclick="remove(this, { id: {{ $data['team_id'] }}, name: {{ json_encode($data['member']) }} })">X</div>
@@ -145,11 +148,11 @@
             </td>
             @if($data['race_event_type'] === 2)
                 @for( $order = 0; $order < 2; $order++)
-                <td style="text-align:center">{{$data['member'][$order]->name}}</td>
+                <td style="text-align:center" onclick="{{($event->event_user_id === Auth::id() || isAdmin()) ? 'desc('.$data['team_id'].')' : '' }}">{{$data['member'][$order]->name}}</td>
                 @endfor
             @else
-                <td style="text-align:center">{{$data['member'][0]->name}}</td>
-                <td style="text-align:center">-</td>
+                <td style="text-align:center" onclick="{{($event->event_user_id === Auth::id() || isAdmin()) ? 'desc('.$data['team_id'].')' : '' }}">{{$data['member'][0]->name}}</td>
+                <td style="text-align:center" onclick="{{($event->event_user_id === Auth::id() || isAdmin()) ? 'desc('.$data['team_id'].')' : '' }}">-</td>
             @endif
             <td style="text-align:center">
                 <span class="label {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}"
@@ -184,7 +187,7 @@
             </td>
             <td class="pay {{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}" style="text-align:center">
             <div class="payment"
-            @if($event->event_user_id === Auth::id() || isAdmin())
+            @if(($event->event_user_id === Auth::id() || isAdmin()) && !$data['team_comment'])
             onclick="payment(this, {{ $data['team_id'] }})"
             @endif
             >
@@ -192,7 +195,7 @@
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
             @elseif($data['team_status'] == 3)
                 @if($data['team_comment'])
-                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15" data-toggle="tooltip" title="คลิกเพื่อทราบเหตุผล">
+                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15">
                 @endif
             @endif
             </div>
@@ -202,3 +205,10 @@
     </tbody>
 </table>
 </div>
+@else
+<div class="row">
+    <div class="col-xs-12" align="center" style="height: 200px">
+        <span class="absolute middle">ยังไม่มีรายละเอียดผู้สมัคร</span>
+    </div>
+</div>
+@endif

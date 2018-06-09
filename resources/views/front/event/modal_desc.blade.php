@@ -8,38 +8,38 @@
             </div>
             <form class="form-horizontal" id="register_event" action="/register_event" method="post" enctype="multipart/form-data">
             <div class="modal-body">
-                    
+
                     <div class="form-group">
                         <div class="col-sm-2 control-label">
                             ชื่อทีม
-                        </div>    
+                        </div>
                         <div class="col-sm-10">
                             {{ $teams[0]->team_name }}
-                        </div>    
+                        </div>
                     </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ชื่อผู้จัดการ
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $teams[0]->team_manager_name }}
-                            </div>   
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 เบอร์โทรศัพท์
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $teams[0]->team_manager_phone }}
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ประเภทลงแข่ง
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $teams[0]->race_name }}
-                            </div>    
+                            </div>
                         </div>
 
                     @foreach($teams as $key => $team)
@@ -52,83 +52,83 @@
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ชื่อ
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_firstname }}
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 นามสกุล
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_lastname }}
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ชื่อเล่น
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_nickname }}
-                            </div>    
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 เพศ
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_gender }}
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 อายุ
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_age }}
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 เบอร์โทรศัพท์
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_phone }}
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 รางวัลที่เคยได้รับ
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_prize }}
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ภาพผู้เเข่งขัน
-                            </div>    
+                            </div>
                             <div class="col-sm-10">
                                 <img src="team_member_pic">
-                            </div>    
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
-                                ระดับ
-                            </div>    
+                              อันดับของผู้เล่น
+                            </div>
                             <div class="col-sm-10">
                                 {{ $team->team_member_rank }}
-                            </div>    
+                            </div>
                         </div>
                     </div>
                     @endforeach
-                
+
 
 
             </div>

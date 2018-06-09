@@ -85,7 +85,7 @@
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
         </div>
-        @if($event->event_id == 1)
+        @if($event->event_id == 22)
         <div class="row">
             <div class="col-md-12" align="center">
                 <button class="btn btn-warning" data-toggle="modal" data-target="#special_event_modal"> กิจกรรมพิเศษ</button>
@@ -891,7 +891,7 @@
     })
 
     var comment = (function(id) {
-      
+
       $('.alert.comment').fadeIn();
       $('.comment-btn').bind( "click", function() {
         $.ajax({

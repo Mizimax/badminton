@@ -22,7 +22,7 @@
 
                             </div> 
                               
-                                <img src="{{$sponsor['sponsor_image']}}" class="container absolute middle header">
+                                <img src="{{$sponsor['sponsor_image']}}" class="container absolute header">
                              
                                 <div class="carousel-caption">
                                 </div>

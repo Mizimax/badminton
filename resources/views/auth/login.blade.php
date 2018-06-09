@@ -39,9 +39,10 @@
                      <div class="col-md-5"></div>
                      </div>
                         <div class="form-group">
-                            <div class="col-sm-6 col-sm-offset-3" align="center" style="border-top: 1px solid #ccc">
+                            <div class="col-sm-8 col-sm-offset-2" align="center" style="border-top: 1px solid #ccc">
                                 <br>
-                              <a href="{{url('/redirect')}}" class="btn btn-primary">Login with Facebook</a>
+                              <a href="{{url('/redirect')}}" class="btn btn-primary btn-sm" style="margin-top:10px">Login with Facebook</a>
+                              <a href="{{url('/redirect/line')}}" class="btn btn-success btn-sm" style="margin-top:10px">Login with Line</a>
                               <br><br>
                             </div>
                         </div>

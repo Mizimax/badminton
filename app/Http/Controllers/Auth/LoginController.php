@@ -61,7 +61,7 @@ class LoginController extends Controller
 
         if (!$user) {
 
-            $user = User::create([
+            $user = \User::create([
                 'email' => $email,
                 'name' => $account->name,
                 'password' => md5(rand(1,10000)),

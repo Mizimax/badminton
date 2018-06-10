@@ -22,7 +22,7 @@
         <div class="kuan shadow" onclick="kuanToggle(this)">
           <div class="absolute middle">
             <i class="glyphicon glyphicon-play bottom-icon"></i>
-            
+
           </div>
         </div>
         <div class="kuan-list">
@@ -79,7 +79,7 @@
                 <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div> -->
@@ -128,7 +128,7 @@
                 </div>
             @else
                 <div class="logout font-big">
-                
+
                     <form id="logout-form" action="/logout" method="POST">
                     {{ csrf_field() }}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -140,14 +140,14 @@
             @endif
 
         </div>
-        
+
         <nav class="navbar navbar-default navbar-static-top">
             <div style="position: relative;">
-            
-               
+
+
                 @if (Auth::guest())
                     <!-- wait design login register -->
-                    
+
                     <li class="navbar-user-profile maxnav visible-xs-block" style="padding-right: 0; margin: 8px 20px 0 0;  float:right">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
                               <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
@@ -163,7 +163,7 @@
                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="57px">
                         </button>
                     </a>
-                    
+
                 @endif
                 <!-- <li class="menu">
                        <div id="nav-icon3">
@@ -174,17 +174,22 @@
                         </div>
                     </li> -->
                     <li class="menu">
-                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                        <img src="/images/cart.png" height="35"><br>
-                        <span>coin shop</span>
+                    <div class="navbar-conpon pointer" onclick="window.location='{{ url('/copon') }}'">
+                        <img src="/images/COPON.png" height="35"><br>
+                        <span>YOURCOPON</span>
                     </div>
                 </li>
-
+                <li class="menu">
+                <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
+                    <img src="/images/cart.png" height="35"><br>
+                    <span>POINT SHOP</span>
+                </div>
+              </li>
                 <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="/images/logo.png" height="28">
                     </a>
-            
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right pointer" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
@@ -211,7 +216,7 @@
                         </li>
                         @else
 
-          
+
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
                                 <div style="padding:7px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
@@ -231,16 +236,16 @@
 
                                             <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
                                             {{ csrf_field() }}
-                                                
+
                                                     Logout
-                                                
+
                                             </form>
-                                            
+
                                         </li>
                                         </a>
                                     </ul>
                                 </li>
-                                
+
                         @endif
                     </ul>
                 </div>
@@ -286,7 +291,7 @@
     <script>
     WebFont.load({
         google: {
-            
+
             families: ['Prompt:200,400,600:thai']
         }
     });
@@ -314,7 +319,7 @@
         })
 
         $(document).ready(function(){
-            
+
 
             if(swalContent)
                 swal(swalContent);

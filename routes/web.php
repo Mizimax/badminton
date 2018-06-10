@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@index');
 Route::get('/coin_shop', 'CoinShopController@index');
 Route::get('/profile', 'ProfileController@index');
+Route::get('/contact', 'ContactController@index');
+Route::get('/copon', 'CoponController@index');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');

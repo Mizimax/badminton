@@ -118,14 +118,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-2 control-label">
-                              อันดับของผู้เล่น
-                            </div>
-                            <div class="col-sm-10">
-                                {{ $team->team_member_rank }}
-                            </div>
-                        </div>
+
                     </div>
                     @endforeach
 

@@ -151,6 +151,18 @@
                         @endif
                         <div class="form-group">
                             <div class="col-sm-2 control-label">
+                                อันดับของผู้เล่น
+                            </div>
+                            <div class="col-sm-10">
+                                <select id="rank{{$order}}" name="rank{{$order}}" class="form-control">
+                                    @foreach ($list_rank as $rank)
+                                        <option value="{{$rank['rank_id']}}">{{$rank['rank_name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">
                                 เพศ
                             </div>
                             <div class="col-sm-10">
@@ -197,18 +209,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-sm-2 control-label">
-                                อันดับของผู้เล่น
-                            </div>
-                            <div class="col-sm-10">
-                                <select id="rank{{$order}}" name="rank{{$order}}" class="form-control">
-                                    @foreach ($list_rank as $rank)
-                                        <option value="{{$rank['rank_id']}}">{{$rank['rank_name']}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+
                     </div>
                     @endfor
 

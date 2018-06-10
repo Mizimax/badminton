@@ -19,7 +19,7 @@ body {
 div::-webkit-scrollbar {
   width: 8px;
 }
-/* 
+/*
 .swal2-title {
     margin: 0 !important;
     font-size: 16px !important;
@@ -495,7 +495,18 @@ a {
   width: 100px;
   text-align: center;
   color: #fff;
+  margin-left: 16px;
   background-color: #f7a71e;
+}
+.navbar-conpon {
+
+  padding-top: 20px;
+  height: 80px;
+  width: 100px;
+  font-size: 10px;
+  text-align: center;
+  color: #f7a71e;
+  background-color: #ffffff;
 }
 
 .menu {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Socialite;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -55,8 +56,8 @@ class LoginController extends Controller
     public function callbackLine(Request $request)
     {
       $account = Socialite::with('line')->user();
-      if($account && $request::has('code')){
-        $email = $account->email;
+      if($account && $request->has('code')){
+	$email = ($account->email)? : $account->id;
         $user = User::whereEmail($email)->first();
 
         if (!$user) {

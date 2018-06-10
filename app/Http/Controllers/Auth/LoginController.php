@@ -57,7 +57,7 @@ class LoginController extends Controller
     {
       $account = Socialite::with('line')->user();
       if($account && $request->has('code')){
-        $email = $account->email;
+	$email = ($account->email)? : $account->id;
         $user = User::whereEmail($email)->first();
 
         if (!$user) {

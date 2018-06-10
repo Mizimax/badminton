@@ -319,7 +319,7 @@
             if(swalContent)
                 swal(swalContent);
 
-            $('.nav.navbar-nav.navbar-right, #mobile-navv, .navbar-user-profile').not($('#dropdownMenu5')).click(function(){
+            $('.nav.navbar-nav.navbar-right, #mobile-navv, .navbar-user-profile').click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

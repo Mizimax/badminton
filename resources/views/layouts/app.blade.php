@@ -148,7 +148,7 @@
                 @if (Auth::guest())
                     <!-- wait design login register -->
                     
-                    <li class="navbar-user-profile visible-xs-block" style="padding-right: 0; float:right">
+                    <li class="navbar-user-profile maxnav visible-xs-block" style="padding-right: 0; margin: 8px 20px 0 0;  float:right">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
                               <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
                               <i class="glyphicon glyphicon-menu-down"></i>
@@ -319,7 +319,7 @@
             if(swalContent)
                 swal(swalContent);
 
-            $('.nav.navbar-nav.navbar-right, #mobile-navv, .navbar-user-profile').click(function(){
+            $('.nav.navbar-nav.navbar-right, #mobile-navv, .maxnav').click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

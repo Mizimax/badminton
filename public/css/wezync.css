@@ -431,6 +431,20 @@ a {
   transform: translateY(-50%);
 }
 
+.event-title {
+  font-size: 26px;
+}
+
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 22px;
+  }
+}
+
+.pull-down {
+  margin-top: 10px;
+}
+
 .menu-content {
   position: absolute;
   width: 330px;

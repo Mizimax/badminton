@@ -414,6 +414,23 @@ a {
   visibility: visible;
 }
 
+.buttonza {
+  display: block;
+  border-radius: 2px;
+  padding: 7px 0;
+  border: 1px solid black;
+  margin-bottom: 8px;
+  color: black !important;
+  position: relative;
+}
+
+.login-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+}
+
 .menu-content {
   position: absolute;
   width: 330px;

@@ -434,7 +434,6 @@ class OrgController extends Controller
       $org = Organizer::where('org_id', $user_id);
       if($data['org_active'] === 1){
         $user = $org->first();
-        dd($user);
         $link = url('/') . '/org/register/step/verify/' . $user->org_email_active;
         \Mail::to(Auth::user()->email)->send(new OrgRegisterEmail($user->org_firstname, $user->org_lastname, $link));
       }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Socialite;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -44,5 +46,35 @@ class LoginController extends Controller
     {
         $this->performLogout($request);
         return redirect()->back();
+    }
+
+    public function redirectLine(Request $request)
+    {
+        return Socialite::driver('line')->redirect();
+    }
+
+    public function callbackLine(Request $request)
+    {
+      $account = Socialite::with('line')->user();
+      if($account && $request->has('code')){
+	$email = ($account->email)? : $account->id;
+        $user = User::whereEmail($email)->first();
+
+        if (!$user) {
+
+            $user = User::create([
+                'email' => $email,
+                'name' => $account->name,
+                'password' => md5(rand(1,10000)),
+                'user_profile' => $account->avatar
+            ]);
+        }
+        auth()->login($user);
+        return redirect()->back();
+      }
+      else {
+        return redirect('/login');
+      }
+      
     }
 }

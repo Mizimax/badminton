@@ -85,7 +85,7 @@
         <div class="row" style="height:20px;">
             <div class="col-md-12" align="center"></div>
         </div>
-        @if($event->event_id == 1)
+        @if($event->event_id == 22)
         <div class="row">
             <div class="col-md-12" align="center">
                 <button class="btn btn-warning" data-toggle="modal" data-target="#special_event_modal"> กิจกรรมพิเศษ</button>
@@ -104,6 +104,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
             <hr style="margin: 10px 0">
+        @if($event->member_status === 0 || ($event->event_user_id === Auth::id() || isAdmin()))
         <div class="row" style="padding: 10px 20px">
             <div class="col-xs-3 nopadding" align="center">
                 <div style="display: inline-block;" align="left">
@@ -149,6 +150,7 @@
             @endforeach
             </div>
         </div>
+        @endif
             @include('front/event/member')
         </div>
         <div role="tabpanel" class="tab-pane" id="match">
@@ -156,7 +158,7 @@
             @include('front/event/match')
         </div>
         <div role="tabpanel" class="tab-pane relative" id="picture" style="min-height: 200px;">
-        @if(isset($event_images) && count($event_image) > 0)
+        @if(isset($event_image) && count($event_image) > 0)
             <div class="flex wrap" align="center" style="margin-top:20px">
             @foreach($event_image as $image)
                 <div class="{{ count($event_image) == 1 ? 'col-sm-4 div center': 'col-md-4 col-sm-6 col-xs-12'}}" style="margin-top:20px">
@@ -214,6 +216,22 @@
         <div align="center">
             <a class="btn btn-danger mar-side-10 cancel-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
             <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ย้อนกลับ</a>
+        </div>
+    </div>
+</div>
+
+<div class="alert comment hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white">
+        <div class="font-bigger" align="center">โปรดกรอกเหตุผลที่ไม่ผ่านการประเมิน</div>
+        <br>
+        <div align="center">
+        <input type="text" class="comment_input">
+        </div>
+        <br>
+        <div align="center">
+            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
         </div>
     </div>
 </div>
@@ -488,6 +506,8 @@
                 $(this).parent().remove();
                 var status = $(this).attr('value');
                 var statusName = $(this).children(':first').text();
+                if(statusName == 'ไม่ผ่านการประเมิน')
+                  comment(member_id)
                 $.ajax({
                     url: '/event/{{ $event->event_id }}/member/'+ member_id + '/status',
                     method: 'patch',
@@ -854,6 +874,43 @@
                 $('#event_modal_desc').modal();
             }
         });
+    })
+
+    var hideName = (function() {
+      $.ajax({
+          url: '/event/{{ $event->event_id }}/member/hide',
+          method: 'patch',
+          success: function(result_data){
+            swal(result_data['message']);
+          },
+          error: function(result) {
+              var error = result.responseJSON;
+              swal(error['message']);
+          }
+      });
+    })
+
+    var comment = (function(id) {
+
+      $('.alert.comment').fadeIn();
+      $('.comment-btn').bind( "click", function() {
+        $.ajax({
+            url: '/event/{{ $event->event_id }}/member/'+ id +'/comment',
+            method: 'patch',
+            data: JSON.stringify({
+              comment: $('.comment_input').val()
+            }),
+            success: function(result_data){
+              swal(result_data['message']);
+            },
+            error: function(result) {
+                var error = result.responseJSON;
+                swal(error['message']);
+            }
+        });
+        $('.comment-btn').unbind("click");
+        $('.alert.comment').fadeOut();
+      });
     })
 
 </script>

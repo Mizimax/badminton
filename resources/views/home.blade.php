@@ -1,46 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="/css/home.css?v=1" rel="stylesheet">
+<link href="/css/home.css?v=1.1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
-    <div class="row" style="background-color:#000; position: relative;">
-            <div id="carousel-example-generic" class="carousel slide max" data-ride="carousel">
-                <ol class="carousel-indicators">
+    <div class="row" style="background-color:#000; position: relative">
+            <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
-                        @if ($k==0)
-                            <li data-target="#carousel-example-generic" data-slide-to="{{$k}}" class="active"></li>
-                        @else
-                            <li data-target="#carousel-example-generic" data-slide-to="{{$k}}"></li>
-                        @endif
-                    @endforeach
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                    @foreach ($sponsors as $k=>$sponsor)
-                        @if ($k==0)
-                            <div class="item active">
-                                <div class="bg-header">
-                                <img src="{{$sponsor['sponsor_image']}}" style="width:100%; position:absolute;z-index:0" class="img-header">
-                                </div>
-                                <div class="container" style="padding:0; margin-top:50px">
-                                  <img src="{{$sponsor['sponsor_image']}}" style="width:100%" class="img-header">
-                                  </div>
-                                    <div class="carousel-caption">
-                                    </div>
-                            </div>
-                        @else
-                            <div class="item">
-                            <div class="bg-header" style="background-image: url({{$sponsor['sponsor_image']}})">
-                                  
-                                </div>
-                                <div class="container" style="padding:0; padding-top:50px;background:transparent;">
-                                  <img src="{{$sponsor['sponsor_image']}}" style="width:100%" class="img-header">
-                                  </div>
+                        <div class="relative slick-height">
+                            <div class="bg-blur slick-height" style="background-image: url('{{$sponsor['sponsor_image']}}');position: absolute;
+                              width: 100%;
+                              top: 0;
+                              left: 0;
+                              background-position: top center;
+                              background-repeat: no-repeat;
+                              background-size: cover;
+                              -webkit-filter: blur(20px);
+                              -moz-filter: blur(20px);
+                              -o-filter: blur(20px);
+                              -ms-filter: blur(20px);
+                              filter: blur(20px);">
+
+                            </div> 
+                              
+                                <img src="{{$sponsor['sponsor_image']}}" class="container absolute header">
+                          
                                 <div class="carousel-caption">
                                 </div>
-                            </div>
-                        @endif
+                          </div>
                     @endforeach
-                </div>
             </div>
     </div>
     <div class="row">
@@ -101,7 +88,7 @@
                         <div class="remove-padding box-content">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="margin-top: 15px">
-                                    <h2 class="remove-padding white" style="color: white; font-weight: 900; font-size: 26px" >{{$event['event_title']}} <span class="font-small tag">อีก {{$event['day_left']}} วัน</span></h2>
+                                    <h2 class="remove-padding white event-title" style="color: white; font-weight: 900;" >{{$event['event_title']}} <span class="font-small tag {{ $event['event_status'] == 2 ? 'red': '' }}">{{ $event['event_status'] == 1 ? 'อีก ' . $event['day_left'] . ' วัน' : 'สิ้นสุดการแข่งขัน' }}</span></h2>
                                     <span class="font-med" style="color: #aaa">สนามแบด: <a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
                                 </div>
                             </div>
@@ -158,8 +145,22 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="/js/home.js?v=1"></script>
+    <script src="/js/home.js?v=2"></script>
     <script src="/js/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.slick.max').slick({
+          autoplay: true,
+          dots: true,
+          arrows: false,
+          vertical: true,
+          verticalSwiping: true,
+          autoplaySpeed: 5000,
+          dotsClass: 'carousel-indicators mydots'
+        });
+      });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('[data-toggle="datepicker"]').datepicker({

@@ -55,6 +55,10 @@ function changeMemberNo(ele){
 function kuanToggle(ele){
   $(ele).toggleClass('active');
   $(ele).next().animate({width:'toggle'},200);;
+  if($(ele).hasClass('active'))
+    $(ele).parent().css('z-index','999')
+  else
+    setTimeout(()=>$(ele).parent().css('z-index','1'), 200)
 }
 
 $(document).ready(function(){

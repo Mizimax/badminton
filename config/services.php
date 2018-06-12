@@ -39,5 +39,11 @@ return [
         'client_id' => '405054029909236',
         'client_secret' => 'ebff8eb4ef9f19132a0e2614dc02396c',
         'redirect' => 'https://wezync.com/callback',
+    ],
+
+    'line'=>[
+      'client_id' => '1586003613',
+      'client_secret' => '1c857fd70e06f86e36c58a54b77d6f3f',
+      'redirect' => 'https://wezync.com/callback/line'
     ]
 ];

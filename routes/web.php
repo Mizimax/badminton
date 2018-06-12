@@ -14,10 +14,15 @@
 Route::get('/', 'HomeController@index');
 Route::get('/coin_shop', 'CoinShopController@index');
 Route::get('/profile', 'ProfileController@index');
+Route::get('/contact', 'ContactController@index');
+Route::get('/coupon', 'CouponController@index');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
+Route::get('/redirect/line', 'Auth\LoginController@redirectLine');
+Route::get('/callback/line', 'Auth\LoginController@callbackLine');
 
+Route::get('/sequence', 'SequenceController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('OrgAndAdmin')->group(function () {
@@ -64,6 +69,8 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::post('/event/{event_id}/member/excel', 'OrgController@excel')->name('export_excel');
   Route::get('/event/{event_id}/edit', 'OrgController@edit')->name('event_edit');
   Route::patch('/event/{event_id}/edit', 'OrgController@save')->name('event_edit');
+  Route::patch('/event/{event_id}/member/hide', 'OrgController@hideName')->name('hideName');
+  Route::patch('/event/{event_id}/member/{member_id}/comment', 'OrgController@comment')->name('member_comment');
   Route::delete('/event/{event_id}/member/{member_id}', 'OrgController@removeMember')->name('member_remove');
   Route::patch('/event/{event_id}/member/{member_id}/hand', 'OrgController@updateHand')->name('hand_update');
   Route::patch('/event/{event_id}/member/{member_id}/status', 'OrgController@updateStatus')->name('member_status_update');
@@ -84,6 +91,7 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::get('/run_match_knockout/{event_id}', 'SplitLineController@run_match_knockout')->name('run_match_knockout');
   Route::get('/run_set_knockout/{event_id}', 'SplitLineController@run_set_knockout')->name('run_match_knockout');
   Route::post('/edit_score/{event_id}', 'MatchController@edit_score_id')->name('edit_score');
+
 });
 
 Route::get('/show_court/{event_id}', 'TVController@show_court')->name('show_court');

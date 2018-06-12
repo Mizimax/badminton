@@ -12,16 +12,17 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=5" rel="stylesheet">
+    <link href="/css/wezync.css?v=5.6" rel="stylesheet">
     @yield('css')
 
 </head>
 <body>
     <div id="app">
-      <div class="kaun-container">
+      <!-- <div class="kaun-container">
         <div class="kuan shadow" onclick="kuanToggle(this)">
           <div class="absolute middle">
             <i class="glyphicon glyphicon-play bottom-icon"></i>
+
           </div>
         </div>
         <div class="kuan-list">
@@ -78,12 +79,21 @@
                 <span class="badge badge-orange">S</span> - <span class="badge badge-orange">C</span>
               </div>
             </div>
-            
+
           </div>
         </div>
-      </div>
-        <div class="menu-bacsssskground"></div>
+      </div> -->
+      <div class="menu-background"></div>
         <div class="menu-content">
+          @if (Auth::guest())
+          <div class="menu-white org" style="position: relative;" onclick="window.location='{{ Auth::guest() ? '/login': '/logout'}}'">
+              <div class="org-icon img-circle">
+                  <i class="glyphicon {{ Auth::guest() ? 'glyphicon-log-in': 'glyphicon-log-out'}} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="font-bold font-big">{{ Auth::guest() ? 'เข้าสู่ระบบ': 'ออกจากระบบ'}}</span>
+          </div>
+          @endif
             <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
@@ -105,6 +115,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
             </div>
+
             <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
             <div class="font-white setting font-big">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,7 +124,7 @@
                 </a>
             </div>
             @if (Auth::guest())
-                <div class="logout font-big">
+                <!-- <div class="logout font-big">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="menu-link" href="/login?redirect={{ Request::path() }}">
                            <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
@@ -124,10 +135,10 @@
                         <a class="menu-link" href="/register">
                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 20px"></span>สมัครสมาชิก
                         </a>
-                </div>
+                </div> -->
             @else
                 <div class="logout font-big">
-                
+
                     <form id="logout-form" action="/logout" method="POST">
                     {{ csrf_field() }}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -137,101 +148,84 @@
                     </form>
                 </div>
             @endif
+
         </div>
+
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container-fluid" style="position: relative;">
-            
-               
+            <div style="position: relative;">
+
+
                 @if (Auth::guest())
                     <!-- wait design login register -->
-                    <ul class="nav visible-xs-block" style="float: right">
-                        <!-- Authentication Links -->
-                               <li>
-                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                        <img src="/images/cart.png" height="35"><br>
-                                        <span>coin shop</span>
-                                    </div>
-                                </li>
 
-                                            </ul>
+                    <li class="navbar-user-profile maxnav visible-xs-block" style="padding-right: 0; margin: 8px 20px 0 0;  float:right">
+                          <a href="#" id="dropdownMenu50" style="padding:0px;">
+                              <img src="/images/no_pic2.png" class="img-circle" height="50px" style="margin-right:7px">
+                              <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                        </li>
+
 
                 @else
                     <!-- Collapsed Hamburger -->
-                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <a href="#" id="mobile-navv">
                         <button type="button" class="navbar-toggle collapsed">
                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="57px">
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-top:1px">
-                        <li>
-                            <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
-                            {{ csrf_field() }}
-                                <a onclick="$('#logout-form').submit();">
-                                    Logout
-                                </a>
-                            </form>
-                        </li>
-                    </ul>
+                        </button>
                     </a>
-                    
+
                 @endif
-                
-                <li class="menu">
+                <!-- <li class="menu">
                        <div id="nav-icon3">
                           <span></span>
                           <span></span>
                           <span></span>
                           <span></span>
                         </div>
-                    </li>
-
+                    </li> -->
+                    <li class="menu">
+                    <div class="navbar-conpon pointer" onclick="window.location='{{ url('/coupon') }}'">
+                        <img src="/images/COUPON.png" height="35"><br>
+                        <span>YOURCOUPON</span>
+                    </div>
+                </li>
+                <li class="menu">
+                <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
+                    <img src="/images/cart.png" height="35"><br>
+                    <span>POINT SHOP</span>
+                </div>
+              </li>
                 <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="/images/logo.png" height="28">
                     </a>
-            
+
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                    <ul class="nav navbar-nav navbar-right pointer" style="margin:11px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li>
-                                <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                    <img src="/images/cart.png" height="35"><br>
-                                    <span>coin shop</span>
-                                </div>
-                            </li>
-                            <li class="menu-item" style="margin-left: 10px;">
-                                <a href="/login?redirect={{ Request::path() }}">
-                                    <div class="input login absolute middle">
-                                        <span style="margin: 0 auto">Login</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu-item" style="margin-left: 3px;">
-                                <a href="{{ route('register') }}">
-                                    <div class="input register absolute middle">
-                                        <span style="margin: 0 auto">Register</span>
-                                    </div>
-                                </a>
-                            </li>
+                            <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">
+                          <a href="#" id="dropdownMenu50" style="padding:0px;">
+                              <img src="/images/no_pic2.png" class="img-circle" height="50px" style="margin-right:7px">
+                              <span class="font-bold" style="margin-right:7px">เข้าสู่ระบบ</span>
+                              <i class="glyphicon glyphicon-menu-down"></i>
+                            </a>
+                        </li>
                         @else
 
-                                <li class="visible-sm-block visible-md-block visible-lg-block">
-                                    <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
-                                        <img src="/images/cart.png" height="35"><br>
-                                        <span>coin shop</span>
-                                    </div>
-                                </li>
+
                                 <li class="navbar-user visible-sm-block visible-md-block visible-lg-block">
-                                <div style="padding:15px">
+                                <div style="padding:7px">
                                         <span class="font-small user-name">{{ Auth::user()->name }}</span><br>
                                         <span class="user-coin"><img src="/images/coin.png" height="15">
-                                            <i>&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
+                                            <i style="font-size:14px">&nbsp;&nbsp;{{Auth::user()->user_coin}}</i>
                                         </span>
                                     </div>
                                 </li>
-                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
-                                    <a href="#" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:0px;">
-                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="65px">
+                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding: 0">
+                                    <a href="#" id="dropdownMenu5" style="padding:0px;">
+                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
+                                        <i class="glyphicon glyphicon-menu-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-top:1px">
                                         <a onclick="$('#logout-form').submit();">
@@ -239,16 +233,16 @@
 
                                             <form style="margin-top:4px" id="logout-form" action="/logout" method="POST">
                                             {{ csrf_field() }}
-                                                
+
                                                     Logout
-                                                
+
                                             </form>
-                                            
+
                                         </li>
                                         </a>
                                     </ul>
                                 </li>
-                                
+
                         @endif
                     </ul>
                 </div>
@@ -272,10 +266,10 @@
     <div class="footer">
       <div class="container" style="padding: 40px 0">
         <div class="col-sm-6">
-          <div class="flex">
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
-            <div><img src="" alt=""></div>
+          <div class="flex" style="justify-content: center;">
+            <div style="margin-right:30px; margin-top:10px"><img src="/images/true.png" alt="true" width="70"></div>
+            <div style="margin-right:30px; transform:translateY(-20px)"><img src="/images/kmutt.png" alt="kmutt" width="60"></div>
+            <div><img src="/images/startup-th.png" alt="startup thailand" width="100"></div>
           </div>
         </div>
         <div class="col-sm-6">
@@ -294,7 +288,7 @@
     <script>
     WebFont.load({
         google: {
-            
+
             families: ['Prompt:200,400,600:thai']
         }
     });
@@ -310,30 +304,30 @@
 
         var menuCheck = (function() {
             if(!menuToggled){
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflowY = 'hidden';
+                document.body.style.marginRight = '10px';
                 menuToggled = true;
             }
             else {
-                document.body.style.overflow = 'scroll';
+                document.body.style.overflowY = 'scroll';
+                document.body.style.marginRight = '0';
                 menuToggled = false;
             }
         })
 
         $(document).ready(function(){
-            
+
 
             if(swalContent)
                 swal(swalContent);
 
-            $('#nav-icon3').click(function(){
-                $(this).toggleClass('open');
+            $('.nav.navbar-nav.navbar-right, #mobile-navv, .maxnav').click(function(){
                 $('.menu-background').toggleClass('open');
                 $('.menu-content').toggleClass('open');
 
                 menuCheck();
             });
             $('.menu-background').click(function(){
-                $('#nav-icon3').toggleClass('open');
                 $(this).toggleClass('open');
                 $('.menu-content').toggleClass('open');
 

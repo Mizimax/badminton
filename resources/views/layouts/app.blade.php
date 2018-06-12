@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=5.5" rel="stylesheet">
+    <link href="/css/wezync.css?v=5.6" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -106,6 +106,15 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
             </div>
+            @if (Auth::guest())
+            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ Auth::guest() ? '/login': '/logout'}}'">
+                <div class="org-icon img-circle">
+                    <i class="glyphicon {{ Auth::guest() ? 'glyphicon-log-in': 'glyphicon-log-out'}} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="font-bold font-big">{{ Auth::guest() ? 'เข้าสู่ระบบ': 'ออกจากระบบ'}}</span>
+            </div>
+            @endif
             <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
             <div class="font-white setting font-big">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,7 +123,7 @@
                 </a>
             </div>
             @if (Auth::guest())
-                <div class="logout font-big">
+                <!-- <div class="logout font-big">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="menu-link" href="/login?redirect={{ Request::path() }}">
                            <span class="glyphicon glyphicon-log-in" aria-hidden="true" style="margin-right: 20px"></span>เข้าสู่ระบบ
@@ -125,7 +134,7 @@
                         <a class="menu-link" href="/register">
                            <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="margin-right: 20px"></span>สมัครสมาชิก
                         </a>
-                </div>
+                </div> -->
             @else
                 <div class="logout font-big">
 
@@ -191,26 +200,13 @@
                     </a>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right pointer" style="margin:7px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
+                    <ul class="nav navbar-nav navbar-right pointer" style="margin:11px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li class="menu-item">
-                                <a href="/login?redirect={{ Request::path() }}">
-                                    <div class="input login absolute middle">
-                                        <span style="margin: 0 auto">Login</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="menu-item" style="margin-left: 3px; margin-right: 10px">
-                                <a href="{{ route('register') }}">
-                                    <div class="input register absolute middle">
-                                        <span style="margin: 0 auto">Register</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
+                            <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
                               <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
+                              <span class="font-bold" style="margin-right:7px">เข้าสู่ระบบ</span>
                               <i class="glyphicon glyphicon-menu-down"></i>
                             </a>
                         </li>
@@ -225,7 +221,7 @@
                                         </span>
                                     </div>
                                 </li>
-                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding-right: 0">
+                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding: 0">
                                     <a href="#" id="dropdownMenu5" style="padding:0px;">
                                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
                                         <i class="glyphicon glyphicon-menu-down"></i>

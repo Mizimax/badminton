@@ -7,8 +7,9 @@
     <div class="row" align="center">
         <div style="width: 500px; max-width: 90%; padding: 40px 0;">
             <div class="panel panel-default" align="left">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading" align="center">เข้าสู่ระบบ</div>
                 <div class="panel-body">
+                <div id="loginForm" class="hide">
                     <form class="form-horizontal" method="POST" action="{{ Request::fullUrl() }}">
 
                         <div style="max-width: 250px; width: 70%; margin: 0 auto;">
@@ -47,6 +48,25 @@
                             </div>
                         </div>
                     </form>
+                  </div>
+                  <div id="loginOption">
+                    <div class="col-sm-8" align="center" style="margin: 0 auto; float:none">
+                      <a href="{{url('/redirect')}}" class="buttonza" style="margin-top:10px">
+                      <img src="/images/facebook.png" class="login-icon">
+                      เข้าสู่ระบบด้วย Facebook
+                      </a>
+                      <a href="{{url('/redirect/line')}}" class="buttonza" style="margin-top:10px">
+                      <img src="/images/line.png" width="24" class="login-icon">
+                      เข้าสู่ระบบด้วย Line
+                      </a>
+                    </div>
+                    <br>
+                    <div class="col-sm-8" align="center" style="margin: 0 auto; float:none">
+                      <div class="font-small color-black col-sm-6 pointer" onclick="$('#loginOption').hide(); $('#loginForm').show()">เข้าสู่ระบบด้วยอีเมล</div>
+                      <div class="font-small color-black col-sm-6 pointer" onclick="window.location='/register'">สมัครสมาชิก</div>
+                    </div>
+                    <br><br>
+                  </div>
                 </div>
             </div>
         </div>

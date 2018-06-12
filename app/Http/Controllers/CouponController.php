@@ -9,7 +9,7 @@ use App\Models\Rank;
 use App\Models\Helper;
 use DateTime;
 
-class CoponController extends Controller
+class CouponController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,6 +29,6 @@ class CoponController extends Controller
     public function index()
     {
 
-        return view('front/coin_shop/copon');
+        return view('front/coin_shop/coupon');
     }
 }

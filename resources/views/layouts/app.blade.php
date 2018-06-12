@@ -85,6 +85,15 @@
       </div> -->
       <div class="menu-background"></div>
         <div class="menu-content">
+          @if (Auth::guest())
+          <div class="menu-white org" style="position: relative;" onclick="window.location='{{ Auth::guest() ? '/login': '/logout'}}'">
+              <div class="org-icon img-circle">
+                  <i class="glyphicon {{ Auth::guest() ? 'glyphicon-log-in': 'glyphicon-log-out'}} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <span class="font-bold font-big">{{ Auth::guest() ? 'เข้าสู่ระบบ': 'ออกจากระบบ'}}</span>
+          </div>
+          @endif
             <div class="menu-white org" style="position: relative;" onclick="window.location='/'">
                 <div class="org-icon img-circle">
                     <i class="glyphicon glyphicon-home middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
@@ -106,15 +115,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span class="font-bold font-big">{{ (isOrganizer() || isAdmin() ) ? 'สร้างรายการ' :'สมัครเป็นผู้จัด'}}</span>
             </div>
-            @if (Auth::guest())
-            <div class="menu-white org" style="position: relative;" onclick="window.location='{{ Auth::guest() ? '/login': '/logout'}}'">
-                <div class="org-icon img-circle">
-                    <i class="glyphicon {{ Auth::guest() ? 'glyphicon-log-in': 'glyphicon-log-out'}} middle font-big" style="color:#E6E6E6; position: absolute;" aria-hidden="true"></i>
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="font-bold font-big">{{ Auth::guest() ? 'เข้าสู่ระบบ': 'ออกจากระบบ'}}</span>
-            </div>
-            @endif
+
             <hr style="border-color:#aaa; width: 90%; margin: 20px auto 0 auto; padding-bottom: 10px">
             <div class="font-white setting font-big">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -159,7 +160,7 @@
 
                     <li class="navbar-user-profile maxnav visible-xs-block" style="padding-right: 0; margin: 8px 20px 0 0;  float:right">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
-                              <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
+                              <img src="/images/no_pic2.png" class="img-circle" height="50px" style="margin-right:7px">
                               <i class="glyphicon glyphicon-menu-down"></i>
                             </a>
                         </li>
@@ -183,9 +184,9 @@
                         </div>
                     </li> -->
                     <li class="menu">
-                    <div class="navbar-conpon pointer" onclick="window.location='{{ url('/copon') }}'">
-                        <img src="/images/COPON.png" height="35"><br>
-                        <span>YOURCOPON</span>
+                    <div class="navbar-conpon pointer" onclick="window.location='{{ url('/coupon') }}'">
+                        <img src="/images/COUPON.png" height="35"><br>
+                        <span>YOURCOUPON</span>
                     </div>
                 </li>
                 <li class="menu">
@@ -205,7 +206,7 @@
                         @if (Auth::guest())
                             <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
-                              <img src="/images/no_pic.jpg" class="img-circle" height="50px" style="margin-right:7px">
+                              <img src="/images/no_pic2.png" class="img-circle" height="50px" style="margin-right:7px">
                               <span class="font-bold" style="margin-right:7px">เข้าสู่ระบบ</span>
                               <i class="glyphicon glyphicon-menu-down"></i>
                             </a>

@@ -530,7 +530,6 @@ a {
   background-color: #f7a71e;
 }
 .navbar-conpon {
-
   padding-top: 20px;
   height: 80px;
   width: 100px;
@@ -576,7 +575,7 @@ a {
 
 .navbar-user-profile img {
   padding: 3px;
-/*  border: 1px solid #b3b3b3; */
+  /*  border: 1px solid #b3b3b3; */
 }
 .navbar-user-profile {
   padding-top: 8px;
@@ -1040,6 +1039,9 @@ img.header {
   }
   .navbar-brand {
     transform: translate(-50%, 13px);
+  }
+  .navbar-cart {
+    margin-left: 0;
   }
 }
 

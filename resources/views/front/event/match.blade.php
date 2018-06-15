@@ -83,11 +83,13 @@
                 
                 </div>
                 <div class="center button-select">
-
-           <a href="#group" id="group_tab" type="button" class="button is-info is-active font-meder is-outlined max" aria-controls="group" role="tab" data-toggle="tab" onclick="clickminitab('group')">
+            <a href="#all" id="all_tab" type="button" class="button is-info is-active font-meder is-outlined max" aria-controls="all" role="tab" data-toggle="tab">
+            ภาพรวม
+            </a>
+           <a href="#group" id="group_tab" type="button" class="button is-info font-meder is-outlined max" aria-controls="group" role="tab" data-toggle="tab">
                 แบ่งกลุ่ม
             </a>
-            <a href="#knockout" id="knockout_tab" type="button" class="button is-info font-meder is-outlined max" aria-controls="knockout" role="tab" data-toggle="tab" onclick="clickminitab('knockout')">
+            <a href="#knockout" id="knockout_tab" type="button" class="button is-info font-meder is-outlined max" aria-controls="knockout" role="tab" data-toggle="tab">
                 Knockout
             </a>
         </div>
@@ -98,11 +100,14 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="group">
+            <div role="tabpanel" class="tab-pane fade" id="group">
                 @include('front/event/match_table')
             </div>
-            <div role="tabpanel" class="tab-pane" id="knockout">
+            <div role="tabpanel" class="tab-pane fade" id="knockout">
                 @include('front/event/knockout_table')
+            </div>
+            <div role="tabpanel" class="tab-pane fade in active" id="all">
+                @include('front/event/all')
             </div>
         </div>
     </div>

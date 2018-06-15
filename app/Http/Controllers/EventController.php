@@ -53,7 +53,26 @@ class EventController extends Controller
             ;
         $tmp= [];
         $myTeam = [];
-
+        $matchza = Match::join('time', 'time.time_id', '=', 'match.match_time_id')
+                      ->join('race_type', 'race_type.race_id', '=', 'match.match_race_id')
+                      ->where('match.match_event_id', $event_id);
+        $matchz = $matchza->get()->toArray();
+        
+        foreach($matchz as $key => $matchi) {
+          $team1 = $matchi['match_team_1'];
+          $team2 = $matchi['match_team_2'];
+          $mems = TeamMember::get_member([$team1, $team2]);
+          $i = 1;
+          foreach($mems as $mem) {
+            $matchz[$key]['team_'.$i.'_member_1'] = $mem[0]->name;
+            $matchz[$key]['team_'.$i.'_member_2'] = $mem[1]->name;
+            $i++;
+          }
+        }
+        $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
+                      ->where('match.match_event_id', $event_id)
+                      ->groupBy('match.match_time_id')->get();
+                   
         $number_of_team = [];
         foreach($list_race as $race) {
             $number_of_team[] = Race::where('race_id', $race->race_id)->first()->race_event_type;
@@ -83,19 +102,23 @@ class EventController extends Controller
             $team_math[$line] = TeamMember::get_member($teams);
             $score_team[$line] = Match::get_score($teams);
             $result_match[$line] = [];
-            foreach($match as $m){
+            for($i = 0; $i < count($teams); $i++) 
+              for($j = 0; $j < count($teams); $j++)
+                $result_match[$line][$teams[$i]][$teams[$j]] = [];
+
+            foreach($match as $im => $m){
                 $score = [
                     'set_score_team_1' => $m['set_score_team_1'],
                     'set_score_team_2' => $m['set_score_team_2'],
                     'set_team_win' => $m['set_team_win']
                 ];
-                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_1']])){
-                    $result_match[$line][$m['match_team_1']][$m['match_team_1']] = [];
-                }
-                if(!isset($result_match[$line][$m['match_team_2']][$m['match_team_2']])){
-                    $result_match[$line][$m['match_team_2']][$m['match_team_2']] = [];
-                }
-                if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_2']])){
+                // if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_1']])){
+                //     $result_match[$line][$m['match_team_1']][$m['match_team_1']] = [];
+                // }
+                // if(!isset($result_match[$line][$m['match_team_2']][$m['match_team_2']])){
+                //     $result_match[$line][$m['match_team_2']][$m['match_team_2']] = [];
+                // }
+                // if(!isset($result_match[$line][$m['match_team_1']][$m['match_team_2']])){
                     unset($m['set_score_team_1']);
                     unset($m['set_score_team_2']);
                     unset($m['set_team_win']);
@@ -103,21 +126,21 @@ class EventController extends Controller
                     $result_match[$line][$m['match_team_1']][$m['match_team_2']] = $m;
                     $result_match[$line][$m['match_team_2']][$m['match_team_1']] = $m;
 
-                }
+                // }
                 $result_match[$line][$m['match_team_1']][$m['match_team_2']]['score'][]=$score;
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
             }
 
             
             $i = 0;
-            foreach($result_match[$line] as $team_1 =>$a){
-                $keys = array_keys($result_match[$line][$team_1]);
-                for($j = 1; $j <= $i; $j++){
-                    $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
-                    $result_match[$line][$team_1] = $newArray;
-                }  
-                $i++;
-            }
+            // foreach($result_match[$line] as $team_1 =>$a){
+            //     $keys = array_keys($result_match[$line][$team_1]);
+            //     for($j = 1; $j <= $i; $j++){
+            //         $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
+            //         $result_match[$line][$team_1] = $newArray;
+            //     }  
+            //     $i++;
+            // }
 
         }
         
@@ -180,7 +203,6 @@ class EventController extends Controller
             $i++;
         }
         $event_image = json_decode($event->event_image);
-        
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -205,6 +227,8 @@ class EventController extends Controller
             ->with('match_num',$match_num)
             ->with('event_id', $event_id)
             ->with('line_type', $line_type)
+            ->with('matchs', $matchz)
+            ->with('groupLine', $groupLine)
             ;
     }
 

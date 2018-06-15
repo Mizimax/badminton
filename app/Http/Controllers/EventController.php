@@ -55,6 +55,7 @@ class EventController extends Controller
         $myTeam = [];
         $matchza = Match::join('time', 'time.time_id', '=', 'match.match_time_id')
                       ->join('race_type', 'race_type.race_id', '=', 'match.match_race_id')
+                      ->where('match.match_type', 'MATCH')
                       ->where('match.match_event_id', $event_id);
         $matchz = $matchza->get()->toArray();
         
@@ -71,6 +72,7 @@ class EventController extends Controller
         }
         $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
                       ->where('match.match_event_id', $event_id)
+                      ->where('match.match_type', 'MATCH')
                       ->groupBy('match.match_time_id')->get();
         $number_of_team = [];
         foreach($list_race as $race) {

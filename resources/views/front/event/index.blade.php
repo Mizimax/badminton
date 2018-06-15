@@ -916,7 +916,7 @@
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
-<script src="/js/event.js?v=4"></script>
+<script src="/js/event.js?v=4.1"></script>
 <script type='text/javascript'>
 window.__lo_site_id = 114394;
 

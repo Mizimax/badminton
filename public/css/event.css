@@ -1011,4 +1011,12 @@ td .input-dropdown {
 
 .borderTime {
   border-right: 6px inset #555;
+  border-bottom: 15px solid #fff;
+  border-top: 15px solid #fff;
+}
+
+@media (max-width: 530px) {
+  .allTable {
+    width: 100%;
+  }
 }

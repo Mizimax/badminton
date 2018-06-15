@@ -38,18 +38,18 @@
   <tr>
     <th align="center" style="width:50px">เวลา</th>
     <th align="center">อันดับมือ</th>
-    <th align="center" style="width:30px">Match No.</th>
+    <th align="center" style="width:53px">Match No.</th>
     <th align="center" colspan="2">รายชื่อ</th>
   </tr>
   @php
   $round = 0;
   $i = 0;
   $loopi = 0;
-  for($i = count($groupLine)/2; $i < count($groupLine); $i++){
+  for($i = 0; $i < count($groupLine); $i++){
     $loopi += $groupLine[$i]->count;
   }
   @endphp
-  @for($i = $loop; $i < $loop+$loopi; $i++)
+  @for($i = $loop; $i < $loopi; $i++)
   <tr class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? '': 'tr-margin' }}">
     <td class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? 'hide': '' }} borderTime" rowspan="{{ $prev['match_time_id'] != $matchs[$i]['match_time_id'] ? $groupLine[$round]->count: '' }}"><span class="font-bold font-small">{{ $matchs[$i]['time_stamp']}}</span></td>
     <td style="background-color: {{$matchs[$i]['race_color']}}; color: white; border-bottom: 2px solid #fff" class="{{ $prev['match_line_id'] == $matchs[$i]['match_line_id'] ? 'hide': '' }}" rowspan="{{ $prev['match_line_id'] != $matchs[$i]['match_line_id'] ? 2: '' }}">

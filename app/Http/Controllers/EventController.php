@@ -72,7 +72,6 @@ class EventController extends Controller
         $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
                       ->where('match.match_event_id', $event_id)
                       ->groupBy('match.match_time_id')->get();
-                   
         $number_of_team = [];
         foreach($list_race as $race) {
             $number_of_team[] = Race::where('race_id', $race->race_id)->first()->race_event_type;

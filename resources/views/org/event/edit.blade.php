@@ -89,14 +89,27 @@
 
                 @php
                 $event_date = explode("-", $event_description->date);
+                $event_end = substr($event->event_end, 8, 2);
                 @endphp
                 <div class="form-group max">
                     <div class="flex column wrap dropdown-group">
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" value="{{ $event_date[2] }}" id="event_date" name="event_date">
+                            <input type="text" value="{{ $event_date[2] }}" id="event_start" name="event_start">
                         </div>
                             <div class="input"><span class="display">{{ $event_date[2] }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black has-scroll">
+                                @for($i = 1; $i <= 30; $i++)
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
+                                @endfor
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" value="{{ $event_end }}" id="event_end" name="event_end">
+                        </div>
+                            <div class="input"><span class="display">{{ $event_end }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
                                 @for($i = 1; $i <= 30; $i++)
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
@@ -109,8 +122,8 @@
                             <input type="text" value="{{ $event_date[1] }}" id="event_month" name="event_month">
                         </div>
                             <div class="input"><span class="display">{{ $event_date[1] }}</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black has-scroll">
-                                <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
+                            <div class="input-dropdown home shadow-black">
+                            <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
                                 <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
                                 <div class="item-dropdown" value="3" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
                                 <div class="item-dropdown" value="4" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
@@ -122,19 +135,6 @@
                                 <div class="item-dropdown" value="10" onclick="selectDropdown(this)"><div class="item">ตุลาคม</div></div>
                                 <div class="item-dropdown" value="11" onclick="selectDropdown(this)"><div class="item">พฤศจิกายน</div></div>
                                 <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
-                            </div>
-                        </div>
-                        <div class="space"></div>
-                        <div class="dropdown">
-                        <div class="hide">
-                            <input type="text" value="{{ $event_date[0]+543 }}" id="event_year" name="event_year">
-                        </div>
-                            <div class="input"><span class="display">{{ $event_date[0] + 543 }}</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black">
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2563</div></div>
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2564</div></div>
                             </div>
                         </div>
                     </div>

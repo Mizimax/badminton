@@ -224,7 +224,7 @@
                                 </li>
                                 <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding: 0">
                                     <a href="#" id="dropdownMenu5" style="padding:0px;">
-                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7px">
+                                        <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7;margin-top: 6px;">
                                         <i class="glyphicon glyphicon-menu-down"></i>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-top:1px">

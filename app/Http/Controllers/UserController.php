@@ -41,7 +41,7 @@ class UserController extends Controller
             'password' => bcrypt($input['password']),
             'name' => $input['first_name'] . ' ' .$input['last_name'],
             'user_phone' => $input['phone'],
-            'user_profile' => '/images/no_pic.jpg',
+            'user_profile' => '/images/no_pic2.png',
             'user_coin' => 200,
             'user_level' => 1,
         ];

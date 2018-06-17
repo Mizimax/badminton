@@ -33,6 +33,8 @@ class SocialFacebookAccountService
                     'name' => $providerUser->getName(),
                     'password' => md5(rand(1,10000)),
                     'user_profile' => $providerUser->getAvatar()
+                    'user_coin' => 200,
+                    'user_level' => 1,
                 ]);
             }
 

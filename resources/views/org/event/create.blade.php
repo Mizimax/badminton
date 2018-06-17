@@ -119,7 +119,7 @@
                                 <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                             </div>
                         </div>
-<<<<<<< HEAD
+
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
@@ -128,11 +128,10 @@
                             <div class="input"><span class="display">ปี</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
 
                             </div>
                         </div>
-=======
->>>>>>> 78183dcecf66dcad752c62d0f7c7e280aa34b1fb
                     </div>
                     <label for="event_year">วันที่จัดแข่ง</label>
                 </div>

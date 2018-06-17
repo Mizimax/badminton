@@ -923,6 +923,7 @@ fieldset[disabled] .btn-red:hover {
 .box-image {
   background-position: top center;
   background-size: 100% auto;
+  border-radius: 15px;
 }
 
 .box-overlay {
@@ -930,13 +931,14 @@ fieldset[disabled] .btn-red:hover {
   height: 100%;
   top: 0;
   left: 0;
+  border-radius: 15px;
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
     from(rgba(0, 0, 0, 1)),
     to(rgba(0, 0, 0, 0)),
-    color-stop(0.05, rgba(0, 0, 0, 0.98))
+    color-stop(0.05, rgba(0, 0, 0, 0.95))
   );
   /* background: rgb(0, 0, 0);
   background: rgb(0, 0, 0);
@@ -1039,7 +1041,8 @@ img.header {
     height: 365px;
   }
   .navbar-brand {
-    transform: translate(-50%, 13px);
+     display: none;
+
   }
 }
 
@@ -1052,6 +1055,10 @@ img.header {
   }
   .slick-height {
     height: 225px;
+  }
+  .navbar-brand {
+     display: none;
+
   }
 }
 

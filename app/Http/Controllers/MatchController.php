@@ -249,7 +249,7 @@ class MatchController extends Controller
             }
         }
         ksort($team_math[$line_name]);
-
+        
         return view('front/event/match_table')
         ->with('result_match',$result_match)
         ->with('race_name',$race_name)

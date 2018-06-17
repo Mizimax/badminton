@@ -51,9 +51,6 @@ class OrgController extends Controller
     }
 
     public function save(Request $req) {
-
-      dd($req->input());
-
       $rules = [
           'poster' => 'required',
           'cover' => 'required|array',

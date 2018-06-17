@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=5.6" rel="stylesheet">
+    <link href="/css/wezync.css?v=6" rel="stylesheet">
     @yield('css')
 
 </head>
@@ -183,7 +183,7 @@
                           <span></span>
                         </div>
                     </li> -->
-                    <li class="menu">
+                    <li class="menu visible-sm-block visible-md-block visible-lg-block">
                     <div class="navbar-conpon pointer" onclick="window.location='{{ url('/coupon') }}'">
                         <img src="/images/COUPON.png" height="35"><br>
                         <span>YOURCOUPON</span>
@@ -201,7 +201,7 @@
                     </a>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right pointer" style="margin:11px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
+                    <ul class="nav navbar-nav navbar-right pointer" style="margin:{{ Auth::guest() ? '11': '7'}}px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">
@@ -222,7 +222,7 @@
                                         </span>
                                     </div>
                                 </li>
-                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding: 0">
+                                <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding: 7px 0">
                                     <a href="#" id="dropdownMenu5" style="padding:0px;">
                                         <img src="{{Auth::user()->user_profile}}" class="img-circle" height="50px" style="margin-right:7;margin-top: 6px;">
                                         <i class="glyphicon glyphicon-menu-down"></i>

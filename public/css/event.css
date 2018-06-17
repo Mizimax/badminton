@@ -981,3 +981,42 @@ td .input-dropdown {
 .hideName {
   margin-top: 20px;
 }
+
+.allTable {
+  float: left;
+  width: 49%;
+  font-size: 10px !important;
+}
+
+.allTable,
+.allTable th {
+  text-align: center !important;
+}
+
+.allTable th {
+  border-bottom: 1px solid #ccc;
+}
+
+.tr-margin td {
+  /* padding-top: 20px; */
+}
+
+.paddingtd {
+  padding: 5px 0;
+}
+
+.bordertd {
+  border: 1px solid #ccc;
+}
+
+.borderTime {
+  border-right: 6px inset #555;
+  border-bottom: 15px solid #fff;
+  border-top: 15px solid #fff;
+}
+
+@media (max-width: 530px) {
+  .allTable {
+    width: 100%;
+  }
+}

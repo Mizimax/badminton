@@ -119,6 +119,7 @@
                                 <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                             </div>
                         </div>
+<<<<<<< HEAD
 
                         <div class="space"></div>
                         <div class="dropdown">
@@ -132,6 +133,8 @@
 
                             </div>
                         </div>
+=======
+>>>>>>> 900b3a2ad6e2ee9d4e31525c9d15f30b185ea638
                     </div>
                     <label for="event_year">วันที่จัดแข่ง</label>
                 </div>

@@ -40,10 +40,11 @@ class SplitLineController extends Controller
         $data = $req->json()->all();
         $event = Event::select('event_race')->where('event_id', $event_id);
         $event_race = json_decode($event->first()->event_race, true);
+        $data = array_unique($data);
         if(count($data) != count($event_race)) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Please complete sorting.'
+                'message' => 'Please check your sorting correctly.'
             ], 403);
         }
         $new_event_race = [];
@@ -191,29 +192,67 @@ class SplitLineController extends Controller
                         ->where('line_event_id','=',$event_id)
                         ->where('line_race_id','=',$race->race_id)
                         ->get()->toArray();
-            $num_line = count($all_line)/2;
+            $num_line = count($all_line);
+            $newarray = [];
             foreach($all_line as $key => $line){
                 $list_team = json_decode($line['line_team_id']);
                 $number_team = count($list_team);
-                for($i=0; $i<$number_team; $i++){
-                    for($j=$i+1; $j<$number_team; $j++){
-                        // if($first <= $num_line){
-                        //     $match = $first;
-                        // }else{
-                        //     $match = count($all_line)-$first+1;
-                        // }
-                        $array[$race->race_id][] = [
-                            'race' => $race->race_id,
-                            'team_1' => $list_team[$i],
-                            'team_2' => $list_team[$j],
-                            'line_name' => $line['line_name']
-                        ];
-                        $num++;
-                    }
+                $n = 6; // (n*(n-1))/2 default: 4 
+                
+                for($i = 1; $i < $number_team; $i+=2) {
+                  $newarray[0][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[$i-1],
+                    'team_2' => $list_team[$i],
+                    'line_name' => $line['line_name']
+                  ];
                 }
-            }
-        }   
+                for($j = 2; $j < $number_team; $j++) {
+                  $newarray[1][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[$j-2],
+                    'team_2' => $list_team[$j],
+                    'line_name' => $line['line_name']
+                  ];
+                }
+                // for($k = 2; $j < $number_team; $j+=2) {
+                  $newarray[2][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[0],
+                    'team_2' => $list_team[3],
+                    'line_name' => $line['line_name']
+                  ];
+                  $newarray[2][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[1],
+                    'team_2' => $list_team[2],
+                    'line_name' => $line['line_name']
+                  ];
+                // }
 
+
+                // for($i=0; $i<$number_team; $i++){
+                //     for($j=$i+1; $j<$number_team; $j++){
+                //         // if($first <= $num_line){
+                //         //     $match = $first;
+                //         // }else{
+                //         //     $match = count($all_line)-$first+1;
+                //         // }
+                //         $array[$race->race_id][] = [
+                //             'race' => $race->race_id,
+                //             'team_1' => $list_team[$i],
+                //             'team_2' => $list_team[$j],
+                //             'line_name' => $line['line_name']
+                //         ];
+                //         $num++;
+                //     }
+                // }
+                
+            
+            }
+            $array[$race->race_id] = array_merge($newarray[0], $newarray[1], $newarray[2]);
+            
+        }  
         $num = 1;
         $time = 18;
         foreach($array as $k=> $round){

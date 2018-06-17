@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link href="/css/event.css?v=2" rel="stylesheet">
+<link href="/css/event.css?v=3" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>
@@ -916,7 +916,7 @@
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
-<script src="/js/event.js?v=3"></script>
+<script src="/js/event.js?v=4.1"></script>
 <script type='text/javascript'>
 window.__lo_site_id = 114394;
 

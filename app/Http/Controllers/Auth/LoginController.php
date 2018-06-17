@@ -67,8 +67,7 @@ class LoginController extends Controller
                 'name' => $account->name,
                 'password' => md5(rand(1,10000)),
                 'user_profile' => $account->avatar
-                'user_coin' => 200,
-                'user_level' => 1,
+                
             ]);
         }
         auth()->login($user);

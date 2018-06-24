@@ -201,7 +201,7 @@
                     </a>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right pointer" style="margin:{{ Auth::guest() ? '11': '7'}}px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
+                    <ul class="nav navbar-nav navbar-right pointer" style="margin:{{ Auth::guest() ? '11': '4'}}px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">

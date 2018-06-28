@@ -128,8 +128,8 @@ class SplitLineController extends Controller
             $team = $members->toArray();
             
             shuffle($team);
-
-            $max_group = $race->count/4;
+            $this->group_split = count($team)%4;
+            $max_group = ceil(count($team)/4);
             for($number_group = 1; $number_group<=$max_group;$number_group++){
                 if(!in_array($number_group,$this->group)){
                     $this->group[$race_id][$number_group] = [];
@@ -140,6 +140,7 @@ class SplitLineController extends Controller
             while($element = array_pop($team)){
                 $this->split_group($race_id,$element['team_name'],$element['team_id'],$max_group);
             }
+            dd($this->group);
             
         }
         foreach($this->group_id as $race_id => $race){
@@ -168,14 +169,24 @@ class SplitLineController extends Controller
 
     function split_group($race_id,$team_name,$team_id,$max_group){
         for($number_group = 1; $number_group<=$max_group;$number_group++){
-            if(!in_array($team_name,$this->group[$race_id][$number_group]) && sizeof($this->group[$race_id][$number_group]) < 4){
+            if(!in_array($team_name,$this->group[$race_id][$number_group]) && $this->group_split === 1 && $max_group-2 <= $number_group && sizeof($this->group[$race_id][$number_group]) < 3){
+              array_push($this->group[$race_id][$number_group],$team_name);
+              array_push($this->group_id[$race_id][$number_group],$team_id);
+              break;
+            }
+            else if(!in_array($team_name,$this->group[$race_id][$number_group]) && $this->group_split === 2 && $max_group-1 <= $number_group && sizeof($this->group[$race_id][$number_group]) < 3 ){
+            
+              array_push($this->group[$race_id][$number_group],$team_name);
+              array_push($this->group_id[$race_id][$number_group],$team_id);
+              break;
+            }
+            else if(!in_array($team_name,$this->group[$race_id][$number_group]) && sizeof($this->group[$race_id][$number_group]) < 4 && (($this->group_split === 2 && $max_group-1 > $number_group) || ($this->group_split === 1 && $max_group-2 > $number_group) || $this->group_split === 0|| $this->group_split === 3)){
                 array_push($this->group[$race_id][$number_group],$team_name);
                 array_push($this->group_id[$race_id][$number_group],$team_id);
                 break;
-            }elseif($number_group == $max_group){
-                array_push($this->group[$race_id][$number_group],$team_name);
-                array_push($this->group_id[$race_id][$number_group],$team_id);
             }
+            
+            
         }
     }
 

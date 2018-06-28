@@ -20,10 +20,10 @@
                               -ms-filter: blur(20px);
                               filter: blur(20px);">
 
-                            </div> 
-                              
+                            </div>
+
                                 <img src="{{$sponsor['sponsor_image']}}" class="container absolute header">
-                          
+
                                 <div class="carousel-caption">
                                 </div>
                           </div>
@@ -88,7 +88,7 @@
                         <div class="remove-padding box-content">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding" style="margin-top: 15px">
-                                    <h2 class="remove-padding white event-title" style="color: white; font-weight: 900;" >{{$event['event_title']}} <span class="font-small tag {{ $event['event_status'] == 2 ? 'red': '' }}">{{ $event['event_status'] == 1 ? 'อีก ' . $event['day_left'] . ' วัน' : 'สิ้นสุดการแข่งขัน' }}</span></h2>
+                                    <h2 class="remove-padding white event-title" style="color: white; font-weight: 900;" >{{$event['event_title']}} <span class="font-small tag {{ $event['event_status'] == 3 ? 'red': '' }}">{{ $event['event_status'] == 1 ? 'อีก ' . $event['day_left'] . ' วัน' : 'สิ้นสุดการแข่งขัน' }}</span></h2>
                                     <span class="font-med" style="color: #aaa">สนามแบด: <a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
                                 </div>
                             </div>
@@ -124,7 +124,9 @@
                               <div class="col-sm-6 pull-down" align="right">
                                   <a type="button" href="/event/{{$event['event_id']}}" class="btn-detail" style="width: 100px" >รายละเอียด</a>
                                   @if( $event['event_status'] == 1)
-                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
+                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
+                                 @elseif( $event['event_status'] == 2)
+                                 <button type="button" class="btn btn-brown btn-slim" style="width:100px; background-color:#f10505;" onclick="window.location='/event/{{$event['event_id']}}#/match'">แข่งขันอยู่</button>
                                   @else
                                   <button type="button" class="btn btn-brown btn-slim" style="width:100px" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
                                   @endif

@@ -140,7 +140,6 @@ class SplitLineController extends Controller
             while($element = array_pop($team)){
                 $this->split_group($race_id,$element['team_name'],$element['team_id'],$max_group);
             }
-            dd($this->group);
             
         }
         foreach($this->group_id as $race_id => $race){
@@ -209,23 +208,23 @@ class SplitLineController extends Controller
                 $list_team = json_decode($line['line_team_id']);
                 $number_team = count($list_team);
                 $n = 6; // (n*(n-1))/2 default: 4 
-                
-                for($i = 1; $i < $number_team; $i+=2) {
-                  $newarray[0][] = [
-                    'race' => $race->race_id,
-                    'team_1' => $list_team[$i-1],
-                    'team_2' => $list_team[$i],
-                    'line_name' => $line['line_name']
-                  ];
-                }
-                for($j = 2; $j < $number_team; $j++) {
-                  $newarray[1][] = [
-                    'race' => $race->race_id,
-                    'team_1' => $list_team[$j-2],
-                    'team_2' => $list_team[$j],
-                    'line_name' => $line['line_name']
-                  ];
-                }
+                if($number_team === 4){
+                  for($i = 1; $i < $number_team; $i+=2) {
+                    $newarray[0][] = [
+                      'race' => $race->race_id,
+                      'team_1' => $list_team[$i-1],
+                      'team_2' => $list_team[$i],
+                      'line_name' => $line['line_name']
+                    ];
+                  }
+                  for($j = 2; $j < $number_team; $j++) {
+                    $newarray[1][] = [
+                      'race' => $race->race_id,
+                      'team_1' => $list_team[$j-2],
+                      'team_2' => $list_team[$j],
+                      'line_name' => $line['line_name']
+                    ];
+                  }
                 // for($k = 2; $j < $number_team; $j+=2) {
                   $newarray[2][] = [
                     'race' => $race->race_id,
@@ -239,6 +238,27 @@ class SplitLineController extends Controller
                     'team_2' => $list_team[2],
                     'line_name' => $line['line_name']
                   ];
+                }
+                else if($number_team === 3) {
+                  $newarray[0][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[0],
+                    'team_2' => $list_team[1],
+                    'line_name' => $line['line_name']
+                  ];
+                  $newarray[1][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[0],
+                    'team_2' => $list_team[2],
+                    'line_name' => $line['line_name']
+                  ];
+                  $newarray[2][] = [
+                    'race' => $race->race_id,
+                    'team_1' => $list_team[1],
+                    'team_2' => $list_team[2],
+                    'line_name' => $line['line_name']
+                  ];
+                }
                 // }
 
 

@@ -93,13 +93,20 @@ class EventController extends Controller
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
-        $line_type = LineTeam::select('line_type')->where('line_event_id', $event_id)->first()['line_type'];
-
+        $line_team = LineTeam::where('line_event_id', $event_id)->get();
+        $line_type = $line_team[0]->line_type;
+        $group_3 = [];
+        foreach($line_team as $line) {
+          if(count(json_decode($line->line_team_id)) === 3) 
+            $group_3[$line->line_race_id][$line->line_name] = true;
+    
+        }
         $result_match = [];
         $team_math = [];
         $score_team = [];
         foreach($matchs as $line => $match){
             $teams = json_decode(LineTeam::get_team_list($event_id, $race_id,$line)->line_team_id);
+        
             $team_math[$line] = TeamMember::get_member($teams);
             $score_team[$line] = Match::get_score($teams);
             $result_match[$line] = [];
@@ -204,6 +211,10 @@ class EventController extends Controller
             $i++;
         }
         $event_image = json_decode($event->event_image);
+        $loop = 0;
+        for($i = 0; $i < count($groupLine); $i++){
+          $loop += $groupLine[$i]->count;
+        }
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -230,6 +241,7 @@ class EventController extends Controller
             ->with('line_type', $line_type)
             ->with('matchs', $matchz)
             ->with('groupLine', $groupLine)
+            ->with('group_3', $group_3)
             ;
     }
 

@@ -18,7 +18,7 @@
   @for($i = 0; $i < $loop; $i++)
   <tr class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? '': 'tr-margin' }}">
     <td class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? 'hide': '' }} borderTime" rowspan="{{ $prev['match_time_id'] != $matchs[$i]['match_time_id'] ? $groupLine[$round]->count: '' }}"><span class="font-bold font-small">{{ $matchs[$i]['time_stamp']}}</span></td>
-    <td style="background-color: {{$matchs[$i]['race_color']}}; color: white; border-bottom: 2px solid #fff" class="{{ $prev['match_line_id'] == $matchs[$i]['match_line_id'] ? 'hide': '' }}" rowspan="{{ $prev['match_line_id'] != $matchs[$i]['match_line_id'] ? 2: '' }}">
+    <td style="background-color: {{$matchs[$i]['race_color']}}; color: white; border-bottom: 2px solid #fff" class="{{ $prev['match_line_id'] == $matchs[$i]['match_line_id'] ? 'hide': '' }}" rowspan="{{ $prev['match_line_id'] != $matchs[$i]['match_line_id'] ? isset($group_3[$matchs[$i]['match_race_id']][$matchs[$i]['match_line_id']]) ? 1: 2 : '' }}">
       <span class="font-bold font-bigger">{{$matchs[$i]['race_name']}}</span><br>
       กลุ่ม {{ $matchs[$i]['match_line_id']}}
     </td>
@@ -52,7 +52,7 @@
   @for($i = $loop; $i < $loopi; $i++)
   <tr class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? '': 'tr-margin' }}">
     <td class="{{ $prev['match_time_id'] == $matchs[$i]['match_time_id'] ? 'hide': '' }} borderTime" rowspan="{{ $prev['match_time_id'] != $matchs[$i]['match_time_id'] ? $groupLine[$round]->count: '' }}"><span class="font-bold font-small">{{ $matchs[$i]['time_stamp']}}</span></td>
-    <td style="background-color: {{$matchs[$i]['race_color']}}; color: white; border-bottom: 2px solid #fff" class="{{ $prev['match_line_id'] == $matchs[$i]['match_line_id'] ? 'hide': '' }}" rowspan="{{ $prev['match_line_id'] != $matchs[$i]['match_line_id'] ? 2: '' }}">
+    <td style="background-color: {{$matchs[$i]['race_color']}}; color: white; border-bottom: 2px solid #fff" class="{{ $prev['match_line_id'] == $matchs[$i]['match_line_id'] ? 'hide': '' }}" rowspan="{{ $prev['match_line_id'] != $matchs[$i]['match_line_id'] ? isset($group_3[$matchs[$i]['match_race_id']][$matchs[$i]['match_line_id']]) ? 1: 2 : '' }}">
       <span class="font-bold font-bigger">{{$matchs[$i]['race_name']}}</span><br>
       กลุ่ม {{ $matchs[$i]['match_line_id']}}
     </td>

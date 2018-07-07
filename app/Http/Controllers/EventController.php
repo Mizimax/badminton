@@ -94,7 +94,10 @@ class EventController extends Controller
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
         $line_team = LineTeam::where('line_event_id', $event_id)->get();
-        $line_type = $line_team[0]->line_type;
+        if(count($line_team) === 0)
+          $line_type = [];
+        else
+          $line_type = $line_team[0]->line_type;
         $group_3 = [];
         foreach($line_team as $line) {
           if(count(json_decode($line->line_team_id)) === 3) 

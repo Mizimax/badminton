@@ -246,6 +246,10 @@ a {
   font-weight: bold;
 }
 
+.inline {
+  display: inline-block;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -1041,8 +1045,7 @@ img.header {
     height: 300px;
   }
   .navbar-brand {
-     display: none;
-
+    display: none;
   }
   .navbar-cart {
     margin-left: 0;
@@ -1060,8 +1063,7 @@ img.header {
     height: 180px;
   }
   .navbar-brand {
-     display: none;
-
+    display: none;
   }
 }
 

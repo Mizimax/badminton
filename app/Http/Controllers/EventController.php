@@ -95,7 +95,7 @@ class EventController extends Controller
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
         $line_team = LineTeam::where('line_event_id', $event_id)->get();
         if(count($line_team) === 0)
-          $line_type = [];
+          $line_type = null;
         else
           $line_type = $line_team[0]->line_type;
         $group_3 = [];

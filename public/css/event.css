@@ -1015,6 +1015,52 @@ td .input-dropdown {
   border-top: 15px solid #fff;
 }
 
+.button-dropdown {
+  background-color: #ed1c24;
+  color: white;
+  cursor: pointer;
+  border: none;
+  min-width: 50px;
+  height: 25px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.button-dropdown span {
+  font-size: 8px;
+}
+
+.order_hand {
+  padding: 40px 0 60px 0;
+}
+
+.dropdown-menu.all {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+}
+
+.handLabel.all {
+  position: relative;
+  width: 40px !important;
+  height: 30px !important;
+  border-right: 1px solid #ccc;
+}
+
+.handLabel.all:last-child {
+  border: 0;
+}
+
+.handLabel.all:hover {
+  background-color: #ed1c24;
+  color: white;
+}
+
+.button-dropdown:focus {
+  outline: 0;
+}
+
 @media (max-width: 530px) {
   .allTable {
     width: 100%;

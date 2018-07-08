@@ -1,3 +1,27 @@
+<div class="order_hand">
+  <div class="col-sm-3" align="right" style="font-size:14px;">อันดับการแข่งขัน</div>
+  <div class="flex wrap col-sm-9 dropdownza">
+  @foreach($list_race as $key=> $races)
+      <div class="dropdown">
+          <button key="{{$key}}" class="button-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          &nbsp&nbsp{{ $races->race_name }} &nbsp<span class="glyphicon glyphicon-menu-down"></span>
+          </button>
+          <ul class="dropdown-menu all" aria-labelledby="dropdownMenu1">
+              <div class="flex">
+              @foreach($list_race as $race)
+                  <div class="handLabel all small pointer" onclick="handSortAll(this)" value="{{$race->race_id}}">
+                      <div class="absolute middle">
+                      {{$race['race_name']}}
+                      </div>
+                  </div>
+              @endforeach
+              </div>
+          </ul>
+      </div>
+  @endforeach
+  <input type="text" class="form-control" style="width:125px; height: 25px; border-radius:10px; text-align:center">
+  </div>
+</div>
 <table class="allTable" cellpadding="0" border="0" cellspacing="0">
   <tr>
     <th align="center" style="width:50px">เวลา</th>

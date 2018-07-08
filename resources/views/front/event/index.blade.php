@@ -659,6 +659,22 @@
         handSortList[button.attr('key')] = parseInt(value);
     });
 
+    handSortAll = (function(ele) {
+        var button = $(ele).parents(".dropdown-menu").prev();
+        var current = button.text();
+        var text = $(ele).text().trim();
+        var value = $(ele).attr('value');
+        var prev = $(ele).parents(".dropdownza").children();
+        prev = prev.filter(index=>{
+          console.log(prev[index].innerText)
+          return prev[index].innerText.trim() === text }
+        );
+        console.log(prev);
+        $(prev).children(':first').html('&nbsp&nbsp'+current+' &nbsp<span class="glyphicon glyphicon-menu-down"></span></button>');
+        button.html('&nbsp&nbsp'+text+' &nbsp<span class="glyphicon glyphicon-menu-down"></span></button>');
+        handSortList[button.attr('key')] = parseInt(value);
+    });
+
     var judsai = (function() {
         swal({
             title: "เรียงลำดับการแข่งขันแต่ละมือ",

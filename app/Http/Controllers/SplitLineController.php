@@ -67,6 +67,11 @@ class SplitLineController extends Controller
         
     }
 
+    public function courtUpdate(Request $req, $event_id, $court_no) {
+      Event::where('event_id', $event_id)->update(['event_court_no' => $court_no]);
+      return $this->handSort($req, $event_id);
+    }
+
     public function split_by_race(Request $req, $event_id, $race_id)
     {
         $data = $req->json()->all();
@@ -286,8 +291,14 @@ class SplitLineController extends Controller
         }  
         $num = 1;
         $time = 18;
+        $groupCount = 0;
+        $prev = ['line_name'=>'', 'race'=>''];
         foreach($array as $k=> $round){
             foreach($round as $key => $val){
+              if($val['line_name'] !== $prev['line_name'])
+                $groupCount++;
+              if($val['race'] !== $prev['race'])
+                $groupCount = 1;
                 $data = [
                     'match_team_1' =>$val['team_1'],
                     'match_team_2' =>$val['team_2'],
@@ -297,13 +308,15 @@ class SplitLineController extends Controller
                     'match_race_id' => $val['race'],
                     'match_status' => 'NOT START',
                     'match_number' => $num,
-                    'match_type' => 'MATcH'
+                    'match_type' => 'MATcH',
+                    'match_group' => $groupCount
                 ];
                 Match::insert($data);
                 if($num%$court == 0){
                     $time += 1;
                 }
                 $num++;
+                $prev = $val;
             } 
         }
         $this->run_set_match($event_id);

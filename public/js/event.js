@@ -3,6 +3,18 @@ var url = bg.attr("image-bg");
 
 $("head").append('<style>.cover2:before{background-image: url("' + url + '")');
 
+function getMatch(event_id, callback) {
+  $.ajax({
+    url: "/get_match_all/" + event_id,
+    method: "get",
+    success: function(data) {
+      $("#all").html(data);
+      callback();
+    },
+    error: function() {}
+  });
+}
+
 function search_match(race_id) {
   event_id = $("#event_id").val();
   $.ajax({

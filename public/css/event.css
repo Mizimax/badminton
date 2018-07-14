@@ -128,6 +128,24 @@ a:focus {
   .button.max {
     padding: 6px 10px;
   }
+  .order_hand .col-sm-3,
+  .order_hand .col-sm-4 {
+    text-align: center;
+    margin: 10px 0;
+  }
+  .dropdownza {
+    justify-content: center;
+    margin: 10px 0;
+  }
+  #court {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 345px) {
+  .button.max {
+    font-size: 12px !important;
+  }
 }
 
 @media (max-width: 700px) {
@@ -1043,9 +1061,37 @@ td .input-dropdown {
 
 .handLabel.all {
   position: relative;
+  color: #636b6f;
   width: 40px !important;
   height: 30px !important;
   border-right: 1px solid #ccc;
+}
+
+.dropdown-hover {
+  display: none;
+  top: 30px;
+  left: -1px;
+}
+
+.dropdown-hover .flex {
+  border: 1px solid #ccc;
+}
+
+.dropdown-hover .flex .pointer {
+  color: #636b6f;
+  width: 39px !important;
+  height: 30px !important;
+  border-bottom: 1px solid #ccc;
+  background: white;
+}
+
+.dropdown-hover .flex .pointer:hover {
+  background-color: #ed1c24;
+  color: white;
+}
+
+.handLabel.all:hover .dropdown-hover {
+  display: block;
 }
 
 .handLabel.all:last-child {

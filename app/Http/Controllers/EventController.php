@@ -13,6 +13,7 @@ use App\Models\TeamType;
 use App\Models\Match;
 use App\Models\SpecialEventMember;
 use App\Models\SpecialRewards;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -59,6 +60,8 @@ class EventController extends Controller
                       ->where('match.match_event_id', $event_id);
         $matchz = $matchza->get()->toArray();
         
+        $countMatchRace = [];
+        $prev = ['match_line_id' => ''];
         foreach($matchz as $key => $matchi) {
           $team1 = $matchi['match_team_1'];
           $team2 = $matchi['match_team_2'];
@@ -69,6 +72,13 @@ class EventController extends Controller
             $matchz[$key]['team_'.$i.'_member_2'] = $mem[1]->name;
             $i++;
           }
+          if($matchi['match_line_id'] !== $prev['match_line_id']) {
+            if(!isset($countMatchRace[$matchi['race_id']]))    
+              $countMatchRace[$matchi['race_id']] = 1;
+            else  
+              $countMatchRace[$matchi['race_id']]++;
+          }
+          $prev = $matchi;
         }
         $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
                       ->where('match.match_event_id', $event_id)
@@ -102,7 +112,6 @@ class EventController extends Controller
         foreach($line_team as $line) {
           if(count(json_decode($line->line_team_id)) === 3) 
             $group_3[$line->line_race_id][$line->line_name] = true;
-    
         }
         $result_match = [];
         $team_math = [];
@@ -214,10 +223,6 @@ class EventController extends Controller
             $i++;
         }
         $event_image = json_decode($event->event_image);
-        $loop = 0;
-        for($i = 0; $i < count($groupLine); $i++){
-          $loop += $groupLine[$i]->count;
-        }
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -245,6 +250,7 @@ class EventController extends Controller
             ->with('matchs', $matchz)
             ->with('groupLine', $groupLine)
             ->with('group_3', $group_3)
+            ->with('countMatchRace', $countMatchRace)
             ;
     }
 
@@ -336,6 +342,98 @@ class EventController extends Controller
             ->where('team_id', $member_id)->get();
         return view('front/event/modal_desc')
                ->with('teams', $team);
+    }
+
+    public function getAll ($event_id) {
+      $event = Event::get_detail($event_id);
+      $raw_race = json_decode($event->event_race);
+      $list_race = Event::get_list_race_from_event($event_id, $raw_race);
+      $matchza = Match::join('time', 'time.time_id', '=', 'match.match_time_id')
+                      ->join('race_type', 'race_type.race_id', '=', 'match.match_race_id')
+                      ->where('match.match_type', 'MATCH')
+                      ->where('match.match_event_id', $event_id);
+      $matchz = $matchza->get()->toArray();
+      
+      $countMatchRace = [];
+      $prev = ['match_line_id' => ''];
+      foreach($matchz as $key => $matchi) {
+        $team1 = $matchi['match_team_1'];
+        $team2 = $matchi['match_team_2'];
+        $mems = TeamMember::get_member([$team1, $team2]);
+        $i = 1;
+        foreach($mems as $mem) {
+          $matchz[$key]['team_'.$i.'_member_1'] = $mem[0]->name;
+          $matchz[$key]['team_'.$i.'_member_2'] = $mem[1]->name;
+          $i++;
+        }
+        if($matchi['match_line_id'] !== $prev['match_line_id']) {
+          if(!isset($countMatchRace[$matchi['race_id']]))    
+            $countMatchRace[$matchi['race_id']] = 1;
+          else  
+            $countMatchRace[$matchi['race_id']]++;
+        }
+        $prev = $matchi;
+      }
+      $line_team = LineTeam::where('line_event_id', $event_id)->get();
+      $group_3 = [];
+      foreach($line_team as $line) {
+        if(count(json_decode($line->line_team_id)) === 3) 
+          $group_3[$line->line_race_id][$line->line_name] = true;
+      }
+      $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
+                    ->where('match.match_event_id', $event_id)
+                    ->where('match.match_type', 'MATCH')
+                    ->groupBy('match.match_time_id')->get();
+      return view('front/event/all')
+              ->with('event', $event)
+              ->with('list_race', $list_race)
+              ->with('matchs', $matchz)
+              ->with('groupLine', $groupLine)
+              ->with('group_3', $group_3)
+              ->with('countMatchRace', $countMatchRace)
+              ;
+    }
+
+    public function getMatchAll(Request $req, $event_id)
+    {
+      $data = $req->json()->all();
+      $tempNo = 100000;
+      $diffCount = count($data['to']) - count($data['from']);
+      $diff = $data['to'][0] - $data['from'][0];
+      $time_to = $data['time_to'];
+      $time_from = $data['time_from'];
+      $tempArr = [];
+
+      Match::whereIn('match_number',array_merge($data['from'], $data['to']))->increment('match_id', $tempNo);
+      Match::where('match_number', '>', $data['from'][count($data['from'])-1])->where('match_number', '<', $data['to'][0])->orderBy('match_id', $diffCount < 0 ? 'asc': 'desc')->increment('match_id', $diffCount);
+      Match::whereIn('match_number',$data['from'])->update(['match_time_id' => $time_to]);
+      Match::whereIn('match_number',$data['to'])->update(['match_time_id' => $time_from]);
+      Match::whereIn('match_number',$data['from'])->decrement('match_id', $tempNo-$diff-$diffCount);
+      Match::whereIn('match_number',$data['to'])->decrement('match_id', $tempNo+$diff);   
+      Match::whereIn('match_number',$data['to'])->increment('match_number', $tempNo);        
+      Match::whereIn('match_number',$data['from'])->increment('match_number', $diff+$diffCount);
+      for($i=0; $i < count($data['to']); $i++)
+        array_push($tempArr, $tempNo+$data['to'][$i]); 
+      Match::whereIn('match_number',$tempArr)->decrement('match_number', $tempNo+$diff);      
+      
+      Match::where('match_number', '>', $data['from'][count($data['from'])-1])->where('match_number', '<', $data['to'][0])->increment('match_number', $diffCount);
+      
+      if($diffCount < 0) {
+        $match = Match::where('match_number', $data['to'][0])->pluck('match_id');
+        $matchUse = $match[0]-count($data['from'])+1;
+        for($i = $matchUse; $i < $matchUse-$diffCount; $i++) {
+          var_dump($i);
+          Match::where('match_id', $i)->increment('match_number', 1);
+        }
+      }
+      else if($diffCount > 0) {
+        $match = Match::where('match_number', $data['from'][0])->pluck('match_id');
+        $matchUse = $match[0]+count($data['to'])-1;
+        for($i = $matchUse; $i > $matchUse-$diffCount; $i--) {
+          Match::where('match_id', $i)->decrement('match_number', 1);
+        }
+      }
+
     }
 
     public function get_math($event_id, $race_id)

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link href="/css/event.css?v=3" rel="stylesheet">
+<link href="/css/event.css?v=4" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>
@@ -263,7 +263,20 @@
 @endif
 <script type="text/javascript">
 
-    var handSortList = [];
+    var handSortList = [
+      @foreach($list_race as $race)
+        {{$race->race_id}},
+      @endforeach
+    ];
+
+    $(document).on('click', '.dropdown.all .dropdown-menu', function (e) {
+      e.stopPropagation();
+    });
+
+    $(document).on('click', '.has-dropdown', function(e) { 
+      e.stopPropagation();
+      $(this).children(':first').children(':first').dropdown('toggle'); 
+    });
 
     jQuery.browser = {};
     (function () {
@@ -666,14 +679,108 @@
         var value = $(ele).attr('value');
         var prev = $(ele).parents(".dropdownza").children();
         prev = prev.filter(index=>{
-          console.log(prev[index].innerText)
           return prev[index].innerText.trim() === text }
         );
-        console.log(prev);
         $(prev).children(':first').html('&nbsp&nbsp'+current+' &nbsp<span class="glyphicon glyphicon-menu-down"></span></button>');
         button.html('&nbsp&nbsp'+text+' &nbsp<span class="glyphicon glyphicon-menu-down"></span></button>');
+        handSortList[$(prev).children(':first').attr('key')] = handSortList[button.attr('key')];
         handSortList[button.attr('key')] = parseInt(value);
     });
+
+    handSortGroup = (function(ele) {
+      $(ele).parents(".dropdown.all").toggleClass('open');
+        var button = $(ele).parents(".dropdown-menu").prev();
+        var current = button.html();
+        var text = $(ele).text().trim();
+        var value = $(ele).attr('value');
+        var race = $(ele).attr('race');
+        var prev = $(ele).parents(".allTable").children(':first').children();
+        var match = $(ele).parents(".dropdown.all").attr('match')
+        var time_from = $(ele).parents(".dropdown.all").attr('time')
+        var count = $(ele).parents(".dropdown.all").attr('count')
+        var prevMatch, prevCount, time_to;
+
+        prev = prev.filter(index=>{
+          return $(prev[index]).find('.dropdown.all').children(':first').text().trim() === race+'รอบ '+text }
+        );
+        if(prev.length == 0){
+          var prevNext = $(ele).parents(".allTable").next().children(':first').children();
+          prevNext = prevNext.filter(index=>{
+            return $(prevNext[index]).find('.dropdown.all').children(':first').text().trim() === race+'รอบ '+text
+          });
+          $(prevNext[0]).find('.dropdown.all').children(':first').html(current);
+          prevMatch = $(prevNext[0]).find('.dropdown.all').attr('match')
+          prevCount = $(prevNext[0]).find('.dropdown.all').attr('count')
+          time_to = $(prevNext[0]).find('.dropdown.all').attr('time')
+        }
+        else{
+          $(prev).find('.dropdown.all').children(':first').html(current);
+          prevMatch = $(prev[0]).find('.dropdown.all').attr('match')
+          prevCount = $(prev[0]).find('.dropdown.all').attr('count')
+          time_to = $(prev[0]).find('.dropdown.all').attr('time')
+        }     
+        button.html('<span class="font-bold font-bigger">'+race+'</span><br>รอบ '+value+'<br><span class="glyphicon glyphicon-menu-down"></span></button>');
+        var res = {};
+        var from = [], to = [];
+        for(var i = 0; i < count; i++)
+          from.push(parseInt(match)+i)
+        for(var i = 0; i < prevCount; i++)
+          to.push(parseInt(prevMatch)+i)
+        if(from[0] > to[0]){
+          res['from'] = to;
+          res['to'] = from;
+        }
+        else{
+          res['from'] = from;
+          res['to'] = to;
+        }
+        res['time_from'] = time_from;
+        res['time_to'] = time_to;
+        swal({
+            title: "โปรดรอสักครู่...",
+            html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
+            showConfirmButton: false
+        });
+        $.ajax({
+                  url: '/all/{{ $event->event_id }}',
+                  method: 'post',
+                  data: JSON.stringify(res),
+                  success: function(data){
+                    getMatch({{ $event->event_id }}, function(){
+                      swal.close();
+                    });
+                  },
+                  error: function() {
+                      swal('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+                  }
+        });
+    });
+
+    var judsaiAll = (function(court) {
+      swal({
+            title: "โปรดรอสักครู่...",
+            html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",
+            showConfirmButton: false
+      });
+      $.ajax({
+                  url: '/court/{{ $event->event_id }}/'+court,
+                  method: 'post',
+                  data: JSON.stringify(handSortList),
+                  success: function(data){
+                      swal({
+                          title: "สำเร็จ !",
+                          text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
+                      }).then(function(){
+                          window.location = '/event/{{ $event->event_id }}#/match';
+                          location.reload();
+                      })
+                  },
+                  error: function() {
+                      swal('กรุณาใส่ข้อมูลให้ครบถ้วน');
+                  }
+      });
+
+    })
 
     var judsai = (function() {
         swal({
@@ -742,11 +849,11 @@
             url: '/split_line/{{ $event->event_id }}/race/'+$('#hand_dropdown').val()+'/shuffle',
             method: 'get',
             success: function(data){
+                search_match($('#hand_dropdown').val());
+                getMatch({{ $event->event_id }});
                 swal({
                     title: "สำเร็จ !",
                     text: "จัดสายการแข่งขันเรียบร้อย โปรดยืนยันการจัดสายในภายหลัง"
-                }).then(function(){
-                    search_match($('#hand_dropdown').val());
                 })
             }
         });
@@ -932,7 +1039,7 @@
 </script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/hashchange.min.js"></script>
-<script src="/js/event.js?v=4.1"></script>
+<script src="/js/event.js?v=5"></script>
 <script type='text/javascript'>
 window.__lo_site_id = 114394;
 

@@ -40,6 +40,7 @@ Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');
 
 Route::get('/get_match/{event_id}/{race_id}', 'EventController@get_math')->name('get_math');
+Route::get('/get_match_all/{event_id}', 'EventController@getAll')->name('get_math_all');
 Route::get('/get_knockout/{event_id}/{race_id}', 'EventController@get_knockout')->name('get_knockout');
 Route::get('/register_special_event/{event_id}', 'EventController@register_special_event')->name('register_special_event');
 Route::get('/prize/{event_id}', 'EventController@prize')->name('prize');
@@ -81,6 +82,8 @@ Route::group([ 'middleware' => ['OrgAndAdmin', 'my_org'] ], function () {
   Route::patch('/event/{event_id}/match/{match_id}/time', 'MatchController@changeTime')->name('change_time');
   Route::get('/add_score/{event_id}', 'MatchController@add_score_id')->name('add_score');
   Route::get('/search_match/{event_id}/{match_id}', 'MatchController@search_match_id')->name('search_match');
+  Route::post('/all/{event_id}', 'EventController@getMatchAll')->name('get_match_all');
+  Route::post('/court/{event_id}/{court_no}', 'SplitLineController@courtUpdate')->name('court_update');
   Route::post('/random/{event_id}', 'SplitLineController@handSort')->name('hand_sort_random');
   Route::get('/split_line/{event_id}', 'SplitLineController@split')->name('split_line');
   Route::patch('/split_line/{event_id}/race/{race_id}', 'SplitLineController@split_by_race')->name('split_by_race');

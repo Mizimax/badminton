@@ -28,7 +28,7 @@
   </div>
 </div>
 @endif
-<table class="allTable" cellpadding="0" border="0" cellspacing="0">
+<table class="allTable" id="table_1" cellpadding="0" border="0" cellspacing="0">
   <tr>
     <th align="center" style="width:50px">เวลา</th>
     <th align="center">อันดับมือ</th>
@@ -89,7 +89,7 @@
   @endfor
 </table>
 
-<table class="allTable" cellpadding="0" border="0" cellspacing="0">
+<table class="allTable" id="table_2" cellpadding="0" border="0" cellspacing="0">
   <tr>
     <th align="center" style="width:50px">เวลา</th>
     <th align="center">อันดับมือ</th>

@@ -704,7 +704,11 @@
           return $(prev[index]).find('.dropdown.all').children(':first').text().trim() === race+'รอบ '+text }
         );
         if(prev.length == 0){
-          var prevNext = $(ele).parents(".allTable").next().children(':first').children();
+          var prevNext
+          if($(ele).parents(".allTable").attr('id') === 'table_2')
+            prevNext = $(ele).parents(".allTable").prev().children(':first').children();
+          else
+            prevNext = $(ele).parents(".allTable").next().children(':first').children();
           prevNext = prevNext.filter(index=>{
             return $(prevNext[index]).find('.dropdown.all').children(':first').text().trim() === race+'รอบ '+text
           });
@@ -729,13 +733,16 @@
         if(from[0] > to[0]){
           res['from'] = to;
           res['to'] = from;
+          res['time_from'] = time_to;
+          res['time_to'] = time_from;
         }
         else{
           res['from'] = from;
           res['to'] = to;
+          res['time_from'] = time_from;
+          res['time_to'] = time_to;
         }
-        res['time_from'] = time_from;
-        res['time_to'] = time_to;
+        
         swal({
             title: "โปรดรอสักครู่...",
             html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",

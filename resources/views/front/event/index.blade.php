@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link href="/css/event.css?v=4" rel="stylesheet">
+<link href="/css/event.css?v=4.1" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>

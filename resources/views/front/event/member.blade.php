@@ -58,7 +58,6 @@
 </div>
 @endif
 @if($event->member_status === 0 || ($event->event_user_id === Auth::id() || isAdmin()))
-<div class="table-responsive">
 <table id="table-member" class="table table-hover">
     <thead>
         <tr>
@@ -204,7 +203,7 @@
         @endforeach
     </tbody>
 </table>
-</div>
+
 @else
 <div class="row">
     <div class="col-xs-12" align="center" style="height: 200px">

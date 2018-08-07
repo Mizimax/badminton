@@ -235,21 +235,7 @@
         </div>
     </div>
 </div>
-<div class="alert comment ">
-    <div class="overlay"></div>
-    <div class="fixed middle color-white">
-        <div class="font-bigger" align="center">โปรดกรอกเหตุผลที่ไม่ผ่านการประเมิน</div>
-        <br>
-        <div align="center">
-        <input type="text" class="comment_input">
-        </div>
-        <br>
-        <div align="center">
-            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
-            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
-        </div>
-    </div>
-</div>
+
 
 <div class="alert roll hide">
     <div class="overlay"></div>

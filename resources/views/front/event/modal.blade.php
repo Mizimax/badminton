@@ -152,14 +152,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 อัพโหลดภาพผู้เเข่งขัน(ถ้ามี)
                             </div>
                             <div class="col-sm-10">
                                 <input class="form-control" id="pic{{$order}}" name="pic{{$order}}" type="file" />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <div class="col-sm-2 control-label">

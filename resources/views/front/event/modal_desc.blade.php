@@ -109,14 +109,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-sm-2 control-label">
                                 ภาพผู้เเข่งขัน
                             </div>
                             <div class="col-sm-10">
                                 <img src="team_member_pic">
                             </div>
-                        </div>
+                        </div> -->
 
 
                     </div>

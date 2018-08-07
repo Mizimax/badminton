@@ -235,6 +235,21 @@
         </div>
     </div>
 </div>
+<div class="alert comment ">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white">
+        <div class="font-bigger" align="center">โปรดกรอกเหตุผลที่ไม่ผ่านการประเมิน</div>
+        <br>
+        <div align="center">
+        <input type="text" class="comment_input">
+        </div>
+        <br>
+        <div align="center">
+            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
+        </div>
+    </div>
+</div>
 
 <div class="alert roll hide">
     <div class="overlay"></div>
@@ -273,9 +288,9 @@
       e.stopPropagation();
     });
 
-    $(document).on('click', '.has-dropdown', function(e) { 
+    $(document).on('click', '.has-dropdown', function(e) {
       e.stopPropagation();
-      $(this).children(':first').children(':first').dropdown('toggle'); 
+      $(this).children(':first').children(':first').dropdown('toggle');
     });
 
     jQuery.browser = {};
@@ -510,9 +525,11 @@
             $(ele).parent().append(
                 `
                 <div class="input-dropdown home shadow-black show">
+
                         <div class="item-dropdown" value="2"><div class="item">ผ่านการประเมิน</div></div>
                         <div class="item-dropdown" value="3"><div class="item">ไม่ผ่านการประเมิน</div></div>
                         <div class="item-dropdown" value="1"><div class="item">รอการประเมิน</div></div>
+                          <div class="item-dropdown" value="4"><div class="item">ติดต่อผู้จัด</div></div>
                 </div>
             `);
             $('td .item-dropdown').click(function() {
@@ -722,7 +739,7 @@
           prevMatch = $(prev[0]).find('.dropdown.all').attr('match')
           prevCount = $(prev[0]).find('.dropdown.all').attr('count')
           time_to = $(prev[0]).find('.dropdown.all').attr('time')
-        }     
+        }
         button.html('<span class="font-bold font-bigger">'+race+'</span><br>รอบ '+value+'<br><span class="glyphicon glyphicon-menu-down"></span></button>');
         var res = {};
         var from = [], to = [];
@@ -742,7 +759,7 @@
           res['time_from'] = time_from;
           res['time_to'] = time_to;
         }
-        
+
         swal({
             title: "โปรดรอสักครู่...",
             html: "<br><div class='lds-dual-ring'></div><br>กำลังจัดสายการแข่งขัน",

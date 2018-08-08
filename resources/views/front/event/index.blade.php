@@ -235,6 +235,21 @@
         </div>
     </div>
 </div>
+<div class="alert comment hide">
+    <div class="overlay"></div>
+    <div class="fixed middle color-white">
+        <div class="font-bigger" align="center">โปรดกรอกเหตุผล</div>
+        <br>
+        <div align="center">
+        <input type="text" class="comment_input">
+        </div>
+        <br>
+        <div align="center">
+            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
+            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
+        </div>
+    </div>
+</div>
 
 
 <div class="alert roll hide">
@@ -513,9 +528,11 @@
                 <div class="input-dropdown home shadow-black show">
 
                         <div class="item-dropdown" value="2"><div class="item">ผ่านการประเมิน</div></div>
+                          <div class="item-dropdown" value="6"><div class="item">ชำระเงินแล้ว</div></div>
                         <div class="item-dropdown" value="3"><div class="item">ไม่ผ่านการประเมิน</div></div>
                         <div class="item-dropdown" value="1"><div class="item">รอการประเมิน</div></div>
                           <div class="item-dropdown" value="4"><div class="item">ติดต่อผู้จัด</div></div>
+                          <div class="item-dropdown" value="5"><div class="item">ยกเลิก</div></div>
                 </div>
             `);
             $('td .item-dropdown').click(function() {
@@ -534,9 +551,19 @@
                     contentType:"application/json; charset=utf-8",
                     success: function(data){
                         $(ele).text(statusName);
-                        if(status == 2) {
-                            $(ele).css('background-color', '#7fe18e');
-                        }else {
+                        if(status == 1) {
+                            $(ele).css('background-color', '#0097fc');
+                            }
+                         else if (status == 2) {
+                           $(ele).css('background-color', '#7fe18e');
+                         }
+                         else if (status == 4) {
+                           $(ele).css('background-color', '#ff5c00');
+                         }
+                         else if (status == 5) {
+                             $(ele).css('background-color', '#ff5c00');
+                      }
+                        else {
                             $(ele).css('background-color', '#FF2b06');
                         }
                     }

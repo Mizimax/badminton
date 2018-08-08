@@ -59,7 +59,7 @@ class EventController extends Controller
                       ->where('match.match_type', 'MATCH')
                       ->where('match.match_event_id', $event_id);
         $matchz = $matchza->get()->toArray();
-        
+
         $countMatchRace = [];
         $prev = ['match_line_id' => ''];
         foreach($matchz as $key => $matchi) {
@@ -73,9 +73,9 @@ class EventController extends Controller
             $i++;
           }
           if($matchi['match_line_id'] !== $prev['match_line_id']) {
-            if(!isset($countMatchRace[$matchi['race_id']]))    
+            if(!isset($countMatchRace[$matchi['race_id']]))
               $countMatchRace[$matchi['race_id']] = 1;
-            else  
+            else
               $countMatchRace[$matchi['race_id']]++;
           }
           $prev = $matchi;
@@ -94,12 +94,12 @@ class EventController extends Controller
             if($member->team_manager_id != 0 && $member->team_manager_id == Auth::id()) {
                 $myTeam[] = $member;
             }
-            else if($member->team_status >= 1 && $member->team_status<=3){
+            else if($member->team_status >= 1 && $member->team_status<=6){
                 $tmp[] = $member;
             }
         }
 
-        
+
         $race_id = $list_race[0]->race_id;
         $race_name = $list_race[0]->race_name;
         $matchs = Match::get_match_by_event_and_race($event_id, $race_id);
@@ -110,7 +110,7 @@ class EventController extends Controller
           $line_type = $line_team[0]->line_type;
         $group_3 = [];
         foreach($line_team as $line) {
-          if(count(json_decode($line->line_team_id)) === 3) 
+          if(count(json_decode($line->line_team_id)) === 3)
             $group_3[$line->line_race_id][$line->line_name] = true;
         }
         $result_match = [];
@@ -118,11 +118,11 @@ class EventController extends Controller
         $score_team = [];
         foreach($matchs as $line => $match){
             $teams = json_decode(LineTeam::get_team_list($event_id, $race_id,$line)->line_team_id);
-        
+
             $team_math[$line] = TeamMember::get_member($teams);
             $score_team[$line] = Match::get_score($teams);
             $result_match[$line] = [];
-            for($i = 0; $i < count($teams); $i++) 
+            for($i = 0; $i < count($teams); $i++)
               for($j = 0; $j < count($teams); $j++)
                 $result_match[$line][$teams[$i]][$teams[$j]] = [];
 
@@ -151,19 +151,19 @@ class EventController extends Controller
                 $result_match[$line][$m['match_team_2']][$m['match_team_1']]['score'][]=$score;
             }
 
-            
+
             $i = 0;
             // foreach($result_match[$line] as $team_1 =>$a){
             //     $keys = array_keys($result_match[$line][$team_1]);
             //     for($j = 1; $j <= $i; $j++){
             //         $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
             //         $result_match[$line][$team_1] = $newArray;
-            //     }  
+            //     }
             //     $i++;
             // }
 
         }
-        
+
         $color_team = [];
         $all_team = [];
         foreach($team_math as $line_name => $line){
@@ -196,7 +196,7 @@ class EventController extends Controller
         $number_match_knockout[] = $max/4;
 
         $knock_match = [];
-        
+
         foreach($knock as $match){
                 $score = [
                     'set_score_team_1' => $match['set_score_team_1'],
@@ -281,7 +281,7 @@ class EventController extends Controller
         $event = Event::get_detail($input['event_id']);
         $raw_race = json_decode($event->event_race);
         $list_race = Event::get_list_race_from_event($input['event_id'], $raw_race);
-        foreach($list_race as $races) 
+        foreach($list_race as $races)
             if($races->race_id === (int)$race && $races->status === 1)
                 return redirect()->back()->with('message', 'มือ ' . $races->race_name . ' ปิดรับสมัครแล้ว')
                                          ->with('type', 'error');
@@ -353,7 +353,7 @@ class EventController extends Controller
                       ->where('match.match_type', 'MATCH')
                       ->where('match.match_event_id', $event_id);
       $matchz = $matchza->get()->toArray();
-      
+
       $countMatchRace = [];
       $prev = ['match_line_id' => ''];
       foreach($matchz as $key => $matchi) {
@@ -367,9 +367,9 @@ class EventController extends Controller
           $i++;
         }
         if($matchi['match_line_id'] !== $prev['match_line_id']) {
-          if(!isset($countMatchRace[$matchi['race_id']]))    
+          if(!isset($countMatchRace[$matchi['race_id']]))
             $countMatchRace[$matchi['race_id']] = 1;
-          else  
+          else
             $countMatchRace[$matchi['race_id']]++;
         }
         $prev = $matchi;
@@ -377,7 +377,7 @@ class EventController extends Controller
       $line_team = LineTeam::where('line_event_id', $event_id)->get();
       $group_3 = [];
       foreach($line_team as $line) {
-        if(count(json_decode($line->line_team_id)) === 3) 
+        if(count(json_decode($line->line_team_id)) === 3)
           $group_3[$line->line_race_id][$line->line_name] = true;
       }
       $groupLine = Match::select(DB::raw('COUNT(match.match_time_id) as count'))
@@ -409,15 +409,15 @@ class EventController extends Controller
       Match::whereIn('match_number',$data['from'])->update(['match_time_id' => $time_to]);
       Match::whereIn('match_number',$data['to'])->update(['match_time_id' => $time_from]);
       Match::whereIn('match_number',$data['from'])->decrement('match_id', $tempNo-$diff-$diffCount);
-      Match::whereIn('match_number',$data['to'])->decrement('match_id', $tempNo+$diff);   
-      Match::whereIn('match_number',$data['to'])->increment('match_number', $tempNo);        
+      Match::whereIn('match_number',$data['to'])->decrement('match_id', $tempNo+$diff);
+      Match::whereIn('match_number',$data['to'])->increment('match_number', $tempNo);
       Match::whereIn('match_number',$data['from'])->increment('match_number', $diff+$diffCount);
       for($i=0; $i < count($data['to']); $i++)
-        array_push($tempArr, $tempNo+$data['to'][$i]); 
-      Match::whereIn('match_number',$tempArr)->decrement('match_number', $tempNo+$diff);      
-      
+        array_push($tempArr, $tempNo+$data['to'][$i]);
+      Match::whereIn('match_number',$tempArr)->decrement('match_number', $tempNo+$diff);
+
       Match::where('match_number', '>', $data['from'][count($data['from'])-1])->where('match_number', '<', $data['to'][0])->increment('match_number', $diffCount);
-      
+
       if($diffCount < 0) {
         $match = Match::where('match_number', $data['to'][0])->pluck('match_id');
         $matchUse = $match[0]-count($data['from'])+1;
@@ -438,7 +438,7 @@ class EventController extends Controller
 
     public function get_math($event_id, $race_id)
     {
-        
+
         $event = Event::get_detail($event_id);
         $raw_race = json_decode($event->event_race);
 
@@ -484,7 +484,7 @@ class EventController extends Controller
                 for($j = 1; $j <= $i; $j++){
                     $newArray = array_swap_assoc($team_1, $keys[$j], $result_match[$line][$team_1]);
                     $result_match[$line][$team_1] = $newArray;
-                }  
+                }
                 $i++;
             }
         }
@@ -497,7 +497,7 @@ class EventController extends Controller
                 $i++;
             }
         }
-        
+
         return view('front/event/match_table')
         ->with('event', $event)
         ->with('race_id', $race_id)

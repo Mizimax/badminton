@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<link href="/css/event.css?v=4.1" rel="stylesheet">
+<link href="/css/event.css?v=4.2" rel="stylesheet">
 <link media="all" type="text/css" rel="stylesheet" href="/css/jquery.dataTables.min.css">
 <div class="row cover cover2" image-bg="{{$covers[0]}}">
     <div class="col-md-2"></div>
@@ -223,7 +223,7 @@
 <div class="alert comment hide">
     <div class="overlay"></div>
     <div class="fixed middle color-white">
-        <div class="font-bigger" align="center">โปรดกรอกเหตุผลที่ไม่ผ่านการประเมิน</div>
+        <div class="font-bigger" align="center">หมายเหตุ</div>
         <br>
         <div align="center">
         <input type="text" class="comment_input">
@@ -235,21 +235,7 @@
         </div>
     </div>
 </div>
-<div class="alert comment hide">
-    <div class="overlay"></div>
-    <div class="fixed middle color-white">
-        <div class="font-bigger" align="center">โปรดกรอกเหตุผล</div>
-        <br>
-        <div align="center">
-        <input type="text" class="comment_input">
-        </div>
-        <br>
-        <div align="center">
-            <a class="btn btn-danger mar-side-10 comment-btn" style="border-radius:20px; width:80px">ยืนยัน</a>
-            <a class="btn btn-success btn-outline mar-side-10" onclick="$('.alert').fadeOut();">ปิด</a>
-        </div>
-    </div>
-</div>
+
 
 
 <div class="alert roll hide">
@@ -539,7 +525,7 @@
                 $(this).parent().remove();
                 var status = $(this).attr('value');
                 var statusName = $(this).children(':first').text();
-                if(statusName == 'ไม่ผ่านการประเมิน')
+
                   comment(member_id)
                 $.ajax({
                     url: '/event/{{ $event->event_id }}/member/'+ member_id + '/status',

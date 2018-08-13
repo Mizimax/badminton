@@ -219,11 +219,11 @@
             onclick="payment(this, {{ $data['team_id'] }})"
             @endif
             >
-            @if($data['team_payment'] == 1)
+            @if($data['team_payment'] == 10)
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
-            @elseif($data['team_status'] == 3)
+            @elseif($data['team_status'] <=10)
                 @if($data['team_comment'])
-                    <img onclick="swal('ไม่ผ่านการประเมิน', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="15">
+                    <img onclick="swal('หมายเหตุ', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/warning.png" width="17">
                 @endif
             @endif
             </div>

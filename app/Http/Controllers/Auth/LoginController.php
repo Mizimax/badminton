@@ -67,11 +67,11 @@ class LoginController extends Controller
                 'name' => $account->name,
                 'password' => md5(rand(1,10000)),
                 'user_profile' => $account->avatar
-                
+
             ]);
         }
         auth()->login($user);
-        return redirect()->back();
+        return redirect()->to('/');
       }
       else {
         return redirect('/login');

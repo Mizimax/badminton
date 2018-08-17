@@ -371,24 +371,24 @@ td .input-dropdown {
 }
 
 .label-payment {
-  background-color: #ff2b06;
+  background-color: #8bbc3f;
 }
 .label-danger {
-  background-color: #ff2b06;
+  background-color: #ef4136;
 }
 .label-contact {
-  background-color: #ff5c00;
+  background-color: #249e95;
 }
 .label-canceled {
-  background-color: #ff5c00;
+  background-color: #d1d3d4;
 }
 
 .label-info {
-  background-color: #0097fc;
+  background-color: #00a79d;
 }
 
 .label-success {
-  background-color: #7fe18e;
+  background-color: #27aae1;
 }
 #table-match {
   font-size: xx-small;
@@ -739,9 +739,9 @@ td .input-dropdown {
 }
 
 @media (max-width: 610px) {
-  .team_status {
+  /* .team_status {
     display: none !important;
-  }
+  } */
   .team-mobile {
     display: block;
   }

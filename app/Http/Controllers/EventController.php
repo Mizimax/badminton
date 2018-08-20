@@ -223,10 +223,12 @@ class EventController extends Controller
             $i++;
         }
         $event_image = json_decode($event->event_image);
+        $raceline = json_decode($event->raceline);
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
             ->with('event_image', $event_image)
+            ->with('raceline', $raceline)
             ->with('event_description', $event_description)
             ->with('number_of_team', $number_of_team)
             ->with('list_race', $list_race)

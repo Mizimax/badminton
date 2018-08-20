@@ -153,10 +153,24 @@
         @endif
             @include('front/event/member')
         </div>
-        <div role="tabpanel" class="tab-pane" id="match">
+        <!-- <div role="tabpanel" class="tab-pane" id="match">
 
             @include('front/event/match')
+        </div> -->
+        <div role="tabpanel" class="tab-pane relative" id="match" style="min-height: 200px;">
+        @if(isset($raceline) && count($raceline) > 0)
+            <div class="flex wrap" align="center" style="margin-top:20px">
+            @foreach($raceline as $image)
+                <div class="{{ count($raceline) == 1 ? 'col-sm-12 div center': 'col-md-12 col-sm-12 col-xs-12'}}" style="margin-top:20px">
+                    <img style="width:100%" src="{{ $image }}">
+                </div>
+            @endforeach
+            </div>
+        @else
+            <div class="absolute middle">สายการแข่งขันยังไม่ออก</div>
+        @endif
         </div>
+
         <div role="tabpanel" class="tab-pane relative" id="picture" style="min-height: 200px;">
         @if(isset($event_image) && count($event_image) > 0)
             <div class="flex wrap" align="center" style="margin-top:20px">
@@ -517,7 +531,7 @@
                           <div class="item-dropdown" value="6"><div class="item">ชำระเงินแล้ว</div></div>
                         <div class="item-dropdown" value="3"><div class="item">ไม่ผ่านการประเมิน</div></div>
                         <div class="item-dropdown" value="1"><div class="item">รอการประเมิน</div></div>
-                          <div class="item-dropdown" value="4"><div class="item">ติดต่อผู้จัด</div></div>
+                          <div class="item-dropdown" value="4"><div class="item">ติดต่อผู้ประเมิน</div></div>
                           <div class="item-dropdown" value="5"><div class="item">ยกเลิก</div></div>
                 </div>
             `);

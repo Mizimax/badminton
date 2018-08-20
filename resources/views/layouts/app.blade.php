@@ -267,7 +267,7 @@
       <div class="container" style="padding: 40px 0">
         <div class="col-sm-6">
           <div class="flex" style="justify-content: center;">
-            <div style="margin-right:30px; margin-top:10px"><img src="/images/true.png" alt="true" width="70"></div>
+            <!-- <div style="margin-right:30px; margin-top:10px"><img src="/images/true.png" alt="true" width="70"></div> -->
             <div style="margin-right:30px; transform:translateY(-20px)"><img src="/images/kmutt.png" alt="kmutt" width="60"></div>
             <div><img src="/images/startup-th.png" alt="startup thailand" width="100"></div>
           </div>

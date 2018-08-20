@@ -224,7 +224,7 @@
                 <span class="glyphicon glyphicon-ok-sign" style="color:#d9e047; font-size: 15px"></span>
             @elseif($data['team_status'] <=10)
                 @if($data['team_comment'])
-                    <img onclick="swal('หมายเหตุ', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/comment.png" width="17">
+                    <img onclick="swal('หมายเหตุ', '{{$data['team_comment']}}', 'error')" style="cursor: pointer;" src="/images/comment.png" width="30">
                 @endif
             @endif
             </div>

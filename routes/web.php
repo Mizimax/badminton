@@ -16,6 +16,7 @@ Route::get('/coin_shop', 'CoinShopController@index');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/contact', 'ContactController@index');
 Route::get('/coupon', 'CouponController@index');
+Route::get('/dev', 'DevController@index');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
@@ -35,6 +36,7 @@ Route::middleware('OrgAndAdmin')->group(function () {
 Route::get('/event/{event_id}', 'EventController@detail')->name('event_detail');
 Route::get('/event_modal/{event_id}', 'EventController@modal')->name('event_modal');
 Route::get('/event/{event_id}/member/{member_id}', 'EventController@getMember');
+
 Route::post('/register_event', 'EventController@register');
 Route::post('/register', 'UserController@register');
 Route::post('/login', 'UserController@login');

@@ -145,6 +145,7 @@
 
     </div>
     </div>
+
 @endsection
 @section('scripts')
     <script src="/js/home.js?v=2"></script>
@@ -170,7 +171,8 @@
             });
         });
     </script>
-  
+
+
 
       <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>

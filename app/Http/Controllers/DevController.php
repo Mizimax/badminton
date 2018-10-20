@@ -26,17 +26,12 @@ class DevController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($event_id, $member_id)
+    public function index()
     {
 
-          $team = Team::select('team.team_name', 'team.team_manager', 'race_type.race_name', 'team.team_manager_phone', 'team_member.*')
-              ->join('team_member', 'team.team_id', '=', 'team_member.team_member_team_id')
-              ->join('race_type', 'team.team_race', '=', 'race_type.race_id')
-              ->where('team_event_id', $event_id)
-              ->where('team_id', $member_id)->get();
-          return view('front/event/dev')
-                 ->with('teams', $team);
+
+          return view('front/event/dev');
       }
 
-    
+
 }

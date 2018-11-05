@@ -154,7 +154,7 @@
     </div>
     </div>
 
-  <!--    <!-- popup
+  <!--    popup
     <div class="bts-popup" role="alert">
     <div class="bts-popup-container" style="border-radius:10px;">
       <div class="w3-container">
@@ -197,7 +197,7 @@
             </div>
             <div id="tuesday" class="tab-pane fade">
 
- <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;"> 
+ <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
 
             </div>
 

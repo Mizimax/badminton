@@ -224,6 +224,11 @@ class EventController extends Controller
         }
         $event_image = json_decode($event->event_image);
         $raceline = json_decode($event->raceline);
+          $member_google = json_decode($event->member_google);
+            $register_google = json_decode($event->register_google);
+            $match_google = json_decode($event->match_google);
+
+
         return view('front/event/index')
             ->with('covers', $covers)
             ->with('event', $event)
@@ -253,6 +258,10 @@ class EventController extends Controller
             ->with('groupLine', $groupLine)
             ->with('group_3', $group_3)
             ->with('countMatchRace', $countMatchRace)
+            ->with('member_google', $member_google)
+            ->with('register_google', $register_google)
+            ->with('match_google', $match_google)
+            
             ;
     }
 

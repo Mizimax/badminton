@@ -24,6 +24,15 @@ border-radius: 15px;
   background: white;
   margin: 7px 10px;
 }
+.box-pop {
+  -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+border-radius: 15px;
+  width: 200px;
+  background: white;
+  margin: 7px 10px;
+  height: 150px;
+}
 
 .btn-slim {
   padding: 4px;

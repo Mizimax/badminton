@@ -2,7 +2,9 @@
 
 @section('content')
 <link href="/css/home.css?v=1.1" rel="stylesheet">
+<link href="/css/popup.css?v=1.1" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
+
     <div class="row" style="background-color:#000; position: relative">
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
@@ -30,7 +32,9 @@
                     @endforeach
             </div>
     </div>
+
     <div class="row">
+
         <div class="col-sm-12 remove-padding" style="margin: 0 auto;">
 
             <!-- pc -->
@@ -81,6 +85,7 @@
 
             <div class="box-container box-margin">
                 @foreach ($events as $event)
+
                 <div class="box">
                     <div class="row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
                     <div class="absolute box-overlay"></div>
@@ -103,7 +108,9 @@
 
                                 </div>
                             </div> -->
+
                             <div class="row">
+
                                 <div class="col-sm-12 remove-padding">
                                 @foreach($event['event_race'] as $race)
                                     @if($race->can_register > 0 && $race->status == 0)
@@ -136,6 +143,7 @@
                     </div>
                 </div>
                 @endforeach
+
             </div>
         </div>
         <div class="col-sm-1"></div>
@@ -145,6 +153,83 @@
 
     </div>
     </div>
+
+    <!-- popup -->
+    <div class="bts-popup" role="alert">
+    <div class="bts-popup-container" style="border-radius:10px;">
+      <div class="w3-container">
+<ul class="nav nav-tabs">
+<div class="w3-bar " style="margin-left: 10px; margin-top: 10px;">
+  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button w3-black" style="width:14.28%">วันจันทร์</a></li>
+    <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
+  <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพุธ</a></li>
+  <li>  <a data-toggle="tab" href="#thursday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพฤหัส</a></li>
+  <li>  <a data-toggle="tab" href="#friday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันศุกร์</a></li>
+    <li><a data-toggle="tab" href="#saturday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันเสาร์</a></li>
+  <li>  <a data-toggle="tab" href="#sunday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันอาิทตย์</a></li>
+
+</div>
+</ul>
+    <div style="padding: 10px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
+          <div class="tab-content">
+
+            <div id="monday" class="tab-pane fade">
+
+  <div class="box-container box-margin ">
+      @foreach ($events as $event)
+
+      <div class="box-pop">
+          <div class=" row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
+          <div class="absolute box-overlay-popup col-sm-4"></div>
+          <div class="remove-padding box-content-popup">
+              <div class="row b">
+                  <div class="col-sm-12 remove-padding" style="margin-top: 0px">
+                      <span class="btn-detail-popup " style="color: #aaa"><a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
+                  </div>
+                    </div>
+              </div>
+
+          </div>
+      </div>
+      @endforeach
+
+  </div>
+            </div>
+            <div id="tuesday" class="tab-pane fade">
+
+<!-- <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;"> -->
+
+            </div>
+
+
+            <div id="wednesday" class="tab-pane fade">
+              <h3>Menu 3</h3>
+<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            </div>
+            <div id="thursday" class="tab-pane fade">
+              <h3>Menu 4</h3>
+<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            </div>
+            <div id="friday" class="tab-pane fade">
+              <h3>Menu 5</h3>
+<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            </div>
+            <div id="saturday" class="tab-pane fade">
+              <h3>Menu 6</h3>
+<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            </div>
+            <div id="sunday" class="tab-pane fade">
+              <h3>Menu 7</h3>
+<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            </div>
+          </div>
+
+</div>
+
+      <a href="#0" class="bts-popup-close img-replace">Close</a>
+</div>
+
+
 
 @endsection
 @section('scripts')
@@ -170,19 +255,29 @@
                 autoHide: true
             });
         });
+
     </script>
 
+    <script type="text/javascript">
+    jQuery(document).ready(function($){
+    window.onload = function (){
+      $(".bts-popup").delay(100).addClass('is-visible');
+    }
+    //open popup
+    $('.bts-popup-trigger').on('click', function(event){
+      event.preventDefault();
+      $('.bts-popup').addClass('is-visible');
+    });
+    //close popup
+    $('.bts-popup').on('click', function(event){
+      if( $(event.target).is('.bts-popup-close') || $(event.target).is('.bts-popup') ) {
+        event.preventDefault();
+        $(this).removeClass('is-visible');
+      }
+    });
+    });
+    </script>
 
-
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-127412532-1');
-</script>
 
 
 @endsection

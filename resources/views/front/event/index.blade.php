@@ -1027,8 +1027,8 @@
 
     var desc = (function(id) {
       $.ajax({
-            url: ''+id,
-            /event/{{ $event->event_id }}/member/
+            url: '/event/{{ $event->event_id }}/member/'+id,
+
             method: 'get',
             success: function(data){
                 $('body').append(data);

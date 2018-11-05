@@ -4,15 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type='text/javascript'>
-        window.__lo_site_id = 114394;
 
-        	(function() {
-        		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
-        		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
-        		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
-        	  })();
-        	</script>
+
+
         <title>Wezync</title>
 
         <!-- Fonts -->
@@ -20,6 +14,7 @@
 
         <!-- Styles -->
         <style>
+
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -73,6 +68,7 @@
         </style>
     </head>
     <body>
+    
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -93,5 +89,6 @@
 
             </div>
         </div>
+
     </body>
 </html>

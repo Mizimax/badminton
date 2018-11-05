@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        
+
     </div>
     <div class="col-md-3"></div>
 </div>
@@ -81,4 +81,14 @@
         });
     }
 </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+
 @endsection

@@ -1,6 +1,6 @@
 @foreach($result_match as $line => $match)
 @if($match)
-<div class="row match-container">   
+<div class="row match-container">
     <div class="col-xs-12">
     <div class="rank left" style="display: inline-block;">
         <h2 class="color-black"><span class="font-bold">Rank {{$race_name}}</span> / GROUP {{$line}}</h2>
@@ -45,13 +45,13 @@
                     </div>
                 </div>
                 </td>
-                
+
                 @endforeach
-                
+
             </tr>
-            
+
             @foreach($match as $team =>$detail_math)
-           
+
             <tr>
                 <td align="center" class="team_status" style="border-right:1px solid #ccc">
                 @if(($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3)
@@ -70,7 +70,7 @@
                 </td>
                 <td style="display: table-cell;vertical-align: middle;">
                 <div class="media">
-                    
+
                     <div class="media-left media-middle" style="padding-right: 5px">
                         <div style="width: 15px;
                         height: 15px;
@@ -79,7 +79,7 @@
                         -webkit-border-radius: 2px;
                         border-radius: 50%;"></div>
                     </div>
-                    
+
                     <div class="media-body {{ $line_type === 1 ? 'team_mem' : '' }}">
                     <div class="hide" race-id="{{ $race_id }}" team-id="{{ $team }}" line="{{ $line }}"></div>
                     @foreach($team_math[$line][$team] as $mem)
@@ -89,7 +89,7 @@
                 </div>
 
 
-                    
+
                 </td>
                 @foreach($detail_math as $team_2 => $m)
                     @if($team != $team_2)
@@ -97,12 +97,12 @@
                             <div class="media {{($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer':''}}"
                             @if($event->event_user_id === Auth::id() || isAdmin())
                             onclick="{{$line_type === 0? 'editScore('.$m['match_number'].')' : 'editTime('.$m['match_number'].', this)' }}"
-                            @endif        
-                            >   
+                            @endif
+                            >
                                     @if($m['match_status'] == "END" && (($event->event_user_id === Auth::id() || isAdmin()) || $event->event_id != 3))
                                         <?php $win = [$m['match_team_1'] => 0,$m['match_team_2'] => 0]; $my_score=0; ?>
                                         @foreach($m['score'] as $key => $score)
-                                        <?php 
+                                        <?php
                                             if($score['set_team_win']){
                                                 $win[$score['set_team_win']]++;
                                                 $my_score += $score['set_score_team_1'] - $score['set_score_team_2'];
@@ -143,7 +143,7 @@
                                                 -moz-border-radius: 50%;
                                                 -webkit-border-radius: 50%;
                                                 border-radius: 50%;"></div>
-                                            </div>  
+                                            </div>
                                         @endif
                                         <div class="media-body">
                                             <span>
@@ -162,17 +162,27 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                         </td>
                     @else
                     <td style="background-color:#e6e6e6"></td>
                     @endif
-                
+
                 @endforeach
             </tr>
             @endforeach
         </table>
     </div>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+
 @endif
 @endforeach

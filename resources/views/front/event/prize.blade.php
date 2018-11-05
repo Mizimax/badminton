@@ -14,17 +14,17 @@
 </head>
 <body style="background: url(/images/events/1/special/bg.jpg) no-repeat ;background-size: cover;">
     <div id="app">
-        
+
             <div class="container-fluid" >
-                
+
                 <div class="row" style="margin:100px">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4" align="center">
-                        
+
                     </div>
                     <div class="col-xs-4"></div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-xs-4"></div>
                     <div class="col-xs-4" align="center">
@@ -49,7 +49,7 @@
                     </select>
                     <input class="hidden" id="user_id" name="user_id" value="0">
                     <br>
-                    
+
                     </div>
                     <div class="col-xs-4"></div>
                 </div>
@@ -60,7 +60,16 @@
                     <div class="col-xs-4"></div>
                 </div>
             </div>
-        
+
     </div>
 </body>
 </html>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>

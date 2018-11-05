@@ -54,7 +54,7 @@
                         <div class="round {{ checkTeamWin($match, $match, '1') ? 'border-active' : '' }}">
                             <span class="time-play start">
                                 {{ $match['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $match['time_stamp'] }}
-                                
+
                             </span>
                             <div class="line-pass">
                                 <span class="time-play match">
@@ -62,7 +62,7 @@
                                     <img src="/images/events/cup_third.png" width="20">
                                     @endif
                                     {{ $round[0][$match_num]['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $round[0][$match_num]['time_stamp'] }}
-                                </span>  
+                                </span>
                                 <div class="final {{ checkTeamWin($match, $round[0][$match_num], '1') ? 'border-active' : '' }}">
                                     @if(count($slice_item2) === 0)
                                         <span class="time-play finals"><img src="/images/events/cup_second.png" width="30">{{ $round[1][0]['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $round[1][0]['time_stamp'] }}</span>
@@ -103,15 +103,15 @@
                                     @else
                                         <div class="cup {{ checkTeamWin($match, $round[1][0], '2') ? 'border-active' : '' }}">
                                             <div class="finish {{ checkTeamWin($match, $round[2][0], '2') ? 'border-active' : '' }}">
-                                                
+
                                             </div>
                                         </div>
                                     @endif
-                                </div> 
-                            </div> 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
+
                 </div>
             @endforeach
         </div>
@@ -137,7 +137,7 @@
                         <div class="round {{ checkTeamWin($match, $match, '1') ? 'border-active' : '' }}">
                             <span class="time-play start">
                                 {{ $match['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $match['time_stamp'] }}
-                                
+
                             </span>
                             <div class="line-pass">
                                 <span class="time-play match">
@@ -145,7 +145,7 @@
                                     <img src="/images/events/cup_third.png" width="20">
                                     @endif
                                     {{ $round[0][$match_num]['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $round[0][$match_num]['time_stamp'] }}
-                                </span>  
+                                </span>
                                 <div class="final {{ checkTeamWin($match, $round[0][$match_num], '1') ? 'border-active' : '' }}">
                                     <span class="time-play finals"><img src="/images/events/cup_third.png" width="20">{{ $round[1][1]['time_stamp'] === '-'? 'ยังไม่กำหนดเวลา': $round[1][1]['time_stamp'] }}</span>
                                     <div class="cup {{ checkTeamWin($match, $round[1][0], '1') ? 'border-active' : '' }}">
@@ -169,7 +169,7 @@
                                     <div class="cup {{ checkTeamWin($match, $round[1][0], '2') ? 'border-active' : '' }}">
                                         <div class="finish {{ checkTeamWin($match, $round[2][0], '2') ? 'border-active' : '' }}"></div>
                                     </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -185,5 +185,13 @@
     @endif
     </div>
 </div>
-                    
-            
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+          

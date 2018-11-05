@@ -33,7 +33,7 @@
                                 <div class="form-group" align="center">
                                     <button type="submit" class="btn btn-default">Login</button>
                                 </div>
-                            </form>   
+                            </form>
                      </div>
                      <div class="row">
                      <div class="col-md-5"></div>
@@ -72,4 +72,14 @@
         </div>
     </div>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+
 @endsection

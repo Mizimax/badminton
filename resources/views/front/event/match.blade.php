@@ -64,7 +64,7 @@
 </div>
 @endif
 <hr style="margin: 10px 0">
-            
+
         <div class="match-container">
             <div class="col-xs-12" align="center" style="display: flex; flex-wrap: wrap;justify-content: flex-start;">
                 <div class="center dropdown-match" align="left">
@@ -73,14 +73,14 @@
                         <input type="text" name="hand_dropdown" id="hand_dropdown" value="{{ $list_race[0]->race_id }}">
                     </div>
                     <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px"><span class="display" id="match" style="text-align: center">{{ $list_race[0]->race_name }}</span> <span class="icon dropdown">▼</span>
-                    
+
                     </div>
                     <div class="input-dropdown event shadow-black">
                         @foreach ($list_race as $race)
                         <div class="item-dropdown" value="{{$race->race_id}}" onclick="selectDropdown(this);search_match({{$race->race_id}})"><div class="item">{{$race->race_name}}</div></div>
                         @endforeach
                     </div>
-                
+
                 </div>
                 <div class="center button-select">
             <a href="#all" id="all_tab" type="button" class="button is-info is-active font-meder is-outlined max" aria-controls="all" role="tab" data-toggle="tab">
@@ -96,7 +96,7 @@
             </div>
             </div>
 
-            
+
 <div class="row">
     <div class="col-xs-12">
         <div class="tab-content">
@@ -118,4 +118,14 @@
         <span class="absolute middle">ตารางแบ่งสายจะขึ้นวันที่ {{$event->event_end}}</span>
     </div>
 </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+
 @endif

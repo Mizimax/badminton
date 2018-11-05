@@ -33,4 +33,13 @@
         <button class="btn btn-primary">แก้ไขคะแนน</button>
     </div>
     <div class="col-xs-3"></div>
-</div>
+</div
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>

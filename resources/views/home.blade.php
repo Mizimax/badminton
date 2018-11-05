@@ -154,7 +154,7 @@
     </div>
     </div>
 
-    <!-- popup -->
+  <!--    <!-- popup
     <div class="bts-popup" role="alert">
     <div class="bts-popup-container" style="border-radius:10px;">
       <div class="w3-container">
@@ -197,7 +197,7 @@
             </div>
             <div id="tuesday" class="tab-pane fade">
 
-<!-- <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;"> -->
+ <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;"> 
 
             </div>
 
@@ -228,7 +228,7 @@
 
       <a href="#0" class="bts-popup-close img-replace">Close</a>
 </div>
-
+   -->
 
 
 @endsection
@@ -277,6 +277,16 @@
     });
     });
     </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127412532-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-127412532-1');
+</script>
+
 
 
 

@@ -154,7 +154,7 @@
     </div>
     </div>
 
-  <!--    popup
+
     <div class="bts-popup" role="alert">
     <div class="bts-popup-container" style="border-radius:10px;">
       <div class="w3-container">
@@ -170,11 +170,11 @@
 
 </div>
 </ul>
-    <div style="padding: 10px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
+
           <div class="tab-content">
-
+<!-- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div> -->
             <div id="monday" class="tab-pane fade">
-
+<div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
   <div class="box-container box-margin ">
       @foreach ($events as $event)
 
@@ -182,17 +182,19 @@
           <div class=" row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
           <div class="absolute box-overlay-popup col-sm-4"></div>
           <div class="remove-padding box-content-popup">
-              <div class="row b">
-                  <div class="col-sm-12 remove-padding" style="margin-top: 0px">
-                      <span class="btn-detail-popup " style="color: #aaa"><a target="_blank" style="text-decoration: underline; color:#ccc" href="{{$event['event_description']->location->position}}"><strong>{{$event['event_description']->location->name}}</strong></a></span>
-                  </div>
-                    </div>
+
+            <div class="row">
+                <div class="col-sm-12 remove-padding" style="margin-top: 2px">
+
+                    <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$event['event_description']->location->position}}"><strong style="color: #000">{{$event['event_description']->location->name}}</strong></a></span>
+                </div>
+            </div>
               </div>
 
           </div>
       </div>
       @endforeach
-
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
   </div>
             </div>
             <div id="tuesday" class="tab-pane fade">
@@ -228,7 +230,7 @@
 
       <a href="#0" class="bts-popup-close img-replace">Close</a>
 </div>
-   -->
+
 
 
 @endsection
@@ -253,6 +255,9 @@
         $(document).ready(function() {
             $('[data-toggle="datepicker"]').datepicker({
                 autoHide: true
+            });
+            $('.w3-bar li').click(function(){
+                $('.w3-bar li.active').removeClass('active')
             });
         });
 

@@ -156,12 +156,12 @@
 
 
     <div class="bts-popup" role="alert">
-    <div class="bts-popup-container" style="border-radius:10px;">
+    <div class="bts-popup-container" style="border-radius:10px; ">
       <div class="w3-container">
 <ul class="nav nav-tabs">
 <div class="w3-bar " style="margin-left: 10px; margin-top: 10px;">
   <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button w3-black" style="width:14.28%">วันจันทร์</a></li>
-    <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
+  <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
   <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพุธ</a></li>
   <li>  <a data-toggle="tab" href="#thursday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพฤหัส</a></li>
   <li>  <a data-toggle="tab" href="#friday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันศุกร์</a></li>
@@ -171,13 +171,14 @@
 </div>
 </ul>
 
+
+
           <div class="tab-content">
 <!-- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div> -->
             <div id="monday" class="tab-pane fade">
-<div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
-  <div class="box-container box-margin ">
+<div class="area" align="left" > ฝั่งธน</div>
+  <div class="box-container-2 box-margin " >
       @foreach ($events as $event)
-
       <div class="box-pop">
           <div class=" row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
           <div class="absolute box-overlay-popup col-sm-4"></div>
@@ -190,13 +191,34 @@
                 </div>
             </div>
               </div>
-
+              <div class="remove-padding box-content">
+                  <div class="row">
+                  <div class="col-sm-12 remove-padding">
+                </div>
+                </div>
+                  <div class="row" id="detail-btn">
+                      <div class="col-sm-6">
+                      <span style="color:#ccc;font-size:8px;margin: 1em 0 0 0 ;">จันทร์ อังคาร พุธ พฤหัส</span>
+                      <br>
+                      <span style="color:#ccc;font-size:8px;margin: 1em 0 0 0 ;">ศุกร์ เสาร์ อาทิตย์</span>
+                      <br>
+                      <span class="font-small" style="color:#ccc">19:00 - 21:00</span>
+                      </div>
+                      <div class="col-sm-6 pull-down" align="right">
+                      
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>HA HA badminton</b></span>
+                    </div>
+                  </div>
+            </div>
           </div>
+        
       </div>
       @endforeach
+      </div>
+    <hr style="border-top:1px solid red;">
 <div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
-  </div>
-            </div>
+  
+</div>
             <div id="tuesday" class="tab-pane fade">
 
  <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">

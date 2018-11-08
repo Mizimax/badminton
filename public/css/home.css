@@ -15,6 +15,22 @@
   justify-content: center;
   margin-top: 10px;
 }
+.box-container-2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+@media only screen and (max-width: 768px) {
+
+  .box-container-2 {
+  justify-content: center;
+  margin-top: 10px;
+  overflow-x:hidden;
+  height:600px;
+  overflow-y:scroll;
+}
+}
 
 .box {
   -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
@@ -27,12 +43,43 @@ border-radius: 15px;
 .box-pop {
   -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
-border-radius: 15px;
+  border-radius: 15px;
   width: 200px;
   background: white;
   margin: 7px 10px;
   height: 150px;
 }
+
+@media only screen and (max-width: 768px) {
+
+  .box-pop {
+    -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    width: 100%;
+    background: white;
+    margin: 7px 10px;
+    height: 250px;
+  }
+}
+.area {
+  padding: 15px; margin-right: 650px;font-size: 30px;color: #000;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .area {
+    padding: 15px; margin-right: 0px;font-size: 30px;color: #000;left:0px;
+  }
+}
+/* @media only screen and (max-width: 768px) {
+
+.w3-bar {
+  display:none;
+}
+
+}*/
+
 
 .btn-slim {
   padding: 4px;

@@ -32,6 +32,7 @@
 .bts-popup-container {
   position: relative;
   width: 90%;
+
   max-width: 800px;
 
   margin: 4em auto;
@@ -87,10 +88,10 @@
 .bts-popup-container .bts-popup-close::before, .bts-popup-container .bts-popup-close::after {
   content: '';
   position: absolute;
-  top: 12px;
+  top: 13px;
   width: 16px;
-  height: 3px;
-  background-color: white;
+  height: 5px;
+  background-color:#ec0b0b;
 }
 .bts-popup-container .bts-popup-close::before {
   -webkit-transform: rotate(45deg);
@@ -231,7 +232,9 @@
 .w3-padding-32{padding-top:32px!important;padding-bottom:32px!important}.w3-padding-48{padding-top:48px!important;padding-bottom:48px!important}
 .w3-padding-64{padding-top:64px!important;padding-bottom:64px!important}
 .w3-left{float:left!important}.w3-right{float:right!important}
-.w3-button:hover{color:#000!important;background-color:#EF4035!important}
+.w3-button:hover{color:#fff!important;
+  font-size: 18px;
+  background-color:#EF4035!important}
 .w3-transparent,.w3-hover-none:hover{background-color:transparent!important}
 .w3-hover-none:hover{box-shadow:none!important}
 /* Colors */
@@ -257,7 +260,7 @@
 .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#009688!important}
 .w3-yellow,.w3-hover-yellow:hover{color:#000!important;background-color:#ffeb3b!important}
 .w3-white,.w3-hover-white:hover{color:#000!important;background-color:#fff!important}
-.w3-black,.w3-hover-black:hover{color:#000!important;background-color:#EFDACE!important}
+.w3-black,.w3-hover-black:hover{color:#EFDACE!important;background-color:#EFDACE!important}
 .w3-grey,.w3-hover-grey:hover,.w3-gray,.w3-hover-gray:hover{color:#000!important;background-color:#9e9e9e!important}
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
 .w3-dark-grey,.w3-hover-dark-grey:hover,.w3-dark-gray,.w3-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}

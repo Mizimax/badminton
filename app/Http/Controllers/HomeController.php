@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Gang;
 use App\Models\Sponsor;
 use App\Models\Event;
 use App\Models\Rank;
@@ -33,11 +34,11 @@ class HomeController extends Controller
     {
         $sponsors = Sponsor::getImageAll();
         $event_not_start = Event::where('event_start', '<=', \DB::raw('NOW()'))
-                        ->orderBy('event_start', 'desc')  
-                        ->get();     
+                        ->orderBy('event_start', 'desc')
+                        ->get();
         $event_started = Event::where('event_start', '>',\DB::raw('NOW()'))
                         ->orderBy('event_start', 'asc')
-                        ->get();  
+                        ->get();
         $events = collect($event_started)->merge($event_not_start);
         $today = new DateTime('NOW', new DateTimeZone('Asia/Bangkok'));
         foreach($events as $event){
@@ -49,9 +50,13 @@ class HomeController extends Controller
             $event->day_left_text = $dDiff->format('%R%a');
             $event->day_left = $dDiff->format('%a');
             $event->event_description->date = Helper::DateThaiNotDate($event->event_description->date);
+
         }
+      $gangs = \DB::table('gang')
+        ->get();
 
         return view('home')->with('sponsors',$sponsors)
-                           ->with('events',$events->toArray());
+                           ->with('events',$events->toArray())
+                           ->with('gangs',$gangs);
     }
 }

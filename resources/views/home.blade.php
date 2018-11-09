@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="/css/home.css?v=1.1" rel="stylesheet">
-<link href="/css/popup.css?v=1.1" rel="stylesheet">
+<link href="/css/home.css?v=1.2" rel="stylesheet">
+<link href="/css/popup.css?v=1.2" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
-
+<link href="/css/wezync.css?v=1.2" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative">
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
@@ -158,8 +158,9 @@
     <div class="bts-popup" role="alert">
     <div class="bts-popup-container" style="border-radius:10px; ">
       <div class="w3-container">
+        <div id="filter-popup">
 <ul class="nav nav-tabs">
-<div class="w3-bar " style="margin-left: 10px; margin-top: 10px;">
+<div class="w3-bar" style="margin-left: 10px; margin-top: 10px;">
   <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button w3-black" style="width:14.28%">วันจันทร์</a></li>
   <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
   <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพุธ</a></li>
@@ -170,13 +171,29 @@
 
 </div>
 </ul>
+</div>
+<div id="calendar" >
+<div class="input" style="margin:0 auto;max-width: 100%; background:#ff2124;color:#fff;width: 250px;transform: translateY(-10%); font-size: 15px">
+  <span class="display" style="text-align: center">ก๋วน</span> <span class="icon dropdown">▼</span>
+</div>
+<div class="input-dropdown event shadow-black">
+  <div  data-toggle="tab" href="#all"class="item-dropdown" onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
+    <div  data-toggle="tab" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item">จันทร์</div></div>
+    <div data-toggle="tab" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อังคาร</div></div>
+    <div   data-toggle="tab" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พุธ</div></div>
+    <div  data-toggle="tab" href="#thursday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พฤ</div></div>
+    <div data-toggle="tab" href="#friday" class="item-dropdown" onclick="searchTable(this)"><div class="item">ศุกร์</div></div>
+    <div  data-toggle="tab" href="#saturday"class="item-dropdown" onclick="searchTable(this)"><div class="item">เสาร์</div></div>
+    <div data-toggle="tab" href="#sunday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อาทิตย</div></div>
 
-
+</div>
+</div>
 
           <div class="tab-content">
 <!-- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div> -->
             <div id="monday" class="tab-pane fade">
 <div class="area" align="left" > ฝั่งธน</div>
+
   <div class="box-container-2 box-margin " >
       @foreach ($events as $event)
       <div class="box-pop">
@@ -185,39 +202,43 @@
           <div class="remove-padding box-content-popup">
 
             <div class="row">
-                <div class="col-sm-12 remove-padding" style="margin-top: 2px">
+                <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
 
                     <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$event['event_description']->location->position}}"><strong style="color: #000">{{$event['event_description']->location->name}}</strong></a></span>
                 </div>
             </div>
               </div>
+
               <div class="remove-padding box-content">
-                  <div class="row">
-                  <div class="col-sm-12 remove-padding">
-                </div>
-                </div>
+
                   <div class="row" id="detail-btn">
-                      <div class="col-sm-6">
-                      <span style="color:#ccc;font-size:8px;margin: 1em 0 0 0 ;">จันทร์ อังคาร พุธ พฤหัส</span>
+                      <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                      <span >จันทร์ อังคาร พุธ พฤหัส</span>
                       <br>
-                      <span style="color:#ccc;font-size:8px;margin: 1em 0 0 0 ;">ศุกร์ เสาร์ อาทิตย์</span>
+                      <span >ศุกร์ เสาร์ อาทิตย์</span>
                       <br>
                       <span class="font-small" style="color:#ccc">19:00 - 21:00</span>
                       </div>
-                      <div class="col-sm-6 pull-down" align="right">
-                      
-                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>HA HA badminton</b></span>
-                    </div>
+
+                        <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">  A</span>
+                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px;">-</span>
+                          <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">P-</span>
+                        <div class="col-sm-6 pull-down" align="right">
+
+                        <span style="color:#ccc;font-size:10px;bottom:0px;"><b>HA HA badminton</b></span>
+                      </div>
+
+
                   </div>
             </div>
           </div>
-        
+
       </div>
       @endforeach
       </div>
     <hr style="border-top:1px solid red;">
 <div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
-  
+
 </div>
             <div id="tuesday" class="tab-pane fade">
 

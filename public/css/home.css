@@ -296,10 +296,20 @@ fieldset[disabled] .btn-brown:hover {
   max-width: 93%;
   color: white;
 }
+#filter-popup{
+
+
+}
 
 @media (max-width: 767px) {
   #filter {
     display: none !important;
+
+  }
+  #filter-popup
+  {
+    display: none !important;
+
   }
   #calendar {
     display: block;

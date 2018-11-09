@@ -941,8 +941,21 @@ fieldset[disabled] .btn-red:hover {
     from(rgba(0, 0, 0, 1)),
     to(rgba(0, 0, 0, 0)),
     color-stop(0.05, rgba(0, 0, 0, 0.95))
-  );}
+  );
 
+
+   }
+   div.popup {
+       white-space: nowrap;
+       width: 100px;
+       overflow: hidden;
+       text-overflow:ellipsis;
+      
+   }
+
+   div.popup:hover {
+       overflow: visible;
+   }
 
 .box-overlay {
   width: 100%;
@@ -1343,4 +1356,3 @@ div.b {
 .contact-border {
   border-bottom: 1px solid #ccc;
 }
-

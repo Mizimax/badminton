@@ -131,7 +131,8 @@
                               <div class="col-sm-6 pull-down" align="right">
                                   <a type="button" href="/event/{{$event['event_id']}}" class="btn-detail" style="width: 100px" >รายละเอียด</a>
                                   @if( $event['event_status'] == 1)
-                                  <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button>
+                                  <!-- <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button> -->
+                                  <a type="button" href="{{$event['register_google']}}" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" >สมัครการแข่ง</a>
                                  @elseif( $event['event_status'] == 2)
                                  <button type="button" class="btn btn-brown btn-slim" style="width:100px; background-color:#f10505;" onclick="window.location='/event/{{$event['event_id']}}#/match'">แข่งขันอยู่</button>
                                   @else
@@ -191,7 +192,7 @@
 
           <div class="tab-content">
 <!-- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div> -->
-            <div id="monday" class="tab-pane fade">
+            <!-- <div id="monday" class="tab-pane fade">
 <div class="area" align="left" > ฝั่งธน</div>
 
   <div class="box-container-2 box-margin " >
@@ -272,7 +273,7 @@
 </div>
 
       <a href="#0" class="bts-popup-close img-replace">Close</a>
-</div> -->
+</div>  -->
 
 
 

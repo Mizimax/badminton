@@ -129,7 +129,7 @@ class OrgController extends Controller
 
       $detail = [
         'by' => $input['by'],
-        'location' => [ 
+        'location' => [
           'name' => $input['map-input'],
           'position' => 'https://www.google.co.th/maps/place/' . $input['map-input']
         ],
@@ -207,7 +207,7 @@ class OrgController extends Controller
       }
 
       // try {
-        $imageName = time() . '.' . 
+        $imageName = time(). '-' . uniqid(true) . '.' .
           $request->file('image')->getClientOriginalExtension();
         $request->file('image')->move(
             base_path() . '/public/images/user/', $imageName
@@ -314,13 +314,13 @@ class OrgController extends Controller
           unlink($path);
         }
         catch (\Exception $e) {
-          
+
         }
       }
 
       try {
 
-        $imageName = time() . '.' . 
+        $imageName = time() . '.' .
           $request->file('image')->getClientOriginalExtension();
 
         $request->file('image')->move(
@@ -340,7 +340,7 @@ class OrgController extends Controller
     }
 
     public function verifyRegis() {
-      //บันทึกส่งอีเมล 
+      //บันทึกส่งอีเมล
       $data = $this->validate(request(), [
           'org_create_time' => 'required',
           'org_last_create' => 'required'
@@ -393,7 +393,7 @@ class OrgController extends Controller
     public function getCheck() {
       $orgs = Organizer::select('org_id', 'org_firstname', 'org_lastname', 'org_nickname')
                        ->where('org_active', 0)->get();
-      
+
       return view('org/regis/checkAll')->with('orgs', $orgs);
     }
 
@@ -414,9 +414,9 @@ class OrgController extends Controller
         ;
       }
       else {
-        Session::flash('title', 'เกิดข้อผิดพลาด'); 
-        Session::flash('message', 'User นี้ไม่ได้สมัคร Organizer'); 
-        Session::flash('type', 'error'); 
+        Session::flash('title', 'เกิดข้อผิดพลาด');
+        Session::flash('message', 'User นี้ไม่ได้สมัคร Organizer');
+        Session::flash('type', 'error');
         return redirect('/');
       }
 
@@ -427,7 +427,7 @@ class OrgController extends Controller
           'org_active' => 'required'
       ]);
       $data['org_active'] = (int)$data['org_active'];
-      
+
       $org = Organizer::where('org_id', $user_id);
       if($data['org_active'] === 1){
         $user = $org->first();
@@ -436,9 +436,9 @@ class OrgController extends Controller
       }
       $org->update($data);
 
-      Session::flash('title', 'สำเร็จ'); 
-      Session::flash('message', 'คุณได้บันทึกข้อมูลไว้แล้ว'); 
-      Session::flash('type', 'success'); 
+      Session::flash('title', 'สำเร็จ');
+      Session::flash('message', 'คุณได้บันทึกข้อมูลไว้แล้ว');
+      Session::flash('type', 'success');
       return back();
     }
 
@@ -486,7 +486,7 @@ class OrgController extends Controller
       $event_race[current(array_keys($find))]['status'] = $toggleStatus;
       $event_race = json_encode($event_race);
       $event->update(['event_race' => $event_race]);
-      
+
       return response()->json([
         'status' => 'ok',
         'message' => ($toggleStatus === 0) ? 'Hand opened.':'Hand closed.',

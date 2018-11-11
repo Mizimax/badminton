@@ -46,8 +46,8 @@
         <div class="row">
             <div class="col-md-12" align="center">
 
-            <!-- <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_event_modal">สมัครแข่งขัน</button> -->
-<a type="button" class="btn btn-lg btn-red" href="{{$event['register_google']}}">สมัครแข่งขัน</a>
+            <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_event_modal">สมัครแข่งขัน</button>
+
 
             </div>
         </div>
@@ -107,13 +107,60 @@
          <div role="tabpanel" class="tab-pane" id="member">
             <hr style="margin: 10px 0">
 
-            <iframe src="{{$event->member_google}}" width="920px" height="800" scrolling="yes"></iframe>
+       @if($event->member_status === 0 || ($event->event_user_id === Auth::id() || isAdmin()))
+       <div class="row" style="padding: 10px 20px">
+           <div class="col-xs-3 nopadding" align="center">
+              <div style="display: inline-block;" align="left">
+                   <p class="font-med color-black font-bold">อันดับมือ</p>
+
+                   <div class="input" style="margin:0 auto;max-width: 100%; width: 170px;transform: translateY(-10%); font-size: 15px">
+                        <span class="display" style="text-align: center">เลือกอันดับ</span> <span class="icon dropdown">▼</span>
+                   </div>
+                   <div class="input-dropdown event shadow-black">
+                       <div class="item-dropdown" onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
+                       @foreach ($list_race as $race)
+                       <div class="item-dropdown" onclick="searchTable(this)"><div class="item">{{$race->race_name}}</div></div>
+                        @endforeach
+                   </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-xs-9 nopadding flex-container space-around" style="margin-top:30px">
+
+           @foreach($list_race as $race)
+               <div>
+                    <div style="position:relative"
+                   @if($event->event_user_id === Auth::id() || isAdmin())
+                   onclick="closeHand(this, {{ $event->event_id }}, {{$race['race_id']}}, '{{$race['race_name']}}')"
+                    @endif
+                    class="{{ ($event->event_user_id === Auth::id() || isAdmin()) ? 'pointer' : '' }}">
+                        <span class="badge {{ ($race['can_register'] <= 0 || $race->status == 1) ? 'badge-orange' : 'badge-white' }}">{{$race['race_name']}}</span>
+                        <span class="hand-status">
+                        @if(isset($race->status))
+                            @if($race->status == 1)
+                                <b>ปิดรับสมัครแล้ว</b>
+                           @else
+                               {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                          @endif
+                       @else
+                      {{$race['max_register'] - $race['can_register']}} <b>/ {{$race['max_register']}}</b>
+                      @endif
+                       </span>
+                   </div>
+              </div>
+           @endforeach
+           </div>
+       </div>
+        @endif
+           @include('front/event/member')
 
         </div>
 
      <div role="tabpanel" class="tab-pane" id="match">
 
-          <iframe src="{{$event->match_google}}" width="920px" height="800" scrolling="yes"></iframe>
+            @include('front/event/match')
         </div>
 
         <div role="tabpanel" class="tab-pane relative" id="match" style="min-height: 200px;">

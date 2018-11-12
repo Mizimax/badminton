@@ -320,7 +320,7 @@ class OrgController extends Controller
 
       try {
 
-        $imageName = time() . '.' .
+        $imageName = time(). '-' . uniqid(true) . '.' .
           $request->file('image')->getClientOriginalExtension();
 
         $request->file('image')->move(

@@ -85,6 +85,7 @@
       </div> -->
       <div class="menu-background"></div>
         <div class="menu-content">
+
           @if (Auth::guest())
           <div class="menu-white org" style="position: relative;" onclick="window.location='{{ Auth::guest() ? '/login': '/logout'}}'">
               <div class="org-icon img-circle">
@@ -201,8 +202,11 @@
                     </a>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
+
+                 <!-- <span class="font-bold" style="margin-left:750px; margin-top:0px;">tai</span> -->
                     <ul class="nav navbar-nav navbar-right pointer" style="margin:{{ Auth::guest() ? '11': '4'}}px;padding: 0 20px; border:1px solid #ccc; border-radius: 10px">
                         <!-- Authentication Links -->
+
                         @if (Auth::guest())
                             <li class="navbar-user-profile  visible-sm-block visible-md-block visible-lg-block" style="padding:3px 0">
                           <a href="#" id="dropdownMenu50" style="padding:0px;">
@@ -245,6 +249,10 @@
 
                         @endif
                     </ul>
+                      <div class="navbar-right-contect" style="margin-top:10px">
+                    <h >ติดต่อ : 086-359-2131</h>
+                    <p>คุณ บอย</p>
+                  </div>
                 </div>
             </div>
         </nav>

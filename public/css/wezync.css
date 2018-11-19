@@ -17,6 +17,9 @@ body {
   background: #8ed5ed;
 }
 
+.navbar-right-contect{
+        float: right !important; /* margin-right:-15px */
+    }
 div::-webkit-scrollbar {
   width: 8px;
 }

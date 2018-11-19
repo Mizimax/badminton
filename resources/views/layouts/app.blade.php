@@ -11,8 +11,8 @@
     <title>@yield('title'){{ config('app.name', 'Wezync') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css?v=3" rel="stylesheet">
-    <link href="/css/wezync.css?v=6" rel="stylesheet">
+    <link href="/css/app.css?v=4" rel="stylesheet">
+    <link href="/css/wezync.css?v=7" rel="stylesheet">
     @yield('css')
 
 </head>

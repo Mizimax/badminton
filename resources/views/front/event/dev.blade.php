@@ -2,6 +2,7 @@
 @section('content')
 <link media="all" type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 <link href="{{ asset('css/coin_shop.css') }}" rel="stylesheet">
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=https://docs.google.com/forms/d/e/1FAIpQLSd7XulB9Qnl4-khTUUzi2zmulTvaLvUdqeKm5jA9uB3xq9XSw/viewform">
 <div class="row">
     <div class="body-content col-md-6" style="width: 75%;" align="center">
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd7XulB9Qnl4-khTUUzi2zmulTvaLvUdqeKm5jA9uB3xq9XSw/viewform" width="400px" height="700px;" scrolling="yes"></iframe>

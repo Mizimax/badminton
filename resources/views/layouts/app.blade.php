@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title'){{ config('app.name', 'Wezync') }}</title>
-
+     <link rel="icon" href="images/icon/logo03.png">
     <!-- Styles -->
     <link href="/css/app.css?v=4" rel="stylesheet">
     <link href="/css/wezync.css?v=7" rel="stylesheet">

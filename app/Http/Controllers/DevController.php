@@ -32,6 +32,11 @@ class DevController extends Controller
 
           return view('front/event/dev');
       }
+      public function index2()
+      {
 
+
+            return view('front/event/dev2');
+        }
 
 }

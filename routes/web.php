@@ -17,6 +17,7 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/contact', 'ContactController@index');
 Route::get('/coupon', 'CouponController@index');
 Route::get('/from', 'DevController@index');
+Route::get('/from2', 'DevController@index2');
 Auth::routes();
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');

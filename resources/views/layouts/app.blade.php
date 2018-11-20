@@ -184,22 +184,29 @@
                           <span></span>
                         </div>
                     </li> -->
-                    <li class="menu visible-sm-block visible-md-block visible-lg-block">
+                    <!-- <li class="menu visible-sm-block visible-md-block visible-lg-block">
                     <div class="navbar-conpon pointer" onclick="window.location='{{ url('/coupon') }}'">
                         <img style="margin-left:10px;"src="/images/logo02.png" height="35"><br>
-                        <!-- <span>YOURCOUPON</span> -->
+                       <span>YOURCOUPON</span>
                     </div>
-                </li>
-                <!-- <li class="menu">
+
+                </li> -->
+                <li class="menu">
+               <div class="navbar-logo" onclick="window.location='{{ url('/') }}'">
+                   <img src="/images/logo02.png" height="35"><br>
+
+               </div>
+             </li>
+                 <!-- <li class="menu">
                 <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                     <img src="/images/cart.png" height="35"><br>
                     <span>POINT SHOP</span>
                 </div>
-              </li> -->
+              </li>  -->
                 <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <!-- <a class="navbar-brand" href=" href="{{ url('/') }}"">
                         <img src="/images/logo.png" height="28">
-                    </a>
+                    </a> -->
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
 

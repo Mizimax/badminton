@@ -546,7 +546,15 @@ a {
   color: #f7a71e;
   background-color: #ffffff;
 }
-
+.navbar-logo {
+  padding-top: 14px;
+  height: 80px;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+  margin-left: 16px;
+  background-color: #ffffff;
+}
 .menu {
   list-style: none;
   width: 80px;

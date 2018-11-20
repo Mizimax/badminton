@@ -186,16 +186,16 @@
                     </li> -->
                     <li class="menu visible-sm-block visible-md-block visible-lg-block">
                     <div class="navbar-conpon pointer" onclick="window.location='{{ url('/coupon') }}'">
-                        <img src="/images/COUPON.png" height="35"><br>
-                        <span>YOURCOUPON</span>
+                        <img src="/images/logo02.png" height="35"><br>
+                        <!-- <span>YOURCOUPON</span> -->
                     </div>
                 </li>
-                <li class="menu">
+                <!-- <li class="menu">
                 <div class="navbar-cart pointer" onclick="window.location='{{ url('/coin_shop') }}'">
                     <img src="/images/cart.png" height="35"><br>
                     <span>POINT SHOP</span>
                 </div>
-              </li>
+              </li> -->
                 <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="/images/logo.png" height="28">

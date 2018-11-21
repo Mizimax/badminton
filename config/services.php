@@ -38,12 +38,12 @@ return [
     'facebook'=>[
         'client_id' => '2166492460286699',
         'client_secret' => '9034cf8214d59e4c75bd903033d5ba5a',
-        'redirect' => 'https://wezync.com/callback',
+        'redirect' => 'https://sanarmbad.com/callback',
     ],
 
     'line'=>[
       'client_id' => '1586003613',
       'client_secret' => '1c857fd70e06f86e36c58a54b77d6f3f',
-      'redirect' => 'https://wezync.com/callback/line'
+      'redirect' => 'https://sanarmbad.com/callback'
     ]
 ];

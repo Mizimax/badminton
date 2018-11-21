@@ -193,7 +193,7 @@
                 </li> -->
                 <li class="menu">
                <div class="navbar-logo" onclick="window.location='{{ url('/') }}'">
-                   <img src="/images/logo02.png" height="35"><br>
+                   <img  src="/images/logo02.png" height="35" style=" margin-top: 15px;cursor : pointer;"><br>
 
                </div>
              </li>

@@ -132,7 +132,7 @@
                                   <a type="button" href="/event/{{$event['event_id']}}" class="btn-detail" style="width: 100px" >รายละเอียด</a>
                                   @if( $event['event_status'] == 1)
                                   <!-- <button type="button" onClick="set_event({{$event['event_id']}})" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" data-toggle="modal" data-target="#register_event_modal">สมัครการแข่ง</button> -->
-                                  <a type="button" href="{{$event['register_google']}}" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" >สมัครการแข่ง</a>
+                                  <a type="button" href="{{$event['register_google']}}" target="_blank" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" >สมัครการแข่ง</a>
                                  @elseif( $event['event_status'] == 2)
                                  <button type="button" class="btn btn-brown btn-slim" style="width:100px; background-color:#f10505;" onclick="window.location='/event/{{$event['event_id']}}#/match'">แข่งขันอยู่</button>
                                   @else

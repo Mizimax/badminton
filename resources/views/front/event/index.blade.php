@@ -47,7 +47,7 @@
             <div class="col-md-12" align="center">
 
             <!-- <button type="button" class="btn btn-lg btn-red" data-toggle="modal" data-target="#register_event_modal">สมัครแข่งขัน</button> -->
-<a type="button" class="btn btn-lg btn-red" href="{{$event['register_google']}}">สมัครแข่งขัน</a>
+<a type="button" class="btn btn-lg btn-red" target="_blank" href="{{$event['register_google']}}">สมัครแข่งขัน</a>
 
             </div>
         </div>

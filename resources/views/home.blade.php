@@ -135,6 +135,8 @@
                                   <a type="button" href="{{$event['register_google']}}" target="_blank" class="button is-info btn btn-slim btn-outline-primary" style="width: 100px;margin-bottom:2px;" >สมัครการแข่ง</a>
                                  @elseif( $event['event_status'] == 2)
                                  <button type="button" class="btn btn-brown btn-slim" style="width:100px; background-color:#f10505;" onclick="window.location='/event/{{$event['event_id']}}#/match'">แข่งขันอยู่</button>
+                                 @elseif( $event['event_status'] == 5)
+                                 <button type="button" class="btn btn-brown btn-slim" style="width:100px; background-color:#f10505;">ยกเลิกการแข่ง</button>
                                   @else
                                   <button type="button" class="btn btn-brown btn-slim" style="width:100px" onclick="window.location='/event/{{$event['event_id']}}#/match'">ผลการแข่ง</button>
                                   @endif

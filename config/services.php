@@ -44,6 +44,6 @@ return [
     'line'=>[
       'client_id' => '1586003613',
       'client_secret' => '1c857fd70e06f86e36c58a54b77d6f3f',
-      'redirect' => 'https://sanarmbad.com/callback'
+      'redirect' => 'https://sanarmbad.com/callback/line'
     ]
 ];

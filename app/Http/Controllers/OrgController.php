@@ -40,6 +40,14 @@ class OrgController extends Controller
       foreach($list_race as $myrace){
         $list_races[$myrace->race_id] = $myrace->race_name;
       }
+      $dd = strtotime($event->event_end); 
+      $dateend = [ 
+        "year" => date("Y", $dd),
+        "month" => (int)date("m", $dd),
+        "day" => date("d", $dd), 
+      ]; 
+
+      
 
       return view('org/event/edit')
              ->with('event_cover', $event_cover)
@@ -47,7 +55,8 @@ class OrgController extends Controller
              ->with('event_race', $event_race)
              ->with('event', $event)
              ->with('races', $races)
-             ->with('list_race', $list_races);
+             ->with('list_race', $list_races)
+             ->with('dateend', $dateend);
     }
 
     public function save(Request $req) {
@@ -59,7 +68,10 @@ class OrgController extends Controller
           'map-input' => 'required',
           'event_start' => 'required|integer',
           'event_end' => 'required|integer',
-          'event_month' => 'required|integer',
+          'event_year_start' => 'required|integer',
+          'event_year_end' => 'required|integer',
+          'event_month_start' => 'required|integer',
+          'event_month_end' => 'required|integer',
           'expenses_detail' => 'required|integer',
           'hand' => 'required',
           'team_num' => 'required|array',
@@ -92,8 +104,8 @@ class OrgController extends Controller
 
       $input = $req->input();
       $event_id = isset($req->route()->parameters()['event_id']) ? $req->route()->parameters()['event_id']:'';
-      $date = date('Y') . '-' . $input['event_month'] . '-' . $input['event_start'];
-      $dateEnd = date('Y') . '-' . $input['event_month'] . '-' . $input['event_end'];
+      $date = $input['event_year_start']-543 . '-' . $input['event_month_start'] . '-' . $input['event_start'];
+      $dateEnd = $input['event_year_end']-543 . '-' . $input['event_month_end'] . '-' . $input['event_end'];
       $dateTime = $date . ' 00:00:00';
       $date_start = strtotime($date);
       $data = [];

@@ -99,7 +99,7 @@
                         </div>
                             <div class="input"><span class="display">{{ $event_date[2] }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black has-scroll">
-                                @for($i = 1; $i <= 30; $i++)
+                                @for($i = 1; $i <= 31; $i++)
                                 <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
                                 @endfor
                             </div>
@@ -107,19 +107,7 @@
                         <div class="space"></div>
                         <div class="dropdown">
                         <div class="hide">
-                            <input type="text" value="{{ $event_end }}" id="event_end" name="event_end">
-                        </div>
-                            <div class="input"><span class="display">{{ $event_end }}</span> <span class="icon dropdown">▼</span></div>
-                            <div class="input-dropdown home shadow-black has-scroll">
-                                @for($i = 1; $i <= 30; $i++)
-                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
-                                @endfor
-                            </div>
-                        </div>
-                        <div class="space"></div>
-                        <div class="dropdown">
-                        <div class="hide">
-                            <input type="text" value="{{ $event_date[1] }}" id="event_month" name="event_month">
+                        <input type="text" id="event_month_start" name="event_month_start" value="{{ $event_date[1] }}">
                         </div>
                             <div class="input"><span class="display">{{ $event_date[1] }}</span> <span class="icon dropdown">▼</span></div>
                             <div class="input-dropdown home shadow-black">
@@ -137,8 +125,73 @@
                                 <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
                             </div>
                         </div>
+
+                        <div class="space"></div>
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" id="event_year_start" name="event_year_start" value="{{ $event_date[0]+543 }}">
+                        </div>
+                            <div class="input"><span class="display">{{ $event_date[0]+543 }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
+
+                            </div>
+                        </div>
+
                     </div>
                     <label for="event_year">วันที่จัดแข่ง</label>
+                </div>
+                <div class="form-group max">
+                    <div class="flex column wrap dropdown-group">
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" id="event_end" name="event_end" value="{{ $dateend["day"] }}">
+                        </div>
+                            <div class="input"><span class="display">{{ $dateend["day"] }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black has-scroll">
+                                @for($i = 1; $i <= 31; $i++)
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">{{ $i }}</div></div>
+                                @endfor
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" id="event_month_end" name="event_month_end" value="{{ $dateend["month"] }}">
+                        </div>
+                            <div class="input"><span class="display">{{ $dateend["month"] }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                            <div class="item-dropdown" value="1" onclick="selectDropdown(this)"><div class="item">มกราคม</div></div>
+                                <div class="item-dropdown" value="2" onclick="selectDropdown(this)"><div class="item">กุมภาพันธ์</div></div>
+                                <div class="item-dropdown" value="3" onclick="selectDropdown(this)"><div class="item">มีนาคม</div></div>
+                                <div class="item-dropdown" value="4" onclick="selectDropdown(this)"><div class="item">เมษายน</div></div>
+                                <div class="item-dropdown" value="5" onclick="selectDropdown(this)"><div class="item">พฤษภาคม</div></div>
+                                <div class="item-dropdown" value="6" onclick="selectDropdown(this)"><div class="item">มิถุนายน</div></div>
+                                <div class="item-dropdown" value="7" onclick="selectDropdown(this)"><div class="item">กรกฎาคม</div></div>
+                                <div class="item-dropdown" value="8" onclick="selectDropdown(this)"><div class="item">สิงหาคม</div></div>
+                                <div class="item-dropdown" value="9" onclick="selectDropdown(this)"><div class="item">กันยายน</div></div>
+                                <div class="item-dropdown" value="10" onclick="selectDropdown(this)"><div class="item">ตุลาคม</div></div>
+                                <div class="item-dropdown" value="11" onclick="selectDropdown(this)"><div class="item">พฤศจิกายน</div></div>
+                                <div class="item-dropdown" value="12" onclick="selectDropdown(this)"><div class="item">ธันวาคม</div></div>
+                            </div>
+                        </div>
+
+                        <div class="space"></div>
+                        <div class="dropdown">
+                        <div class="hide">
+                            <input type="text" id="event_year" name="event_year_end" value="{{ $dateend["year"]+543 }}">
+                        </div>
+                            <div class="input"><span class="display">{{ $dateend["year"]+543 }}</span> <span class="icon dropdown">▼</span></div>
+                            <div class="input-dropdown home shadow-black">
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2561</div></div>
+                                <div class="item-dropdown" onclick="selectDropdown(this)"><div class="item">2562</div></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <label for="event_year">วันจบการแข่งขัน</label>
                 </div>
                 @php
                     preg_match_all('!\d+!', $event_description->expenses, $expenses);

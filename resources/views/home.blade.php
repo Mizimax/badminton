@@ -158,8 +158,8 @@
     </div>
 
 
-    <!-- <div class="bts-popup" role="alert"> -->
-    <!-- <div class="bts-popup-container" style="border-radius:10px; ">
+     <div class="bts-popup" role="alert">
+     <div class="bts-popup-container" style="border-radius:10px; ">
       <div class="w3-container">
         <div id="filter-popup">
 <ul class="nav nav-tabs">
@@ -180,7 +180,7 @@
   <span class="display" style="text-align: center">ก๋วน</span> <span class="icon dropdown">▼</span>
 </div>
 <div class="input-dropdown event shadow-black">
-  <div  data-toggle="tab" href="#all"class="item-dropdown" onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
+  <div  data-toggle="tab " href="#all"class="item-dropdown " onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
     <div  data-toggle="tab" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item">จันทร์</div></div>
     <div data-toggle="tab" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อังคาร</div></div>
     <div   data-toggle="tab" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พุธ</div></div>
@@ -193,8 +193,8 @@
 </div>
 
           <div class="tab-content">
-<!-- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div> -->
-            <!-- <div id="monday" class="tab-pane fade">
+ <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
+          <div id="monday" class="tab-pane fade">
 <div class="area" align="left" > ฝั่งธน</div>
 
   <div class="box-container-2 box-margin " >
@@ -275,7 +275,7 @@
 </div>
 
       <a href="#0" class="bts-popup-close img-replace">Close</a>
-</div>  -->
+</div>
 
 
 

@@ -54,7 +54,6 @@ class HomeController extends Controller
         }
       $gangs = \DB::table('gang')
         ->get();
-
         return view('home')->with('sponsors',$sponsors)
                            ->with('events',$events->toArray())
                            ->with('gangs',$gangs);

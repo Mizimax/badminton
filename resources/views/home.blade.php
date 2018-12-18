@@ -1,5 +1,20 @@
 @extends('layouts.app')
-
+@section('css')
+<style>
+.w3-bar-item {
+  font-size: 15px !important;
+}
+.w3-bar-item.active {
+  background: red;
+}
+.nav-tabs {
+  border-bottom: none;
+}
+.bts-popup {
+      overflow: auto;
+    }
+</style>
+@endsection
 @section('content')
 <link href="/css/home.css?v=1.2" rel="stylesheet">
 <link href="/css/popup.css?v=1.2" rel="stylesheet">
@@ -163,7 +178,7 @@
       <div class="w3-container">
         <div id="filter-popup">
 <ul class="nav nav-tabs">
-<div class="w3-bar" style="margin-left: 10px; margin-top: 10px;">
+<div class="w3-bar" style=" margin-top: 15px;">
   <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button w3-black" style="width:14.28%">วันจันทร์</a></li>
   <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
   <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพุธ</a></li>
@@ -193,21 +208,21 @@
 </div>
 
           <div class="tab-content">
- <div style="padding: 15px; margin-right: 650px;font-size: 30px;color: #000;"> ฝั่งธน  </div>
-          <div id="monday" class="tab-pane fade">
+          <div id="monday" class="tab-pane active in fade">
 <div class="area" align="left" > ฝั่งธน</div>
 
   <div class="box-container-2 box-margin " >
-      @foreach ($events as $event)
+      @foreach ($gangs as $gang)     
+      @if(strrpos($gang->text, "จัน") >= 0)
       <div class="box-pop">
-          <div class=" row padding box-image relative" align="center" style="background-image: url('{{$event['event_poster']}}')">
+          <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
           <div class="absolute box-overlay-popup col-sm-4"></div>
           <div class="remove-padding box-content-popup">
 
             <div class="row">
                 <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
 
-                    <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$event['event_description']->location->position}}"><strong style="color: #000">{{$event['event_description']->location->name}}</strong></a></span>
+                    <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                 </div>
             </div>
               </div>
@@ -216,19 +231,17 @@
 
                   <div class="row" id="detail-btn">
                       <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
-                      <span >จันทร์ อังคาร พุธ พฤหัส</span>
+                      <span>{{ $gang->text }}</span>
                       <br>
-                      <span >ศุกร์ เสาร์ อาทิตย์</span>
-                      <br>
-                      <span class="font-small" style="color:#ccc">19:00 - 21:00</span>
+                      <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
                       </div>
 
-                        <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">  A</span>
-                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px;">-</span>
-                          <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">P-</span>
+                        <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                          <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
                         <div class="col-sm-6 pull-down" align="right">
 
-                        <span style="color:#ccc;font-size:10px;bottom:0px;"><b>HA HA badminton</b></span>
+                        <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
                       </div>
 
 
@@ -237,6 +250,7 @@
           </div>
 
       </div>
+      @endif
       @endforeach
       </div>
     <hr style="border-top:1px solid red;">
@@ -244,31 +258,298 @@
 
 </div>
             <div id="tuesday" class="tab-pane fade">
+            <div class="area" align="left" > ฝั่งธน</div>
 
- <img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)     
+    @if(strrpos($gang->text, "อังคาร") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif 
+    @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
 
             </div>
 
 
             <div id="wednesday" class="tab-pane fade">
-              <h3>Menu 3</h3>
-<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            <div class="area" align="left" > ฝั่งธน</div>
+
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)     
+    @if(strrpos($gang->text, "พุธ") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif 
+    @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
+
             </div>
             <div id="thursday" class="tab-pane fade">
-              <h3>Menu 4</h3>
-<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            <div class="area" align="left" > ฝั่งธน</div>
+
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)    
+    @if(strrpos($gang->text, "พฤหัส") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif
+    @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
+
             </div>
             <div id="friday" class="tab-pane fade">
-              <h3>Menu 5</h3>
-<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            <div class="area" align="left" > ฝั่งธน</div>
+
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)    
+    @if(strrpos($gang->text, "ศุกร์") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif
+    @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
+
             </div>
             <div id="saturday" class="tab-pane fade">
-              <h3>Menu 6</h3>
-<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            <div class="area" align="left" > ฝั่งธน</div>
+
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)     
+    @if(strrpos($gang->text, "เสาร์") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
+
             </div>
             <div id="sunday" class="tab-pane fade">
-              <h3>Menu 7</h3>
-<img src="{{$sponsor['sponsor_image']}}" style="width: 300px;margin-right: 500px;margin-top: -30px;">
+            <div class="area" align="left" > ฝั่งธน</div>
+
+<div class="box-container-2 box-margin " >
+    @foreach ($gangs as $gang)     
+    @if(strrpos($gang->text, "อาทิตย์") >= 0)
+    <div class="box-pop">
+        <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
+        <div class="absolute box-overlay-popup col-sm-4"></div>
+        <div class="remove-padding box-content-popup">
+
+          <div class="row">
+              <div class="col-sm-12 remove-padding  popup" style="margin-top: 2px">
+
+                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+              </div>
+          </div>
+            </div>
+
+            <div class="remove-padding box-content">
+
+                <div class="row" id="detail-btn">
+                    <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                    <span>{{ $gang->text }}</span>
+                    <br>
+                    <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                    </div>
+
+                      <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
+                        <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
+                        <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                      <div class="col-sm-6 pull-down" align="right">
+
+                      <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                    </div>
+
+
+                </div>
+          </div>
+        </div>
+
+    </div>
+    @endif @endforeach
+    </div>
+  <hr style="border-top:1px solid red;">
+<div style="padding: 15px; margin-right: 570px;font-size: 30px;color: #000;"> ฝั่งพระนคร  </div>
+
             </div>
           </div>
 

@@ -54,8 +54,15 @@ class HomeController extends Controller
         }
       $gangs = \DB::table('gang')
         ->get();
+      $newGangs = [];
+      foreach($gangs as $gang) {
+        if(!isset($newGangs[$gang->area])) 
+          $newGangs[$gang->area] = [];
+        $newGangs[$gang->area][] = $gang;
+      }
+      // dd(strrpos($newGangs[0][1]->text, "จัน"));
         return view('home')->with('sponsors',$sponsors)
                            ->with('events',$events->toArray())
-                           ->with('gangs',$gangs);
+                           ->with('gangs',$newGangs);
     }
 }

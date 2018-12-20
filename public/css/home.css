@@ -9,8 +9,6 @@
   margin: 0px;
 }
 
-
-
 .box-container {
   display: flex;
   flex-flow: row wrap;
@@ -24,20 +22,19 @@
   margin-top: 10px;
 }
 @media only screen and (max-width: 768px) {
-
   .box-container-2 {
-  justify-content: center;
-  margin-top: 10px;
-  overflow-x:hidden;
-  height:600px;
-  overflow-y:scroll;
-}
+    justify-content: center;
+    margin-top: 10px;
+    overflow-x: hidden;
+    height: 600px;
+    overflow-y: scroll;
+  }
 }
 
 .box {
   -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
-border-radius: 15px;
+  border-radius: 15px;
   width: 450px;
   background: white;
   margin: 7px 10px;
@@ -53,7 +50,6 @@ border-radius: 15px;
 }
 
 @media only screen and (max-width: 768px) {
-
   .box-pop {
     -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
@@ -65,13 +61,18 @@ border-radius: 15px;
   }
 }
 .area {
-  padding: 15px; margin-right: 650px;font-size: 30px;color: #000;
+  padding: 15px;
+  font-size: 30px;
+  color: #000;
 }
 
 @media only screen and (max-width: 768px) {
-
   .area {
-    padding: 15px; margin-right: 0px;font-size: 30px;color: #000;left:0px;
+    padding: 15px;
+    margin-right: 0px;
+    font-size: 30px;
+    color: #000;
+    left: 0px;
   }
 }
 /* @media only screen and (max-width: 768px) {
@@ -81,7 +82,6 @@ border-radius: 15px;
 }
 
 }*/
-
 
 .btn-slim {
   padding: 4px;
@@ -298,20 +298,15 @@ fieldset[disabled] .btn-brown:hover {
   max-width: 93%;
   color: white;
 }
-#filter-popup{
-
-
+#filter-popup {
 }
 
 @media (max-width: 767px) {
   #filter {
     display: none !important;
-
   }
-  #filter-popup
-  {
+  #filter-popup {
     display: none !important;
-
   }
   #calendar {
     display: block;

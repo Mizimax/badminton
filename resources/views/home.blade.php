@@ -179,13 +179,14 @@
         <div id="filter-popup">
 <ul class="nav nav-tabs">
 <div class="w3-bar" style=" margin-top: 15px;">
-  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button w3-black" style="width:14.28%">วันจันทร์</a></li>
-  <li><a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันอังคาร</a></li>
-  <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพุธ</a></li>
-  <li>  <a data-toggle="tab" href="#thursday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันพฤหัส</a></li>
-  <li>  <a data-toggle="tab" href="#friday" class="w3-bar-item w3-button w3-black" style="width:14.28%">วันศุกร์</a></li>
-    <li><a data-toggle="tab" href="#saturday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันเสาร์</a></li>
-  <li>  <a data-toggle="tab" href="#sunday" class="w3-bar-item w3-button w3-black"  style="width:14.28%">วันอาิทตย์</a></li>
+  <li>  <a data-toggle="tab" href="#allDay" class="active w3-bar-item w3-button" style="width:12.5%">ทั้งหมด</a></li>
+  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:12.5%">วันจันทร์</a></li>
+  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:12.5%">วันอังคาร</a></li>
+  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:12.5%">วันพุธ</a></li>
+  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:12.5%">วันพฤหัส</a></li>
+  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:12.5%">วันศุกร์</a></li>
+    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:12.5%">วันเสาร์</a></li>
+  <li>  <a data-toggle="tab" href="#sunday" class="active w3-bar-item w3-button"  style="width:12.5%">วันอาิทตย์</a></li>
 
 </div>
 </ul>
@@ -195,7 +196,7 @@
   <span class="display" style="text-align: center">ก๋วน</span> <span class="icon dropdown">▼</span>
 </div>
 <div class="input-dropdown event shadow-black">
-  <div  data-toggle="tab " href="#all"class="item-dropdown " onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
+  <div  data-toggle="tab " href="#allDay"class="item-dropdown " onclick="searchTable(this)"><div class="item">ทั้งหมด</div></div>
     <div  data-toggle="tab" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item">จันทร์</div></div>
     <div data-toggle="tab" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อังคาร</div></div>
     <div   data-toggle="tab" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พุธ</div></div>
@@ -209,13 +210,13 @@
 
           <div class="tab-content">
           <div id="allDay" class="tab-pane active in fade">
-          @foreach ($gangs as $gng)     
+          @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)     
+      @foreach ($gng as $gang)
       <div class="box-pop">
-          <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
-          <div class="absolute box-overlay-popup col-sm-4"></div>
+          <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+          <div class="absolute box-overlay-popup box-image col-sm-4"></div>
           <div class="remove-padding box-content-popup">
 
             <div class="row">
@@ -229,16 +230,16 @@
               <div class="remove-padding box-content">
 
                   <div class="row" id="detail-btn">
-                      <div class="col-sm-6" style="color:#ccc;font-size:8px;margin-top: 12px;">
+                      <div class="col-sm-6" style="color:#ccc;font-size:10px;margin-top: 15px;">
                       <span>{{ $gang->text }}</span>
                       <br>
                       <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
                       </div>
 
-                        <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 10px;">{{ $gang->rank_min }}</span>
-                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 40px; color: white">_</span>
-                          <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
-                        <div class="col-sm-6 pull-down" align="right">
+                        <span class="badge badge-orange" style=" margin-top: 23px;margin-left: 9px;">{{ $gang->rank_min }}</span>
+                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 10px; color: white">_</span>
+                          <span class="badge badge-orange" style="margin-top: 23px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                        <div class="col-sm-6" align="right">
 
                         <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
                       </div>
@@ -255,10 +256,10 @@
     @endforeach
           </div>
           <div id="monday" class="tab-pane fade">
-          @foreach ($gangs as $gng)     
+          @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)  
+      @foreach ($gng as $gang)
       @if(gettype(strrpos($gang->text, "จัน")) === "integer" && strrpos($gang->text, "จัน") >= 0)
       <div class="box-pop">
           <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -305,10 +306,10 @@
 
 </div>
             <div id="tuesday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)  
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "อังคาร")) === "integer" && strrpos($gang->text, "อังคาร") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -346,7 +347,7 @@
         </div>
 
     </div>
-    @endif 
+    @endif
     @endforeach
     </div>
     <hr style="border-top:1px solid red;">
@@ -356,10 +357,10 @@
 
 
             <div id="wednesday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)    
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "พุธ")) === "integer" && strrpos($gang->text, "พุธ") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -397,7 +398,7 @@
         </div>
 
     </div>
-    @endif 
+    @endif
     @endforeach
     </div>
     <hr style="border-top:1px solid red;">
@@ -405,10 +406,10 @@
 
             </div>
             <div id="thursday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)      
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "พฤหัส")) === "integer" && strrpos($gang->text, "พฤหัส") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -453,10 +454,10 @@
     @endforeach
             </div>
             <div id="friday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)   
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "ศุกร์")) === "integer" && strrpos($gang->text, "ศุกร์") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -499,14 +500,14 @@
     </div>
     <hr style="border-top:1px solid red;">
     @endforeach
-    
+
 
             </div>
             <div id="saturday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)   
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "เสาร์")) === "integer" && strrpos($gang->text, "เสาร์") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -544,7 +545,7 @@
         </div>
 
     </div>
-    @endif 
+    @endif
     @endforeach
     </div>
     <hr style="border-top:1px solid red;">
@@ -552,10 +553,10 @@
 
             </div>
             <div id="sunday" class="tab-pane fade">
-            @foreach ($gangs as $gng)     
+            @foreach ($gangs as $gng)
           <div class="area" align="left" >{{$gng[0]->area === 0 ? "ฝั่งธน": "ฝั่งพระนคร"}}</div>
           <div class="box-container-2 box-margin " >
-      @foreach ($gng as $gang)     
+      @foreach ($gng as $gang)
     @if(gettype(strrpos($gang->text, "อาทิตย์")) === "integer" && strrpos($gang->text, "อาทิตย์") >= 0)
     <div class="box-pop">
         <div class=" row padding box-image relative" align="center" style="background-image: url('{{$gang->img}}')">
@@ -593,7 +594,7 @@
         </div>
 
     </div>
-    @endif 
+    @endif
     @endforeach
     </div>
     <hr style="border-top:1px solid red;">
@@ -632,17 +633,22 @@
             $('[data-toggle="datepicker"]').datepicker({
                 autoHide: true
             });
+
             $('.w3-bar li').click(function(){
                 $('.w3-bar li.active').removeClass('active')
-            });
-        });
 
+            });
+
+
+
+
+        });
     </script>
 
     <script type="text/javascript">
     jQuery(document).ready(function($){
     window.onload = function (){
-      $(".bts-popup").delay(100).addClass('is-visible');
+      $(".bts-popup").delay(10).addClass('is-visible');
     }
     //open popup
     $('.bts-popup-trigger').on('click', function(event){

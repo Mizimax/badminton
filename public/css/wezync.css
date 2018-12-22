@@ -957,10 +957,13 @@ fieldset[disabled] .btn-red:hover {
 
    }
    div.popup {
-       white-space: nowrap;
-       width: 100px;
-       overflow: hidden;
-       text-overflow:ellipsis;
+     white-space: nowrap;
+     width: 100px;
+     overflow: hidden;
+     text-overflow:ellipsis;
+     border-radius: 4px;
+     background-color: #00A9E8;
+    
 
    }
 
@@ -1195,12 +1198,12 @@ img.header {
 }
 .btn-detail-popup{
   border-radius: 4px;
-  color: #209cee;
-  background: transparent;
-  border: 1px solid #209cee;
-  padding: 1px 15px;
-  display: inline-block;
-  background-color: #00A9E8;
+  /* color: #209cee; */
+  /* background: transparent; */
+  /* border: 1px solid #209cee; */
+  padding: 1px 4px;
+  /* display: inline-block;
+  background-color: #00A9E8; */
   font-size: 8px;
 
 }

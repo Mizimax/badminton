@@ -257,8 +257,8 @@
                         @endif
                     </ul>
                       <div class="navbar-right-contect" style="margin-top:10px">
-                    <h >ติดต่อ : 086-359-2131</h>
-                    <p>คุณ บอย</p>
+                    <h >ติดต่อ : 081-826-1038</h>
+                    <p>คุณ บอย(marketing)</p>
                   </div>
                 </div>
             </div>

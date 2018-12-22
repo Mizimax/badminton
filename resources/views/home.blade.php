@@ -5,7 +5,7 @@
   font-size: 15px !important;
 }
 .w3-bar-item.active {
-  background: red;
+  background: rgb(255, 154, 127);
 }
 .nav-tabs {
   border-bottom: none;

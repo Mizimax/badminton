@@ -175,17 +175,17 @@
 
      <div class="bts-popup" role="alert">
      <div class="bts-popup-container" style="border-radius:10px; ">
-      <div class="w3-container">
+      <div class="w3-container"style="">
         <div id="filter-popup">
 <ul class="nav nav-tabs">
 <div class="w3-bar" style=" margin-top: 15px;">
-  <li>  <a data-toggle="tab" href="#allDay" class="active w3-bar-item w3-button" style="width:12.5%">ทั้งหมด</a></li>
-  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:12.5%">วันจันทร์</a></li>
-  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:12.5%">วันอังคาร</a></li>
-  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:12.5%">วันพุธ</a></li>
-  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:12.5%">วันพฤหัส</a></li>
-  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:12.5%">วันศุกร์</a></li>
-    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:12.5%">วันเสาร์</a></li>
+  <li>  <a data-toggle="tab" href="#allDay" class="active w3-bar-item w3-button" style="width:12.%;margin-left: 13px;">ทั้งหมด</a></li>
+  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:12.3%">วันจันทร์</a></li>
+  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:12.3%">วันอังคาร</a></li>
+  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:12.3%">วันพุธ</a></li>
+  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:12.3%">วันพฤหัส</a></li>
+  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:12.3%">วันศุกร์</a></li>
+    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:12.3%">วันเสาร์</a></li>
   <li>  <a data-toggle="tab" href="#sunday" class="active w3-bar-item w3-button"  style="width:12.5%">วันอาิทตย์</a></li>
 
 </div>
@@ -230,18 +230,18 @@
               <div class="remove-padding box-content">
 
                   <div class="row" id="detail-btn">
-                      <div class="col-sm-6" style="color:#ccc;font-size:10px;margin-top: 15px;">
+                      <div class="col-sm-6" style="color:#fff;font-size:10px;margin-top: 15px;">
                       <span>{{ $gang->text }}</span>
                       <br>
-                      <span class="font-small" style="color:#ccc">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
+                      <span class="font-small" style="color:#fff">{{ $gang->timeopen }} - {{ $gang->timeclose }}</span>
                       </div>
 
-                        <span class="badge badge-orange" style=" margin-top: 23px;margin-left: 9px;">{{ $gang->rank_min }}</span>
-                          <span class="" style="font-size: 20px;margin-left: 5px;margin-top: 10px; color: white">_</span>
-                          <span class="badge badge-orange" style="margin-top: 23px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
+                        <span class="badge badge-orange" style=" margin-top: 10px;margin-left: 18px;">{{ $gang->rank_min }}</span>
+                          <span class="" style="font-size: 27px;margin-left: 0px;margin-top: 0px; color: white">_</span>
+                          <span class="badge badge-orange" style="margin-top: 10px;margin-left: 0px;color: #fff;">{{ $gang->rank_max }}</span>
                         <div class="col-sm-6" align="right">
 
-                        <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                        <span style="color:#fff;font-size:10px;bottom:0px;"><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                       </div>
 
 
@@ -288,7 +288,7 @@
                           <span class="badge badge-orange" style="margin-top: 10px;margin-left: 5px;color: #fff;">{{ $gang->rank_max }}</span>
                         <div class="col-sm-6 pull-down" align="right">
 
-                        <span style="color:#ccc;font-size:10px;bottom:0px;"><b>{{$gang->name}}</b></span>
+                        <span style="color:#fff;font-size:10px;bottom:0px;"><b style=" text-decoration: underline;" >{{$gang->name}}</b></span>
                       </div>
 
 

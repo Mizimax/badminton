@@ -452,6 +452,9 @@ a {
 .pull-down {
   margin-top: 10px;
 }
+.pull-pop {
+  margin-top: 20px;
+}
 
 .menu-content {
   position: fixed;
@@ -1100,6 +1103,16 @@ img.header {
   .navbar-cart {
     margin-left: 0;
   }
+  div.popup{
+  width:100px;
+  margin-top:17px !important;
+  }
+  div.popup:hover{
+    width:150px;
+  }
+}
+.pull-pop{
+
 }
 
 @media (max-width: 479px) {

@@ -513,7 +513,7 @@
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                  <span class="btn-detail-popup" > <a target="_blank" style="text-decoration: underline; " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>

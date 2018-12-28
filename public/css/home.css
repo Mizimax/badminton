@@ -478,7 +478,17 @@ fieldset[disabled] .btn-brown:hover {
   bottom:0px;
   margin-top: 10px;
 }
-
+.text-con{
+  font-size: 13px;
+}
+.popup-text{
+font-size: 13px;
+margin-top: 10px;
+padding-left:6px;
+}
+.popup-cloes{
+  margin-left: : 10px;
+}
 }
 
 @media (max-width: 1691px) and (min-width: 1145px) {
@@ -514,11 +524,17 @@ margin-bottom:10px;
 .font-tai{
   font-size: 10px;
   color:#fff;
-  bottom:0px;
+  bottom:-4px;
     margin-top: 10px;
 
 }
+.text-con{
+  font-size: 10px;
+}
+.popup-text{
+font-size: 7px;
 
+}
 }
 
 .bg-header {

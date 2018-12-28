@@ -1108,7 +1108,7 @@ img.header {
   margin-top:17px !important;
   }
   div.popup:hover{
-    width:150px;
+    width:auto;
   }
 }
 .pull-pop{

@@ -179,7 +179,7 @@
         <div id="filter-popup">
 <ul class="nav nav-tabs">
 <div class="w3-bar" style=" margin-top: 15px;">
-  <li>  <a data-toggle="tab" href="#allDay" class="active w3-bar-item w3-button" style="width:12.%;margin-left: 13px;">ทั้งหมด</a></li>
+
   <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:12.3%">วันจันทร์</a></li>
   <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:12.3%">วันอังคาร</a></li>
   <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:12.3%">วันพุธ</a></li>
@@ -414,8 +414,7 @@
 
                                                                     <div class="row">
                                                                         <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
-                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                                                         </div>
                                                                     </div>
                                                                       </div>

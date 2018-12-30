@@ -965,7 +965,7 @@ fieldset[disabled] .btn-red:hover {
      overflow: hidden;
      text-overflow:ellipsis;
      border-radius: 4px;
-     background-color: #00A9E8;
+     /* background-color:; */
 
 
    }

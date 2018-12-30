@@ -1030,7 +1030,7 @@ fieldset[disabled] .btn-red:hover {
 }
 
 #detail-btn div {
-  padding: 0 !important;
+  padding: 0 ;
 }
 
 #detail-btn .btn {
@@ -1104,7 +1104,7 @@ img.header {
     margin-left: 0;
   }
   div.popup{
-  width:80px;
+  width:auto;
   margin-top:17px !important;
   }
   div.popup:hover{

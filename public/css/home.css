@@ -68,9 +68,10 @@
 
 @media only screen and (max-width: 768px) {
   .area {
-    padding: 15px;
+    padding: 0px;
+    margin-top: 10px;
     margin-right: 0px;
-    font-size: 30px;
+    font-size: 20px;
     color: #000;
     left: 0px;
   }
@@ -310,6 +311,7 @@ fieldset[disabled] .btn-brown:hover {
   }
   #calendar {
     display: block;
+    margin-top: 25px;
   }
 
 }
@@ -473,7 +475,13 @@ fieldset[disabled] .btn-brown:hover {
   margin-left: 0px; */
 }
 .font-tai{
-  font-size: 16px;
+  font-size: 11px;
+  color:#fff;
+  bottom:0px;
+  margin-top: 10px;
+}
+.font-tai-time{
+  font-size: 15px;
   color:#fff;
   bottom:0px;
   margin-top: 10px;
@@ -489,6 +497,17 @@ padding-left:11px
 }
 .popup-cloes{
   margin-left: : 10px;
+}
+#detail-btn div{
+  padding: 9px 0px 4px 1px !important;
+}
+.btn-detail-popup {
+  font-size: 11px !important;
+}
+.font-tai-mo{
+margin-top: -18px !important;
+margin-bottom: 6px !important;
+}
 }
 }
 

@@ -16,10 +16,10 @@
 </style>
 @endsection
 @section('content')
-<link href="/css/home.css?v=1.3" rel="stylesheet">
-<link href="/css/popup.css?v=1.3" rel="stylesheet">
+<link href="/css/home.css?v=10" rel="stylesheet">
+<link href="/css/popup.css?v=10" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
-<link href="/css/wezync.css?v=1.3" rel="stylesheet">
+<link href="/css/wezync.css?v=10" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative">
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
@@ -221,7 +221,7 @@
       <div class="remove-padding box-content-popup">
         <div class="row">
             <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
             </div>
         </div>
           </div>
@@ -251,7 +251,7 @@
                 <div class="remove-padding box-content-popup">
                   <div class="row">
                       <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                          <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                          <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                       </div>
                   </div>
                     </div>
@@ -281,7 +281,7 @@
                           <div class="remove-padding box-content-popup">
                             <div class="row">
                                 <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                 </div>
                             </div>
                               </div>
@@ -311,7 +311,7 @@
                                     <div class="remove-padding box-content-popup">
                                       <div class="row">
                                           <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                           </div>
                                       </div>
                                         </div>
@@ -341,7 +341,7 @@
                                               <div class="remove-padding box-content-popup">
                                                 <div class="row">
                                                     <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                                        <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                                        <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                                     </div>
                                                 </div>
                                                   </div>
@@ -371,7 +371,7 @@
                                                         <div class="remove-padding box-content-popup">
                                                           <div class="row">
                                                               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                                                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                                                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                                               </div>
                                                           </div>
                                                             </div>
@@ -401,7 +401,7 @@
                                                                   <div class="remove-padding box-content-popup">
                                                                     <div class="row">
                                                                         <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                                                                         </div>
                                                                     </div>
                                                                       </div>
@@ -442,7 +442,7 @@
           <div class="remove-padding box-content-popup">
             <div class="row">
                 <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
                 </div>
             </div>
               </div>
@@ -482,7 +482,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>
@@ -523,7 +523,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>
@@ -562,7 +562,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>
@@ -600,7 +600,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>
@@ -640,7 +640,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>
@@ -679,7 +679,7 @@
         <div class="remove-padding box-content-popup">
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
               </div>
           </div>
             </div>

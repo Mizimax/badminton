@@ -215,232 +215,227 @@
       @foreach ($gng as $gang)
 @if(($day)==1)
   @if(gettype(strrpos($gang->text, "จัน")) === "integer" && strrpos($gang->text, "จัน") >= 0)
-      <div class="box-pop">
-          <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-          <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-          <div class="remove-padding box-content-popup">
+  <div class="box-pop">
+      <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+      <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+      <div class="remove-padding box-content-popup">
 
-            <div class="row">
-                <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+        <div class="row">
+            <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                </div>
+                <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
             </div>
-              </div>
-              <div class="remove-padding box-content">
-                  <div class="row" id="detail-btn">
-                   <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                      <div >  <span >{{ $gang->text }}</span>  </div>
-                      <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                       <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                        <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                         <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                          <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                             <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                             </div>
-                      </div>
-                  </div>
+        </div>
           </div>
-    </div>
+          <div class="remove-padding box-content">
+              <div class="row" id="detail-btn">
+               <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                  <div >  <span >{{ $gang->text }}</span>  </div>
+                  <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                   <div  class="col-xs-6 font-tai" align="right" >
+                     <div class="font-tai-mo">
+                    <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                     <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                      <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                         <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                         </div>
+                  </div>
+              </div>
+      </div>
+</div>
       @endif
           @endif
           @if(($day)==2)
             @if(gettype(strrpos($gang->text, "อัง")) === "integer" && strrpos($gang->text, "อัง") >= 0)
-                <div class="box-pop">
-                    <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                    <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                    <div class="remove-padding box-content-popup">
+            <div class="box-pop">
+                <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                <div class="remove-padding box-content-popup">
 
-                      <div class="row">
-                          <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                  <div class="row">
+                      <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                          </div>
+                          <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                       </div>
-                        </div>
-                        <div class="remove-padding box-content">
-                            <div class="row" id="detail-btn">
-                             <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                <div >  <span >{{ $gang->text }}</span>  </div>
-                                <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                 <div  class="col-xs-6 font-tai" align="right" >
-          <div >
-                                  <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                                   <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                    <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-          <div >
-                                       <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                                       </div>
-                                </div>
-                            </div>
+                  </div>
                     </div>
-              </div>
+                    <div class="remove-padding box-content">
+                        <div class="row" id="detail-btn">
+                         <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                            <div >  <span >{{ $gang->text }}</span>  </div>
+                            <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                             <div  class="col-xs-6 font-tai" align="right" >
+                               <div class="font-tai-mo">
+                              <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                               <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                   <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                   </div>
+                            </div>
+                        </div>
+                </div>
+          </div>
                 @endif
                     @endif
                     @if(($day)==3)
                       @if(gettype(strrpos($gang->text, "พุธ")) === "integer" && strrpos($gang->text, "พุธ") >= 0)
-                          <div class="box-pop">
-                              <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                              <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                              <div class="remove-padding box-content-popup">
+                      <div class="box-pop">
+                          <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                          <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                          <div class="remove-padding box-content-popup">
 
-                                <div class="row">
-                                    <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                            <div class="row">
+                                <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                                        <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                                    </div>
+                                    <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                 </div>
-                                  </div>
-                                  <div class="remove-padding box-content">
-                                      <div class="row" id="detail-btn">
-                                       <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                          <div >  <span >{{ $gang->text }}</span>  </div>
-                                          <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                           <div  class="col-xs-6 font-tai" align="right" >
-                    <div >
-                                            <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                                             <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                              <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                    <div >
-                                                 <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                                                 </div>
-                                          </div>
-                                      </div>
+                            </div>
                               </div>
-                        </div>
+                              <div class="remove-padding box-content">
+                                  <div class="row" id="detail-btn">
+                                   <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                      <div >  <span >{{ $gang->text }}</span>  </div>
+                                      <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                       <div  class="col-xs-6 font-tai" align="right" >
+                                         <div class="font-tai-mo">
+                                        <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                         <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                          <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                             <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                             </div>
+                                      </div>
+                                  </div>
+                          </div>
+                    </div>
                           @endif
                               @endif
                               @if(($day)==4)
                                 @if(gettype(strrpos($gang->text, "พฤ")) === "integer" && strrpos($gang->text, "พฤ") >= 0)
-                                    <div class="box-pop">
-                                        <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                                        <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                                        <div class="remove-padding box-content-popup">
+                                <div class="box-pop">
+                                    <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                                    <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                                    <div class="remove-padding box-content-popup">
 
-                                          <div class="row">
-                                              <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                                      <div class="row">
+                                          <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                                                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                                              </div>
+                                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                           </div>
-                                            </div>
-                                            <div class="remove-padding box-content">
-                                                <div class="row" id="detail-btn">
-                                                 <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                                    <div >  <span >{{ $gang->text }}</span>  </div>
-                                                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                                     <div  class="col-xs-6 font-tai" align="right" >
-                              <div >
-                                                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                                                       <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                                        <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                              <div >
-                                                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                                                           </div>
-                                                    </div>
-                                                </div>
+                                      </div>
                                         </div>
-                                  </div>
+                                        <div class="remove-padding box-content">
+                                            <div class="row" id="detail-btn">
+                                             <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                                <div >  <span >{{ $gang->text }}</span>  </div>
+                                                <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                                 <div  class="col-xs-6 font-tai" align="right" >
+                                                   <div class="font-tai-mo">
+                                                  <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                                   <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                                    <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                                       <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                                       </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                              </div>
                                     @endif
                                         @endif
                                         @if(($day)==5)
                                           @if(gettype(strrpos($gang->text, "ศุก")) === "integer" && strrpos($gang->text, "ศุก") >= 0)
-                                              <div class="box-pop">
-                                                  <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                                                  <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                                                  <div class="remove-padding box-content-popup">
+                                              <  <div class="box-pop">
+                                                    <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                                                    <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                                                    <div class="remove-padding box-content-popup">
 
-                                                    <div class="row">
-                                                        <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                                                      <div class="row">
+                                                          <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                                                        </div>
-                                                    </div>
-                                                      </div>
-                                                      <div class="remove-padding box-content">
-                                                          <div class="row" id="detail-btn">
-                                                           <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                                              <div >  <span >{{ $gang->text }}</span>  </div>
-                                                              <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                                               <div  class="col-xs-6 font-tai" align="right" >
-                                        <div >
-                                                                <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                                                                 <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                                                  <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                                        <div >
-                                                                     <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                                                                     </div>
-                                                              </div>
+                                                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                                           </div>
-                                                  </div>
-                                            </div>
+                                                      </div>
+                                                        </div>
+                                                        <div class="remove-padding box-content">
+                                                            <div class="row" id="detail-btn">
+                                                             <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                                                <div >  <span >{{ $gang->text }}</span>  </div>
+                                                                <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                                                 <div  class="col-xs-6 font-tai" align="right" >
+                                                                   <div class="font-tai-mo">
+                                                                  <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                                                   <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                                                    <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                                                       <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                                                       </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                              </div>
                                               @endif
                                                   @endif
                                                   @if(($day)==6)
                                                     @if(gettype(strrpos($gang->text, "เสา")) === "integer" && strrpos($gang->text, "เสา") >= 0)
-                                                        <div class="box-pop">
-                                                            <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                                                            <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                                                            <div class="remove-padding box-content-popup">
+                                                    <div class="box-pop">
+                                                        <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                                                        <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                                                        <div class="remove-padding box-content-popup">
 
-                                                              <div class="row">
-                                                                  <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                                                          <div class="row">
+                                                              <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                                                                      <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                                                                  </div>
+                                                                  <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                                               </div>
-                                                                </div>
-                                                                <div class="remove-padding box-content">
-                                                                    <div class="row" id="detail-btn">
-                                                                     <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                                                        <div >  <span >{{ $gang->text }}</span>  </div>
-                                                                        <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                                                         <div  class="col-xs-6 font-tai" align="right" >
-                                                  <div >
-                                                                          <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
-                                                                           <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                                                            <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                                                  <div >
-                                                                               <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
-                                                                               </div>
-                                                                        </div>
-                                                                    </div>
+                                                          </div>
                                                             </div>
-                                                      </div>
+                                                            <div class="remove-padding box-content">
+                                                                <div class="row" id="detail-btn">
+                                                                 <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                                                    <div >  <span >{{ $gang->text }}</span>  </div>
+                                                                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                                                     <div  class="col-xs-6 font-tai" align="right" >
+                                                                       <div class="font-tai-mo">
+                                                                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                                                       <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                                                        <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                                                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                                                           </div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                  </div>
                                                         @endif
                                                             @endif
                                                             @if(($day)==7)
                                                               @if(gettype(strrpos($gang->text, "อาทิ")) === "integer" && strrpos($gang->text, "ิอาทิ") >= 0)
-                                                                  <div class="box-pop">
-                                                                      <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                                                                      <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                                                                      <div class="remove-padding box-content-popup">
+                                                              <div class="box-pop">
+                                                                  <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                                                                  <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                                                                  <div class="remove-padding box-content-popup">
 
-                                                                        <div class="row">
-                                                                            <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
 
-                                                                                <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
-                                                                            </div>
+                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                                                         </div>
-                                                                          </div>
-                                                                          <div class="remove-padding box-content">
-                                                                              <div class="row" id="detail-btn">
-                                                                               <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                                                                  <div >  <span >{{ $gang->text }}</span>  </div>
-                                                                                  <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                                                                   <div  class="col-xs-6 font-tai" align="right" ><div>
-                                                                                     <div class="font-tai-mo">
-                                                                                    <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
-                                                                                     <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                                                                      <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                                                                                         <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
-                                                                                         </div>
-                                                                                  </div>
-                                                                              </div>
+                                                                    </div>
                                                                       </div>
-                                                                </div>
+                                                                      <div class="remove-padding box-content">
+                                                                          <div class="row" id="detail-btn">
+                                                                           <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                                                              <div >  <span >{{ $gang->text }}</span>  </div>
+                                                                              <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                                                               <div  class="col-xs-6 font-tai" align="right" >
+                                                                                 <div class="font-tai-mo">
+                                                                                <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                                                                 <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                                                                  <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                                                                     <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                                                                     </div>
+                                                                              </div>
+                                                                          </div>
+                                                                  </div>
+                                                            </div>
+
                                                                   @endif
                                                                       @endif
       @endforeach
@@ -472,14 +467,13 @@
                   <div class="row" id="detail-btn">
                    <div  class="col-xs-6 pop-gang-popup-day font-tai">
                       <div >  <span >{{ $gang->text }}</span>  </div>
-                      <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                      <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                        <div  class="col-xs-6 font-tai" align="right" >
-  <div >
-                        <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                         <div class="font-tai-mo">
+                        <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                          <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                           <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-  <div >
-                             <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                             <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                              </div>
                       </div>
                   </div>
@@ -515,14 +509,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -559,14 +552,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -601,14 +593,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -642,14 +633,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -685,14 +675,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -727,14 +716,13 @@
                 <div class="row" id="detail-btn">
                  <div  class="col-xs-6 pop-gang-popup-day font-tai">
                     <div >  <span >{{ $gang->text }}</span>  </div>
-                    <span class="font-tai" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                    <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                      <div  class="col-xs-6 font-tai" align="right" >
-<div >
-                      <span class="badge badge-orange pop-gang-popup-typemin">{{ $gang->rank_min }}</span>
+                       <div class="font-tai-mo">
+                      <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
                        <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
                         <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-<div >
-                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span> </div>
+                           <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
                            </div>
                     </div>
                 </div>
@@ -781,7 +769,7 @@
             });
 
             $('.w3-bar li').click(function(){
-              $('.w3-bar li.active').removeClass('active')
+              $('.w3-bar li.active').removeClass('active');
 
             });
 

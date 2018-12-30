@@ -219,10 +219,8 @@
       <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
       <div class="absolute box-overlay-popup box-image col-sm-4"></div>
       <div class="remove-padding box-content-popup">
-
         <div class="row">
             <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                 <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
             </div>
         </div>
@@ -251,10 +249,8 @@
                 <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
                 <div class="absolute box-overlay-popup box-image col-sm-4"></div>
                 <div class="remove-padding box-content-popup">
-
                   <div class="row">
                       <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                           <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                       </div>
                   </div>
@@ -283,10 +279,8 @@
                           <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
                           <div class="absolute box-overlay-popup box-image col-sm-4"></div>
                           <div class="remove-padding box-content-popup">
-
                             <div class="row">
                                 <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                                     <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                 </div>
                             </div>
@@ -315,10 +309,8 @@
                                     <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
                                     <div class="absolute box-overlay-popup box-image col-sm-4"></div>
                                     <div class="remove-padding box-content-popup">
-
                                       <div class="row">
                                           <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                                               <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                           </div>
                                       </div>
@@ -343,34 +335,32 @@
                                         @endif
                                         @if(($day)==5)
                                           @if(gettype(strrpos($gang->text, "ศุก")) === "integer" && strrpos($gang->text, "ศุก") >= 0)
-                                              <  <div class="box-pop">
-                                                    <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
-                                                    <div class="absolute box-overlay-popup box-image col-sm-4"></div>
-                                                    <div class="remove-padding box-content-popup">
-
-                                                      <div class="row">
-                                                          <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
-                                                              <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                          <div class="box-pop">
+                                              <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
+                                              <div class="absolute box-overlay-popup box-image col-sm-4"></div>
+                                              <div class="remove-padding box-content-popup">
+                                                <div class="row">
+                                                    <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
+                                                        <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
+                                                    </div>
+                                                </div>
+                                                  </div>
+                                                  <div class="remove-padding box-content">
+                                                      <div class="row" id="detail-btn">
+                                                       <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                                          <div >  <span >{{ $gang->text }}</span>  </div>
+                                                          <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
+                                                           <div  class="col-xs-6 font-tai" align="right" >
+                                                             <div class="font-tai-mo">
+                                                            <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
+                                                             <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
+                                                              <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
+                                                                 <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
+                                                                 </div>
                                                           </div>
                                                       </div>
-                                                        </div>
-                                                        <div class="remove-padding box-content">
-                                                            <div class="row" id="detail-btn">
-                                                             <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                                                                <div >  <span >{{ $gang->text }}</span>  </div>
-                                                                <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
-                                                                 <div  class="col-xs-6 font-tai" align="right" >
-                                                                   <div class="font-tai-mo">
-                                                                  <span class="badge badge-orange pop-gang-popup-typemin ">{{ $gang->rank_min }}</span>
-                                                                   <span class="ppop-gang-popup-typemin"style="font-size:25px;color:#fff;">-</span>
-                                                                    <span class="badge badge-orange pop-gang-popup-typemax">{{ $gang->rank_max }}</span> </div>
-                                                                       <span  ><b style=" text-decoration: underline;">{{$gang->name}}</b></span>
-                                                                       </div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
                                               </div>
+                                        </div>
                                               @endif
                                                   @endif
                                                   @if(($day)==6)
@@ -379,10 +369,8 @@
                                                         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
                                                         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
                                                         <div class="remove-padding box-content-popup">
-
                                                           <div class="row">
                                                               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                                                                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                                               </div>
                                                           </div>
@@ -411,10 +399,9 @@
                                                                   <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
                                                                   <div class="absolute box-overlay-popup box-image col-sm-4"></div>
                                                                   <div class="remove-padding box-content-popup">
-
                                                                     <div class="row">
                                                                         <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="">{{$gang->count}}</strong></a></span>
+                                                                            <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                                                                         </div>
                                                                     </div>
                                                                       </div>
@@ -434,7 +421,6 @@
                                                                           </div>
                                                                   </div>
                                                             </div>
-
                                                                   @endif
                                                                       @endif
       @endforeach
@@ -454,10 +440,8 @@
           <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
           <div class="absolute box-overlay-popup box-image col-sm-4"></div>
           <div class="remove-padding box-content-popup">
-
             <div class="row">
                 <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                     <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
                 </div>
             </div>
@@ -496,10 +480,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
@@ -539,10 +521,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
@@ -580,10 +560,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
@@ -620,10 +598,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
@@ -662,10 +638,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>
@@ -703,10 +677,8 @@
         <div class=" row padding box-image relative " align="center" style="background-image: url('{{$gang->img}}')">
         <div class="absolute box-overlay-popup box-image col-sm-4"></div>
         <div class="remove-padding box-content-popup">
-
           <div class="row">
               <div class="col-sm-12 remove-padding  popup" style="margin-top: 10px">
-
                   <span class="btn-detail-popup" > <a target="_blank"  " href="{{$gang->count_url}}"><strong style="color: #000">{{$gang->count}}</strong></a></span>
               </div>
           </div>

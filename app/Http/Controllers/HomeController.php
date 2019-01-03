@@ -54,6 +54,8 @@ class HomeController extends Controller
         }
 
         $nameOfDay =date("N");
+        $thai_day_arr=array("อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์");
+        $thai_date_return="วัน".$thai_day_arr[date("w")];
       $gangs = \DB::table('gang')
         ->get();
       $newGangs = [];
@@ -67,6 +69,8 @@ class HomeController extends Controller
         return view('home')->with('sponsors',$sponsors)
                            ->with('events',$events->toArray())
                            ->with('gangs',$newGangs)
+                           ->with('dayname',$thai_date_return)
                             ->with('day',$nameOfDay);
+
     }
 }

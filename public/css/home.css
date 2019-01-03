@@ -493,7 +493,7 @@ fieldset[disabled] .btn-brown:hover {
 font-size: 13px;
 margin-top: 10px;
 padding-left:6px;
-padding-left:11px
+padding-left:11px;
 }
 .popup-cloes{
   margin-left: : 10px;
@@ -509,8 +509,16 @@ padding-left:11px
 margin-top: -9px !important;
 margin-bottom: -7px !important;
 }
+
 }
-}
+@media (max-width: 1144px) and (min-width: 768px) {
+  .font-tai{
+    font-size: 10px !important;
+    color:#fff;
+    bottom:-4px;
+      margin-top: 10px;
+  }
+  }
 
 @media (max-width: 1691px) and (min-width: 1145px) {
   .box:last-child {
@@ -543,18 +551,16 @@ margin-bottom:10px;
 margin-bottom:10px;
 }
 .font-tai{
-  font-size: 10px;
+  font-size: 10px !important;
   color:#fff;
   bottom:-4px;
     margin-top: 10px;
-
 }
 .text-con{
   font-size: 10px;
 }
 .popup-text{
 font-size: 7px;
-
 }
 }
 

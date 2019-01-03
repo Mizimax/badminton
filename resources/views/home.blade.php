@@ -16,10 +16,10 @@
 </style>
 @endsection
 @section('content')
-<link href="/css/home.css?v=10" rel="stylesheet">
-<link href="/css/popup.css?v=10" rel="stylesheet">
+<link href="/css/home.css?v=1.3" rel="stylesheet">
+<link href="/css/popup.css?v=1.3" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
-<link href="/css/wezync.css?v=10" rel="stylesheet">
+<link href="/css/wezync.css?v=1.3" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative">
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)
@@ -180,29 +180,29 @@
 <ul class="nav nav-tabs">
 <div class="w3-bar" style=" margin-top: 15px;">
 
-  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:12.3%">วันจันทร์</a></li>
-  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:12.3%">วันอังคาร</a></li>
-  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:12.3%">วันพุธ</a></li>
-  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:12.3%">วันพฤหัส</a></li>
-  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:12.3%">วันศุกร์</a></li>
-    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:12.3%">วันเสาร์</a></li>
-  <li>  <a data-toggle="tab" href="#sunday" class="active w3-bar-item w3-button"  style="width:12.5%">วันอาิทตย์</a></li>
+  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:14.28%">วันจันทร์</a></li>
+  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:14.28%">วันอังคาร</a></li>
+  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:14.28%">วันพุธ</a></li>
+  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:14.28%">วันพฤหัส</a></li>
+  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:14.28%">วันศุกร์</a></li>
+    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:14.28%">วันเสาร์</a></li>
+  <li>  <a data-toggle="tab" href="#sunday" class="active w3-bar-item w3-button"  style="width:14.28%">วันอาิทตย์</a></li>
 
 </div>
 </ul>
 </div>
 <div id="calendar" >
-<div class="input" style="margin:0 auto;max-width: 100%; background:#ff2124;color:#fff;width: 250px;transform: translateY(-10%); font-size: 15px">
-  <span class="display" style="text-align: center">วัน</span> <span class="icon dropdown">▼</span>
-</div>
-<div class="input-dropdown event shadow-black">
-    <div  data-toggle="tab" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item">จันทร์</div></div>
-    <div data-toggle="tab" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อังคาร</div></div>
-    <div   data-toggle="tab" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พุธ</div></div>
-    <div  data-toggle="tab" href="#thursday"class="item-dropdown" onclick="searchTable(this)"><div class="item">พฤ</div></div>
-    <div data-toggle="tab" href="#friday" class="item-dropdown" onclick="searchTable(this)"><div class="item">ศุกร์</div></div>
-    <div  data-toggle="tab" href="#saturday"class="item-dropdown" onclick="searchTable(this)"><div class="item">เสาร์</div></div>
-    <div data-toggle="tab" href="#sunday"class="item-dropdown" onclick="searchTable(this)"><div class="item">อาทิตย</div></div>
+  <div class="input"  style="margin:0 auto;max-width: 100%; background:#ff2124;color:#fff;width: 250px;transform: translateY(-10%); font-size: 15px">
+    <span class="display" id="spanid" style="text-align: center">{{$dayname}}</span> <span class="icon dropdown">▼</span>
+  </div>
+<div class="input-dropdown event shadow-black item">
+    <div  data-toggle="tab" id="button1" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">จันทร์</div></div>
+    <div data-toggle="tab" id="button2" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">อังคาร</div></div>
+    <div   data-toggle="tab" id="button3" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">พุธ</div></div>
+    <div  data-toggle="tab" id="button4" href="#thursday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">พฤ</div></div>
+    <div data-toggle="tab" id="button5" href="#friday" class="item-dropdown" onclick="searchTable(this)"><div class="item display">ศุกร์</div></div>
+    <div  data-toggle="tab" id="button6" href="#saturday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">เสาร์</div></div>
+    <div data-toggle="tab" id="button7" href="#sunday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">อาทิตย</div></div>
 
 </div>
 </div>
@@ -228,7 +228,7 @@
           <div class="remove-padding box-content">
               <div class="row" id="detail-btn">
                <div  class="col-xs-6 pop-gang-popup-day font-tai">
-                  <div >  <span >{{ $gang->text }}</span>  </div>
+                  <div class="font-tai">  <span>{{ $gang->text }}</span>  </div>
                   <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                    <div  class="col-xs-6 font-tai" align="right" >
                      <div class="font-tai-mo">
@@ -317,7 +317,7 @@
                                         </div>
                                         <div class="remove-padding box-content">
                                             <div class="row" id="detail-btn">
-                                             <div  class="col-xs-6 pop-gang-popup-day font-tai">
+                                             <div class="col-xs-6 pop-gang-popup-day font-tai">
                                                 <div >  <span >{{ $gang->text }}</span>  </div>
                                                 <span class="font-tai-time" >{{$gang->timeopen}} - {{ $gang->timeclose }}</span></div>
                                                  <div  class="col-xs-6 font-tai" align="right" >
@@ -717,6 +717,7 @@
 
 @endsection
 @section('scripts')
+
     <script src="/js/home.js?v=2"></script>
     <script src="/js/datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
@@ -743,6 +744,28 @@
               $('.w3-bar li.active').removeClass('active');
 
             });
+            $('#button1').click(function(){
+              $("#spanid").html("จันทร์");
+              });
+              $('#button2').click(function(){
+                $("#spanid").html("อังคาร");
+                });
+                $('#button3').click(function(){
+                  $("#spanid").html("พุธ");
+                  });
+                  $('#button4').click(function(){
+                    $("#spanid").html("พฤ์");
+                    });
+                    $('#button5').click(function(){
+                      $("#spanid").html("ศุกร์์");
+                      });
+                      $('#button6').click(function(){
+                        $("#spanid").html("เสาร์");
+                        });
+                        $('#button7').click(function(){
+                          $("#spanid").html("อาทิตย์์");
+                          });
+
 
 
 

@@ -178,15 +178,15 @@
       <div class="w3-container"style="">
         <div id="filter-popup">
 <ul class="nav nav-tabs" >
-<div class="w3-bar" id="daytai" style=" margin-top: 15px;">
+<div class="w3-bar"  style=" margin-top: 15px;">
 
-  <li>  <a data-toggle="tab" href="#monday" class="w3-bar-item w3-button active " style="width:14.28%">วันจันทร์</a></li>
-  <li>  <a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button" style="width:14.28%">วันอังคาร</a></li>
-  <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button"  style="width:14.28%">วันพุธ</a></li>
-  <li>  <a data-toggle="tab" href="#thursday" class=" w3-bar-item w3-button"  style="width:14.28%">วันพฤหัส</a></li>
-  <li>  <a data-toggle="tab" href="#friday" class="w3-bar-item w3-button" style="width:14.28%">วันศุกร์</a></li>
-    <li><a data-toggle="tab" href="#saturday" class="w3-bar-item w3-button"  style="width:14.28%">วันเสาร์</a></li>
-  <li>  <a data-toggle="tab" href="#sunday" class="w3-bar-item w3-button"  style="width:14.28%">วันอาิทตย์</a></li>
+  <li class="w3-bar-item w3-button "  style="width:14.28%" >  <a data-toggle="tab" href="#monday">วันจันทร์</a></li>
+  <li class="w3-bar-item w3-button " style="width:14.28%" >  <a data-toggle="tab" href="#tuesday"  >วันอังคาร</a></li>
+  <li class="w3-bar-item w3-button "  style="width:14.28%">  <a data-toggle="tab" href="#wednesday" >วันพุธ</a></li>
+  <li class="w3-bar-item w3-button "  style="width:14.28%">  <a data-toggle="tab" href="#thursday" >วันพฤหัส</a></li>
+  <li class="w3-bar-item w3-button "  style="width:14.28%">  <a data-toggle="tab" href="#friday" >วันศุกร์</a></li>
+  <li class="w3-bar-item w3-button " onload="assignBackgroundColor();" style="width:14.28%"><a data-toggle="tab" href="#saturday"  >วันเสาร์</a></li>
+  <li class="w3-bar-item w3-button "  style="width:14.28%">  <a data-toggle="tab" href="#sunday" >วันอาิทตย์</a></li>
 
 </div>
 </ul>
@@ -743,9 +743,7 @@
             $('.w3-bar li').click(function(){
               $('.w3-bar li.active').removeClass('active');
             });
-            $('li a').click(function(){
-              $('li a.active').removeClass('active');
-            });
+
 
             $('#button1').click(function(){
               $("#spanid").html("จันทร์");
@@ -772,7 +770,6 @@
 
 
 
-
         });
     </script>
     <!-- <script>
@@ -787,7 +784,6 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 </script> -->
-
 
     <script type="text/javascript">
     jQuery(document).ready(function($){

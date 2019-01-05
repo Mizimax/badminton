@@ -5,7 +5,7 @@
   font-size: 15px !important;
 }
 .w3-bar-item.active {
-  background: rgb(255, 154, 127);
+  background: #EF4035 !important;
 }
 .nav-tabs {
   border-bottom: none;
@@ -177,16 +177,16 @@
      <div class="bts-popup-container" style="border-radius:10px; ">
       <div class="w3-container"style="">
         <div id="filter-popup">
-<ul class="nav nav-tabs">
-<div class="w3-bar" style=" margin-top: 15px;">
+<ul class="nav nav-tabs" >
+<div class="w3-bar" id="daytai" style=" margin-top: 15px;">
 
-  <li>  <a data-toggle="tab" href="#monday" class="active w3-bar-item w3-button" style="width:14.28%">วันจันทร์</a></li>
-  <li>  <a data-toggle="tab" href="#tuesday" class="active w3-bar-item w3-button" style="width:14.28%">วันอังคาร</a></li>
-  <li>  <a data-toggle="tab" href="#wednesday" class="active w3-bar-item w3-button"  style="width:14.28%">วันพุธ</a></li>
-  <li>  <a data-toggle="tab" href="#thursday" class="active w3-bar-item w3-button"  style="width:14.28%">วันพฤหัส</a></li>
-  <li>  <a data-toggle="tab" href="#friday" class="active w3-bar-item w3-button" style="width:14.28%">วันศุกร์</a></li>
-    <li><a data-toggle="tab" href="#saturday" class="active w3-bar-item w3-button"  style="width:14.28%">วันเสาร์</a></li>
-  <li>  <a data-toggle="tab" href="#sunday" class="active w3-bar-item w3-button"  style="width:14.28%">วันอาิทตย์</a></li>
+  <li>  <a data-toggle="tab" href="#monday" class="w3-bar-item w3-button active " style="width:14.28%">วันจันทร์</a></li>
+  <li>  <a data-toggle="tab" href="#tuesday" class="w3-bar-item w3-button" style="width:14.28%">วันอังคาร</a></li>
+  <li>  <a data-toggle="tab" href="#wednesday" class="w3-bar-item w3-button"  style="width:14.28%">วันพุธ</a></li>
+  <li>  <a data-toggle="tab" href="#thursday" class=" w3-bar-item w3-button"  style="width:14.28%">วันพฤหัส</a></li>
+  <li>  <a data-toggle="tab" href="#friday" class="w3-bar-item w3-button" style="width:14.28%">วันศุกร์</a></li>
+    <li><a data-toggle="tab" href="#saturday" class="w3-bar-item w3-button"  style="width:14.28%">วันเสาร์</a></li>
+  <li>  <a data-toggle="tab" href="#sunday" class="w3-bar-item w3-button"  style="width:14.28%">วันอาิทตย์</a></li>
 
 </div>
 </ul>
@@ -742,8 +742,11 @@
 
             $('.w3-bar li').click(function(){
               $('.w3-bar li.active').removeClass('active');
-
             });
+            $('li a').click(function(){
+              $('li a.active').removeClass('active');
+            });
+
             $('#button1').click(function(){
               $("#spanid").html("จันทร์");
               });
@@ -772,6 +775,19 @@
 
         });
     </script>
+    <!-- <script>
+// Add active class to the current button (highlight it)
+var header = document.getElementById("daytai");
+var btns = header.getElementsByClassName("w3-bar-item w3-button");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+</script> -->
+
 
     <script type="text/javascript">
     jQuery(document).ready(function($){

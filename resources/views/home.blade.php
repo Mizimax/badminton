@@ -198,7 +198,7 @@
 
 
 
-<div class="input-dropdown event shadow-black item">
+<div class="input-dropdown event shadow-black item " style="width:92%;">
     <div  data-toggle="tab" id="button1" href="#monday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">จันทร์</div></div>
     <div data-toggle="tab" id="button2" href="#tuesday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">อังคาร</div></div>
     <div   data-toggle="tab" id="button3" href="#wednesday"class="item-dropdown" onclick="searchTable(this)"><div class="item display">พุธ</div></div>
@@ -214,7 +214,7 @@
     <span class="display" id="spanid2" style="text-align: center">ฝั่งพระนคร</span> <span class="icon dropdown">▼</span>
   </div>
 
-<div class="input-dropdown event shadow-black item">
+<div class="input-dropdown event shadow-black item" style="width:92%;">
     <div  data-toggle="tab" id="button11" href="#monday1"class="item-dropdown" onclick="searchTable(this)"><div class="item display">ฝั่งธน</div></div>
     <div data-toggle="tab" id="button21" href="#tuesday1"class="item-dropdown" onclick="searchTable(this)"><div class="item display">ฝั่งพระนคร</div></div>
 </div>

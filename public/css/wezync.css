@@ -954,7 +954,7 @@ fieldset[disabled] .btn-red:hover {
     left top,
     from(rgba(0, 0, 0, 1)),
     to(rgba(0, 0, 0, 0)),
-    color-stop(0.05, rgba(0, 0, 0, 0.95))
+    color-stop(0.05, rgba(0, 0, 0, 0.80))
   );
 
 
@@ -1106,6 +1106,7 @@ img.header {
   div.popup{
   width:auto;
   margin-top:17px !important;
+  font-size: 25px !important;
   }
   div.popup:hover{
     width:auto;

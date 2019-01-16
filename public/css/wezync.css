@@ -1079,13 +1079,34 @@ img.header {
 .slick-height {
   height: 615px;
 }
+.btn-detail-popup{
+  border-radius: 4px;
+  /* color: #209cee; */
+  /* background: transparent; */
+  /* border: 1px solid #209cee; */
+  padding: 1px 4px;
+  /* display: inline-block;
+  background-color: #00A9E8; */
+  font-size: 14px;
 
+}
 @media (max-width: 992px) {
   img.header {
     height: 360px;
   }
   .slick-height {
     height: 455px;
+  }
+  .btn-detail-popup{
+    border-radius: 4px;
+    /* color: #209cee; */
+    /* background: transparent; */
+    /* border: 1px solid #209cee; */
+    padding: 1px 4px;
+    /* display: inline-block;
+    background-color: #00A9E8; */
+    font-size: 14px;
+
   }
 }
 
@@ -1219,7 +1240,7 @@ img.header {
   padding: 1px 4px;
   /* display: inline-block;
   background-color: #00A9E8; */
-  font-size: 15px;
+  font-size: 14px;
 
 }
 

@@ -19,7 +19,7 @@
 <link href="/css/home.css?v=1.3" rel="stylesheet">
 <link href="/css/popup.css?v=1.3" rel="stylesheet">
 <link href="/css/datepicker.min.css" rel="stylesheet">
-<link href="/css/wezync.css?v=1.3" rel="stylesheet">
+<link href="/css/wezync.css?v=1.4" rel="stylesheet">
     <div class="row" style="background-color:#000; position: relative">
             <div class="slick max">
                     @foreach ($sponsors as $k=>$sponsor)

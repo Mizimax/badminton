@@ -3,6 +3,7 @@
 return [
 
     /*
+    false
     |--------------------------------------------------------------------------
     | Third Party Services
     |--------------------------------------------------------------------------
@@ -35,13 +36,13 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'facebook'=>[
+     'facebook'=>[
         'client_id' => '2166492460286699',
         'client_secret' => '9034cf8214d59e4c75bd903033d5ba5a',
         'redirect' => 'https://sanarmbad.com/callback',
     ],
 
-    'line'=>[
+      'line'=>[
       'client_id' => '1639828978',
       'client_secret' => '281aaea7eba6ed5f69dda71ac9a6a98b',
       'redirect' => 'https://sanarmbad.com/callback/line'

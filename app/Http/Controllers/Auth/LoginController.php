@@ -56,12 +56,10 @@ class LoginController extends Controller
     public function callbackLine(Request $request)
     {
       $account = Socialite::with('line')->user();
-      if($account && $request->has('code')){
-	$email = ($account->email)? : $account->id;
+       if($account && $request->has('code')){
+	     $email = ($account->email)? : $account->id;
         $user = User::whereEmail($email)->first();
-
         if (!$user) {
-
             $user = User::create([
                 'email' => $email,
                 'name' => $account->name,

@@ -30,6 +30,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function privacypolicy()
+     {
+
+
+       return view('privacypolicy');
+
+     }
     public function index()
     {
         $sponsors = Sponsor::getImageAll();

@@ -39,6 +39,7 @@ class HomeController extends Controller
      }
     public function index()
     {
+	    var_dump(DB::connection());
         $sponsors = Sponsor::getImageAll();
         $event_not_start = Event::where('event_start', '<=', \DB::raw('NOW()'))
                         ->orderBy('event_start', 'desc')
